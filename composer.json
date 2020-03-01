@@ -1,0 +1,51 @@
+{
+    "name": "bambamboole/laravel-cms",
+    "description": "",
+    "keywords": [
+        "bambamboole",
+        "laravel-cms"
+    ],
+    "homepage": "https://github.com/bambamboole/laravel-cms",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Manuel Christlieb",
+            "email": "manuel@christlieb.eu",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bambamboole\\LaravelCms\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Bambamboole\\LaravelCms\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Bambamboole\\LaravelCms\\LaravelCmsServiceProvider"
+            ]
+        }
+    }
+}
