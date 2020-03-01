@@ -9,11 +9,12 @@
     <title>{{ config('app.name', 'Laravel cms') }}</title>
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href='{{mix('app.css', 'vendor/cms')}}' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <div id="app">
-    <main class="py-4">
+    <main>
         @yield('content')
     </main>
 </div>

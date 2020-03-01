@@ -6,7 +6,6 @@ use Bambamboole\LaravelCms\Commands\InstallCommand;
 use Bambamboole\LaravelCms\Commands\MigrateCommand;
 use Bambamboole\LaravelCms\Http\Controllers\Auth\ForgotPasswordController;
 use Bambamboole\LaravelCms\Http\Controllers\Auth\LoginController;
-use Bambamboole\LaravelCms\Http\Controllers\DashboardController;
 use Bambamboole\LaravelCms\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Models\CmsUser;
 use Illuminate\Support\Facades\Route;
@@ -49,8 +48,8 @@ class LaravelCmsServiceProvider extends ServiceProvider
 
     protected function registerRoutes(): void
     {
-        $middleware = config('cms.dashboard.middleware', 'web');
-        $urlPrefix = config('cms.dashboard.url', 'admin');
+        $middleware = config('cms.backend.middleware', 'web');
+        $urlPrefix = config('cms.backend.url', 'admin');
 
         Route::middleware($middleware)
             ->as('cms.')
@@ -69,7 +68,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
             ->as('cms.')
             ->prefix($urlPrefix)
             ->group(function () {
-                Route::get('/', DashboardController::class)->name('dashboard');
+                $this->loadRoutesFrom(__DIR__ . '/Http/routes.php');
             });
     }
 

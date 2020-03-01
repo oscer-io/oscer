@@ -38,7 +38,7 @@ class LoginController
      */
     public function redirectPath(): string
     {
-        return '/' . config('cms.dashboard.url_prefix');
+        return '/' . config('cms.backend.url') . '/posts';
     }
 
     /**

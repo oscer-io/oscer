@@ -6,7 +6,7 @@
 return [
     'from_email' => env('CMS_FROM_EMAIL', 'cms@website.com'),
     'database_connection' => env('CMS_DB_CONNECTION', 'cms'),
-    'dashboard' => [
+    'backend' => [
         'url' => 'admin',
         'middleware' => 'web',
     ],
