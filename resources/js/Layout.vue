@@ -12,11 +12,13 @@
                         </div>
                         <div class="hidden sm:-my-px sm:ml-6 sm:flex">
                             <inertia-link :href="route('cms.posts.index')"
-                                          class="inline-flex items-center px-1 pt-1 border-b-2 border-indigo-500 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
+                                          class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm
+                            font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300
+                            focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150
+                            ease-in-out">
                                 Posts
                             </inertia-link>
                             <inertia-link :href="route('cms.pages.index')"
-
                                           class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm
                             font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300
                             focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150
@@ -49,7 +51,8 @@
                                          alt=""/>
                                 </button>
                             </div>
-                            <div v-if="open === true" v-click-outside="closeMenu" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg z-10">
+                            <div v-if="open === true" v-click-outside="closeMenu"
+                                 class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg z-10">
                                 <div class="py-1 rounded-md bg-white shadow-xs">
                                     <inertia-link :href="route('cms.profile.show')"
                                                   class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
@@ -133,7 +136,7 @@
             title: String,
         },
         components: {
-          NavItem
+            NavItem
         },
         data() {
             return {
@@ -149,7 +152,7 @@
             },
         },
         methods: {
-            closeMenu(){
+            closeMenu() {
                 this.open = false;
             }
         }

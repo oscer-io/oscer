@@ -2062,6 +2062,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2269,6 +2272,110 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2279,8 +2386,26 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      name: this.user.name
+      edit: false,
+      form: {
+        name: this.user.name,
+        email: this.user.email,
+        bio: this.user.bio
+      }
     };
+  },
+  methods: {
+    cancel: function cancel() {
+      this.form = {
+        name: this.user.name,
+        email: this.user.email,
+        bio: this.user.bio
+      };
+      this.edit = false;
+    },
+    save: function save() {
+      this.edit = false;
+    }
   }
 });
 
@@ -3378,7 +3503,7 @@ var render = function() {
                     "inertia-link",
                     {
                       staticClass:
-                        "inline-flex items-center px-1 pt-1 border-b-2 border-indigo-500 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out",
+                        "inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm\n                        font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300\n                        focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150\n                        ease-in-out",
                       attrs: { href: _vm.route("cms.posts.index") }
                     },
                     [
@@ -3906,13 +4031,336 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("layout", { attrs: { title: "test" } }, [
-    _c("h1", [_vm._v("Welcome")]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "Hello " + _vm._s(_vm.name) + ", welcome to your first Inertia app!"
-      )
+  return _c("layout", { attrs: { title: "My Profile" } }, [
+    _c("div", [
+      _c("div", { staticClass: "md:flex md:items-center md:justify-between" }, [
+        _c("div", { staticClass: "flex-1 min-w-0" }, [
+          _c(
+            "h3",
+            { staticClass: "text-lg leading-6 font-medium text-gray-900" },
+            [_vm._v("\n                    Profile\n                ")]
+          ),
+          _vm._v(" "),
+          _c("p", { staticClass: "mt-1 text-sm leading-5 text-gray-500" }, [
+            _vm._v(
+              "\n                    This information will be displayed publicly so be careful what you share.\n                "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "mt-4 flex md:mt-0 md:ml-4" }, [
+          _c("span", { staticClass: "ml-3 shadow-sm rounded-md" }, [
+            _vm.edit === false
+              ? _c(
+                  "button",
+                  {
+                    staticClass:
+                      "inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        _vm.edit = true
+                      }
+                    }
+                  },
+                  [_vm._v("\n    Edit\n  ")]
+                )
+              : _vm._e()
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _vm.edit === false
+        ? _c(
+            "div",
+            {
+              staticClass:
+                "mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6"
+            },
+            [
+              _c("div", { staticClass: "sm:col-span-3" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass:
+                      "block text-sm font-medium leading-5 text-gray-700"
+                  },
+                  [
+                    _vm._v(
+                      "\n                                Name\n                            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "py-3" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.user.name) +
+                      "\n                "
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "sm:col-span-3" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass:
+                      "block text-sm font-medium leading-5 text-gray-700"
+                  },
+                  [
+                    _vm._v(
+                      "\n                                Email\n                            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "py-3" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.user.email) +
+                      "\n                "
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "sm:col-span-6" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass:
+                      "block text-sm font-medium leading-5 text-gray-700"
+                  },
+                  [
+                    _vm._v(
+                      "\n                                Bio\n                            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "py-3" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.user.bio) +
+                      "\n                "
+                  )
+                ])
+              ])
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.edit === true
+        ? _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.save($event)
+                }
+              }
+            },
+            [
+              _c("div", [
+                _c("div", [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6"
+                    },
+                    [
+                      _c("div", { staticClass: "sm:col-span-3" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "block text-sm font-medium leading-5 text-gray-700",
+                            attrs: { for: "name" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                Name\n                            "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "mt-1 rounded-md shadow-sm" },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.name,
+                                  expression: "form.name"
+                                }
+                              ],
+                              staticClass:
+                                "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                              attrs: { id: "name", type: "test" },
+                              domProps: { value: _vm.form.name },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "name",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "sm:col-span-3" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "block text-sm font-medium leading-5 text-gray-700",
+                            attrs: { for: "email" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                Email\n                            "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "mt-1 rounded-md shadow-sm" },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.email,
+                                  expression: "form.email"
+                                }
+                              ],
+                              staticClass:
+                                "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                              attrs: { id: "email", type: "email" },
+                              domProps: { value: _vm.form.email },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "email",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "sm:col-span-6" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "block text-sm font-medium leading-5 text-gray-700",
+                            attrs: { for: "about" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                Bio\n                            "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "mt-1 rounded-md shadow-sm" },
+                          [
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.bio,
+                                  expression: "form.bio"
+                                }
+                              ],
+                              staticClass:
+                                "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                              attrs: { id: "about", rows: "3" },
+                              domProps: { value: _vm.form.bio },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(_vm.form, "bio", $event.target.value)
+                                }
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "mt-2 text-sm text-gray-500" }, [
+                          _vm._v("Write a few sentences about yourself.")
+                        ])
+                      ])
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mt-8 border-t border-gray-200 pt-5" }, [
+                _c("div", { staticClass: "flex justify-end" }, [
+                  _c(
+                    "span",
+                    { staticClass: "inline-flex rounded-md shadow-sm" },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out",
+                          attrs: { type: "button" },
+                          on: { click: _vm.cancel }
+                        },
+                        [_vm._v("\n      Cancel\n    ")]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    { staticClass: "ml-3 inline-flex rounded-md shadow-sm" },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out",
+                          attrs: { type: "submit" }
+                        },
+                        [_vm._v("\n      Save\n    ")]
+                      )
+                    ]
+                  )
+                ])
+              ])
+            ]
+          )
+        : _vm._e()
     ])
   ])
 }
