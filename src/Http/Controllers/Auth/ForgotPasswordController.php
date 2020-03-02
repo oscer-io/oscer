@@ -1,13 +1,10 @@
 <?php
 
-
 namespace Bambamboole\LaravelCms\Http\Controllers\Auth;
-
 
 use Bambamboole\LaravelCms\Mail\ResetPasswordMail;
 use Bambamboole\LaravelCms\Models\CmsUser;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;

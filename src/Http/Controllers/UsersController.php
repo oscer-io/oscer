@@ -8,7 +8,7 @@ class UsersController
 {
     public function index()
     {
-        return view('cms::users.index',['users' => CmsUser::all()]);
+        return view('cms::users.index', ['users' => CmsUser::all()]);
     }
 
     public function show(CmsUser $user)

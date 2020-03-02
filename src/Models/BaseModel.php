@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Bambamboole\LaravelCms\Models;
-
 
 use Illuminate\Database\Eloquent\Model;
 

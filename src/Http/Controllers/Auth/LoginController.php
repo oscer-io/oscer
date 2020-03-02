@@ -1,15 +1,12 @@
 <?php
 
-
 namespace Bambamboole\LaravelCms\Http\Controllers\Auth;
-
 
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController
@@ -38,7 +35,7 @@ class LoginController
      */
     public function redirectPath(): string
     {
-        return '/' . config('cms.backend.url') . '/posts';
+        return '/'.config('cms.backend.url').'/posts';
     }
 
     /**
@@ -48,5 +45,4 @@ class LoginController
     {
         return Auth::guard('cms');
     }
-
 }
