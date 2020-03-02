@@ -2,8 +2,6 @@
 
 namespace Bambamboole\LaravelCms\Tests;
 
-use Bambamboole\LaravelCms\Models\CmsUser;
-
 class BackendUrlPrefixTest extends TestCase
 {
     protected function getEnvironmentSetUp($app)
