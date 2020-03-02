@@ -10,5 +10,4 @@ class PostsController
     {
         return Inertia::render('Posts/Index');
     }
-
 }
