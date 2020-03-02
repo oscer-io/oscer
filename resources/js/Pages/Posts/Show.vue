@@ -1,6 +1,6 @@
 <template>
     <layout title="posts">
-        <h1>posts show</h1>
+        <h1>posts index</h1>
 
     </layout>
 </template>

@@ -1,6 +1,8 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Tests;
+namespace Bambamboole\LaravelCms\Tests\Feature;
+
+use Bambamboole\LaravelCms\Tests\TestCase;
 
 class ForgotPasswordTest extends TestCase
 {

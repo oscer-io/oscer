@@ -21,8 +21,6 @@
     </span>
                 </div>
             </div>
-
-
             <div v-if="edit === false" class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
                 <div class="sm:col-span-3">
                                 <span class="block text-sm font-medium leading-5 text-gray-700">
