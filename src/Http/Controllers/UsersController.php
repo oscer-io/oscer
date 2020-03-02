@@ -3,26 +3,17 @@
 namespace Bambamboole\LaravelCms\Http\Controllers;
 
 use Bambamboole\LaravelCms\Models\CmsUser;
+use Inertia\Inertia;
 
 class UsersController
 {
     public function index()
     {
-        return view('cms::users.index', ['users' => CmsUser::all()]);
+        return Inertia::render('Users/Index', ['users' => CmsUser::all()]);
     }
 
     public function show(CmsUser $user)
     {
-        return view('cms::users.show', ['user' => $user]);
-    }
-
-    public function edit(CmsUser $user)
-    {
-        return view('cms::users.edit', ['user' => $user]);
-    }
-
-    public function create(CmsUser $user)
-    {
-        return view('cms::users.create', ['user' => $user]);
+        return Inertia::render('Users/Show', ['user' => $user]);
     }
 }

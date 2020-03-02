@@ -2,10 +2,12 @@
 
 namespace Bambamboole\LaravelCms\Http\Controllers;
 
+use Inertia\Inertia;
+
 class PagesController
 {
     public function index()
     {
-        return view('cms::pages.index');
+        return Inertia::render('Pages/Index');
     }
 }

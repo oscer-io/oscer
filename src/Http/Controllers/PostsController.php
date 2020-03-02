@@ -8,6 +8,7 @@ class PostsController
 {
     public function index()
     {
-        return Inertia::render('Posts');
+        return Inertia::render('Posts/Index');
     }
+
 }

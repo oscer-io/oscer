@@ -12,9 +12,4 @@ class ProfileController
             'user' => auth()->user()->toArray(),
         ]);
     }
-
-    public function edit()
-    {
-        return view('cms::profile.edit', ['user' => auth()->user()]);
-    }
 }

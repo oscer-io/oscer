@@ -1,10 +1,12 @@
 import { InertiaApp } from '@inertiajs/inertia-vue'
 import Vue from 'vue'
+import Router from './Router';
 
-Vue.use(InertiaApp)
+Vue.use(InertiaApp);
 
-const app = document.getElementById('app')
+const app = document.getElementById('app');
 
+Vue.mixin(Router);
 new Vue({
     render: h => h(InertiaApp, {
         props: {

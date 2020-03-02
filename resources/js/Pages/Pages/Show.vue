@@ -1,12 +1,12 @@
 <template>
     <layout title="posts">
-        <h1>posts</h1>
+        <h1>pages show</h1>
 
     </layout>
 </template>
 
 <script>
-    import Layout from '../Layout';
+    import Layout from '../../Layout';
     export default {
         components: {
           Layout

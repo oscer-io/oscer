@@ -1,7 +1,7 @@
 <template>
     <layout title="test">
         <h1>Welcome</h1>
-        <p>Hello {{ user.name }}, welcome to your first Inertia app!</p>
+        <p>Hello {{ name }}, welcome to your first Inertia app!</p>
 
     </layout>
 </template>
@@ -15,5 +15,10 @@
         props: {
             user: Object,
         },
+        data(){
+            return {
+                name: this.user.name
+            }
+        }
     }
 </script>

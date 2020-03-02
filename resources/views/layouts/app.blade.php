@@ -12,7 +12,7 @@
 
     <!-- Styles -->
 {{--    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">--}}
-    <link href='{{asset('app.css', 'vendor/cms')}}' rel='stylesheet' type='text/css'>
+    <link href='{{asset('vendor/cms/app.css')}}' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <div id="app">

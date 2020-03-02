@@ -2,10 +2,12 @@
 
 namespace Bambamboole\LaravelCms\Http\Controllers;
 
+use Inertia\Inertia;
+
 class MenusController
 {
     public function index()
     {
-        return view('cms::menus.index');
+        return Inertia::render('Menus/Index');
     }
 }
