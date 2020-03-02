@@ -20,7 +20,7 @@ class LoginTest extends TestCase
         $user = factory(CmsUser::class)->create(['password' => Hash::make('secret')]);
         $response = $this->post('/admin/login', [
             'email' => $user->email,
-            'password' => 'secret'
+            'password' => 'secret',
         ]);
 
         $response->assertRedirect('/admin/posts');
