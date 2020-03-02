@@ -41,6 +41,7 @@ class SetInertiaConfiguration
                         'name' => auth()->user()->name,
                         'email' => auth()->user()->email,
                         'bio' => auth()->user()->bio,
+                        'avatar' => auth()->user()->avatar,
                     ] : null,
                 ];
             },

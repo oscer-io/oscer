@@ -8,6 +8,9 @@
 <script>
     import Layout from '../../Layout';
     export default {
+        created() {
+            this.route('cms.users.show', 1)
+        },
         components: {
           Layout
         },

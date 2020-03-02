@@ -11,57 +11,59 @@
                                  alt=""/>
                         </div>
                         <div class="hidden sm:-my-px sm:ml-6 sm:flex">
-                            <inertia-link href="/admin/posts"
-                            class="inline-flex items-center px-1 pt-1 border-b-2 border-indigo-500 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
-                            Posts
+                            <inertia-link :href="route('cms.posts.index')"
+                                          class="inline-flex items-center px-1 pt-1 border-b-2 border-indigo-500 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out">
+                                Posts
                             </inertia-link>
-                            <inertia-link href="/admin/pages"
+                            <inertia-link :href="route('cms.pages.index')"
 
-                            class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm
+                                          class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm
                             font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300
                             focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150
                             ease-in-out">
-                            Pages
+                                Pages
                             </inertia-link>
-                            <inertia-link href="/admin/menus"
-                            class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm
+                            <inertia-link :href="route('cms.menus.index')"
+                                          class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm
                             font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300
                             focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150
                             ease-in-out">
-                            Menus
+                                Menus
                             </inertia-link>
-                            <inertia-link href="/admin/users"
-                            class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm
+                            <inertia-link :href="route('cms.users.index')"
+                                          class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm
                             font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300
                             focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150
                             ease-in-out">
-                            Users
+                                Users
                             </inertia-link>
                         </div>
                     </div>
                     <div class="hidden sm:ml-6 sm:flex sm:items-center">
-                        <div @click.away="open = false" class="ml-3 relative" x-data="{ open: false }">
+                        <div class="ml-3 relative">
                             <div>
                                 <button @click="open = !open"
                                         class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
                                     <img class="h-8 w-8 rounded-full"
-                                         src=""
+                                         :src="$page.auth.user.avatar"
                                          alt=""/>
                                 </button>
                             </div>
-                            <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg z-10">
+                            <div v-if="open === true" v-click-outside="closeMenu" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg z-10">
                                 <div class="py-1 rounded-md bg-white shadow-xs">
-                                    <inertia-link href="/admin/profile"
-                                       class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Your
-                                        Profile</inertia-link>
-                                    <a href="/admin/logout"
+                                    <inertia-link :href="route('cms.profile.show')"
+                                                  class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                                        Your
+                                        Profile
+                                    </inertia-link>
+                                    <a :href="route('cms.auth.logout')"
                                        class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Sign
                                         out</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="-mr-2 flex items-center sm:hidden">
+                    <div @click. class="-mr-2 flex items-center sm:hidden">
                         <button @click="open = !open"
                                 class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -91,19 +93,21 @@
                     <div class="flex items-center px-4">
                         <div class="flex-shrink-0">
                             <img class="h-10 w-10 rounded-full"
-                                 src="#"
+                                 :src="$page.auth.user.avatar"
                                  alt=""/>
                         </div>
                         <div class="ml-3">
-                            <div class="text-base font-medium leading-6 text-gray-800">name</div>
-                            <div class="text-sm font-medium leading-5 text-gray-500">email</div>
+                            <div class="text-base font-medium leading-6 text-gray-800">{{$page.auth.user.name}}</div>
+                            <div class="text-sm font-medium leading-5 text-gray-500">{{$page.auth.user.email}}</div>
                         </div>
                     </div>
                     <div class="mt-3">
-                        <inertia-link href="/admin/profile"
-                           class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:text-gray-800 focus:bg-gray-100 transition duration-150 ease-in-out">Your
-                            Profile</inertia-link>
-                        <a href="/admin/logout"
+                        <inertia-link :href="route('cms.menus.index')"
+                                      class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:text-gray-800 focus:bg-gray-100 transition duration-150 ease-in-out">
+                            Your
+                            Profile
+                        </inertia-link>
+                        <a :href="route('cms.auth.logout')"
                            class="mt-1 block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:text-gray-800 focus:bg-gray-100 transition duration-150 ease-in-out">Sign
                             out</a>
                     </div>
@@ -114,7 +118,7 @@
         <div class="py-10">
             <main>
                 <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-                    <slot />
+                    <slot/>
                 </div>
             </main>
         </div>
@@ -122,10 +126,19 @@
 </template>
 
 <script>
+    import NavItem from './components/NavItem';
+
     export default {
         props: {
             title: String,
-            open: false
+        },
+        components: {
+          NavItem
+        },
+        data() {
+            return {
+                open: false
+            }
         },
         watch: {
             title: {
@@ -135,5 +148,10 @@
                 },
             },
         },
+        methods: {
+            closeMenu(){
+                this.open = false;
+            }
+        }
     }
 </script>
