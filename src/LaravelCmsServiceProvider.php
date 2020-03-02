@@ -7,6 +7,7 @@ use Bambamboole\LaravelCms\Commands\MigrateCommand;
 use Bambamboole\LaravelCms\Http\Controllers\Auth\ForgotPasswordController;
 use Bambamboole\LaravelCms\Http\Controllers\Auth\LoginController;
 use Bambamboole\LaravelCms\Http\Middleware\Authenticate;
+use Bambamboole\LaravelCms\Http\Middleware\SetInertiaRooView;
 use Bambamboole\LaravelCms\Models\CmsUser;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -64,7 +65,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
                 Route::get('/password/reset/{token}', [ForgotPasswordController::class, 'showNewPassword'])->name('password.reset');
             });
 
-        Route::middleware([$middleware, Authenticate::class])
+        Route::middleware([$middleware, Authenticate::class, SetInertiaRooView::class])
             ->as('cms.')
             ->prefix($urlPrefix)
             ->group(function () {

@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+{{--    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">--}}
     <link href='{{mix('app.css', 'vendor/cms')}}' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -172,6 +172,5 @@
     </div>
 
 </div>
-<script src="{{ mix('js/app.js') }}" defer></script>
 </body>
 </html>

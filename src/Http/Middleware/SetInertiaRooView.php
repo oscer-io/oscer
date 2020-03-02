@@ -6,16 +6,10 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Auth\Factory as Auth;
+use Inertia\Inertia;
 
-class Authenticate
+class SetInertiaRooView
 {
-    protected Auth $auth;
-
-    public function __construct(Auth $auth)
-    {
-        $this->auth = $auth;
-    }
-
     /**
      * Handle an incoming request.
      *
@@ -23,13 +17,7 @@ class Authenticate
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($this->auth->guard('cms')->check()) {
-            $this->auth->shouldUse('cms');
-        } else {
-            throw new AuthenticationException(
-                'Unauthenticated.', ['cms'], route('cms.auth.login')
-            );
-        }
+        Inertia::setRootView('cms::layouts.inertia');
 
         return $next($request);
     }

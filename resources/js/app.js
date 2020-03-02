@@ -1,16 +1,15 @@
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
+import { InertiaApp } from '@inertiajs/inertia-vue'
+import Vue from 'vue'
 
-window.axios = require('axios');
+Vue.use(InertiaApp)
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-window.Vue = require('vue');
+const app = document.getElementById('app')
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
-const app = new Vue({
-    el: '#app',
-});
+new Vue({
+    render: h => h(InertiaApp, {
+        props: {
+            initialPage: JSON.parse(app.dataset.page),
+            resolveComponent: name => require(`./Pages/${name}`).default,
+        },
+    }),
+}).$mount(app);

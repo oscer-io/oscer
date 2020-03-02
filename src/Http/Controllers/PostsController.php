@@ -2,10 +2,12 @@
 
 namespace Bambamboole\LaravelCms\Http\Controllers;
 
+use Inertia\Inertia;
+
 class PostsController
 {
     public function index()
     {
-        return view('cms::posts.index');
+        return Inertia::render('Posts');
     }
 }
