@@ -11,8 +11,8 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <script src="{{ mix('app.js','vendor/cms') }}" defer></script>
-    <link href='{{mix('app.css', 'vendor/cms')}}' rel='stylesheet' type='text/css'>
+    <script src="{{ asset('app.js','vendor/cms') }}" defer></script>
+    <link href='{{asset('app.css', 'vendor/cms')}}' rel='stylesheet' type='text/css'>
 </head>
 <body>
 @inertia

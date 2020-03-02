@@ -4,9 +4,9 @@ namespace Bambamboole\LaravelCms\Commands;
 
 use Illuminate\Console\Command;
 
-class InstallCommand extends Command
+class PublishCommand extends Command
 {
-    protected $signature = 'cms:install';
+    protected $signature = 'cms:publish';
 
     protected $description = 'Publish all cms resources';
 

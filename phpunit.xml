@@ -20,12 +20,13 @@
         </whitelist>
     </filter>
     <php>
-        <env name="DB_CONNECTION" value="testing"/>
+        <env name="CMS_DB_CONNECTION" value="testing"/>
+        <env name="APP_KEY" value="base64:xxtmeheYsGxgRWgsHMHiFZwI4bTta/2rOlUwC9FqKjs="/>
     </php>
     <logging>
         <log type="tap" target="build/report.tap"/>
         <log type="junit" target="build/report.junit.xml"/>
-        <log type="coverage-html" target="build/coverage" charset="UTF-8" yui="true" highlight="true"/>
+        <log type="coverage-html" target="build/coverage" />
         <log type="coverage-text" target="build/coverage.txt"/>
         <log type="coverage-clover" target="build/logs/clover.xml"/>
     </logging>

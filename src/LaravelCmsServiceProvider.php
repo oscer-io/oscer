@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms;
 
-use Bambamboole\LaravelCms\Commands\InstallCommand;
+use Bambamboole\LaravelCms\Commands\PublishCommand;
 use Bambamboole\LaravelCms\Commands\MigrateCommand;
 use Bambamboole\LaravelCms\Http\Controllers\Auth\ForgotPasswordController;
 use Bambamboole\LaravelCms\Http\Controllers\Auth\LoginController;
@@ -94,7 +94,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'cms');
 
         $this->commands([
-            InstallCommand::class,
+            PublishCommand::class,
             MigrateCommand::class,
         ]);
     }

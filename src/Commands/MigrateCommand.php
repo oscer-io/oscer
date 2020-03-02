@@ -59,9 +59,9 @@ class MigrateCommand extends Command
             ]);
 
             $this->line('');
-            $this->line('');
             $this->line('Laravel cms is ready for use. Enjoy!');
-            $this->line('You may log in using <info>' . $email . '</info> and password: <info>' . $password . '</info>');
+            $this->line('User email: <info>' . $email . '</info>');
+            $this->line('Password: <info>' . $password . '</info>');
         }
     }
 }

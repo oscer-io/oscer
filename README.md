@@ -18,7 +18,8 @@ composer require bambamboole/laravel-cms
 ## Usage
 
 ``` php
-// Usage description here
+* `php artisan cms:publish` -> publishes the config and the assets
+* `php artisan cms:migrate` -> Runs all migrations on the configuren database connection
 ```
 
 ### Testing
