@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Bambamboole\LaravelCms\Models;
-
 
 use Illuminate\Contracts\Auth\Authenticatable;
 

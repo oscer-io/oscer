@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Bambamboole\LaravelCms\Http\Controllers;
-
 
 use Inertia\Inertia;
 

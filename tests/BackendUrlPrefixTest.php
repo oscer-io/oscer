@@ -3,7 +3,6 @@
 namespace Bambamboole\LaravelCms\Tests;
 
 use Bambamboole\LaravelCms\Models\CmsUser;
-use Illuminate\Foundation\Mix;
 
 class BackendUrlPrefixTest extends TestCase
 {
