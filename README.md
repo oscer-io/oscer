@@ -1,8 +1,9 @@
 # Very short description of the package
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/bambamboole/laravel-cms.svg?style=flat-square)](https://packagist.org/packages/bambamboole/laravel-cms)
+[![StyleCI](https://github.styleci.io/repos/244145339/shield?branch=master)](https://github.styleci.io/repos/244145339)
 [![Build Status](https://img.shields.io/travis/bambamboole/laravel-cms/master.svg?style=flat-square)](https://travis-ci.org/bambamboole/laravel-cms)
-[![Quality Score](https://img.shields.io/scrutinizer/g/bambamboole/laravel-cms.svg?style=flat-square)](https://scrutinizer-ci.com/g/bambamboole/laravel-cms)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bambamboole/laravel-cms/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/bambamboole/laravel-cms/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/bambamboole/laravel-cms.svg?style=flat-square)](https://packagist.org/packages/bambamboole/laravel-cms)
 
 This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
