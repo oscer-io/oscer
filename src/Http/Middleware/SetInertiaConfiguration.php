@@ -43,7 +43,7 @@ class SetInertiaConfiguration
             'errors' => function () {
                 return Session::get('errors')
                     ? Session::get('errors')->getBag('default')->getMessages()
-                    : (object)[];
+                    : (object) [];
             },
             'auth' => function () {
                 return [
