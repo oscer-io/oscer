@@ -3,12 +3,18 @@ import Vue from 'vue'
 import vClickOutside from 'v-click-outside'
 import Router from './lib/Router';
 
+
+window.events = new Vue();
+window.flash = function (type, text) {
+    window.events.$emit('flash', {'type': type, 'text': text});
+};
+
 Vue.use(vClickOutside);
 Vue.use(InertiaApp);
+Vue.mixin(Router);
 
 const app = document.getElementById('app');
 
-Vue.mixin(Router);
 
 new Vue({
     render: h => h(InertiaApp, {

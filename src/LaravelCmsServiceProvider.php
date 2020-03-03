@@ -8,7 +8,7 @@ use Bambamboole\LaravelCms\Http\Controllers\Auth\ForgotPasswordController;
 use Bambamboole\LaravelCms\Http\Controllers\Auth\LoginController;
 use Bambamboole\LaravelCms\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Http\Middleware\SetInertiaConfiguration;
-use Bambamboole\LaravelCms\Models\CmsUser;
+use Bambamboole\LaravelCms\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +38,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
     {
         $this->app['config']->set('auth.providers.cms_users', [
             'driver' => 'eloquent',
-            'model' => CmsUser::class,
+            'model' => User::class,
         ]);
 
         $this->app['config']->set('auth.guards.cms', [

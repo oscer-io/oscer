@@ -5,6 +5,7 @@ namespace Bambamboole\LaravelCms\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 
 class SetInertiaConfiguration
@@ -33,7 +34,17 @@ class SetInertiaConfiguration
             })->toArray();
 
         Inertia::share([
+            'flash' => [
+                'message' => function () {
+                    return Session::get('message');
+                },
+            ],
             'routes' => $routes,
+            'errors' => function () {
+                return Session::get('errors')
+                    ? Session::get('errors')->getBag('default')->getMessages()
+                    : (object)[];
+            },
             'auth' => function () {
                 return [
                     'user' => auth()->user() ? [

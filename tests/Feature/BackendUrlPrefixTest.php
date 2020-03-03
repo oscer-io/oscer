@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Tests;
 
-use Bambamboole\LaravelCms\Models\CmsUser;
+use Bambamboole\LaravelCms\Models\User;
 
 class BackendUrlPrefixTest extends TestCase
 {

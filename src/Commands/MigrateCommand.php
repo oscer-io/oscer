@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Commands;
 
-use Bambamboole\LaravelCms\Models\CmsUser;
+use Bambamboole\LaravelCms\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
@@ -40,7 +40,7 @@ class MigrateCommand extends Command
 
         $shouldCreateNewCmsUser =
             ! Schema::connection(config('cms.database_connection'))->hasTable('cms_users') ||
-            ! CmsUser::count();
+            ! User::count();
 
         $this->call('migrate', [
             '--database' => config('cms.database_connection'),
@@ -51,7 +51,7 @@ class MigrateCommand extends Command
             $email = $this->argument('email') ?? 'admin@admin.com';
             $password = $this->argument('password') ?? 'password';
 
-            CmsUser::create([
+            User::create([
                 'name' => 'First user',
                 'bio' => 'This is me.',
                 'email' => $email,

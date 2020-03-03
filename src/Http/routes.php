@@ -17,3 +17,5 @@ Route::get('/users/{user}', [UsersController::class, 'show'])->name('users.show'
 Route::get('/menus', [MenusController::class, 'index'])->name('menus.index');
 
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');

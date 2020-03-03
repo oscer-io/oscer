@@ -3,7 +3,7 @@
 namespace Bambamboole\LaravelCms\Http\Controllers\Auth;
 
 use Bambamboole\LaravelCms\Mail\ResetPasswordMail;
-use Bambamboole\LaravelCms\Models\CmsUser;
+use Bambamboole\LaravelCms\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -31,7 +31,7 @@ class ForgotPasswordController extends Controller
             'email' => 'required|email',
         ])->validate();
 
-        if ($user = CmsUser::query()->where('email', request('email'))->first()) {
+        if ($user = User::query()->where('email', request('email'))->first()) {
             cache(['password.reset.'.$user->id => $token = Str::random()],
                 now()->addMinutes(30)
             );
@@ -56,7 +56,7 @@ class ForgotPasswordController extends Controller
 
             [$authorId, $token] = explode('|', $token);
 
-            $author = CmsUser::query()->findOrFail($authorId);
+            $author = User::query()->findOrFail($authorId);
         } catch (Throwable $e) {
             return redirect()->route('cms.password.forgot')->with('invalidResetToken', true);
         }

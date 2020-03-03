@@ -4,7 +4,7 @@ namespace Bambamboole\LaravelCms\Models;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 
-class CmsUser extends BaseModel implements Authenticatable
+class User extends BaseModel implements Authenticatable
 {
     /**
      * The attributes excluded from the model's JSON form.
@@ -12,13 +12,6 @@ class CmsUser extends BaseModel implements Authenticatable
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'cms_users';
 
     /**
      * The column name of the "remember me" token.

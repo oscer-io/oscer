@@ -125,10 +125,12 @@
                 </div>
             </main>
         </div>
+        <flash/>
     </div>
 </template>
 
 <script>
+    import Flash from './components/Flash';
     import NavItem from './components/NavItem';
 
     export default {
@@ -136,6 +138,7 @@
             title: String,
         },
         components: {
+            Flash,
             NavItem
         },
         data() {
