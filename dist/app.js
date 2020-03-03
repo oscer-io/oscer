@@ -2062,6 +2062,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2469,6 +2472,108 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2479,8 +2584,26 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      name: this.user.name
+      edit: false,
+      form: {
+        name: this.user.name,
+        email: this.user.email,
+        bio: this.user.bio
+      }
     };
+  },
+  methods: {
+    cancel: function cancel() {
+      this.form = {
+        name: this.user.name,
+        email: this.user.email,
+        bio: this.user.bio
+      };
+      this.edit = false;
+    },
+    save: function save() {
+      this.edit = false;
+    }
   }
 });
 
@@ -2503,10 +2626,83 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  created: function created() {
-    this.route('cms.users.show', 1);
+  props: {
+    users: Array
   },
   components: {
     Layout: _Layout__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -2532,10 +2728,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     Layout: _Layout__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  props: {
+    user: Object
   }
 });
 
@@ -3578,7 +3805,7 @@ var render = function() {
                     "inertia-link",
                     {
                       staticClass:
-                        "inline-flex items-center px-1 pt-1 border-b-2 border-indigo-500 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out",
+                        "inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm\n                        font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300\n                        focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150\n                        ease-in-out",
                       attrs: { href: _vm.route("cms.posts.index") }
                     },
                     [
@@ -4804,7 +5031,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("layout", { attrs: { title: "posts" } }, [
-    _c("h1", [_vm._v("posts show")])
+    _c("h1", [_vm._v("posts index")])
   ])
 }
 var staticRenderFns = []
@@ -4829,13 +5056,336 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("layout", { attrs: { title: "test" } }, [
-    _c("h1", [_vm._v("Welcome")]),
-    _vm._v(" "),
-    _c("p", [
-      _vm._v(
-        "Hello " + _vm._s(_vm.name) + ", welcome to your first Inertia app!"
-      )
+  return _c("layout", { attrs: { title: "My Profile" } }, [
+    _c("div", [
+      _c("div", { staticClass: "md:flex md:items-center md:justify-between" }, [
+        _c("div", { staticClass: "flex-1 min-w-0" }, [
+          _c(
+            "h3",
+            { staticClass: "text-lg leading-6 font-medium text-gray-900" },
+            [_vm._v("\n                    Profile\n                ")]
+          ),
+          _vm._v(" "),
+          _c("p", { staticClass: "mt-1 text-sm leading-5 text-gray-500" }, [
+            _vm._v(
+              "\n                    This information will be displayed publicly so be careful what you share.\n                "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "mt-4 flex md:mt-0 md:ml-4" }, [
+          _c("span", { staticClass: "ml-3 shadow-sm rounded-md" }, [
+            _vm.edit === false
+              ? _c(
+                  "button",
+                  {
+                    staticClass:
+                      "inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        _vm.edit = true
+                      }
+                    }
+                  },
+                  [_vm._v("\n    Edit\n  ")]
+                )
+              : _vm._e()
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _vm.edit === false
+        ? _c(
+            "div",
+            {
+              staticClass:
+                "mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6"
+            },
+            [
+              _c("div", { staticClass: "sm:col-span-3" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass:
+                      "block text-sm font-medium leading-5 text-gray-700"
+                  },
+                  [
+                    _vm._v(
+                      "\n                                Name\n                            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "py-3" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.user.name) +
+                      "\n                "
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "sm:col-span-3" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass:
+                      "block text-sm font-medium leading-5 text-gray-700"
+                  },
+                  [
+                    _vm._v(
+                      "\n                                Email\n                            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "py-3" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.user.email) +
+                      "\n                "
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "sm:col-span-6" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass:
+                      "block text-sm font-medium leading-5 text-gray-700"
+                  },
+                  [
+                    _vm._v(
+                      "\n                                Bio\n                            "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "py-3" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.user.bio) +
+                      "\n                "
+                  )
+                ])
+              ])
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.edit === true
+        ? _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.save($event)
+                }
+              }
+            },
+            [
+              _c("div", [
+                _c("div", [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6"
+                    },
+                    [
+                      _c("div", { staticClass: "sm:col-span-3" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "block text-sm font-medium leading-5 text-gray-700",
+                            attrs: { for: "name" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                Name\n                            "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "mt-1 rounded-md shadow-sm" },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.name,
+                                  expression: "form.name"
+                                }
+                              ],
+                              staticClass:
+                                "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                              attrs: { id: "name", type: "test" },
+                              domProps: { value: _vm.form.name },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "name",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "sm:col-span-3" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "block text-sm font-medium leading-5 text-gray-700",
+                            attrs: { for: "email" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                Email\n                            "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "mt-1 rounded-md shadow-sm" },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.email,
+                                  expression: "form.email"
+                                }
+                              ],
+                              staticClass:
+                                "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                              attrs: { id: "email", type: "email" },
+                              domProps: { value: _vm.form.email },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "email",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "sm:col-span-6" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "block text-sm font-medium leading-5 text-gray-700",
+                            attrs: { for: "about" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                Bio\n                            "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "mt-1 rounded-md shadow-sm" },
+                          [
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.bio,
+                                  expression: "form.bio"
+                                }
+                              ],
+                              staticClass:
+                                "form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                              attrs: { id: "about", rows: "3" },
+                              domProps: { value: _vm.form.bio },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(_vm.form, "bio", $event.target.value)
+                                }
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "mt-2 text-sm text-gray-500" }, [
+                          _vm._v("Write a few sentences about yourself.")
+                        ])
+                      ])
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mt-8 border-t border-gray-200 pt-5" }, [
+                _c("div", { staticClass: "flex justify-end" }, [
+                  _c(
+                    "span",
+                    { staticClass: "inline-flex rounded-md shadow-sm" },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out",
+                          attrs: { type: "button" },
+                          on: { click: _vm.cancel }
+                        },
+                        [_vm._v("\n      Cancel\n    ")]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    { staticClass: "ml-3 inline-flex rounded-md shadow-sm" },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out",
+                          attrs: { type: "submit" }
+                        },
+                        [_vm._v("\n      Save\n    ")]
+                      )
+                    ]
+                  )
+                ])
+              ])
+            ]
+          )
+        : _vm._e()
     ])
   ])
 }
@@ -4862,7 +5412,226 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("layout", { attrs: { title: "users" } }, [
-    _c("h1", [_vm._v("Users index")])
+    _c(
+      "div",
+      { staticClass: "bg-white px-4 py-5 border-b border-gray-200 sm:px-6" },
+      [
+        _c(
+          "div",
+          {
+            staticClass:
+              "-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap"
+          },
+          [
+            _c("div", { staticClass: "ml-4 mt-2" }, [
+              _c(
+                "h3",
+                { staticClass: "text-lg leading-6 font-medium text-gray-900" },
+                [_vm._v("\n                    Users\n                ")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "ml-4 mt-2 flex-shrink-0" }, [
+              _c("span", { staticClass: "inline-flex rounded-md shadow-sm" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline",
+                    attrs: { href: _vm.route("cms.users.index") }
+                  },
+                  [_vm._v("\n      Create new user\n    ")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "bg-white shadow overflow-hidden sm:rounded-md" },
+      [
+        _c(
+          "ul",
+          _vm._l(_vm.users, function(user) {
+            return _c("li", [
+              _c(
+                "a",
+                {
+                  staticClass:
+                    "block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out",
+                  attrs: {
+                    href: _vm.route("cms.users.show", { user: user.id })
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "flex items-center px-4 py-4 sm:px-6" },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "min-w-0 flex-1 flex items-center" },
+                        [
+                          _c("div", { staticClass: "flex-shrink-0" }, [
+                            _c("img", {
+                              staticClass: "h-12 w-12 rounded-full",
+                              attrs: { src: user.avatar, alt: "" }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4"
+                            },
+                            [
+                              _c("div", [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "text-sm leading-5 font-medium text-indigo-600 truncate"
+                                  },
+                                  [
+                                    _vm._v(
+                                      _vm._s(user.name) +
+                                        "\n                                    "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "mt-2 flex items-center text-sm leading-5 text-gray-500"
+                                  },
+                                  [
+                                    _c(
+                                      "svg",
+                                      {
+                                        staticClass:
+                                          "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400",
+                                        attrs: {
+                                          fill: "currentColor",
+                                          viewBox: "0 0 20 20"
+                                        }
+                                      },
+                                      [
+                                        _c("path", {
+                                          attrs: {
+                                            "fill-rule": "evenodd",
+                                            d:
+                                              "M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884zM18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z",
+                                            "clip-rule": "evenodd"
+                                          }
+                                        })
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("span", { staticClass: "truncate" }, [
+                                      _vm._v(_vm._s(user.email))
+                                    ])
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "hidden md:block" }, [
+                                _c("div", [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "text-sm leading-5 text-gray-900"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                            On board since\n                                            "
+                                      ),
+                                      _c(
+                                        "time",
+                                        { attrs: { datetime: "2020-01-07" } },
+                                        [_vm._v(_vm._s(user.created_at))]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "mt-2 flex items-center text-sm leading-5 text-gray-500"
+                                    },
+                                    [
+                                      _c(
+                                        "svg",
+                                        {
+                                          staticClass:
+                                            "flex-shrink-0 mr-1.5 h-5 w-5 text-green-400",
+                                          attrs: {
+                                            fill: "currentColor",
+                                            viewBox: "0 0 20 20"
+                                          }
+                                        },
+                                        [
+                                          _c("path", {
+                                            attrs: {
+                                              "fill-rule": "evenodd",
+                                              d:
+                                                "M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z",
+                                              "clip-rule": "evenodd"
+                                            }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(
+                                        "\n                                            5 unpublished posts\n                                        "
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ])
+                            ]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "h-5 w-5 text-gray-400",
+                            attrs: {
+                              fill: "currentColor",
+                              viewBox: "0 0 20 20"
+                            }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                "fill-rule": "evenodd",
+                                d:
+                                  "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
+                                "clip-rule": "evenodd"
+                              }
+                            })
+                          ]
+                        )
+                      ])
+                    ]
+                  )
+                ]
+              )
+            ])
+          }),
+          0
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = []
@@ -4887,8 +5656,74 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("layout", { attrs: { title: "posts" } }, [
-    _c("h1", [_vm._v("users show")])
+  return _c("layout", { attrs: { title: "Show user" } }, [
+    _c(
+      "div",
+      {
+        staticClass: "mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6"
+      },
+      [
+        _c("div", { staticClass: "sm:col-span-6" }, [
+          _c(
+            "span",
+            {
+              staticClass: "block text-sm font-medium leading-5 text-gray-700"
+            },
+            [
+              _vm._v(
+                "\n                                Name\n                            "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "py-3" }, [
+            _vm._v(
+              "\n                " + _vm._s(_vm.user.name) + "\n            "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "sm:col-span-6" }, [
+          _c(
+            "span",
+            {
+              staticClass: "block text-sm font-medium leading-5 text-gray-700"
+            },
+            [
+              _vm._v(
+                "\n                                Email\n                            "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "py-3" }, [
+            _vm._v(
+              "\n                " + _vm._s(_vm.user.email) + "\n            "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "sm:col-span-6" }, [
+          _c(
+            "span",
+            {
+              staticClass: "block text-sm font-medium leading-5 text-gray-700"
+            },
+            [
+              _vm._v(
+                "\n                                Bio\n                            "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "py-3" }, [
+            _vm._v(
+              "\n                " + _vm._s(_vm.user.bio) + "\n            "
+            )
+          ])
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = []
@@ -17809,35 +18644,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/Router.js":
-/*!********************************!*\
-  !*** ./resources/js/Router.js ***!
-  \********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({
-  methods: {
-    route: function route(name) {
-      var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      var route = this.$page.routes[name];
-      var matches = route.match(/[^{]+(?=\})/g);
-
-      if (Object.entries(params).length >= 1) {
-        matches.forEach(function (match) {
-          route = route.replace('{' + match + '}', params[match]);
-        });
-      }
-
-      return route;
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -17853,7 +18659,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var v_click_outside__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! v-click-outside */ "./node_modules/v-click-outside/dist/v-click-outside.umd.js");
 /* harmony import */ var v_click_outside__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(v_click_outside__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Router */ "./resources/js/Router.js");
+/* harmony import */ var _lib_Router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lib/Router */ "./resources/js/lib/Router.js");
 
 
 
@@ -17861,7 +18667,7 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(v_click_outside__WEBPACK_IMPORTED_MODULE_2___default.a);
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__["InertiaApp"]);
 var app = document.getElementById('app');
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.mixin(_Router__WEBPACK_IMPORTED_MODULE_3__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.mixin(_lib_Router__WEBPACK_IMPORTED_MODULE_3__["default"]);
 new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
   render: function render(h) {
     return h(_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__["InertiaApp"], {
@@ -17943,6 +18749,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NavItem_vue_vue_type_template_id_032b1d3b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/lib/Router.js":
+/*!************************************!*\
+  !*** ./resources/js/lib/Router.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    route: function route(name) {
+      var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var route = this.$page.routes[name];
+      var matches = route.match(/[^{]+(?=\})/g);
+
+      if (Object.entries(params).length >= 1) {
+        matches.forEach(function (match) {
+          route = route.replace('{' + match + '}', params[match]);
+        });
+      }
+
+      return route;
+    }
+  }
+});
 
 /***/ }),
 

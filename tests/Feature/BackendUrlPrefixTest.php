@@ -2,8 +2,6 @@
 
 namespace Bambamboole\LaravelCms\Tests;
 
-use Bambamboole\LaravelCms\Models\CmsUser;
-
 class BackendUrlPrefixTest extends TestCase
 {
     protected function getEnvironmentSetUp($app)
@@ -14,7 +12,7 @@ class BackendUrlPrefixTest extends TestCase
     /** @test */
     public function the_prefix_is_configurable()
     {
-        $this->actingAs(factory(CmsUser::class)->create(), 'cms');
-        $this->get('/test/posts')->assertOk();
+        $this->get('/test/login')->assertOk();
+        $this->get('/test/password/forgot')->assertOk();
     }
 }

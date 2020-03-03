@@ -1,7 +1,7 @@
 import { InertiaApp } from '@inertiajs/inertia-vue'
 import Vue from 'vue'
 import vClickOutside from 'v-click-outside'
-import Router from './Router';
+import Router from './lib/Router';
 
 Vue.use(vClickOutside);
 Vue.use(InertiaApp);
@@ -9,6 +9,7 @@ Vue.use(InertiaApp);
 const app = document.getElementById('app');
 
 Vue.mixin(Router);
+
 new Vue({
     render: h => h(InertiaApp, {
         props: {

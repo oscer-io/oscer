@@ -22,7 +22,6 @@ class LaravelCmsServiceProvider extends ServiceProvider
         /*
          * Optional methods to load your package assets
          */
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'laravel-cms');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'cms');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->registerGuard();
@@ -33,7 +32,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
     /**
      * Register the package's guard.
      */
-    private function registerGuard(): void
+    protected function registerGuard(): void
     {
         $this->app['config']->set('auth.providers.cms_users', [
             'driver' => 'eloquent',
