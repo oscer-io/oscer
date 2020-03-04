@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Models;
 
-class CmsPage extends BaseModel
+class Page extends BaseModel
 {
 
 }
