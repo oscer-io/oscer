@@ -131,7 +131,6 @@
 
 <script>
     import Flash from './components/Flash';
-    import NavItem from './components/NavItem';
 
     export default {
         props: {
