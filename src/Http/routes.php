@@ -13,6 +13,8 @@ Route::get('/pages', [PagesController::class, 'index'])->name('pages.index');
 
 Route::get('/users', [UsersController::class, 'index'])->name('users.index');
 Route::get('/users/{user}', [UsersController::class, 'show'])->name('users.show');
+Route::get('/users/{user}/edit', [UsersController::class, 'edit'])->name('users.edit');
+Route::put('/users/{user}', [UsersController::class, 'update'])->name('users.update');
 
 Route::get('/menus', [MenusController::class, 'index'])->name('menus.index');
 

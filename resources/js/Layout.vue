@@ -138,7 +138,6 @@
         },
         components: {
             Flash,
-            NavItem
         },
         data() {
             return {
