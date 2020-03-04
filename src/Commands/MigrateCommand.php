@@ -2,10 +2,9 @@
 
 namespace Bambamboole\LaravelCms\Commands;
 
-use Bambamboole\LaravelCms\Models\Page;
 use Bambamboole\LaravelCms\Models\CmsUser;
+use Bambamboole\LaravelCms\Models\Page;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
