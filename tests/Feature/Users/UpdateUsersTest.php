@@ -39,5 +39,4 @@ class UpdateUsersTest extends TestCase
 
         $response->assertSessionHasErrors('email');
     }
-
 }
