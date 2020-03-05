@@ -4,7 +4,6 @@ namespace Bambamboole\LaravelCms\Tests\Feature;
 
 use Bambamboole\LaravelCms\Models\User;
 use Bambamboole\LaravelCms\Tests\TestCase;
-use Illuminate\Support\Facades\Hash;
 
 class LoginTest extends TestCase
 {

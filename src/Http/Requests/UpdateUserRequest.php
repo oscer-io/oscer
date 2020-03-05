@@ -14,7 +14,7 @@ class UpdateUserRequest extends FormRequest
 
     public function rules(): array
     {
-        $uniqueRule = Rule::unique(config('cms.database_connection') . '.users', 'email')
+        $uniqueRule = Rule::unique(config('cms.database_connection').'.users', 'email')
             ->ignore($this->route('user'));
 
         return [
