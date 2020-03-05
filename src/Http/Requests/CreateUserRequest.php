@@ -5,7 +5,7 @@ namespace Bambamboole\LaravelCms\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateUserRequest extends FormRequest
+class CreateUserRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -14,12 +14,11 @@ class UpdateUserRequest extends FormRequest
 
     public function rules(): array
     {
-        $uniqueRule = Rule::unique(config('cms.database_connection').'.users', 'email')
-            ->ignore($this->route('user'));
+        $uniqueRule = Rule::unique(config('cms.database_connection').'.users', 'email');
 
         return [
-            'name' => ['nullable|string'],
-            'email' => ['nullable|email', $uniqueRule],
+            'name' => ['required', 'string'],
+            'email' => ['required', 'email', $uniqueRule],
             'bio' => ['nullable|string'],
         ];
     }

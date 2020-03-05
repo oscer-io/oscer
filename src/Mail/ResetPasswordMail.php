@@ -6,30 +6,14 @@ use Illuminate\Mail\Mailable;
 
 class ResetPasswordMail extends Mailable
 {
-    /**
-     * The token for the reset.
-     *
-     * @var string
-     */
-    public $token;
+    public string $token;
 
-    /**
-     * New instance.
-     *
-     * @param string $token
-     * @return void
-     */
-    public function __construct($token)
+    public function __construct(string $token)
     {
         $this->token = $token;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build()
+    public function build(): self
     {
         return $this->from(config('cms.from_email'))
             ->subject('Reset your password')

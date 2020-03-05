@@ -1,6 +1,7 @@
 export default {
     methods: {
         route(name, params = {}) {
+            console.log(name);
             let route = this.$page.routes[name];
 
             let matches = route.match(/[^{]+(?=\})/g);
@@ -10,6 +11,8 @@ export default {
                     route = route.replace('{' + match + '}', params[match])
                 });
             }
+            console.log(route);
+
             return route;
         },
     }

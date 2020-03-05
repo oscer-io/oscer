@@ -1,12 +1,12 @@
 <template>
-    <layout :title="'Edit: ' + user.name">
+    <layout title="Create new user">
 
         <div>
 
             <div class="md:flex md:items-center md:justify-between">
                 <div class="flex-1 min-w-0">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                        Edit: {{user.name}}
+                        Create new user
                     </h3>
                     <p class="mt-1 text-sm leading-5 text-gray-500">
                         a smart sentence can be written here...
@@ -57,7 +57,7 @@
                 <div class="mt-8 border-t border-gray-200 pt-5">
                     <div class="flex justify-end">
       <span class="inline-flex rounded-md shadow-sm">
-        <inertia-link :href="route('cms.users.show',{user: user.id})"
+        <inertia-link :href="route('cms.users.index')"
                       class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
           Cancel
         </inertia-link>
@@ -99,7 +99,7 @@
         },
         methods: {
             submit() {
-                this.$inertia.put(this.route('cms.users.update',{user: this.user.id}), this.form);
+                this.$inertia.post(this.route('cms.users.store'), this.form);
             }
         }
     }
