@@ -78,6 +78,7 @@
 </template>
 
 <script>
+    import _ from 'lodash';
     import Layout from '../../Layout';
 
     export default {
@@ -94,13 +95,15 @@
                 form: {
                     name: this.user.name,
                     email: this.user.email,
-                    bio: this.user.bio
+                    bio: this.user.bio,
+                    password: null,
+                    password_confirmation: null,
                 },
             }
         },
         methods: {
             submit() {
-                this.$inertia.put('/admin/profile', this.form);
+                this.$inertia.put('/admin/profile', _.pickBy(this.form));
             }
         }
     }

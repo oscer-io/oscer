@@ -77,6 +77,7 @@
 </template>
 
 <script>
+    import _ from 'lodash';
     import Layout from '../../Layout';
 
     export default {
@@ -99,7 +100,7 @@
         },
         methods: {
             submit() {
-                this.$inertia.post(this.route('cms.users.store'), this.form);
+                this.$inertia.post(this.route('cms.users.store'), _.pickBy(this.form));
             }
         }
     }

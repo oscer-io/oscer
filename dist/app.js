@@ -2264,7 +2264,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Layout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Layout */ "./resources/js/Layout.vue");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Layout */ "./resources/js/Layout.vue");
 //
 //
 //
@@ -2345,9 +2347,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Layout: _Layout__WEBPACK_IMPORTED_MODULE_0__["default"]
+    Layout: _Layout__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   props: {
     user: Object
@@ -2358,13 +2361,15 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         name: this.user.name,
         email: this.user.email,
-        bio: this.user.bio
+        bio: this.user.bio,
+        password: null,
+        password_confirmation: null
       }
     };
   },
   methods: {
     submit: function submit() {
-      this.$inertia.put('/admin/profile', this.form);
+      this.$inertia.put('/admin/profile', lodash__WEBPACK_IMPORTED_MODULE_0___default.a.pickBy(this.form));
     }
   }
 });
@@ -2467,7 +2472,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Layout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Layout */ "./resources/js/Layout.vue");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Layout */ "./resources/js/Layout.vue");
 //
 //
 //
@@ -2547,9 +2554,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Layout: _Layout__WEBPACK_IMPORTED_MODULE_0__["default"]
+    Layout: _Layout__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   props: {
     user: Object
@@ -2566,7 +2574,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submit: function submit() {
-      this.$inertia.post(this.route('cms.users.store'), this.form);
+      this.$inertia.post(this.route('cms.users.store'), lodash__WEBPACK_IMPORTED_MODULE_0___default.a.pickBy(this.form));
     }
   }
 });

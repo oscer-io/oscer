@@ -17,7 +17,7 @@ class LoginTest extends TestCase
     /** @test */
     public function login_is_possible()
     {
-        $user = factory(User::class)->create(['password' => Hash::make('secret')]);
+        $user = factory(User::class)->create(['password' => 'secret']);
         $response = $this->post('/admin/login', [
             'email' => $user->email,
             'password' => 'secret',

@@ -17,7 +17,7 @@ class NewUserCreatedMail extends Mailable
     {
         return $this->from(config('cms.from_email'))
             ->subject('Your password')
-            ->view('cms::mails.new-password', [
+            ->view('cms::mails.your-password', [
                 'password' => $this->password,
             ]);
     }
