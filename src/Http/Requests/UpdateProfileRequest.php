@@ -21,6 +21,7 @@ class UpdateProfileRequest extends FormRequest
             'name' => ['required', 'string'],
             'email' => ['required', 'email', $uniqueRule],
             'bio' => ['required', 'string'],
+            'password' => ['filled', 'confirmed']
         ];
     }
 }

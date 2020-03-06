@@ -10,4 +10,7 @@ return [
         'url' => 'admin',
         'middleware' => 'web',
     ],
+    'menus' => [
+
+    ],
 ];

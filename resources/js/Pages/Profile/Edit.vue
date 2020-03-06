@@ -54,6 +54,31 @@
                             }}</p>
                         <p class="mt-2 text-sm text-gray-500">Write a few sentences about yourself.</p>
                     </div>
+
+                    <div class="sm:col-span-6">
+                        <p class="mt-2 text-sm text-gray-500">Change your password</p>
+                    </div>
+                    <div class="sm:col-span-3">
+                        <label for="password" class="block text-sm font-medium leading-5 text-gray-700">
+                            Password
+                        </label>
+                        <div class="mt-1 rounded-md shadow-sm">
+                            <input id="password" type="password" v-model="form.password"
+                                   class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"/>
+                        </div>
+                        <p v-if="$page.errors.password" class="mt-2 text-sm text-red-600">{{ $page.errors.password[0]
+                            }}</p>
+                    </div>
+                    <div class="sm:col-span-3">
+                        <label for="password_confirmation" class="block text-sm font-medium leading-5 text-gray-700">
+                            Confirmation
+                        </label>
+                        <div class="mt-1 rounded-md shadow-sm">
+                            <input id="password_confirmation" type="password" v-model="form.password_confirmation"
+                                   class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"/>
+                        </div>
+
+                    </div>
                 </div>
                 <div class="mt-8 border-t border-gray-200 pt-5">
                     <div class="flex justify-end">

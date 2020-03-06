@@ -2346,6 +2346,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -22449,6 +22474,104 @@ var render = function() {
                 _vm._v(" "),
                 _c("p", { staticClass: "mt-2 text-sm text-gray-500" }, [
                   _vm._v("Write a few sentences about yourself.")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "sm:col-span-6" }, [
+                _c("p", { staticClass: "mt-2 text-sm text-gray-500" }, [
+                  _vm._v("Change your password")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "sm:col-span-3" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "block text-sm font-medium leading-5 text-gray-700",
+                    attrs: { for: "password" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Password\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "mt-1 rounded-md shadow-sm" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.password,
+                        expression: "form.password"
+                      }
+                    ],
+                    staticClass:
+                      "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                    attrs: { id: "password", type: "password" },
+                    domProps: { value: _vm.form.password },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "password", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm.$page.errors.password
+                  ? _c("p", { staticClass: "mt-2 text-sm text-red-600" }, [
+                      _vm._v(_vm._s(_vm.$page.errors.password[0]))
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "sm:col-span-3" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "block text-sm font-medium leading-5 text-gray-700",
+                    attrs: { for: "password_confirmation" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Confirmation\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "mt-1 rounded-md shadow-sm" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.password_confirmation,
+                        expression: "form.password_confirmation"
+                      }
+                    ],
+                    staticClass:
+                      "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                    attrs: { id: "password_confirmation", type: "password" },
+                    domProps: { value: _vm.form.password_confirmation },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.form,
+                          "password_confirmation",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
                 ])
               ])
             ]
