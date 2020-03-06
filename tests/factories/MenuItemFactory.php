@@ -22,6 +22,6 @@ $factory->define(MenuItem::class, function (Faker $faker) {
         'name' => $faker->name,
         'menu' => 'main',
         'url' => $faker->url,
-        'order' => 1
+        'order' => 1,
     ];
 });

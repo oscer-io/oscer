@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Bambamboole\LaravelCms\Commands\Development;
-
 
 use Bambamboole\LaravelCms\Models\MenuItem;
 use Faker\Generator;
@@ -21,6 +19,7 @@ class SeedCommand extends Command
         // Let Laravel's factory load the factories from this package
         $app->singleton(Factory::class, function ($app) {
             $faker = $app->make(Generator::class);
+
             return Factory::construct($faker, base_path('vendor/bambamboole/laravel-cms/tests/factories'));
         });
 
@@ -31,25 +30,25 @@ class SeedCommand extends Command
                 'name' => 'About me',
                 'menu' => 'main',
                 'url' => '/about',
-                'order' => 1
+                'order' => 1,
             ],
             [
                 'name' => 'Blog',
                 'menu' => 'main',
                 'url' => '/blog',
-                'order' => 2
+                'order' => 2,
             ],
             [
                 'name' => 'Legal Notice',
                 'menu' => 'footer',
                 'url' => '/legal',
-                'order' => 1
+                'order' => 1,
             ],
             [
                 'name' => 'Privacy',
                 'menu' => 'footer',
                 'url' => '/privacy',
-                'order' => 2
+                'order' => 2,
             ],
         ])->map(function ($data) {
             return factory(MenuItem::class)->create($data);
