@@ -1,10 +1,6 @@
 <?php
 
-
 namespace Bambamboole\LaravelCms\Models;
-
-
-use Illuminate\Support\Collection;
 
 class Menu
 {
