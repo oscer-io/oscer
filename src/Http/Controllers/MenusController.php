@@ -4,6 +4,7 @@ namespace Bambamboole\LaravelCms\Http\Controllers;
 
 use Bambamboole\LaravelCms\Http\Requests\CreateMenuItemRequest;
 use Bambamboole\LaravelCms\Http\Requests\SaveMenuOrderRequest;
+use Bambamboole\LaravelCms\Http\Requests\UpdateMenuItemRequest;
 use Bambamboole\LaravelCms\Models\Menu;
 use Bambamboole\LaravelCms\Models\MenuItem;
 use Illuminate\Support\Facades\Redirect;
@@ -41,7 +42,6 @@ class MenusController
     public function saveOrder(SaveMenuOrderRequest $request, string $name)
     {
         // this is n+1 query and should be refactored
-
         foreach ($request->validated()['order'] as $item) {
             MenuItem::query()
                 ->where('menu', $name)
@@ -60,6 +60,16 @@ class MenusController
         $item->delete();
 
         session()->flash('message', ['type' => 'success', 'text' => 'Menu item deleted']);
+
+        return Redirect::route('cms.menus.show', ['name' => $item->menu]);
+    }
+
+    public function update(UpdateMenuItemRequest $request, int $itemId)
+    {
+        $item = MenuItem::query()->find($itemId);
+        $item->update($request->validated());
+
+        session()->flash('message', ['type' => 'success', 'text' => 'Menu item updated']);
 
         return Redirect::route('cms.menus.show', ['name' => $item->menu]);
     }

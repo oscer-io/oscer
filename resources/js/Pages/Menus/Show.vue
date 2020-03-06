@@ -8,7 +8,7 @@
             <div>
 
             <span class="ml-3 inline-flex rounded-md shadow-sm">
-        <button type="button" @click="modal = !modal"
+        <button type="button" @click="openCreateModal"
                 class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500  focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
             New Menu item
         </button>
@@ -17,8 +17,13 @@
         </div>
         <div>
             <draggable class="border rounded" v-model="items" @start="drag=true" @end="drag=false">
-                <div class="border-b cursor-pointer last:border-b-0 py-2 px-3" v-for="item in items" :key="item.id">
-                    {{item.name}} - {{item.url}} <button @click="deleteItem(item)">delete</button>
+                <div class="flex justify-between border-b cursor-pointer last:border-b-0 py-2 px-3"
+                     v-for="item in items" :key="item.id">
+                    <div>{{item.name}} - {{item.url}}</div>
+                    <div>
+                        <button @click="deleteItem(item)">delete</button>
+                        <button @click="updateItem(item)">update</button>
+                    </div>
                 </div>
             </draggable>
         </div>
@@ -35,7 +40,7 @@
             </div>
         </div>
         <modal :visible="modal" @close="modal = !modal">
-            <form @submit.prevent="createNewItem">
+            <form @submit.prevent="createOrSave">
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="sm:col-span-3">
                         <label for="name" class="block text-sm font-medium leading-5 text-gray-700">
@@ -100,6 +105,7 @@
             return {
                 modal: false,
                 items: this.menu.items,
+                update: false,
                 newItem: {
                     name: '',
                     url: '',
@@ -113,7 +119,7 @@
         },
         watch: {
             errors(errors) {
-                if (!_.isEmpty(errors)) this.modal = true
+                this.modal = !_.isEmpty(errors)
             },
             menu() {
                 this.items = this.menu.items;
@@ -130,9 +136,27 @@
                     })
                 })
             },
-            createNewItem() {
+            openCreateModal() {
+                this.update = false;
+                this.modal = true;
+            },
+            updateItem(item) {
+                this.update = true;
+                this.newItem = item;
+                this.modal = true;
+            },
+            createOrSave() {
+                if (!this.update) {
+                    this.createItem();
+                } else {
+                    this.saveItem();
+                }
+            },
+            saveItem() {
+                this.$inertia.put(this.route('cms.menus.update', {item: this.newItem.id}), this.newItem);
+            },
+            createItem() {
                 this.$inertia.post(this.route('cms.menus.store', {name: this.menu.name}), this.newItem);
-                this.modal = false;
             },
             deleteItem(item) {
                 this.$inertia.delete(this.route('cms.menus.delete', {item: item.id}));

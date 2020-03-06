@@ -22,6 +22,7 @@ Route::get('/menus', [MenusController::class, 'index'])->name('menus.index');
 Route::get('/menus/{name}', [MenusController::class, 'show'])->name('menus.show');
 Route::post('/menus/{name}', [MenusController::class, 'store'])->name('menus.store');
 Route::post('/menus/{name}/save_order', [MenusController::class, 'saveOrder'])->name('menus.save_order');
+Route::put('/menus/{item}', [MenusController::class, 'update'])->name('menus.update');
 Route::delete('/menus/{item}', [MenusController::class, 'delete'])->name('menus.delete');
 
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');

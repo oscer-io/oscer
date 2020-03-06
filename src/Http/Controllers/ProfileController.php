@@ -3,6 +3,7 @@
 namespace Bambamboole\LaravelCms\Http\Controllers;
 
 use Bambamboole\LaravelCms\Http\Requests\UpdateProfileRequest;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class ProfileController
@@ -27,8 +28,6 @@ class ProfileController
 
         session()->flash('message', ['type' => 'success', 'text' => 'Profile updated']);
 
-        return Inertia::render('Profile/Show', [
-            'user' => auth()->user()->toArray(),
-        ]);
+        return Redirect::route('cms.profile.show');
     }
 }

@@ -2270,6 +2270,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -2288,6 +2293,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       modal: false,
       items: this.menu.items,
+      update: false,
       newItem: {
         name: '',
         url: ''
@@ -2301,7 +2307,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     errors: function errors(_errors) {
-      if (!lodash__WEBPACK_IMPORTED_MODULE_0___default.a.isEmpty(_errors)) this.modal = true;
+      this.modal = !lodash__WEBPACK_IMPORTED_MODULE_0___default.a.isEmpty(_errors);
     },
     menu: function menu() {
       this.items = this.menu.items;
@@ -2320,11 +2326,31 @@ __webpack_require__.r(__webpack_exports__);
         })
       });
     },
-    createNewItem: function createNewItem() {
+    openCreateModal: function openCreateModal() {
+      this.update = false;
+      this.modal = true;
+    },
+    updateItem: function updateItem(item) {
+      this.update = true;
+      this.newItem = item;
+      this.modal = true;
+    },
+    createOrSave: function createOrSave() {
+      if (!this.update) {
+        this.createItem();
+      } else {
+        this.saveItem();
+      }
+    },
+    saveItem: function saveItem() {
+      this.$inertia.put(this.route('cms.menus.update', {
+        item: this.newItem.id
+      }), this.newItem);
+    },
+    createItem: function createItem() {
       this.$inertia.post(this.route('cms.menus.store', {
         name: this.menu.name
       }), this.newItem);
-      this.modal = false;
     },
     deleteItem: function deleteItem(item) {
       this.$inertia["delete"](this.route('cms.menus.delete', {
@@ -26284,11 +26310,7 @@ var render = function() {
                 staticClass:
                   "inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500  focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out",
                 attrs: { type: "button" },
-                on: {
-                  click: function($event) {
-                    _vm.modal = !_vm.modal
-                  }
-                }
+                on: { click: _vm.openCreateModal }
               },
               [_vm._v("\n        New Menu item\n    ")]
             )
@@ -26325,27 +26347,38 @@ var render = function() {
                 {
                   key: item.id,
                   staticClass:
-                    "border-b cursor-pointer last:border-b-0 py-2 px-3"
+                    "flex justify-between border-b cursor-pointer last:border-b-0 py-2 px-3"
                 },
                 [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(item.name) +
-                      " - " +
-                      _vm._s(item.url) +
-                      " "
-                  ),
-                  _c(
-                    "button",
-                    {
-                      on: {
-                        click: function($event) {
-                          return _vm.deleteItem(item)
+                  _c("div", [
+                    _vm._v(_vm._s(item.name) + " - " + _vm._s(item.url))
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteItem(item)
+                          }
                         }
-                      }
-                    },
-                    [_vm._v("delete")]
-                  )
+                      },
+                      [_vm._v("delete")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        on: {
+                          click: function($event) {
+                            return _vm.updateItem(item)
+                          }
+                        }
+                      },
+                      [_vm._v("update")]
+                    )
+                  ])
                 ]
               )
             }),
@@ -26397,7 +26430,7 @@ var render = function() {
               on: {
                 submit: function($event) {
                   $event.preventDefault()
-                  return _vm.createNewItem($event)
+                  return _vm.createOrSave($event)
                 }
               }
             },
