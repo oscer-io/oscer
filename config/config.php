@@ -11,6 +11,7 @@ return [
         'middleware' => 'web',
     ],
     'menus' => [
-
+        'main' => [],
+        'footer' => [],
     ],
 ];
