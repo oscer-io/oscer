@@ -2,6 +2,7 @@
 
 namespace Bambamboole\LaravelCms;
 
+use Bambamboole\LaravelCms\Commands\Development\SeedCommand;
 use Bambamboole\LaravelCms\Commands\MigrateCommand;
 use Bambamboole\LaravelCms\Commands\PublishCommand;
 use Bambamboole\LaravelCms\Http\Controllers\Auth\ForgotPasswordController;
@@ -93,6 +94,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
         $this->commands([
             PublishCommand::class,
             MigrateCommand::class,
+            SeedCommand::class,
         ]);
     }
 }
