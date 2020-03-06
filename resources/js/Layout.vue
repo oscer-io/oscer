@@ -125,7 +125,7 @@
                 </div>
             </main>
         </div>
-        <flash/>
+        <flash :message-data="this.$page.flash.message"/>
     </div>
 </template>
 
