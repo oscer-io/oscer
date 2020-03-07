@@ -1,19 +1,20 @@
-export default {
-    methods: {
-        route(name, params = {}) {
-            console.log(name);
-            let route = this.$page.routes[name];
+export default class Router {
 
-            let matches = route.match(/[^{]+(?=\})/g);
+    constructor(routes) {
+        this.routes = routes;
+    }
 
-            if (Object.entries(params).length >= 1) {
-                matches.forEach(match => {
-                    route = route.replace('{' + match + '}', params[match])
-                });
-            }
-            console.log(route);
+    make (name, params = {}) {
+        let route = this.routes[name];
 
-            return route;
-        },
+        let matches = route.match(/[^{]+(?=\})/g);
+
+        if (Object.entries(params).length >= 1) {
+            matches.forEach(match => {
+                route = route.replace('{' + match + '}', params[match])
+            });
+        }
+
+        return route;
     }
 }

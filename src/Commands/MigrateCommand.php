@@ -4,7 +4,6 @@ namespace Bambamboole\LaravelCms\Commands;
 
 use Bambamboole\LaravelCms\Models\User;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 class MigrateCommand extends Command
@@ -55,7 +54,7 @@ class MigrateCommand extends Command
                 'name' => 'First user',
                 'bio' => 'This is me.',
                 'email' => $email,
-                'password' => Hash::make($password),
+                'password' => $password,
             ]);
 
             $this->line('');

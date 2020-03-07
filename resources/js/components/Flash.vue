@@ -29,6 +29,10 @@
 
     export default {
 
+        props: {
+            messageData: Object
+        },
+
         data() {
             return {
                 message: {
@@ -39,11 +43,17 @@
             }
         },
 
+        watch: {
+            messageData(message) {
+                this.flash(message);
+            }
+        },
+
         created() {
-            if (!_.isEmpty(this.$page.flash.message)) {
+            if (!_.isEmpty(this.messageData)) {
                 this.flash({
-                    type: this.$page.flash.message.type,
-                    text: this.$page.flash.message.text,
+                    type: this.messageData.type,
+                    text: this.messageData.text,
                 });
             }
 

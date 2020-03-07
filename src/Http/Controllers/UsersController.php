@@ -7,6 +7,7 @@ use Bambamboole\LaravelCms\Http\Requests\UpdateUserRequest;
 use Bambamboole\LaravelCms\Mail\NewUserCreatedMail;
 use Bambamboole\LaravelCms\Models\User;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 
@@ -33,7 +34,7 @@ class UsersController
 
         session()->flash('message', ['type' => 'success', 'text' => "User {$user->name} updated"]);
 
-        return Inertia::render('Users/Show', ['user' => $user]);
+        return Redirect::route('cms.users.show', ['user' => $user]);
     }
 
     public function create()
@@ -52,6 +53,6 @@ class UsersController
 
         session()->flash('message', ['type' => 'success', 'text' => "User {$user->name} created"]);
 
-        return Inertia::render('Users/Show', ['user' => $user]);
+        return Redirect::route('cms.users.show', ['user' => $user]);
     }
 }
