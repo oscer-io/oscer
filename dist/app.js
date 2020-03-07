@@ -44770,6 +44770,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var v_click_outside__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! v-click-outside */ "./node_modules/v-click-outside/dist/v-click-outside.umd.js");
 /* harmony import */ var v_click_outside__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(v_click_outside__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _lib_Router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lib/Router */ "./resources/js/lib/Router.js");
+/* harmony import */ var _mixins_route__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./mixins/route */ "./resources/js/mixins/route.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 
@@ -44785,7 +44793,7 @@ window.flash = function (type, text) {
 
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(v_click_outside__WEBPACK_IMPORTED_MODULE_2___default.a);
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__["InertiaApp"]);
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.mixin(_lib_Router__WEBPACK_IMPORTED_MODULE_3__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.mixin(_mixins_route__WEBPACK_IMPORTED_MODULE_4__["default"]);
 var app = document.getElementById('app');
 new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
   render: function render(h) {
@@ -44794,6 +44802,11 @@ new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
         initialPage: JSON.parse(app.dataset.page),
         resolveComponent: function resolveComponent(name) {
           return __webpack_require__("./resources/js/Pages sync recursive ^\\.\\/.*$")("./".concat(name))["default"];
+        },
+        transformProps: function transformProps(props) {
+          return _objectSpread({}, props, {
+            routes: new _lib_Router__WEBPACK_IMPORTED_MODULE_3__["default"](props.routes)
+          });
         }
       }
     });
@@ -44967,11 +44980,25 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({
-  methods: {
-    route: function route(name) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Router; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Router = /*#__PURE__*/function () {
+  function Router(routes) {
+    _classCallCheck(this, Router);
+
+    this.routes = routes;
+  }
+
+  _createClass(Router, [{
+    key: "make",
+    value: function make(name) {
       var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      var route = this.$page.routes[name];
+      var route = this.routes[name];
       var matches = route.match(/[^{]+(?=\})/g);
 
       if (Object.entries(params).length >= 1) {
@@ -44981,6 +45008,31 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return route;
+    }
+  }]);
+
+  return Router;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/mixins/route.js":
+/*!**************************************!*\
+  !*** ./resources/js/mixins/route.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    route: function route(name) {
+      var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var router = this.$page.routes;
+      return router.make(name, params);
     }
   }
 });
