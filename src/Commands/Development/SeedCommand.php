@@ -3,6 +3,7 @@
 namespace Bambamboole\LaravelCms\Commands\Development;
 
 use Bambamboole\LaravelCms\Models\MenuItem;
+use Bambamboole\LaravelCms\Models\Post;
 use Faker\Generator;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Foundation\Application;
@@ -54,6 +55,10 @@ class SeedCommand extends Command
             return factory(MenuItem::class)->create($data);
         });
         $this->info("{$menuItems->count()} menu items seeded.");
+
+        factory(Post::class,10)->create(['author_id' => 1]);
+
+        $this->info('10 posts seeded');
 
         $this->info('Laravel CMS was seeded with dummy data.');
     }
