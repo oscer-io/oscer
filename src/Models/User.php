@@ -3,7 +3,17 @@
 namespace Bambamboole\LaravelCms\Models;
 
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Carbon;
 
+/**
+ * @property int id
+ * @property string name
+ * @property string email
+ * @property string bio
+ * @property string avatar
+ * @property Carbon updated_at
+ * @property Carbon created_at
+ */
 class User extends BaseModel implements Authenticatable
 {
     /**

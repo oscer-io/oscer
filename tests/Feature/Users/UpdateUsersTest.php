@@ -11,10 +11,9 @@ class UpdateUsersTest extends TestCase
     /** @test */
     public function a_user_can_be_updated()
     {
-        $this->withoutExceptionHandling();
         $user = $this->login();
 
-        $this->put(route('cms.users.update', $user), ['name' => 'updated'])->assertOk();
+        $this->put(route('cms.users.update', $user), ['name' => 'updated']);
 
         $this->assertEquals('updated', $user->fresh()->name);
     }

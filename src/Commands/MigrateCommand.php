@@ -55,7 +55,7 @@ class MigrateCommand extends Command
                 'name' => 'First user',
                 'bio' => 'This is me.',
                 'email' => $email,
-                'password' => Hash::make($password),
+                'password' => $password,
             ]);
 
             $this->line('');
