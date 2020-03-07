@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->text('bio');
             $table->string('avatar')->nullable();
+            $table->string('language')->default('en');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -32,6 +33,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tables');
+        Schema::dropIfExists('users');
     }
 }
