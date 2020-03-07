@@ -6,7 +6,8 @@
             <div>
                 <img class="mx-auto h-12 w-auto" src="/vendor/cms/workflow-mark-on-white.svg" alt="Workflow"/>
                 <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
-                    Reset your password
+                    {{__('cms::auth.pages.reset_password.title')}}
+
                 </h2>
 
                 @if ($errors->any())
@@ -19,13 +20,15 @@
 
                 @if(session()->has('invalidResetToken'))
                     <div class="font-semibold text-red mb-4">
-                        Invalid reset token.
+                        {{__('cms::auth.pages.reset_password.error')}}
+
                     </div>
                 @endif
 
                 @if (session()->has('sent'))
                     <div class="font-semibold text-success mb-4">
-                        You should receive an email in a bit.
+                        {{__('cms::auth.pages.reset_password.success')}}
+
                     </div>
                 @endif
             </div>
@@ -50,7 +53,7 @@
                     clip-rule="evenodd"/>
             </svg>
           </span>
-                        Reset Password
+                        {{__('cms::auth.pages.reset_password.reset')}}
                     </button>
                 </div>
             </form>

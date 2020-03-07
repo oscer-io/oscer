@@ -1,6 +1,6 @@
-Hello,
+{{__('cms::auth.mail.salutation')}},
 <br>
-this is insecure and needs to be changed to a link where you can set your password
+{{__('cms::auth.mail.your_password.text')}}
 <br>
-Your password:<br>
+{{__('cms::auth.mail.your_password.value_label')}}:<br>
 {{$password}}

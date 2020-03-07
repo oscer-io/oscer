@@ -9,6 +9,7 @@ use Bambamboole\LaravelCms\Http\Controllers\Auth\ForgotPasswordController;
 use Bambamboole\LaravelCms\Http\Controllers\Auth\LoginController;
 use Bambamboole\LaravelCms\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Http\Middleware\SetInertiaConfiguration;
+use Bambamboole\LaravelCms\Http\Middleware\SetLocale;
 use Bambamboole\LaravelCms\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -23,7 +24,8 @@ class LaravelCmsServiceProvider extends ServiceProvider
         /*
          * Optional methods to load your package assets
          */
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'cms');
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'cms');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'cms');
         $this->registerGuard();
         $this->registerRoutes();
         $this->registerPublishes();
@@ -50,7 +52,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
         $middleware = config('cms.backend.middleware', 'web');
         $urlPrefix = config('cms.backend.url', 'admin');
 
-        Route::middleware($middleware)
+        Route::middleware([$middleware, SetLocale::class])
             ->as('cms.')
             ->prefix($urlPrefix)
             ->group(function () {
@@ -63,11 +65,11 @@ class LaravelCmsServiceProvider extends ServiceProvider
                 Route::get('/password/reset/{token}', [ForgotPasswordController::class, 'showNewPassword'])->name('password.reset');
             });
 
-        Route::middleware([$middleware, Authenticate::class, SetInertiaConfiguration::class])
+        Route::middleware([$middleware, Authenticate::class, SetInertiaConfiguration::class, SetLocale::class])
             ->as('cms.')
             ->prefix($urlPrefix)
             ->group(function () {
-                $this->loadRoutesFrom(__DIR__.'/Http/routes.php');
+                $this->loadRoutesFrom(__DIR__ . '/Http/routes.php');
             });
     }
 
@@ -75,11 +77,11 @@ class LaravelCmsServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../dist' => public_path('vendor/cms'),
+                __DIR__ . '/../dist' => public_path('vendor/cms'),
             ], 'cms-assets');
 
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('cms.php'),
+                __DIR__ . '/../config/config.php' => config_path('cms.php'),
             ], 'cms-config');
         }
     }
@@ -89,7 +91,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'cms');
+        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'cms');
 
         $this->commands([
             PublishCommand::class,

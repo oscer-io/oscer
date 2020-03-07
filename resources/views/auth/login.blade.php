@@ -6,7 +6,8 @@
                 <div>
                     <img class="mx-auto h-12 w-auto" src="/vendor/cms/workflow-mark-on-white.svg" alt="Workflow"/>
                     <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
-                        Sign in to your account
+                        {{__('cms::auth.pages.login.title')}}
+
                     </h2>
 
                     @if ($errors->any())
@@ -21,7 +22,8 @@
 
                     @if(session()->has('loggedOut'))
                         <div class="font-semibold text-center my-4">
-                            You've been logged out.
+                            {{__('cms::auth.pages.login.logged_out')}}
+
                         </div>
                     @endif
                 </div>
@@ -45,14 +47,15 @@
                             <input id="remember" type="checkbox"
                                    class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"/>
                             <label for="remember" class="ml-2 block text-sm leading-5 text-gray-900">
-                                Remember me
+                                {{__('cms::auth.pages.login.remember')}}
                             </label>
                         </div>
 
                         <div class="text-sm leading-5">
                             <a href="{{route('cms.password.forgot')}}"
                                class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
-                                Forgot your password?
+                                {{__('cms::auth.pages.login.forgot')}}
+
                             </a>
                         </div>
                     </div>
@@ -68,7 +71,7 @@
                         clip-rule="evenodd"/>
                 </svg>
               </span>
-                            Sign in
+                            {{__('cms::auth.pages.login.login')}}
                         </button>
                     </div>
                 </form>

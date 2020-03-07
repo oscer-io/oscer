@@ -26,5 +26,7 @@
     * the menu items can be reordered
  
  ## Unit
- * Menu
-     * it can resolve its children in the correct order
+* Menu
+    * it can resolve its children in the correct order
+* SetLocale
+    * the locale will be set on user language
