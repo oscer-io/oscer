@@ -3,6 +3,8 @@
 namespace Bambamboole\LaravelCms\Models;
 
 use Illuminate\Support\Carbon;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 /**
  * @property int id
@@ -16,8 +18,21 @@ use Illuminate\Support\Carbon;
  */
 class Post extends BaseModel
 {
+    use HasSlug;
+
     public function author()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug')
+            ->doNotGenerateSlugsOnUpdate();
     }
 }
