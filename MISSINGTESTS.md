@@ -24,6 +24,12 @@
     * a menu item can be deleted
 * Reorder menu items
     * the menu items can be reordered
+* Create Posts
+    * a post can be created
+    * the data must be valid
+* Update Posts
+    * a post can be updated
+    * the data must be valid
  
  ## Unit
 * Menu
