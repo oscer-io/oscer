@@ -3,9 +3,8 @@
 namespace Bambamboole\LaravelCms\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Translation\Translator;
+use Illuminate\Http\Request;
 
 class SetLocale
 {

@@ -64,8 +64,8 @@ class SeedCommand extends Command
         $this->info("{$tags->count()} tags seeded");
 
         $posts = factory(Post::class, 10)->create(['author_id' => 1]);
-        $posts->each(function (Post $post) use ($tags){
-           $post->tags()->sync($tags->random(rand(1,3))->pluck('id'));
+        $posts->each(function (Post $post) use ($tags) {
+            $post->tags()->sync($tags->random(rand(1, 3))->pluck('id'));
         });
         $this->info("{$posts->count()} posts seeded and random tags assigned");
 

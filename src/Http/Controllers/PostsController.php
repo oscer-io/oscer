@@ -30,7 +30,7 @@ class PostsController
         $data = $request->validated();
         $tags = $data['tags'];
         unset($data['tags']);
-        $post = Post::query()->create(array_merge(['author_id' => auth()->user()->id],$data));
+        $post = Post::query()->create(array_merge(['author_id' => auth()->user()->id], $data));
         $post->update(['tags' => $tags]);
 
         session()->flash('message', ['type' => 'success', 'text' => __('cms::posts.toast.created')]);
