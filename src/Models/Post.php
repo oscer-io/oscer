@@ -3,6 +3,7 @@
 namespace Bambamboole\LaravelCms\Models;
 
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -12,6 +13,7 @@ use Spatie\Sluggable\SlugOptions;
  * @property string slug
  * @property string body
  * @property User author
+ * @property Collection tags
  * @property Carbon|null published_at
  * @property Carbon updated_at
  * @property Carbon created_at
@@ -20,15 +22,19 @@ class Post extends BaseModel
 {
     use HasSlug;
 
+    protected $with = ['tags'];
+
     public function author()
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * Get the options for generating the slug.
-     */
-    public function getSlugOptions() : SlugOptions
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('title')
