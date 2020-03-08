@@ -2,7 +2,6 @@
 
 return [
 
-
     'pages' => [
         'login' => [
             'title' => 'Sign in to your account',
@@ -20,7 +19,7 @@ return [
         'new_password' => [
             'title' => 'Your new Password',
             'text' =>'Copy it and head to the login page.',
-            'goto' => 'Go To Login Page'
+            'goto' => 'Go To Login Page',
         ],
     ],
 
@@ -34,6 +33,5 @@ return [
             'text' => 'Please follow this link to reset your password',
         ],
     ],
-
 
 ];

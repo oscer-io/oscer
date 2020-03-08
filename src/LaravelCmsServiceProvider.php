@@ -24,8 +24,8 @@ class LaravelCmsServiceProvider extends ServiceProvider
         /*
          * Optional methods to load your package assets
          */
-        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'cms');
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'cms');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'cms');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'cms');
         $this->registerGuard();
         $this->registerRoutes();
         $this->registerPublishes();
@@ -69,7 +69,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
             ->as('cms.')
             ->prefix($urlPrefix)
             ->group(function () {
-                $this->loadRoutesFrom(__DIR__ . '/Http/routes.php');
+                $this->loadRoutesFrom(__DIR__.'/Http/routes.php');
             });
     }
 
@@ -77,11 +77,11 @@ class LaravelCmsServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../dist' => public_path('vendor/cms'),
+                __DIR__.'/../dist' => public_path('vendor/cms'),
             ], 'cms-assets');
 
             $this->publishes([
-                __DIR__ . '/../config/config.php' => config_path('cms.php'),
+                __DIR__.'/../config/config.php' => config_path('cms.php'),
             ], 'cms-config');
         }
     }
@@ -91,7 +91,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'cms');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'cms');
 
         $this->commands([
             PublishCommand::class,

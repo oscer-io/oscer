@@ -56,7 +56,7 @@ class SeedCommand extends Command
         });
         $this->info("{$menuItems->count()} menu items seeded.");
 
-        factory(Post::class,10)->create(['author_id' => 1]);
+        factory(Post::class, 10)->create(['author_id' => 1]);
 
         $this->info('10 posts seeded');
 
