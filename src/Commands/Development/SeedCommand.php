@@ -4,6 +4,7 @@ namespace Bambamboole\LaravelCms\Commands\Development;
 
 use Bambamboole\LaravelCms\Models\MenuItem;
 use Bambamboole\LaravelCms\Models\Post;
+use Bambamboole\LaravelCms\Models\Tag;
 use Faker\Generator;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Foundation\Application;
@@ -56,9 +57,17 @@ class SeedCommand extends Command
         });
         $this->info("{$menuItems->count()} menu items seeded.");
 
-        factory(Post::class,10)->create(['author_id' => 1]);
+        $tags = collect(['General', 'Tech', 'PHP', 'Laravel', 'Vue.js', 'Travel'])
+            ->map(function ($name) {
+                return factory(Tag::class)->create(['name' => $name]);
+            });
+        $this->info("{$tags->count()} tags seeded");
 
-        $this->info('10 posts seeded');
+        $posts = factory(Post::class, 10)->create(['author_id' => 1]);
+        $posts->each(function (Post $post) use ($tags){
+           $post->tags()->sync($tags->random(rand(1,3))->pluck('id'));
+        });
+        $this->info("{$posts->count()} posts seeded and random tags assigned");
 
         $this->info('Laravel CMS was seeded with dummy data.');
     }
