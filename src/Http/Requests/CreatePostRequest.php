@@ -17,6 +17,8 @@ class CreatePostRequest extends FormRequest
         return [
             'title' => ['required', 'string'],
             'body' => ['required', 'string'],
+            'tags' => ['required', 'array'],
+            'tags.*' => ['string'],
         ];
     }
 }

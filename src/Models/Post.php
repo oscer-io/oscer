@@ -41,4 +41,15 @@ class Post extends BaseModel
             ->saveSlugsTo('slug')
             ->doNotGenerateSlugsOnUpdate();
     }
+
+    public function setTagsAttribute(array $value)
+    {
+        $tags = collect($value)
+            ->map(function (string $name) {
+                return Tag::query()->firstOrCreate(['name' => $name]);
+            })
+            ->pluck('id');
+
+        $this->tags()->sync($tags);
+    }
 }

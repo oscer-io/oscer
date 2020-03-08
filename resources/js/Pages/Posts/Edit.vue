@@ -28,6 +28,9 @@
                         <p v-if="$page.errors.title" class="mt-2 text-sm text-red-600">{{ $page.errors.title[0]
                             }}</p>
                     </div>
+                    <div class="sm:col-span-6">
+                        <tag-input v-model="form.tags" :available-tags="this.tags"></tag-input>
+                    </div>
 
                     <div class="sm:col-span-6">
                         <label for="body" class="block text-sm font-medium leading-5 text-gray-700">
@@ -66,19 +69,23 @@
 
 <script>
     import Layout from '../../Layout';
+    import TagInput from "../../components/TagInput";
 
     export default {
         components: {
-            Layout
+            Layout,
+            TagInput
         },
         props: {
             post: Object,
+            tags: Array,
         },
         data() {
             return {
                 form: {
                     title: this.post.title,
                     body: this.post.body,
+                    tags: this.post.tags.map(tag => tag.name)
                 },
             }
         },

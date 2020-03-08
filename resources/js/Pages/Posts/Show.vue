@@ -21,6 +21,12 @@
             </div>
             <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
                 <div class="sm:col-span-6">
+                    <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">
+                        Tags:
+                        <span class="bg-indigo-600 py-1 px-2 ml-1 text-white rounded" v-for="tag in post.tags" v-text="tag.name"></span>
+                    </div>
+                </div>
+                <div class="sm:col-span-6">
                                 <span class="block text-sm font-medium leading-5 text-gray-700">
                                     Body
                                 </span>

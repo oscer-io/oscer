@@ -36,3 +36,5 @@
     * it can resolve its children in the correct order
 * SetLocale
     * the locale will be set on user language
+* Post
+    * it syncs the tags automatically
