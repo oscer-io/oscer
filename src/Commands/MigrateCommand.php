@@ -38,7 +38,7 @@ class MigrateCommand extends Command
         }
 
         $shouldCreateNewCmsUser =
-            ! Schema::connection(config('cms.database_connection'))->hasTable('cms_users') ||
+            ! Schema::connection(config('cms.database_connection'))->hasTable('users') ||
             ! User::count();
 
         $this->call('migrate', [
