@@ -18,8 +18,9 @@ class LoginController
 
     public function login(LoginRequest $request)
     {
-        if($this->guard()->attempt($request->validated(), $request->filled('remember'))){
+        if ($this->guard()->attempt($request->validated(), $request->filled('remember'))) {
             $request->session()->regenerate();
+
             return redirect()->route('cms.posts.index');
         }
 

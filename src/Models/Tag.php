@@ -25,7 +25,7 @@ class Tag extends BaseModel
         return $this->belongsToMany(Post::class);
     }
 
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('name')
