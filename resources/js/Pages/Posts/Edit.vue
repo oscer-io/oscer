@@ -36,12 +36,11 @@
                         <label for="body" class="block text-sm font-medium leading-5 text-gray-700">
                             Body
                         </label>
-                        <div class="mt-1 rounded-md shadow-sm">
-                                <textarea id="body" rows="10" v-model="form.body"
-                                          class="form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"></textarea>
-                        </div>
+
+                        <markdown-editor v-model="form.body"></markdown-editor>
                         <p v-if="$page.errors.body" class="mt-2 text-sm text-red-600">{{ $page.errors.body[0]
                             }}</p>
+
                         <p class="mt-2 text-sm text-gray-500">Write crazy stuff.</p>
                     </div>
                 </div>
@@ -69,11 +68,13 @@
 
 <script>
     import Layout from '../../Layout';
+    import MarkdownEditor from "../../components/MarkdownEditor";
     import TagInput from "../../components/TagInput";
 
     export default {
         components: {
             Layout,
+            MarkdownEditor,
             TagInput
         },
         props: {

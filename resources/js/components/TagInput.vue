@@ -41,3 +41,9 @@
         }
     };
 </script>
+
+<style>
+    .ti-input{
+        border-radius: 0.25rem;
+    }
+</style>

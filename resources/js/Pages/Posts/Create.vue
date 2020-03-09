@@ -29,20 +29,19 @@
                             }}</p>
                     </div>
                     <div class="sm:col-span-6">
-                        <tag-input v-model="form.tags" :available-tags="this.tags"></tag-input>
+                        <tag-input v-model="form.tags" :available-tags="tags"></tag-input>
                     </div>
 
                     <div class="sm:col-span-6">
                         <label for="body" class="block text-sm font-medium leading-5 text-gray-700">
                             Body
                         </label>
-                        <div class="mt-1 rounded-md shadow-sm">
-                                <textarea id="body" rows="10" v-model="form.body"
-                                          class="form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"></textarea>
-                        </div>
+
+                        <markdown-editor v-model="form.body"></markdown-editor>
                         <p v-if="$page.errors.body" class="mt-2 text-sm text-red-600">{{ $page.errors.body[0]
                             }}</p>
-                        <p class="mt-2 text-sm text-gray-500">Write a few sentences about yourself.</p>
+
+                        <p class="mt-2 text-sm text-gray-500">Write crazy stuff.</p>
                     </div>
                 </div>
                 <div class="mt-8 border-t border-gray-200 pt-5">
@@ -71,11 +70,13 @@
     import _ from 'lodash';
     import Layout from '../../Layout';
     import TagInput from "../../components/TagInput";
+    import MarkdownEditor from "../../components/MarkdownEditor";
 
     export default {
         components: {
             Layout,
-            TagInput
+            TagInput,
+            MarkdownEditor
         },
         props: {
             tags: Array

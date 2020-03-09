@@ -30,8 +30,7 @@
                                 <span class="block text-sm font-medium leading-5 text-gray-700">
                                     Body
                                 </span>
-                    <div class="py-3">
-                        {{post.body}}
+                    <div class="py-3" v-html="post.body">
                     </div>
                 </div>
             </div>
