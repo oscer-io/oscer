@@ -37,7 +37,7 @@
                             Body
                         </label>
 
-                        <markdown-editor v-model="form.body"></markdown-editor>
+                        <markdown-field v-model="form.body"></markdown-field>
                         <p v-if="$page.errors.body" class="mt-2 text-sm text-red-600">{{ $page.errors.body[0]
                             }}</p>
 
@@ -69,12 +69,14 @@
 <script>
     import Layout from '../../Layout';
     import MarkdownEditor from "../../components/MarkdownEditor";
+    import MarkdownField from "../../components/Fields/MarkdownField";
     import TagInput from "../../components/TagInput";
 
     export default {
         components: {
             Layout,
             MarkdownEditor,
+            MarkdownField,
             TagInput
         },
         props: {
