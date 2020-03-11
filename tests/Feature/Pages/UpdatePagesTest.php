@@ -75,7 +75,6 @@ class UpdatePagesTest extends TestCase
         $response->assertSessionHasErrors('name');
     }
 
-
     /** @test */
     public function a_page_can_be_deleted()
     {
