@@ -14,7 +14,7 @@ class CreatePageRequest extends FormRequest
 
     public function rules(): array
     {
-        $uniqueRule = Rule::unique(config('cms.database_connection') . '.pages', 'slug');
+        $uniqueRule = Rule::unique(config('cms.database_connection').'.pages', 'slug');
 
         return [
             'name' => ['required', 'string'],
@@ -22,7 +22,7 @@ class CreatePageRequest extends FormRequest
                 'required',
                 'string',
                 'regex:/^[a-zA-Z0-9-]+$/', // like alpha_num but with dashes
-                $uniqueRule
+                $uniqueRule,
             ],
             'body' => ['filled', 'string'],
         ];
