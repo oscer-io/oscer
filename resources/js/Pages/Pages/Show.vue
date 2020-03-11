@@ -120,8 +120,5 @@
         props: {
             page: Object
         },
-        mounted() {
-            console.log(this.page);
-        }
     }
 </script>
