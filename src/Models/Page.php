@@ -2,7 +2,6 @@
 
 namespace Bambamboole\LaravelCms\Models;
 
-
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -27,7 +26,7 @@ class Page extends BaseModel
     protected $appends = ['author'];
 
     /**
-     * Get the authors avatar or the current authenticated users if the author object is null (i.e. create)
+     * Get the authors avatar or the current authenticated users if the author object is null (i.e. create).
      *
      * @return string
      */
