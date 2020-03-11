@@ -14,7 +14,7 @@ class UpdatePageRequest extends FormRequest
 
     public function rules(): array
     {
-        $uniqueRule = Rule::unique(config('cms.database_connection') . '.pages', 'slug')
+        $uniqueRule = Rule::unique(config('cms.database_connection').'.pages', 'slug')
             ->ignore($this->route('page'));
 
         return [
@@ -23,7 +23,7 @@ class UpdatePageRequest extends FormRequest
                 'filled',
                 'string',
                 'regex:/^[a-zA-Z0-9-]+$/', // like alpha_num but with dashes
-                $uniqueRule
+                $uniqueRule,
             ],
             'body' => ['filled', 'string'],
         ];
