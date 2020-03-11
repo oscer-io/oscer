@@ -7,8 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel cms') }}</title>
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
 
+    <script>window.locale = '{{app()->getLocale()}}'</script>
     <!-- Styles -->
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <script src="{{asset('vendor/cms/app.js')}}" defer></script>

@@ -1,5 +1,5 @@
-Hello,
+{{__('cms::auth.mail.salutation')}},
 <br>
-Please follow this link to reset your password:
+{{__('cms::auth.mail.password_reset.text')}}:
 <br>
 {{$link}}

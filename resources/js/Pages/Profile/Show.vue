@@ -9,14 +9,14 @@
                         Profile
                     </h3>
                     <p class="mt-1 text-sm leading-5 text-gray-500">
-                        This information will be displayed publicly so be careful what you share.
+                        {{$t('profile.subtitle')}}
                     </p>
                 </div>
                 <div class="mt-4 flex md:mt-0 md:ml-4">
                     <span class="ml-3 shadow-sm rounded-md">
       <inertia-link :href="route('cms.profile.edit')"
                     class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-        Edit
+        {{$t('profile.edit')}}
       </inertia-link>
     </span>
                 </div>
@@ -24,7 +24,7 @@
             <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
                 <div class="sm:col-span-3">
                                 <span class="block text-sm font-medium leading-5 text-gray-700">
-                                    Name
+                                    {{$t('profile.name')}}
                                 </span>
                     <div class="py-3">
                         {{user.name}}
@@ -32,7 +32,7 @@
                 </div>
                 <div class="sm:col-span-3">
                                 <span class="block text-sm font-medium leading-5 text-gray-700">
-                                    Email
+                                    {{$t('profile.email')}}
                                 </span>
                     <div class="py-3">
                         {{user.email}}
@@ -41,7 +41,7 @@
 
                 <div class="sm:col-span-6">
                                 <span class="block text-sm font-medium leading-5 text-gray-700">
-                                    Bio
+                                    {{$t('profile.bio')}}
                                 </span>
                     <div class="py-3">
                         {{user.bio}}

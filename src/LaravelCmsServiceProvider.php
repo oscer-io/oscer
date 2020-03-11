@@ -9,6 +9,7 @@ use Bambamboole\LaravelCms\Http\Controllers\Auth\ForgotPasswordController;
 use Bambamboole\LaravelCms\Http\Controllers\Auth\LoginController;
 use Bambamboole\LaravelCms\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Http\Middleware\SetInertiaConfiguration;
+use Bambamboole\LaravelCms\Http\Middleware\SetLocale;
 use Bambamboole\LaravelCms\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -23,6 +24,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
         /*
          * Optional methods to load your package assets
          */
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'cms');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'cms');
         $this->registerGuard();
         $this->registerRoutes();
@@ -50,7 +52,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
         $middleware = config('cms.backend.middleware', 'web');
         $urlPrefix = config('cms.backend.url', 'admin');
 
-        Route::middleware($middleware)
+        Route::middleware([$middleware, SetLocale::class])
             ->as('cms.')
             ->prefix($urlPrefix)
             ->group(function () {
@@ -63,7 +65,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
                 Route::get('/password/reset/{token}', [ForgotPasswordController::class, 'showNewPassword'])->name('password.reset');
             });
 
-        Route::middleware([$middleware, Authenticate::class, SetInertiaConfiguration::class])
+        Route::middleware([$middleware, Authenticate::class, SetInertiaConfiguration::class, SetLocale::class])
             ->as('cms.')
             ->prefix($urlPrefix)
             ->group(function () {
