@@ -10,8 +10,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
 
 Route::get('/pages', [PagesController::class, 'index'])->name('pages.index');
+Route::get('/pages/create', [PagesController::class, 'create'])->name('pages.create');
+Route::post('/pages', [PagesController::class, 'store'])->name('pages.store');
 Route::get('/pages/{page}', [PagesController::class, 'show'])->name('pages.show');
-Route::get('/pages/{page}/edit', [PagesController::class, 'show'])->name('pages.edit');
+Route::get('/pages/{page}/edit', [PagesController::class, 'edit'])->name('pages.edit');
+Route::put('/pages/{page}', [PagesController::class, 'update'])->name('pages.update');
+Route::delete('/pages/{page}', [PagesController::class, 'delete'])->name('pages.delete');
 
 Route::get('/users', [UsersController::class, 'index'])->name('users.index');
 Route::get('/users/create', [UsersController::class, 'create'])->name('users.create');
