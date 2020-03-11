@@ -56,6 +56,16 @@ class UpdatePagesTest extends TestCase
     }
 
     /** @test */
+    public function the_slug_cant_be_empty()
+    {
+        $this->login();
+        $page = factory(Page::class)->create();
+
+        $response = $this->put(route('cms.pages.update', $page), ['slug' => '']);
+        $response->assertSessionHasErrors('slug');
+    }
+
+    /** @test */
     public function the_name_cant_be_empty()
     {
         $this->login();
@@ -65,13 +75,19 @@ class UpdatePagesTest extends TestCase
         $response->assertSessionHasErrors('name');
     }
 
+
     /** @test */
-    public function the_slug_cant_be_empty()
+    public function a_page_can_be_deleted()
     {
         $this->login();
         $page = factory(Page::class)->create();
 
-        $response = $this->put(route('cms.pages.update', $page), ['slug' => '']);
-        $response->assertSessionHasErrors('slug');
+        $response = $this->get(route('cms.pages.show', ['page' => $page]));
+        $this->assertEquals(200, $response->status());
+
+        $this->delete(route('cms.pages.delete', $page), []);
+        $response = $this->get(route('cms.pages.show', ['page' => $page]));
+
+        $this->assertEquals(404, $response->status());
     }
 }
