@@ -119,7 +119,7 @@ function e(e){return e&&"object"==typeof e&&"default"in e?e.default:e}var t=e(__
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = {"de":{"auth":{"failed":"Diese Kombination aus Zugangsdaten wurde nicht in unserer Datenbank gefunden.","throttle":"Zu viele Loginversuche. Versuchen Sie es bitte in {{ seconds }} Sekunden nochmal."},"pagination":{"previous":"&laquo; Zurück","next":"Weiter &raquo;"},"passwords":{"password":"Passwörter müssen mindestens 8 Zeichen lang sein und korrekt bestätigt werden.","reset":"Das Passwort wurde zurückgesetzt!","sent":"Passworterinnerung wurde gesendet!","throttled":"Please wait before retrying.","token":"Der Passwort-Wiederherstellungs-Schlüssel ist ungültig oder abgelaufen.","user":"Es konnte leider kein Nutzer mit dieser E-Mail-Adresse gefunden werden."},"profile":{"menu_label":"Dein Profil","label":"Profil","subtitle":"Diese Informationen sind öffentlich. Pass auf was du teilst.","name":"Name","email":"E Mail","bio":"Biographie","bio_subtext":"Schreibe hier ein paar Sätze über dich selber","edit":"Profil bearbeiten","save":"Profil speichern","cancel":"Abbrechen","change_password":"Hier kannst du dein Passwort ändern","password":"Passwort","password_confirmation":"Passwort wiederholen","toast":{"updated":"Profil aktualisiert"}},"validation":{"accepted":"{{ attribute }} muss akzeptiert werden.","active_url":"{{ attribute }} ist keine gültige Internet-Adresse.","after":"{{ attribute }} muss ein Datum nach dem {{ date }} sein.","after_or_equal":"{{ attribute }} muss ein Datum nach dem {{ date }} oder gleich dem {{ date }} sein.","alpha":"{{ attribute }} darf nur aus Buchstaben bestehen.","alpha_dash":"{{ attribute }} darf nur aus Buchstaben, Zahlen, Binde- und Unterstrichen bestehen.","alpha_num":"{{ attribute }} darf nur aus Buchstaben und Zahlen bestehen.","array":"{{ attribute }} muss ein Array sein.","before":"{{ attribute }} muss ein Datum vor dem {{ date }} sein.","before_or_equal":"{{ attribute }} muss ein Datum vor dem {{ date }} oder gleich dem {{ date }} sein.","between":{"numeric":"{{ attribute }} muss zwischen {{ min }} & {{ max }} liegen.","file":"{{ attribute }} muss zwischen {{ min }} & {{ max }} Kilobytes groß sein.","string":"{{ attribute }} muss zwischen {{ min }} & {{ max }} Zeichen lang sein.","array":"{{ attribute }} muss zwischen {{ min }} & {{ max }} Elemente haben."},"boolean":"{{ attribute }} muss entweder 'true' oder 'false' sein.","confirmed":"{{ attribute }} stimmt nicht mit der Bestätigung überein.","date":"{{ attribute }} muss ein gültiges Datum sein.","date_equals":"{{ attribute }} muss ein Datum gleich {{ date }} sein.","date_format":"{{ attribute }} entspricht nicht dem gültigen Format für {{ format }}.","different":"{{ attribute }} und {{ other }} müssen sich unterscheiden.","digits":"{{ attribute }} muss {{ digits }} Stellen haben.","digits_between":"{{ attribute }} muss zwischen {{ min }} und {{ max }} Stellen haben.","dimensions":"{{ attribute }} hat ungültige Bildabmessungen.","distinct":"{{ attribute }} beinhaltet einen bereits vorhandenen Wert.","email":"{{ attribute }} muss eine gültige E-Mail-Adresse sein.","ends_with":"{{ attribute }} muss eine der folgenden Endungen aufweisen: {{ values }}","exists":"Der gewählte Wert für {{ attribute }} ist ungültig.","file":"{{ attribute }} muss eine Datei sein.","filled":"{{ attribute }} muss ausgefüllt sein.","gt":{"numeric":"{{ attribute }} muss größer als {{ value }} sein.","file":"{{ attribute }} muss größer als {{ value }} Kilobytes sein.","string":"{{ attribute }} muss länger als {{ value }} Zeichen sein.","array":"{{ attribute }} muss mehr als {{ value }} Elemente haben."},"gte":{"numeric":"{{ attribute }} muss größer oder gleich {{ value }} sein.","file":"{{ attribute }} muss größer oder gleich {{ value }} Kilobytes sein.","string":"{{ attribute }} muss mindestens {{ value }} Zeichen lang sein.","array":"{{ attribute }} muss mindestens {{ value }} Elemente haben."},"image":"{{ attribute }} muss ein Bild sein.","in":"Der gewählte Wert für {{ attribute }} ist ungültig.","in_array":"Der gewählte Wert für {{ attribute }} kommt nicht in {{ other }} vor.","integer":"{{ attribute }} muss eine ganze Zahl sein.","ip":"{{ attribute }} muss eine gültige IP-Adresse sein.","ipv4":"{{ attribute }} muss eine gültige IPv4-Adresse sein.","ipv6":"{{ attribute }} muss eine gültige IPv6-Adresse sein.","json":"{{ attribute }} muss ein gültiger JSON-String sein.","lt":{"numeric":"{{ attribute }} muss kleiner als {{ value }} sein.","file":"{{ attribute }} muss kleiner als {{ value }} Kilobytes sein.","string":"{{ attribute }} muss kürzer als {{ value }} Zeichen sein.","array":"{{ attribute }} muss weniger als {{ value }} Elemente haben."},"lte":{"numeric":"{{ attribute }} muss kleiner oder gleich {{ value }} sein.","file":"{{ attribute }} muss kleiner oder gleich {{ value }} Kilobytes sein.","string":"{{ attribute }} darf maximal {{ value }} Zeichen lang sein.","array":"{{ attribute }} darf maximal {{ value }} Elemente haben."},"max":{"numeric":"{{ attribute }} darf maximal {{ max }} sein.","file":"{{ attribute }} darf maximal {{ max }} Kilobytes groß sein.","string":"{{ attribute }} darf maximal {{ max }} Zeichen haben.","array":"{{ attribute }} darf maximal {{ max }} Elemente haben."},"mimes":"{{ attribute }} muss den Dateityp {{ values }} haben.","mimetypes":"{{ attribute }} muss den Dateityp {{ values }} haben.","min":{"numeric":"{{ attribute }} muss mindestens {{ min }} sein.","file":"{{ attribute }} muss mindestens {{ min }} Kilobytes groß sein.","string":"{{ attribute }} muss mindestens {{ min }} Zeichen lang sein.","array":"{{ attribute }} muss mindestens {{ min }} Elemente haben."},"not_in":"Der gewählte Wert für {{ attribute }} ist ungültig.","not_regex":"{{ attribute }} hat ein ungültiges Format.","numeric":"{{ attribute }} muss eine Zahl sein.","password":"Das Passwort ist falsch.","present":"{{ attribute }} muss vorhanden sein.","regex":"{{ attribute }} Format ist ungültig.","required":"{{ attribute }} muss ausgefüllt werden.","required_if":"{{ attribute }} muss ausgefüllt werden, wenn {{ other }} den Wert {{ value }} hat.","required_unless":"{{ attribute }} muss ausgefüllt werden, wenn {{ other }} nicht den Wert {{ values }} hat.","required_with":"{{ attribute }} muss ausgefüllt werden, wenn {{ values }} ausgefüllt wurde.","required_with_all":"{{ attribute }} muss ausgefüllt werden, wenn {{ values }} ausgefüllt wurde.","required_without":"{{ attribute }} muss ausgefüllt werden, wenn {{ values }} nicht ausgefüllt wurde.","required_without_all":"{{ attribute }} muss ausgefüllt werden, wenn keines der Felder {{ values }} ausgefüllt wurde.","same":"{{ attribute }} und {{ other }} müssen übereinstimmen.","size":{"numeric":"{{ attribute }} muss gleich {{ size }} sein.","file":"{{ attribute }} muss {{ size }} Kilobyte groß sein.","string":"{{ attribute }} muss {{ size }} Zeichen lang sein.","array":"{{ attribute }} muss genau {{ size }} Elemente haben."},"starts_with":"{{ attribute }} muss mit einem der folgenden Anfänge aufweisen: {{ values }}","string":"{{ attribute }} muss ein String sein.","timezone":"{{ attribute }} muss eine gültige Zeitzone sein.","unique":"{{ attribute }} ist bereits vergeben.","uploaded":"{{ attribute }} konnte nicht hochgeladen werden.","url":"{{ attribute }} muss eine URL sein.","uuid":"{{ attribute }} muss ein UUID sein.","custom":{"attribute-name":{"rule-name":"custom-message"}},"attributes":{"name":"Name","username":"Benutzername","email":"E-Mail Adresse","first_name":"Vorname","last_name":"Nachname","password":"Passwort","password_confirmation":"Passwort Bestätigung","city":"Stadt","country":"Land","address":"Adresse","phone":"Telefonnummer","mobile":"Handynummer","age":"Alter","sex":"Geschlecht","gender":"Geschlecht","day":"Tag","month":"Monat","year":"Jahr","hour":"Stunde","minute":"Minute","second":"Sekunde","title":"Titel","content":"Inhalt","description":"Beschreibung","excerpt":"Auszug","date":"Datum","time":"Uhrzeit","available":"verfügbar","size":"Größe"}}},"en":{"auth":{"failed":"These credentials do not match our records.","throttle":"Too many login attempts. Please try again in {{ seconds }} seconds."},"pagination":{"previous":"&laquo; Previous","next":"Next &raquo;"},"passwords":{"reset":"Your password has been reset!","sent":"We have e-mailed your password reset link!","throttled":"Please wait before retrying.","token":"This password reset token is invalid.","user":"We can't find a user with that e-mail address."},"profile":{"menu_label":"Your Profile","label":"Profile","subtitle":"This information will be displayed publicly so be careful what you share.","name":"Name","email":"Email","bio":"Biography","bio_subtext":"Write a few sentences about yourself","edit":"Edit Profile","save":"Save Profile","cancel":"Cancel","change_password":"Change your password","password":"Password","password_confirmation":"Confirm password","toast":{"updated":"Profile updated"}},"validation":{"accepted":"The {{ attribute }} must be accepted.","active_url":"The {{ attribute }} is not a valid URL.","after":"The {{ attribute }} must be a date after {{ date }}.","after_or_equal":"The {{ attribute }} must be a date after or equal to {{ date }}.","alpha":"The {{ attribute }} may only contain letters.","alpha_dash":"The {{ attribute }} may only contain letters, numbers, dashes and underscores.","alpha_num":"The {{ attribute }} may only contain letters and numbers.","array":"The {{ attribute }} must be an array.","before":"The {{ attribute }} must be a date before {{ date }}.","before_or_equal":"The {{ attribute }} must be a date before or equal to {{ date }}.","between":{"numeric":"The {{ attribute }} must be between {{ min }} and {{ max }}.","file":"The {{ attribute }} must be between {{ min }} and {{ max }} kilobytes.","string":"The {{ attribute }} must be between {{ min }} and {{ max }} characters.","array":"The {{ attribute }} must have between {{ min }} and {{ max }} items."},"boolean":"The {{ attribute }} field must be true or false.","confirmed":"The {{ attribute }} confirmation does not match.","date":"The {{ attribute }} is not a valid date.","date_equals":"The {{ attribute }} must be a date equal to {{ date }}.","date_format":"The {{ attribute }} does not match the format {{ format }}.","different":"The {{ attribute }} and {{ other }} must be different.","digits":"The {{ attribute }} must be {{ digits }} digits.","digits_between":"The {{ attribute }} must be between {{ min }} and {{ max }} digits.","dimensions":"The {{ attribute }} has invalid image dimensions.","distinct":"The {{ attribute }} field has a duplicate value.","email":"The {{ attribute }} must be a valid email address.","ends_with":"The {{ attribute }} must end with one of the following: {{ values }}.","exists":"The selected {{ attribute }} is invalid.","file":"The {{ attribute }} must be a file.","filled":"The {{ attribute }} field must have a value.","gt":{"numeric":"The {{ attribute }} must be greater than {{ value }}.","file":"The {{ attribute }} must be greater than {{ value }} kilobytes.","string":"The {{ attribute }} must be greater than {{ value }} characters.","array":"The {{ attribute }} must have more than {{ value }} items."},"gte":{"numeric":"The {{ attribute }} must be greater than or equal {{ value }}.","file":"The {{ attribute }} must be greater than or equal {{ value }} kilobytes.","string":"The {{ attribute }} must be greater than or equal {{ value }} characters.","array":"The {{ attribute }} must have {{ value }} items or more."},"image":"The {{ attribute }} must be an image.","in":"The selected {{ attribute }} is invalid.","in_array":"The {{ attribute }} field does not exist in {{ other }}.","integer":"The {{ attribute }} must be an integer.","ip":"The {{ attribute }} must be a valid IP address.","ipv4":"The {{ attribute }} must be a valid IPv4 address.","ipv6":"The {{ attribute }} must be a valid IPv6 address.","json":"The {{ attribute }} must be a valid JSON string.","lt":{"numeric":"The {{ attribute }} must be less than {{ value }}.","file":"The {{ attribute }} must be less than {{ value }} kilobytes.","string":"The {{ attribute }} must be less than {{ value }} characters.","array":"The {{ attribute }} must have less than {{ value }} items."},"lte":{"numeric":"The {{ attribute }} must be less than or equal {{ value }}.","file":"The {{ attribute }} must be less than or equal {{ value }} kilobytes.","string":"The {{ attribute }} must be less than or equal {{ value }} characters.","array":"The {{ attribute }} must not have more than {{ value }} items."},"max":{"numeric":"The {{ attribute }} may not be greater than {{ max }}.","file":"The {{ attribute }} may not be greater than {{ max }} kilobytes.","string":"The {{ attribute }} may not be greater than {{ max }} characters.","array":"The {{ attribute }} may not have more than {{ max }} items."},"mimes":"The {{ attribute }} must be a file of type: {{ values }}.","mimetypes":"The {{ attribute }} must be a file of type: {{ values }}.","min":{"numeric":"The {{ attribute }} must be at least {{ min }}.","file":"The {{ attribute }} must be at least {{ min }} kilobytes.","string":"The {{ attribute }} must be at least {{ min }} characters.","array":"The {{ attribute }} must have at least {{ min }} items."},"not_in":"The selected {{ attribute }} is invalid.","not_regex":"The {{ attribute }} format is invalid.","numeric":"The {{ attribute }} must be a number.","password":"The password is incorrect.","present":"The {{ attribute }} field must be present.","regex":"The {{ attribute }} format is invalid.","required":"The {{ attribute }} field is required.","required_if":"The {{ attribute }} field is required when {{ other }} is {{ value }}.","required_unless":"The {{ attribute }} field is required unless {{ other }} is in {{ values }}.","required_with":"The {{ attribute }} field is required when {{ values }} is present.","required_with_all":"The {{ attribute }} field is required when {{ values }} are present.","required_without":"The {{ attribute }} field is required when {{ values }} is not present.","required_without_all":"The {{ attribute }} field is required when none of {{ values }} are present.","same":"The {{ attribute }} and {{ other }} must match.","size":{"numeric":"The {{ attribute }} must be {{ size }}.","file":"The {{ attribute }} must be {{ size }} kilobytes.","string":"The {{ attribute }} must be {{ size }} characters.","array":"The {{ attribute }} must contain {{ size }} items."},"starts_with":"The {{ attribute }} must start with one of the following: {{ values }}.","string":"The {{ attribute }} must be a string.","timezone":"The {{ attribute }} must be a valid zone.","unique":"The {{ attribute }} has already been taken.","uploaded":"The {{ attribute }} failed to upload.","url":"The {{ attribute }} format is invalid.","uuid":"The {{ attribute }} must be a valid UUID.","custom":{"attribute-name":{"rule-name":"custom-message"}},"attributes":[]}}}
+module.exports = {"de":{"auth":{"failed":"Diese Kombination aus Zugangsdaten wurde nicht in unserer Datenbank gefunden.","throttle":"Zu viele Loginversuche. Versuchen Sie es bitte in {{ seconds }} Sekunden nochmal."},"profile":{"menu_label":"Dein Profil","label":"Profil","subtitle":"Diese Informationen sind öffentlich. Pass auf was du teilst.","name":"Name","email":"E Mail","bio":"Biographie","bio_subtext":"Schreibe hier ein paar Sätze über dich selber","edit":"Profil bearbeiten","save":"Profil speichern","cancel":"Abbrechen","change_password":"Hier kannst du dein Passwort ändern","password":"Passwort","password_confirmation":"Passwort wiederholen","toast":{"updated":"Profil aktualisiert"}},"validation":{"accepted":"{{ attribute }} muss akzeptiert werden.","active_url":"{{ attribute }} ist keine gültige Internet-Adresse.","after":"{{ attribute }} muss ein Datum nach dem {{ date }} sein.","after_or_equal":"{{ attribute }} muss ein Datum nach dem {{ date }} oder gleich dem {{ date }} sein.","alpha":"{{ attribute }} darf nur aus Buchstaben bestehen.","alpha_dash":"{{ attribute }} darf nur aus Buchstaben, Zahlen, Binde- und Unterstrichen bestehen.","alpha_num":"{{ attribute }} darf nur aus Buchstaben und Zahlen bestehen.","array":"{{ attribute }} muss ein Array sein.","before":"{{ attribute }} muss ein Datum vor dem {{ date }} sein.","before_or_equal":"{{ attribute }} muss ein Datum vor dem {{ date }} oder gleich dem {{ date }} sein.","between":{"numeric":"{{ attribute }} muss zwischen {{ min }} & {{ max }} liegen.","file":"{{ attribute }} muss zwischen {{ min }} & {{ max }} Kilobytes groß sein.","string":"{{ attribute }} muss zwischen {{ min }} & {{ max }} Zeichen lang sein.","array":"{{ attribute }} muss zwischen {{ min }} & {{ max }} Elemente haben."},"boolean":"{{ attribute }} muss entweder 'true' oder 'false' sein.","confirmed":"{{ attribute }} stimmt nicht mit der Bestätigung überein.","date":"{{ attribute }} muss ein gültiges Datum sein.","date_equals":"{{ attribute }} muss ein Datum gleich {{ date }} sein.","date_format":"{{ attribute }} entspricht nicht dem gültigen Format für {{ format }}.","different":"{{ attribute }} und {{ other }} müssen sich unterscheiden.","digits":"{{ attribute }} muss {{ digits }} Stellen haben.","digits_between":"{{ attribute }} muss zwischen {{ min }} und {{ max }} Stellen haben.","dimensions":"{{ attribute }} hat ungültige Bildabmessungen.","distinct":"{{ attribute }} beinhaltet einen bereits vorhandenen Wert.","email":"{{ attribute }} muss eine gültige E-Mail-Adresse sein.","ends_with":"{{ attribute }} muss eine der folgenden Endungen aufweisen: {{ values }}","exists":"Der gewählte Wert für {{ attribute }} ist ungültig.","file":"{{ attribute }} muss eine Datei sein.","filled":"{{ attribute }} muss ausgefüllt sein.","gt":{"numeric":"{{ attribute }} muss größer als {{ value }} sein.","file":"{{ attribute }} muss größer als {{ value }} Kilobytes sein.","string":"{{ attribute }} muss länger als {{ value }} Zeichen sein.","array":"{{ attribute }} muss mehr als {{ value }} Elemente haben."},"gte":{"numeric":"{{ attribute }} muss größer oder gleich {{ value }} sein.","file":"{{ attribute }} muss größer oder gleich {{ value }} Kilobytes sein.","string":"{{ attribute }} muss mindestens {{ value }} Zeichen lang sein.","array":"{{ attribute }} muss mindestens {{ value }} Elemente haben."},"image":"{{ attribute }} muss ein Bild sein.","in":"Der gewählte Wert für {{ attribute }} ist ungültig.","in_array":"Der gewählte Wert für {{ attribute }} kommt nicht in {{ other }} vor.","integer":"{{ attribute }} muss eine ganze Zahl sein.","ip":"{{ attribute }} muss eine gültige IP-Adresse sein.","ipv4":"{{ attribute }} muss eine gültige IPv4-Adresse sein.","ipv6":"{{ attribute }} muss eine gültige IPv6-Adresse sein.","json":"{{ attribute }} muss ein gültiger JSON-String sein.","lt":{"numeric":"{{ attribute }} muss kleiner als {{ value }} sein.","file":"{{ attribute }} muss kleiner als {{ value }} Kilobytes sein.","string":"{{ attribute }} muss kürzer als {{ value }} Zeichen sein.","array":"{{ attribute }} muss weniger als {{ value }} Elemente haben."},"lte":{"numeric":"{{ attribute }} muss kleiner oder gleich {{ value }} sein.","file":"{{ attribute }} muss kleiner oder gleich {{ value }} Kilobytes sein.","string":"{{ attribute }} darf maximal {{ value }} Zeichen lang sein.","array":"{{ attribute }} darf maximal {{ value }} Elemente haben."},"max":{"numeric":"{{ attribute }} darf maximal {{ max }} sein.","file":"{{ attribute }} darf maximal {{ max }} Kilobytes groß sein.","string":"{{ attribute }} darf maximal {{ max }} Zeichen haben.","array":"{{ attribute }} darf maximal {{ max }} Elemente haben."},"mimes":"{{ attribute }} muss den Dateityp {{ values }} haben.","mimetypes":"{{ attribute }} muss den Dateityp {{ values }} haben.","min":{"numeric":"{{ attribute }} muss mindestens {{ min }} sein.","file":"{{ attribute }} muss mindestens {{ min }} Kilobytes groß sein.","string":"{{ attribute }} muss mindestens {{ min }} Zeichen lang sein.","array":"{{ attribute }} muss mindestens {{ min }} Elemente haben."},"not_in":"Der gewählte Wert für {{ attribute }} ist ungültig.","not_regex":"{{ attribute }} hat ein ungültiges Format.","numeric":"{{ attribute }} muss eine Zahl sein.","password":"Das Passwort ist falsch.","present":"{{ attribute }} muss vorhanden sein.","regex":"{{ attribute }} Format ist ungültig.","required":"{{ attribute }} muss ausgefüllt werden.","required_if":"{{ attribute }} muss ausgefüllt werden, wenn {{ other }} den Wert {{ value }} hat.","required_unless":"{{ attribute }} muss ausgefüllt werden, wenn {{ other }} nicht den Wert {{ values }} hat.","required_with":"{{ attribute }} muss ausgefüllt werden, wenn {{ values }} ausgefüllt wurde.","required_with_all":"{{ attribute }} muss ausgefüllt werden, wenn {{ values }} ausgefüllt wurde.","required_without":"{{ attribute }} muss ausgefüllt werden, wenn {{ values }} nicht ausgefüllt wurde.","required_without_all":"{{ attribute }} muss ausgefüllt werden, wenn keines der Felder {{ values }} ausgefüllt wurde.","same":"{{ attribute }} und {{ other }} müssen übereinstimmen.","size":{"numeric":"{{ attribute }} muss gleich {{ size }} sein.","file":"{{ attribute }} muss {{ size }} Kilobyte groß sein.","string":"{{ attribute }} muss {{ size }} Zeichen lang sein.","array":"{{ attribute }} muss genau {{ size }} Elemente haben."},"starts_with":"{{ attribute }} muss mit einem der folgenden Anfänge aufweisen: {{ values }}","string":"{{ attribute }} muss ein String sein.","timezone":"{{ attribute }} muss eine gültige Zeitzone sein.","unique":"{{ attribute }} ist bereits vergeben.","uploaded":"{{ attribute }} konnte nicht hochgeladen werden.","url":"{{ attribute }} muss eine URL sein.","uuid":"{{ attribute }} muss ein UUID sein.","custom":{"attribute-name":{"rule-name":"custom-message"}},"attributes":{"name":"Name","username":"Benutzername","email":"E-Mail Adresse","first_name":"Vorname","last_name":"Nachname","password":"Passwort","password_confirmation":"Passwort Bestätigung","city":"Stadt","country":"Land","address":"Adresse","phone":"Telefonnummer","mobile":"Handynummer","age":"Alter","sex":"Geschlecht","gender":"Geschlecht","day":"Tag","month":"Monat","year":"Jahr","hour":"Stunde","minute":"Minute","second":"Sekunde","title":"Titel","content":"Inhalt","description":"Beschreibung","excerpt":"Auszug","date":"Datum","time":"Uhrzeit","available":"verfügbar","size":"Größe"}}},"en":{"auth":{"pages":{"login":{"title":"Sign in to your account","logged_out":"You've been logged out.","remember":"Remember me","forgot":"Forgot your password?","login":"Sign in"},"reset_password":{"title":"Reset your password","error":"Invalid reset token.","success":"You should receive an email in a bit.","reset":"Reset Password"},"new_password":{"title":"Your new Password","text":"Copy it and head to the login page.","goto":"Go To Login Page"}},"mails":{"salutation":"Hello","your_password":{"text":"THis is insecure and needs to be reimplemented :-)","value_label":"Your password"},"password_reset":{"text":"Please follow this link to reset your password"}}},"profile":{"menu_label":"Your Profile","label":"Profile","subtitle":"This information will be displayed publicly so be careful what you share.","name":"Name","email":"Email","bio":"Biography","bio_subtext":"Write a few sentences about yourself","edit":"Edit Profile","save":"Save Profile","cancel":"Cancel","change_password":"Change your password","password":"Password","password_confirmation":"Confirm password","toast":{"updated":"Profile updated"}},"validation":{"accepted":"The {{ attribute }} must be accepted.","active_url":"The {{ attribute }} is not a valid URL.","after":"The {{ attribute }} must be a date after {{ date }}.","after_or_equal":"The {{ attribute }} must be a date after or equal to {{ date }}.","alpha":"The {{ attribute }} may only contain letters.","alpha_dash":"The {{ attribute }} may only contain letters, numbers, dashes and underscores.","alpha_num":"The {{ attribute }} may only contain letters and numbers.","array":"The {{ attribute }} must be an array.","before":"The {{ attribute }} must be a date before {{ date }}.","before_or_equal":"The {{ attribute }} must be a date before or equal to {{ date }}.","between":{"numeric":"The {{ attribute }} must be between {{ min }} and {{ max }}.","file":"The {{ attribute }} must be between {{ min }} and {{ max }} kilobytes.","string":"The {{ attribute }} must be between {{ min }} and {{ max }} characters.","array":"The {{ attribute }} must have between {{ min }} and {{ max }} items."},"boolean":"The {{ attribute }} field must be true or false.","confirmed":"The {{ attribute }} confirmation does not match.","date":"The {{ attribute }} is not a valid date.","date_equals":"The {{ attribute }} must be a date equal to {{ date }}.","date_format":"The {{ attribute }} does not match the format {{ format }}.","different":"The {{ attribute }} and {{ other }} must be different.","digits":"The {{ attribute }} must be {{ digits }} digits.","digits_between":"The {{ attribute }} must be between {{ min }} and {{ max }} digits.","dimensions":"The {{ attribute }} has invalid image dimensions.","distinct":"The {{ attribute }} field has a duplicate value.","email":"The {{ attribute }} must be a valid email address.","ends_with":"The {{ attribute }} must end with one of the following: {{ values }}.","exists":"The selected {{ attribute }} is invalid.","file":"The {{ attribute }} must be a file.","filled":"The {{ attribute }} field must have a value.","gt":{"numeric":"The {{ attribute }} must be greater than {{ value }}.","file":"The {{ attribute }} must be greater than {{ value }} kilobytes.","string":"The {{ attribute }} must be greater than {{ value }} characters.","array":"The {{ attribute }} must have more than {{ value }} items."},"gte":{"numeric":"The {{ attribute }} must be greater than or equal {{ value }}.","file":"The {{ attribute }} must be greater than or equal {{ value }} kilobytes.","string":"The {{ attribute }} must be greater than or equal {{ value }} characters.","array":"The {{ attribute }} must have {{ value }} items or more."},"image":"The {{ attribute }} must be an image.","in":"The selected {{ attribute }} is invalid.","in_array":"The {{ attribute }} field does not exist in {{ other }}.","integer":"The {{ attribute }} must be an integer.","ip":"The {{ attribute }} must be a valid IP address.","ipv4":"The {{ attribute }} must be a valid IPv4 address.","ipv6":"The {{ attribute }} must be a valid IPv6 address.","json":"The {{ attribute }} must be a valid JSON string.","lt":{"numeric":"The {{ attribute }} must be less than {{ value }}.","file":"The {{ attribute }} must be less than {{ value }} kilobytes.","string":"The {{ attribute }} must be less than {{ value }} characters.","array":"The {{ attribute }} must have less than {{ value }} items."},"lte":{"numeric":"The {{ attribute }} must be less than or equal {{ value }}.","file":"The {{ attribute }} must be less than or equal {{ value }} kilobytes.","string":"The {{ attribute }} must be less than or equal {{ value }} characters.","array":"The {{ attribute }} must not have more than {{ value }} items."},"max":{"numeric":"The {{ attribute }} may not be greater than {{ max }}.","file":"The {{ attribute }} may not be greater than {{ max }} kilobytes.","string":"The {{ attribute }} may not be greater than {{ max }} characters.","array":"The {{ attribute }} may not have more than {{ max }} items."},"mimes":"The {{ attribute }} must be a file of type: {{ values }}.","mimetypes":"The {{ attribute }} must be a file of type: {{ values }}.","min":{"numeric":"The {{ attribute }} must be at least {{ min }}.","file":"The {{ attribute }} must be at least {{ min }} kilobytes.","string":"The {{ attribute }} must be at least {{ min }} characters.","array":"The {{ attribute }} must have at least {{ min }} items."},"not_in":"The selected {{ attribute }} is invalid.","not_regex":"The {{ attribute }} format is invalid.","numeric":"The {{ attribute }} must be a number.","password":"The password is incorrect.","present":"The {{ attribute }} field must be present.","regex":"The {{ attribute }} format is invalid.","required":"The {{ attribute }} field is required.","required_if":"The {{ attribute }} field is required when {{ other }} is {{ value }}.","required_unless":"The {{ attribute }} field is required unless {{ other }} is in {{ values }}.","required_with":"The {{ attribute }} field is required when {{ values }} is present.","required_with_all":"The {{ attribute }} field is required when {{ values }} are present.","required_without":"The {{ attribute }} field is required when {{ values }} is not present.","required_without_all":"The {{ attribute }} field is required when none of {{ values }} are present.","same":"The {{ attribute }} and {{ other }} must match.","size":{"numeric":"The {{ attribute }} must be {{ size }}.","file":"The {{ attribute }} must be {{ size }} kilobytes.","string":"The {{ attribute }} must be {{ size }} characters.","array":"The {{ attribute }} must contain {{ size }} items."},"starts_with":"The {{ attribute }} must start with one of the following: {{ values }}.","string":"The {{ attribute }} must be a string.","timezone":"The {{ attribute }} must be a valid zone.","unique":"The {{ attribute }} has already been taken.","uploaded":"The {{ attribute }} failed to upload.","url":"The {{ attribute }} format is invalid.","uuid":"The {{ attribute }} must be a valid UUID.","custom":{"attribute-name":{"rule-name":"custom-message"}},"attributes":[]}}}
 
 /***/ }),
 
@@ -2396,6 +2396,217 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Pages/Create.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Pages/Create.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Layout */ "./resources/js/Layout.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Layout: _Layout__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  props: {
+    page: Object
+  },
+  created: function created() {},
+  data: function data() {
+    return {
+      form: {
+        name: this.page.name,
+        slug: this.page.slug,
+        body: this.page.body
+      }
+    };
+  },
+  methods: {
+    submit: function submit() {
+      this.$inertia.post(this.route('cms.pages.store'), lodash__WEBPACK_IMPORTED_MODULE_0___default.a.pickBy(this.form));
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Pages/Edit.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Pages/Edit.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Layout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Layout */ "./resources/js/Layout.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Layout: _Layout__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  props: {
+    page: Object
+  },
+  created: function created() {},
+  data: function data() {
+    return {
+      form: {
+        name: this.page.name,
+        slug: this.page.slug,
+        body: this.page.body
+      }
+    };
+  },
+  methods: {
+    submit: function submit() {
+      this.$inertia.put(this.route('cms.pages.update', {
+        page: this.page.id
+      }), this.form);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Pages/Index.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Pages/Index.vue?vue&type=script&lang=js& ***!
@@ -2413,8 +2624,141 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    pages: Array
+  },
   components: {
     Layout: _Layout__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
@@ -2439,10 +2783,121 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     Layout: _Layout__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  props: {
+    page: Object
+  },
+  mounted: function mounted() {
+    console.log(this.page);
   }
 });
 
@@ -28713,6 +29168,506 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Pages/Create.vue?vue&type=template&id=51381470&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Pages/Create.vue?vue&type=template&id=51381470& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("layout", { attrs: { title: "New page" } }, [
+    _c("div", [
+      _c("div", { staticClass: "md:flex md:items-center md:justify-between" }, [
+        _c("div", { staticClass: "flex-1 min-w-0" }, [
+          _c(
+            "h1",
+            { staticClass: "text-lg leading-6 font-medium text-gray-900" },
+            [_vm._v("\n                    New page\n                ")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.submit($event)
+            }
+          }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass:
+                "mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6"
+            },
+            [
+              _c("div", { staticClass: "sm:col-span-6" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "block text-sm font-medium leading-5 text-gray-700",
+                    attrs: { for: "name" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Name\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "mt-1 rounded-md shadow-sm" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.name,
+                        expression: "form.name"
+                      }
+                    ],
+                    staticClass:
+                      "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                    attrs: { id: "name", type: "text" },
+                    domProps: { value: _vm.form.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "name", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm.$page.errors.name
+                  ? _c("p", { staticClass: "mt-2 text-sm text-red-600" }, [
+                      _vm._v(_vm._s(_vm.$page.errors.name[0]))
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "sm:col-span-6" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "block text-sm font-medium leading-5 text-gray-700",
+                    attrs: { for: "slug" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Slug\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "mt-1 rounded-md shadow-sm" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.slug,
+                        expression: "form.slug"
+                      }
+                    ],
+                    staticClass:
+                      "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                    attrs: { id: "slug", type: "text" },
+                    domProps: { value: _vm.form.slug },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "slug", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm.$page.errors.slug
+                  ? _c("p", { staticClass: "mt-2 text-sm text-red-600" }, [
+                      _vm._v(_vm._s(_vm.$page.errors.slug[0]))
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "sm:col-span-6" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "block text-sm font-medium leading-5 text-gray-700",
+                    attrs: { for: "slug" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Body\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "mt-1 rounded-md shadow-sm" }, [
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.body,
+                        expression: "form.body"
+                      }
+                    ],
+                    staticClass:
+                      "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                    attrs: { id: "body" },
+                    domProps: { value: _vm.form.body },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "body", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm.$page.errors.body
+                  ? _c("p", { staticClass: "mt-2 text-sm text-red-600" }, [
+                      _vm._v(_vm._s(_vm.$page.errors.body[0]))
+                    ])
+                  : _vm._e()
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "mt-8 border-t border-gray-200 pt-5" }, [
+            _c("div", { staticClass: "flex justify-end" }, [
+              _c(
+                "span",
+                { staticClass: "inline-flex rounded-md shadow-sm" },
+                [
+                  _c(
+                    "inertia-link",
+                    {
+                      staticClass:
+                        "py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out",
+                      attrs: { href: _vm.route("cms.pages.index") }
+                    },
+                    [
+                      _vm._v(
+                        "\n                          Cancel\n                        "
+                      )
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                { staticClass: "ml-3 inline-flex rounded-md shadow-sm" },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out",
+                      attrs: { type: "submit" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                          Save\n                        "
+                      )
+                    ]
+                  )
+                ]
+              )
+            ])
+          ])
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Pages/Edit.vue?vue&type=template&id=d7aa9d04&":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Pages/Edit.vue?vue&type=template&id=d7aa9d04& ***!
+  \********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "layout",
+    {
+      attrs: {
+        title: "Edit page - " + _vm.page.name + " (ID: " + _vm.page.id + ")"
+      }
+    },
+    [
+      _c("div", [
+        _c(
+          "div",
+          { staticClass: "md:flex md:items-center md:justify-between" },
+          [
+            _c("div", { staticClass: "flex-1 min-w-0" }, [
+              _c(
+                "h1",
+                { staticClass: "text-lg leading-6 font-medium text-gray-900" },
+                [_vm._v("\n                    New page\n                ")]
+              )
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.submit($event)
+              }
+            }
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6"
+              },
+              [
+                _c("div", { staticClass: "sm:col-span-6" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass:
+                        "block text-sm font-medium leading-5 text-gray-700",
+                      attrs: { for: "name" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Name\n                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mt-1 rounded-md shadow-sm" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.name,
+                          expression: "form.name"
+                        }
+                      ],
+                      staticClass:
+                        "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                      attrs: { id: "name", type: "text" },
+                      domProps: { value: _vm.form.name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "name", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm.$page.errors.name
+                    ? _c("p", { staticClass: "mt-2 text-sm text-red-600" }, [
+                        _vm._v(_vm._s(_vm.$page.errors.name[0]))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "sm:col-span-6" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass:
+                        "block text-sm font-medium leading-5 text-gray-700",
+                      attrs: { for: "slug" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Slug\n                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mt-1 rounded-md shadow-sm" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.slug,
+                          expression: "form.slug"
+                        }
+                      ],
+                      staticClass:
+                        "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                      attrs: { id: "slug", type: "text" },
+                      domProps: { value: _vm.form.slug },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "slug", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm.$page.errors.slug
+                    ? _c("p", { staticClass: "mt-2 text-sm text-red-600" }, [
+                        _vm._v(_vm._s(_vm.$page.errors.slug[0]))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "sm:col-span-6" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass:
+                        "block text-sm font-medium leading-5 text-gray-700",
+                      attrs: { for: "slug" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Body\n                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mt-1 rounded-md shadow-sm" }, [
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.body,
+                          expression: "form.body"
+                        }
+                      ],
+                      staticClass:
+                        "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                      attrs: { id: "body" },
+                      domProps: { value: _vm.form.body },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "body", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm.$page.errors.body
+                    ? _c("p", { staticClass: "mt-2 text-sm text-red-600" }, [
+                        _vm._v(_vm._s(_vm.$page.errors.body[0]))
+                      ])
+                    : _vm._e()
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "mt-8 border-t border-gray-200 pt-5" }, [
+              _c("div", { staticClass: "flex justify-end" }, [
+                _c(
+                  "span",
+                  { staticClass: "inline-flex rounded-md shadow-sm" },
+                  [
+                    _c(
+                      "inertia-link",
+                      {
+                        staticClass:
+                          "py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out",
+                        attrs: { href: _vm.route("cms.pages.index") }
+                      },
+                      [
+                        _vm._v(
+                          "\n                          Cancel\n                        "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  { staticClass: "ml-3 inline-flex rounded-md shadow-sm" },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out",
+                        attrs: { type: "submit" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                          Save\n                        "
+                        )
+                      ]
+                    )
+                  ]
+                )
+              ])
+            ])
+          ]
+        )
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Pages/Index.vue?vue&type=template&id=32e3380e&":
 /*!*********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Pages/Index.vue?vue&type=template&id=32e3380e& ***!
@@ -28728,8 +29683,461 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("layout", { attrs: { title: "pages" } }, [
-    _c("h1", [_vm._v("pages index")])
+  return _c("layout", { attrs: { title: "Pages" } }, [
+    _c("div", { staticClass: "flex flex-col" }, [
+      _c("div", { staticClass: "mb-4" }, [
+        _c(
+          "h1",
+          { staticClass: "text-3xl font-bolder leading-tight text-gray-900" },
+          [_vm._v("Pages")]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "-mb-2 py-4 flex flex-wrap flex-grow justify-between" },
+        [
+          _c("div", { staticClass: "flex items-center py-2" }, [
+            _c("input", {
+              staticClass:
+                "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500",
+              attrs: {
+                id: "inline-search",
+                type: "text",
+                placeholder: "Search..."
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "flex items-center py-2" },
+            [
+              _c(
+                "inertia-link",
+                {
+                  staticClass:
+                    "inline-block px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline",
+                  attrs: { href: _vm.route("cms.pages.create") }
+                },
+                [
+                  _vm._v(
+                    "\n                    Create new page\n                "
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "-my-2 py-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8" },
+        [
+          _c(
+            "div",
+            {
+              staticClass:
+                "align-middle inline-block w-full shadow overflow-x-auto sm:rounded-lg border-b border-gray-200"
+            },
+            [
+              _c("table", { staticClass: "min-w-full" }, [
+                _c("thead", [
+                  _c(
+                    "tr",
+                    {
+                      staticClass:
+                        "border-b border-gray-200 bg-white leading-4 tracking-wider text-base text-gray-900"
+                    },
+                    [
+                      _c(
+                        "th",
+                        {
+                          staticClass: "px-6 py-5 text-left",
+                          attrs: { colspan: "5" }
+                        },
+                        [
+                          _c("input", {
+                            staticClass:
+                              "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out",
+                            attrs: { type: "checkbox" }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "px-6 py-5 text-left" }, [
+                        _c("input", {
+                          staticClass:
+                            "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out",
+                          attrs: { type: "checkbox" }
+                        })
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "tr",
+                    {
+                      staticClass:
+                        "bg-gray-50 border-b border-gray-200 text-xs leading-4 text-gray-500 uppercase tracking-wider"
+                    },
+                    [
+                      _c(
+                        "th",
+                        { staticClass: "px-6 py-3 text-left font-medium" },
+                        [
+                          _c("input", {
+                            staticClass:
+                              "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out",
+                            attrs: { type: "checkbox" }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "th",
+                        { staticClass: "px-6 py-3 text-left font-medium" },
+                        [
+                          _vm._v(
+                            "\n                            Name\n                        "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "th",
+                        { staticClass: "px-6 py-3 text-left font-medium" },
+                        [
+                          _vm._v(
+                            "\n                            Author\n                        "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "th",
+                        { staticClass: "px-6 py-3 text-left font-medium" },
+                        [
+                          _vm._v(
+                            "\n                            Status\n                        "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "th",
+                        { staticClass: "px-6 py-3 text-left font-medium" },
+                        [
+                          _vm._v(
+                            "\n                            Date\n                        "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("th", {
+                        staticClass: "px-6 py-3 text-left font-medium"
+                      })
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  { staticClass: "bg-white" },
+                  [
+                    _vm.pages === null || _vm.pages.length === 0
+                      ? _c("tr", [
+                          _c(
+                            "td",
+                            {
+                              staticClass:
+                                "px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-center",
+                              attrs: { colspan: "7" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            No pages created yet. Click 'new' to create one.\n                        "
+                              )
+                            ]
+                          )
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm._l(_vm.pages, function(page) {
+                      return _vm.pages !== null
+                        ? _c(
+                            "tr",
+                            {
+                              staticClass:
+                                "border-b border-gray-200 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out"
+                            },
+                            [
+                              _c(
+                                "td",
+                                { staticClass: "px-6 py-4 whitespace-no-wrap" },
+                                [
+                                  _c("input", {
+                                    staticClass:
+                                      "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out",
+                                    attrs: { type: "checkbox" }
+                                  })
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                { staticClass: "px-6 py-4 whitespace-no-wrap" },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "flex items-center" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "text-sm leading-5" },
+                                        [
+                                          _c(
+                                            "div",
+                                            [
+                                              _c(
+                                                "inertia-link",
+                                                {
+                                                  staticClass:
+                                                    "text-indigo-600 hover:text-indigo-900 focus:outline-none hover:underline",
+                                                  attrs: {
+                                                    href: _vm.route(
+                                                      "cms.pages.show",
+                                                      { page: page.id }
+                                                    )
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                            " +
+                                                      _vm._s(page.name) +
+                                                      "\n                                        "
+                                                  )
+                                                ]
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "text-xs leading-5 text-gray-500"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                        " +
+                                                  _vm._s(page.slug) +
+                                                  "\n                                    "
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                { staticClass: "px-6 py-4 whitespace-no-wrap" },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "flex items-center" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "text-sm leading-5" },
+                                        [
+                                          _c(
+                                            "div",
+                                            [
+                                              _c(
+                                                "inertia-link",
+                                                {
+                                                  staticClass:
+                                                    "text-indigo-600 hover:text-indigo-900 focus:outline-none hover:underline",
+                                                  attrs: {
+                                                    href: _vm.route(
+                                                      "cms.users.show",
+                                                      { user: page.author_id }
+                                                    )
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                            " +
+                                                      _vm._s(page.author.name) +
+                                                      "\n                                        "
+                                                  )
+                                                ]
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "text-xs leading-5 text-gray-500"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                        " +
+                                                  _vm._s(page.author.email) +
+                                                  "\n                                    "
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                { staticClass: "px-6 py-4 whitespace-no-wrap" },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                not yet implemented\n                            "
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                {
+                                  staticClass:
+                                    "px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500"
+                                },
+                                [
+                                  page.published_at === page.updated_at
+                                    ? _c(
+                                        "div",
+                                        { staticClass: "text-sm leading-5" },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "text-sm leading-5"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                    published at\n                                "
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "text-xs leading-5"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                    " +
+                                                  _vm._s(page.created_at) +
+                                                  "\n                                "
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    : _c(
+                                        "div",
+                                        { staticClass: "text-sm leading-5" },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "text-sm leading-5"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                    updated at\n                                "
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "text-xs leading-5"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                    " +
+                                                  _vm._s(page.updated_at) +
+                                                  "\n                                "
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                {
+                                  staticClass:
+                                    "px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium"
+                                },
+                                [
+                                  _c(
+                                    "inertia-link",
+                                    {
+                                      staticClass:
+                                        "text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline",
+                                      attrs: {
+                                        href: _vm.route("cms.pages.show", {
+                                          page: page.id
+                                        })
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                Show\n                            "
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    })
+                  ],
+                  2
+                )
+              ])
+            ]
+          )
+        ]
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -28754,9 +30162,409 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("layout", { attrs: { title: "posts" } }, [
-    _c("h1", [_vm._v("pages show")])
-  ])
+  return _c(
+    "layout",
+    {
+      attrs: {
+        title: "Show page - " + _vm.page.name + " (ID: " + _vm.page.id + ")"
+      }
+    },
+    [
+      _c("div", { staticClass: "flex flex-col" }, [
+        _c(
+          "div",
+          {
+            staticClass: "-mb-2 py-4 flex flex-wrap flex-grow justify-between"
+          },
+          [
+            _c("div", { staticClass: "flex items-center py-2" }, [
+              _c(
+                "h1",
+                {
+                  staticClass:
+                    "text-3xl font-bolder leading-tight text-gray-900"
+                },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.page.name) +
+                      " - (ID: " +
+                      _vm._s(_vm.page.id) +
+                      ")\n                "
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "flex items-center py-2" },
+              [
+                _c(
+                  "inertia-link",
+                  {
+                    staticClass:
+                      "inline-block px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline",
+                    attrs: {
+                      href: _vm.route("cms.pages.edit", { page: _vm.page.id })
+                    }
+                  },
+                  [_vm._v("\n                    Edit\n                ")]
+                )
+              ],
+              1
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "bg-gray-50 shadow overflow-hidden sm:rounded-lg" },
+          [
+            _c("div", [
+              _c("dl", [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+                  },
+                  [
+                    _c(
+                      "dd",
+                      {
+                        staticClass:
+                          "text-sm leading-5 font-medium text-gray-500"
+                      },
+                      [
+                        _vm._v(
+                          "\n                            Title\n                        "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "dt",
+                      {
+                        staticClass:
+                          "mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2"
+                      },
+                      [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(_vm.page.name) +
+                            "\n                        "
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+                  },
+                  [
+                    _c(
+                      "dd",
+                      {
+                        staticClass:
+                          "text-sm leading-5 font-medium text-gray-500"
+                      },
+                      [
+                        _vm._v(
+                          "\n                            Slug\n                        "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "dt",
+                      {
+                        staticClass:
+                          "mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2"
+                      },
+                      [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(_vm.page.slug) +
+                            "\n                        "
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+                  },
+                  [
+                    _c(
+                      "dd",
+                      {
+                        staticClass:
+                          "text-sm leading-5 font-medium text-gray-500"
+                      },
+                      [
+                        _vm._v(
+                          "\n                            Status\n                        "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "dt",
+                      {
+                        staticClass:
+                          "mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2"
+                      },
+                      [
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "px-2 inline-flex text-sm leading-5 font-bold"
+                          },
+                          [
+                            _vm._v(
+                              "\n                                not yet implemented\n                            "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                          },
+                          [
+                            _vm._v(
+                              "\n                                published example\n                            "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800"
+                          },
+                          [
+                            _vm._v(
+                              "\n                                draft example\n                            "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
+                          },
+                          [
+                            _vm._v(
+                              "\n                                in review example\n                            "
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+                  },
+                  [
+                    _c(
+                      "dd",
+                      {
+                        staticClass:
+                          "text-sm leading-5 font-medium text-gray-500"
+                      },
+                      [
+                        _vm._v(
+                          "\n                            Author\n                        "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "dt",
+                      {
+                        staticClass:
+                          "mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2"
+                      },
+                      [
+                        _c("div", { staticClass: "flex items-center" }, [
+                          _c(
+                            "div",
+                            { staticClass: "flex-shrink-0 h-10 w-10" },
+                            [
+                              _c("img", {
+                                staticClass: "h-10 w-10 rounded-full",
+                                attrs: { src: _vm.page.author.avatar, alt: "" }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "ml-4" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "text-sm leading-5 font-medium text-gray-900"
+                              },
+                              [
+                                _c("div", {}, [
+                                  _vm._v(
+                                    _vm._s(_vm.page.author.name) +
+                                      "\n                                        "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "text-xs text-gray-500" },
+                                  [_vm._v(_vm._s(_vm.page.author.email))]
+                                )
+                              ]
+                            )
+                          ])
+                        ])
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+                  },
+                  [
+                    _c(
+                      "dd",
+                      {
+                        staticClass:
+                          "text-sm leading-5 font-medium text-gray-500"
+                      },
+                      [
+                        _vm._v(
+                          "\n                            Published at\n                        "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "dt",
+                      {
+                        staticClass:
+                          "mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2"
+                      },
+                      [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(_vm.page.created_at) +
+                            "\n                        "
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+                  },
+                  [
+                    _c(
+                      "dd",
+                      {
+                        staticClass:
+                          "text-sm leading-5 font-medium text-gray-500"
+                      },
+                      [
+                        _vm._v(
+                          "\n                            Updated at\n                        "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "dt",
+                      {
+                        staticClass:
+                          "mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2"
+                      },
+                      [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(_vm.page.updated_at) +
+                            "\n                        "
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+                  },
+                  [
+                    _c(
+                      "dd",
+                      {
+                        staticClass:
+                          "text-sm leading-5 font-medium text-gray-500"
+                      },
+                      [
+                        _vm._v(
+                          "\n                            Content\n                        "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "dt",
+                      {
+                        staticClass:
+                          "mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2"
+                      },
+                      [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(_vm.page.body) +
+                            "\n                        "
+                        )
+                      ]
+                    )
+                  ]
+                )
+              ])
+            ])
+          ]
+        )
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -45846,6 +47654,10 @@ var map = {
 	"./Menus/Index.vue": "./resources/js/Pages/Menus/Index.vue",
 	"./Menus/Show": "./resources/js/Pages/Menus/Show.vue",
 	"./Menus/Show.vue": "./resources/js/Pages/Menus/Show.vue",
+	"./Pages/Create": "./resources/js/Pages/Pages/Create.vue",
+	"./Pages/Create.vue": "./resources/js/Pages/Pages/Create.vue",
+	"./Pages/Edit": "./resources/js/Pages/Pages/Edit.vue",
+	"./Pages/Edit.vue": "./resources/js/Pages/Pages/Edit.vue",
 	"./Pages/Index": "./resources/js/Pages/Pages/Index.vue",
 	"./Pages/Index.vue": "./resources/js/Pages/Pages/Index.vue",
 	"./Pages/Show": "./resources/js/Pages/Pages/Show.vue",
@@ -46041,6 +47853,144 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_template_id_8dd6487e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Show_vue_vue_type_template_id_8dd6487e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Pages/Create.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/Pages/Pages/Create.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Create_vue_vue_type_template_id_51381470___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Create.vue?vue&type=template&id=51381470& */ "./resources/js/Pages/Pages/Create.vue?vue&type=template&id=51381470&");
+/* harmony import */ var _Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Create.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Pages/Create.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Create_vue_vue_type_template_id_51381470___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Create_vue_vue_type_template_id_51381470___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Pages/Create.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Pages/Create.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/Pages/Pages/Create.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Pages/Create.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Pages/Create.vue?vue&type=template&id=51381470&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/Pages/Pages/Create.vue?vue&type=template&id=51381470& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_51381470___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Create.vue?vue&type=template&id=51381470& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Pages/Create.vue?vue&type=template&id=51381470&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_51381470___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_51381470___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Pages/Edit.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/Pages/Pages/Edit.vue ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Edit_vue_vue_type_template_id_d7aa9d04___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=d7aa9d04& */ "./resources/js/Pages/Pages/Edit.vue?vue&type=template&id=d7aa9d04&");
+/* harmony import */ var _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Pages/Edit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Edit_vue_vue_type_template_id_d7aa9d04___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Edit_vue_vue_type_template_id_d7aa9d04___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Pages/Edit.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Pages/Edit.vue?vue&type=script&lang=js&":
+/*!********************************************************************!*\
+  !*** ./resources/js/Pages/Pages/Edit.vue?vue&type=script&lang=js& ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Pages/Edit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Pages/Edit.vue?vue&type=template&id=d7aa9d04&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/Pages/Pages/Edit.vue?vue&type=template&id=d7aa9d04& ***!
+  \**************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_d7aa9d04___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=template&id=d7aa9d04& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Pages/Edit.vue?vue&type=template&id=d7aa9d04&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_d7aa9d04___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_d7aa9d04___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
