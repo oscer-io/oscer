@@ -23,6 +23,6 @@ $factory->define(Page::class, function (Faker $faker) {
         'author_id' => factory(User::class),
         'name' => $faker->name,
         'slug' => $faker->unique()->slug,
-        'body' => $faker->randomLetter,
+        'body' => $faker->paragraph,
     ];
 });
