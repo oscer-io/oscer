@@ -36,7 +36,7 @@
                         </label>
                         <div class="mt-1 rounded-md shadow-sm">
                             <textarea id="body" v-model="form.body"
-                                   class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                      class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                             </textarea>
                         </div>
                         <p v-if="$page.errors.body" class="mt-2 text-sm text-red-600">{{ $page.errors.body[0]}}</p>
@@ -75,14 +75,12 @@
         props: {
             page: Object
         },
-        created() {
-        },
         data() {
             return {
                 form: {
-                    name: this.page.name,
-                    slug: this.page.slug,
-                    body: this.page.body,
+                    name: '',
+                    slug: '',
+                    body: '',
                 },
             }
         },
