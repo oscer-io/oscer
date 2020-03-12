@@ -35,24 +35,19 @@ class UpdatePagesTest extends TestCase
         $page = factory(Page::class)->create();
 
         //no whitespace
-        $response = $this->put(route('cms.pages.update', $page), ['slug' => 'a b']);
-        $response->assertSessionHasErrors('slug');
+        $this->put(route('cms.pages.update', $page), ['slug' => 'a b'])->assertSessionHasErrors('slug');
 
         //underscore
-        $response = $this->put(route('cms.pages.update', $page), ['slug' => '_']);
-        $response->assertSessionHasErrors('slug');
+        $this->put(route('cms.pages.update', $page), ['slug' => '_'])->assertSessionHasErrors('slug');
 
         //special char
-        $response = $this->put(route('cms.pages.update', $page), ['slug' => '?']);
-        $response->assertSessionHasErrors('slug');
+        $this->put(route('cms.pages.update', $page), ['slug' => '?'])->assertSessionHasErrors('slug');
 
         //alphaNum
-        $response = $this->put(route('cms.pages.update', $page), ['slug' => 'aAbBbbbCC']);
-        $response->assertSessionHasNoErrors();
+        $this->put(route('cms.pages.update', $page), ['slug' => 'aAbBbbbCC'])->assertSessionHasNoErrors();
 
         //dash
-        $response = $this->put(route('cms.pages.update', $page), ['slug' => '-']);
-        $response->assertSessionHasNoErrors();
+        $this->put(route('cms.pages.update', $page), ['slug' => '-'])->assertSessionHasNoErrors();
     }
 
     /** @test */
@@ -61,8 +56,7 @@ class UpdatePagesTest extends TestCase
         $this->login();
         $page = factory(Page::class)->create();
 
-        $response = $this->put(route('cms.pages.update', $page), ['slug' => '']);
-        $response->assertSessionHasErrors('slug');
+        $this->put(route('cms.pages.update', $page), ['slug' => ''])->assertSessionHasErrors('slug');
     }
 
     /** @test */
@@ -71,8 +65,7 @@ class UpdatePagesTest extends TestCase
         $this->login();
         $page = factory(Page::class)->create();
 
-        $response = $this->put(route('cms.pages.update', $page), ['name' => '']);
-        $response->assertSessionHasErrors('name');
+        $this->put(route('cms.pages.update', $page), ['name' => ''])->assertSessionHasErrors('name');
     }
 
     /** @test */
@@ -81,12 +74,11 @@ class UpdatePagesTest extends TestCase
         $this->login();
         $page = factory(Page::class)->create();
 
-        $response = $this->get(route('cms.pages.show', ['page' => $page]));
-        $this->assertEquals(200, $response->status());
+        // First check if the response is 200
+        $this->get(route('cms.pages.show', ['page' => $page]))->assertOk();
 
+        // Then delete the page and check the response again
         $this->delete(route('cms.pages.delete', $page), []);
-        $response = $this->get(route('cms.pages.show', ['page' => $page]));
-
-        $this->assertEquals(404, $response->status());
+        $this->get(route('cms.pages.show', ['page' => $page]))->assertStatus(404);
     }
 }
