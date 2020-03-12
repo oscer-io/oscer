@@ -2534,14 +2534,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2586,10 +2578,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_MarkdownEditor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/MarkdownEditor */ "./resources/js/components/MarkdownEditor.vue");
 /* harmony import */ var _components_Fields_MarkdownField__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Fields/MarkdownField */ "./resources/js/components/Fields/MarkdownField.vue");
 /* harmony import */ var _components_TagInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/TagInput */ "./resources/js/components/TagInput.vue");
-//
-//
-//
-//
 //
 //
 //
@@ -2770,7 +2758,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2793,7 +2780,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Layout */ "./resources/js/Layout.vue");
-//
 //
 //
 //
@@ -74494,7 +74480,7 @@ var render = function() {
       _c("div", { staticClass: "md:flex md:items-center md:justify-between" }, [
         _c("div", { staticClass: "flex-1 min-w-0" }, [
           _c(
-            "h3",
+            "h1",
             { staticClass: "text-lg leading-6 font-medium text-gray-900" },
             [_vm._v("\n                    Create new post\n                ")]
           ),
@@ -74552,7 +74538,7 @@ var render = function() {
                     ],
                     staticClass:
                       "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
-                    attrs: { id: "title", type: "test" },
+                    attrs: { id: "title", type: "text" },
                     domProps: { value: _vm.form.title },
                     on: {
                       input: function($event) {
@@ -74646,7 +74632,11 @@ var render = function() {
                         "py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out",
                       attrs: { href: _vm.route("cms.posts.index") }
                     },
-                    [_vm._v("\n      Cancel\n    ")]
+                    [
+                      _vm._v(
+                        "\n                          Cancel\n                        "
+                      )
+                    ]
                   )
                 ],
                 1
@@ -74663,7 +74653,11 @@ var render = function() {
                         "inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out",
                       attrs: { type: "submit" }
                     },
-                    [_vm._v("\n      Save\n    ")]
+                    [
+                      _vm._v(
+                        "\n                          Save\n                        "
+                      )
+                    ]
                   )
                 ]
               )
@@ -74701,7 +74695,7 @@ var render = function() {
       _c("div", { staticClass: "md:flex md:items-center md:justify-between" }, [
         _c("div", { staticClass: "flex-1 min-w-0" }, [
           _c(
-            "h3",
+            "h1",
             { staticClass: "text-lg leading-6 font-medium text-gray-900" },
             [
               _vm._v(
@@ -74765,7 +74759,7 @@ var render = function() {
                     ],
                     staticClass:
                       "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
-                    attrs: { id: "title", type: "test" },
+                    attrs: { id: "title", type: "text" },
                     domProps: { value: _vm.form.title },
                     on: {
                       input: function($event) {
@@ -74861,7 +74855,11 @@ var render = function() {
                         href: _vm.route("cms.posts.show", { post: _vm.post.id })
                       }
                     },
-                    [_vm._v("\n      Cancel\n    ")]
+                    [
+                      _vm._v(
+                        "\n                          Cancel\n                        "
+                      )
+                    ]
                   )
                 ],
                 1
@@ -74878,7 +74876,11 @@ var render = function() {
                         "inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out",
                       attrs: { type: "submit" }
                     },
-                    [_vm._v("\n      Save Post\n    ")]
+                    [
+                      _vm._v(
+                        "\n                          Save Post\n                        "
+                      )
+                    ]
                   )
                 ]
               )
@@ -74925,24 +74927,33 @@ var render = function() {
           [
             _c("div", { staticClass: "ml-4 mt-2" }, [
               _c(
-                "h3",
+                "h1",
                 { staticClass: "text-lg leading-6 font-medium text-gray-900" },
                 [_vm._v("\n                    Posts\n                ")]
               )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "ml-4 mt-2 flex-shrink-0" }, [
-              _c("span", { staticClass: "inline-flex rounded-md shadow-sm" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass:
-                      "relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline",
-                    attrs: { href: _vm.route("cms.posts.create") }
-                  },
-                  [_vm._v("\n      Create new post\n    ")]
-                )
-              ])
+              _c(
+                "span",
+                { staticClass: "inline-flex rounded-md shadow-sm" },
+                [
+                  _c(
+                    "inertia-link",
+                    {
+                      staticClass:
+                        "relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline",
+                      attrs: { href: _vm.route("cms.posts.create") }
+                    },
+                    [
+                      _vm._v(
+                        "\n                  Create new post\n                "
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
             ])
           ]
         )
@@ -75047,7 +75058,9 @@ var render = function() {
                                       ),
                                       _c(
                                         "time",
-                                        { attrs: { datetime: "2020-01-07" } },
+                                        {
+                                          attrs: { datetime: post.created_at }
+                                        },
                                         [_vm._v(_vm._s(post.created_at))]
                                       )
                                     ]
@@ -75143,7 +75156,7 @@ var render = function() {
       _c("div", { staticClass: "md:flex md:items-center md:justify-between" }, [
         _c("div", { staticClass: "flex-1 min-w-0" }, [
           _c(
-            "h3",
+            "h1",
             { staticClass: "text-lg leading-6 font-medium text-gray-900" },
             [
               _vm._v(
@@ -75177,7 +75190,7 @@ var render = function() {
                     href: _vm.route("cms.posts.edit", { post: _vm.post.id })
                   }
                 },
-                [_vm._v("\n    Edit post\n  ")]
+                [_vm._v("\n                    Edit post\n                  ")]
               )
             ],
             1
@@ -75219,11 +75232,7 @@ var render = function() {
               {
                 staticClass: "block text-sm font-medium leading-5 text-gray-700"
               },
-              [
-                _vm._v(
-                  "\n                                Body\n                            "
-                )
-              ]
+              [_vm._v("\n                    Body\n                ")]
             ),
             _vm._v(" "),
             _c("div", {
