@@ -28,14 +28,16 @@
                         <p v-if="$page.errors.title" class="mt-2 text-sm text-red-600">{{ $page.errors.title[0] }}</p>
                     </div>
                     <div class="sm:col-span-6">
-                        <tag-input v-model="form.tags" :available-tags="this.tags"></tag-input>
+                        <tag-input v-model="form.tags" :available-tags="this.tags" />
                     </div>
 
                     <div class="sm:col-span-6">
                         <label for="body" class="block text-sm font-medium leading-5 text-gray-700">
                             Body
                         </label>
-                        <markdown-field v-model="form.body"></markdown-field>
+                        <markdown-field id="body"
+                                        class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                        v-model="form.body"/>
                         <p v-if="$page.errors.body" class="mt-2 text-sm text-red-600">{{ $page.errors.body[0] }}</p>
                         <p class="mt-2 text-sm text-gray-500">Write crazy stuff.</p>
                     </div>
