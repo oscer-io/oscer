@@ -66,7 +66,6 @@
 
 <script>
     import Layout from '../../Layout';
-    import MarkdownEditor from '../../components/MarkdownEditor';
     import MarkdownField from '../../components/Fields/MarkdownField';
 
     export default {
