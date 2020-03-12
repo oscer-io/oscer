@@ -7,7 +7,12 @@ use Bambamboole\LaravelCms\Http\Controllers\ProfileController;
 use Bambamboole\LaravelCms\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
+Route::post('/posts', [PostsController::class, 'store'])->name('posts.store');
 Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
+Route::get('/posts/create', [PostsController::class, 'create'])->name('posts.create');
+Route::get('/posts/{post}', [PostsController::class, 'show'])->name('posts.show');
+Route::put('/posts/{post}', [PostsController::class, 'update'])->name('posts.update');
+Route::get('/posts/{post}/edit', [PostsController::class, 'edit'])->name('posts.edit');
 
 Route::get('/pages', [PagesController::class, 'index'])->name('pages.index');
 

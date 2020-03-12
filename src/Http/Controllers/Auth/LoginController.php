@@ -2,25 +2,33 @@
 
 namespace Bambamboole\LaravelCms\Http\Controllers\Auth;
 
+use Bambamboole\LaravelCms\Http\Requests\LoginRequest;
 use Illuminate\Contracts\Auth\StatefulGuard;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class LoginController
 {
-    use AuthenticatesUsers, ValidatesRequests;
-
     public function showLoginForm()
     {
         return view('cms::auth.login');
     }
 
-    /**
-     * Log the user out of the application.
-     */
+    public function login(LoginRequest $request)
+    {
+        if ($this->guard()->attempt($request->validated(), $request->filled('remember'))) {
+            $request->session()->regenerate();
+
+            return redirect()->route('cms.posts.index');
+        }
+
+        throw ValidationException::withMessages([
+            'email' => [trans('auth.failed')],
+        ]);
+    }
+
     public function logout(Request $request): RedirectResponse
     {
         $this->guard()->logout();
@@ -30,17 +38,6 @@ class LoginController
         return redirect()->route('cms.auth.login')->with('loggedOut', true);
     }
 
-    /**
-     * Get the post login redirect path.
-     */
-    public function redirectPath(): string
-    {
-        return '/'.config('cms.backend.url').'/posts';
-    }
-
-    /**
-     * Get the guard to be used during authentication.
-     */
     protected function guard(): StatefulGuard
     {
         return Auth::guard('cms');
