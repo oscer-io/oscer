@@ -12,6 +12,17 @@ class UpdatePageRequest extends FormRequest
         return true;
     }
 
+    public function validated()
+    {
+        $data = parent::validated();
+
+        if (is_null($data['body'])) {
+            $data['body'] = '';
+        }
+
+        return $data;
+    }
+
     public function rules(): array
     {
         $uniqueRule = Rule::unique(config('cms.database_connection').'.pages', 'slug')
