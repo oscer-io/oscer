@@ -1,10 +1,10 @@
 <template>
-    <layout title="Show post">
+    <layout :title="'Show post - ' + post.name + ' (ID: ' + post.id + ')'">
         <div>
             <div class="md:flex md:items-center md:justify-between">
                 <div class="flex-1 min-w-0">
                     <h1 class="text-lg leading-6 font-medium text-gray-900">
-                        {{post.title}}
+                        {{post.name}}
                     </h1>
                     <p class="mt-1 text-sm leading-5 text-gray-500">
                         {{post.slug}}
