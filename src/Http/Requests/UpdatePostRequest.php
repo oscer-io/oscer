@@ -28,7 +28,7 @@ class UpdatePostRequest extends FormRequest
 
     public function rules(): array
     {
-        $uniqueRule = Rule::unique(config('cms.database_connection') . '.posts', 'slug')
+        $uniqueRule = Rule::unique(config('cms.database_connection').'.posts', 'slug')
             ->ignore($this->route('post'));
 
         return [
