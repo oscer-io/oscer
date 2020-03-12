@@ -1,6 +1,26 @@
 <template>
     <div>
-        <div class="editor" ref="codemirror"></div>
+        <div class="markdown-toolbar">
+            <div class="markdown-modes my-3">
+                <ul class="flex border-b">
+                    <li class="-mb-px mr-1">
+                        <button type="button" @click="mode = 'write'"
+                                :class="( mode === 'write' ? 'active bg-white text-indigo-700 ': 'border-transparent ') +
+                                    'py-1 px-2 inline-block border-l border-t border-r rounded-t text-indigo-500 hover:text-blue-800 font-semibold focus:outline-none'">
+                            Write
+                        </button>
+                    </li>
+                    <li class="-mb-px mr-1">
+                        <button type="button" @click="mode = 'preview'"
+                                :class="( mode === 'preview' ? 'active bg-white text-indigo-700 ': 'border-transparent ') +
+                                    'py-1 px-2 inline-block border-l border-t border-r rounded-t text-indigo-500 hover:text-blue-800 font-semibold focus:outline-none'">
+                            Preview</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div v-show="mode === 'write'" class="editor" ref="codemirror"></div>
+        <div v-show="mode === 'preview'" v-html="markdownPreviewText" class="markdown-preview clean-content"></div>
     </div>
 </template>
 <script>
@@ -25,7 +45,6 @@
     import 'codemirror/keymap/sublime'
 
     export default {
-
         props: {
             value: String
         },
@@ -68,5 +87,10 @@
                 this.$emit('input', value);
             },
         },
+        computed: {
+            markdownPreviewText() {
+                return markdown(this.data);
+            },
+        }
     }
 </script>
