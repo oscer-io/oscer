@@ -3,9 +3,9 @@
         <div>
             <div class="md:flex md:items-center md:justify-between">
                 <div class="flex-1 min-w-0">
-                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                    <h1 class="text-lg leading-6 font-medium text-gray-900">
                         {{post.title}}
-                    </h3>
+                    </h1>
                     <p class="mt-1 text-sm leading-5 text-gray-500">
                         {{post.slug}}
                     </p>
