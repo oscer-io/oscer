@@ -20,6 +20,7 @@ class CreatePagesTable extends Migration
             $table->string('slug')->unique();
             $table->text('body');
             $table->timestamps();
+            $table->dateTime('published_at')->nullable();
             $table->foreign('author_id')->references('id')->on('users');
         });
     }
