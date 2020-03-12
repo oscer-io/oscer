@@ -32,7 +32,9 @@
                             Body
                         </label>
 
-                        <markdown-editor v-model="form.body"></markdown-editor>
+                        <markdown-field id="body"
+                                        class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                        v-model="form.body"/>
                         <p v-if="$page.errors.body" class="mt-2 text-sm text-red-600">{{ $page.errors.body[0]}}</p>
                         <p class="mt-2 text-sm text-gray-500">Write crazy stuff.</p>
                     </div>
@@ -62,13 +64,12 @@
     import _ from 'lodash';
     import Layout from '../../Layout';
     import TagInput from "../../components/TagInput";
-    import MarkdownEditor from "../../components/MarkdownEditor";
-
+    import MarkdownField from "../../components/Fields/MarkdownField";
     export default {
         components: {
             Layout,
+            MarkdownField,
             TagInput,
-            MarkdownEditor
         },
         props: {
             tags: Array
