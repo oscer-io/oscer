@@ -74,8 +74,6 @@
         props: {
             page: Object,
         },
-        created() {
-        },
         data() {
             return {
                 form: {
