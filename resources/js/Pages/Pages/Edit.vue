@@ -35,9 +35,9 @@
                             Body
                         </label>
                         <div class="mt-1 rounded-md shadow-sm">
-                            <textarea id="body" v-model="form.body"
-                                      class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                            </textarea>
+                            <markdown-field id="body"
+                                            class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                            v-model="form.body"/>
                         </div>
                         <p v-if="$page.errors.body" class="mt-2 text-sm text-red-600">{{ $page.errors.body[0]}}</p>
                     </div>
@@ -66,10 +66,14 @@
 
 <script>
     import Layout from '../../Layout';
+    import MarkdownEditor from '../../components/MarkdownEditor';
+    import MarkdownField from '../../components/Fields/MarkdownField';
 
     export default {
         components: {
-            Layout
+            Layout,
+            MarkdownEditor,
+            MarkdownField,
         },
         props: {
             page: Object,
