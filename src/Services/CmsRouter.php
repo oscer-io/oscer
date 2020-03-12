@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Bambamboole\LaravelCms\Services;
-
 
 use Bambamboole\LaravelCms\Http\Controllers\BlogController;
 use Bambamboole\LaravelCms\Http\Middleware\SetLocale;

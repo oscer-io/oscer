@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Bambamboole\LaravelCms\Services;
-
 
 use Bambamboole\LaravelCms\Models\Page;
 use Illuminate\Http\Request;
