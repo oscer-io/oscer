@@ -44,6 +44,7 @@
     // Keymaps
     import 'codemirror/lib/codemirror.css'
     import 'codemirror/keymap/sublime'
+    import marked from 'marked';
 
     export default {
         props: {
@@ -88,7 +89,7 @@
         },
         computed: {
             markdownPreviewText() {
-                return markdown(this.data);
+                return marked(this.data);
             },
         }
     }

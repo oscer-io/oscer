@@ -79,8 +79,8 @@
     export default {
         components: {
             Layout,
+            MarkdownField,
             TagInput,
-            MarkdownField
         },
         props: {
             tags: Array

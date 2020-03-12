@@ -30,7 +30,7 @@
                     <span class="block text-sm font-medium leading-5 text-gray-700">
                         Body
                     </span>
-                    <div class="py-3" v-html="post.body">
+                    <div class="py-3" v-html="markdown(post.body)">
                     </div>
                 </div>
             </div>
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+    import marked from 'marked';
     import Layout from '../../Layout';
 
     export default {
@@ -47,6 +48,11 @@
         },
         props: {
             post: Object,
+        },
+        methods: {
+            markdown(value) {
+                return marked(value);
+            }
         }
     }
 </script>
