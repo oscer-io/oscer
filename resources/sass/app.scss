@@ -5,6 +5,9 @@
 @tailwind utilities;
 
 
+@import "../../node_modules/highlight.js/scss/darcula";
+
+
 /* Make clicks pass-through */
 #nprogress {
     pointer-events: none;
