@@ -64,7 +64,6 @@
                 </li>
             </ul>
         </div>
-
     </layout>
 </template>
 
