@@ -19,5 +19,5 @@ return [
     ],
     'pages' => [
         'middleware' => 'web',
-    ]
+    ],
 ];
