@@ -2,10 +2,17 @@
 
 namespace Bambamboole\LaravelCms\Models;
 
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 /**
- * @property string avatar
+ * @property int id
+ * @property int author_id
+ * @property string name
+ * @property string slug
+ * @property string body
+ * @property Carbon published_at
+ * @property Carbon updated_at
+ * @property Carbon created_at
  */
 class Page extends BaseModel
 {
@@ -19,19 +26,17 @@ class Page extends BaseModel
     ];
 
     /**
-     * The accessors to append to the model's array form.
+     * The relations to eager load on every query.
      *
      * @var array
      */
-    protected $appends = ['author'];
+    protected $with = ['author'];
 
     /**
-     * Get the authors avatar or the current authenticated users if the author object is null (i.e. create).
-     *
-     * @return string
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getAuthorAttribute()
+    public function author()
     {
-        return is_null($this->author_id) ? Auth::user() : User::find($this->author_id);
+        return $this->belongsTo(User::class);
     }
 }
