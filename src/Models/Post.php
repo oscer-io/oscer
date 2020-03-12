@@ -22,26 +22,39 @@ class Post extends BaseModel
 {
     use HasSlug;
 
-    protected $with = ['tags'];
+    /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'body' => '',
+    ];
 
+    protected $with = ['tags', 'author'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function author()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function tags()
-    {
-        return $this->belongsToMany(Tag::class)->withTimestamps();
-    }
-
+    /**
+     * @return \Spatie\Sluggable\SlugOptions
+     */
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('title')
+            ->generateSlugsFrom('name')
             ->saveSlugsTo('slug')
             ->doNotGenerateSlugsOnUpdate();
     }
 
+    /**
+     * @param array $value
+     */
     public function setTagsAttribute(array $value)
     {
         $tags = collect($value)
@@ -51,5 +64,13 @@ class Post extends BaseModel
             ->pluck('id');
 
         $this->tags()->sync($tags);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class)->withTimestamps();
     }
 }
