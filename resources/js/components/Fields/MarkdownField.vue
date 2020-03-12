@@ -1,10 +1,32 @@
 <template>
-    <div class="markdown-field">
-        <textarea id="editor"></textarea>
+    <div>
+        <div class="markdown-toolbar">
+            <div class="markdown-modes my-3">
+                <ul class="flex border-b">
+                    <li class="-mb-px mr-1">
+                        <button type="button" @click="mode = 'write'"
+                                :class="( mode === 'write' ? 'active bg-white text-indigo-700 ': 'border-transparent ') +
+                                    'py-1 px-2 inline-block border-l border-t border-r rounded-t text-indigo-500 hover:text-blue-800 font-semibold focus:outline-none'">
+                            Write
+                        </button>
+                    </li>
+                    <li class="-mb-px mr-1">
+                        <button type="button" @click="mode = 'preview'"
+                                :class="( mode === 'preview' ? 'active bg-white text-indigo-700 ': 'border-transparent ') +
+                                    'py-1 px-2 inline-block border-l border-t border-r rounded-t text-indigo-500 hover:text-blue-800 font-semibold focus:outline-none'">
+                            Preview
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div v-show="mode === 'write'" class="editor" ref="codemirror"></div>
+        <div v-show="mode === 'preview'" v-html="markdownPreviewText" class="markdown-preview clean-content"></div>
     </div>
 </template>
 <script>
     let CodeMirror = require('codemirror');
+
     require('codemirror/addon/edit/closebrackets');
     require('codemirror/addon/edit/matchbrackets');
     require('codemirror/addon/display/autorefresh');
@@ -24,37 +46,50 @@
     import 'codemirror/keymap/sublime'
 
     export default {
-
         props: {
             value: String
         },
-
-        data(){
-          return {
-              editor: null
-          }
+        data: function () {
+            return {
+                data: this.value || '',
+                mode: 'write',
+                codemirror: null, // the CodeMirror instance
+            };
         },
-
+        watch: {
+            data(data) {
+                this.update(data);
+            },
+        },
         mounted() {
-            this.editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
-                value: this.value || '',
+            this.codemirror = CodeMirror(this.$refs.codemirror, {
+                value: this.data,
                 mode: 'gfm',
                 keyMap: 'sublime',
                 lineWrapping: true,
                 autoRefresh: true,
             });
 
-            this.editor.on('change', cm => {
-                this.updateValue(cm.doc.getValue())
-            })
-        },
+            this.codemirror.on('change', (codemirror) => {
+                this.data = codemirror.doc.getValue();
+            });
 
+            // update CodeMirror if we change the value independently of CodeMirror
+            this.$watch('value', (value) => {
+                if (value !== this.codemirror.doc.getValue()) {
+                    this.codemirror.doc.setValue(value);
+                }
+            });
+        },
         methods: {
-          updateValue(value){
-              this.value = value;
-              this.$emit('input', this.value);
-          }
+            update(value) {
+                this.$emit('input', value);
+            },
         },
-
+        computed: {
+            markdownPreviewText() {
+                return markdown(this.data);
+            },
+        }
     }
 </script>

@@ -20,9 +20,16 @@ class Tag extends BaseModel
 {
     use HasSlug;
 
+    /**
+     * All of the relationships to be touched.
+     *
+     * @var array
+     */
+    protected $touches = ['posts'];
+
     public function posts()
     {
-        return $this->belongsToMany(Post::class);
+        return $this->belongsToMany(Post::class)->withTimestamps();
     }
 
     public function getSlugOptions(): SlugOptions

@@ -3,6 +3,7 @@ import Vue from 'vue'
 import vClickOutside from 'v-click-outside'
 import Router from './lib/Router';
 import route from './mixins/route';
+import marked from 'marked';
 
 window.events = new Vue();
 window.flash = function (type, text) {
@@ -16,13 +17,13 @@ Vue.use(VueI18n);
 const i18n = new VueI18n({
     locale: window.locale,
     messages: languageBundle,
-})
+});
+
 Vue.use(vClickOutside);
 Vue.use(InertiaApp);
 Vue.mixin(route);
 
 const app = document.getElementById('app');
-
 
 new Vue({
     i18n,
@@ -39,3 +40,7 @@ new Vue({
         },
     }),
 }).$mount(app);
+
+global.markdown = function (value) {
+    return marked(value);
+};
