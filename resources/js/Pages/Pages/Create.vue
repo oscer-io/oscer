@@ -72,9 +72,6 @@
         components: {
             Layout
         },
-        props: {
-            page: Object
-        },
         data() {
             return {
                 form: {
