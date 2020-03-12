@@ -14,4 +14,10 @@ return [
         'main' => [],
         'footer' => [],
     ],
+    'blog' => [
+        'middleware' => 'web',
+    ],
+    'pages' => [
+        'middleware' => 'web',
+    ]
 ];
