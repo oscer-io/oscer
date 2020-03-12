@@ -1,31 +1,37 @@
 <template>
-    <layout :title="'Edit: ' + post.title">
-
+    <layout :title="'Edit post - ' + post.name + ' (ID: ' +  post.id + ')'">
         <div>
-
             <div class="md:flex md:items-center md:justify-between">
                 <div class="flex-1 min-w-0">
                     <h1 class="text-lg leading-6 font-medium text-gray-900">
-                        Edit: {{post.title}}
+                        Edit: {{post.name}}
                     </h1>
                     <p class="mt-1 text-sm leading-5 text-gray-500">
                         a smart sentence can be written here...
                     </p>
                 </div>
             </div>
-
             <form @submit.prevent="submit">
-
                 <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
                     <div class="sm:col-span-6">
-                        <label for="title" class="block text-sm font-medium leading-5 text-gray-700">
-                            Title
+                        <label for="name" class="block text-sm font-medium leading-5 text-gray-700">
+                            Name
                         </label>
                         <div class="mt-1 rounded-md shadow-sm">
-                            <input id="title" type="text" v-model="form.title"
+                            <input id="name" type="text" v-model="form.name"
                                    class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"/>
                         </div>
-                        <p v-if="$page.errors.title" class="mt-2 text-sm text-red-600">{{ $page.errors.title[0] }}</p>
+                        <p v-if="$page.errors.name" class="mt-2 text-sm text-red-600">{{ $page.errors.name[0] }}</p>
+                    </div>
+                    <div class="sm:col-span-6">
+                        <label for="slug" class="block text-sm font-medium leading-5 text-gray-700">
+                            Slug
+                        </label>
+                        <div class="mt-1 rounded-md shadow-sm">
+                            <input id="slug" type="text" v-model="form.slug"
+                                   class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"/>
+                        </div>
+                        <p v-if="$page.errors.slug" class="mt-2 text-sm text-red-600">{{ $page.errors.slug[0]}}</p>
                     </div>
                     <div class="sm:col-span-6">
                         <tag-input v-model="form.tags" :available-tags="this.tags" />
@@ -84,9 +90,10 @@
         data() {
             return {
                 form: {
-                    title: this.post.title,
+                    name: this.post.name,
+                    slug: this.post.slug,
+                    tags: this.post.tags.map(tag => tag.name),
                     body: this.post.body,
-                    tags: this.post.tags.map(tag => tag.name)
                 },
             }
         },
