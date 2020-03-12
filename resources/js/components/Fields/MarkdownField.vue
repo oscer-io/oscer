@@ -14,7 +14,8 @@
                         <button type="button" @click="mode = 'preview'"
                                 :class="( mode === 'preview' ? 'active bg-white text-indigo-700 ': 'border-transparent ') +
                                     'py-1 px-2 inline-block border-l border-t border-r rounded-t text-indigo-500 hover:text-blue-800 font-semibold focus:outline-none'">
-                            Preview</button>
+                            Preview
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -61,24 +62,22 @@
             },
         },
         mounted() {
-            let self = this;
-
-            self.codemirror = CodeMirror(this.$refs.codemirror, {
-                value: self.data,
+            this.codemirror = CodeMirror(this.$refs.codemirror, {
+                value: this.data,
                 mode: 'gfm',
                 keyMap: 'sublime',
                 lineWrapping: true,
                 autoRefresh: true,
             });
 
-            self.codemirror.on('change', function (cm) {
-                self.data = cm.doc.getValue();
+            this.codemirror.on('change', (codemirror) => {
+                this.data = codemirror.doc.getValue();
             });
 
             // update CodeMirror if we change the value independently of CodeMirror
-            this.$watch('value', function (val) {
-                if (val !== self.codemirror.doc.getValue()) {
-                    self.codemirror.doc.setValue(val);
+            this.$watch('value', (value) => {
+                if (value !== this.codemirror.doc.getValue()) {
+                    this.codemirror.doc.setValue(value);
                 }
             });
         },
