@@ -6,7 +6,7 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bambamboole/laravel-cms/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/bambamboole/laravel-cms/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/bambamboole/laravel-cms.svg?style=flat-square)](https://packagist.org/packages/bambamboole/laravel-cms)
 
-## !!! THIS is not usable yet. Development just startet !!!
+## !!! THIS is not usable yet. Development just started !!!
 The vision behind this package is to build a developer friendly CMS and blogging system. 
 We are currently planning the milestones for the road map.
 
