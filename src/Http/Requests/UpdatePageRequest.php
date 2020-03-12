@@ -16,7 +16,7 @@ class UpdatePageRequest extends FormRequest
     {
         $data = parent::validated();
 
-        if (is_null($data['body'])) {
+        if (isset($data['body'])) {
             $data['body'] = '';
         }
 
@@ -29,14 +29,13 @@ class UpdatePageRequest extends FormRequest
             ->ignore($this->route('page'));
 
         return [
-            'name' => ['filled', 'string'],
+            'name' => ['required', 'string'],
             'slug' => [
-                'filled',
                 'string',
                 'regex:/^[a-zA-Z0-9-]+$/', // like alpha_num but with dashes
                 $uniqueRule,
             ],
-            'body' => ['filled', 'string'],
+            'body' => ['string'],
         ];
     }
 }
