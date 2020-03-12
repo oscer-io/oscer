@@ -33,6 +33,7 @@ class UpdatePagesTest extends TestCase
     {
         $this->login();
         $page = factory(Page::class)->create();
+        $attributes = $page->attributesToArray();
 
         //no whitespace
         $this->put(route('cms.pages.update', $page), ['slug' => 'a b'])->assertSessionHasErrors('slug');
@@ -44,10 +45,12 @@ class UpdatePagesTest extends TestCase
         $this->put(route('cms.pages.update', $page), ['slug' => '?'])->assertSessionHasErrors('slug');
 
         //alphaNum
-        $this->put(route('cms.pages.update', $page), ['slug' => 'aAbBbbbCC'])->assertSessionHasNoErrors();
+        $this->put(route('cms.pages.update', $page), array_merge($attributes, ['slug' => 'aAbBbbbCC']))
+            ->assertSessionHasNoErrors();
 
         //dash
-        $this->put(route('cms.pages.update', $page), ['slug' => '-'])->assertSessionHasNoErrors();
+        $this->put(route('cms.pages.update', $page), array_merge($attributes, ['slug' => '-']))
+            ->assertSessionHasNoErrors();
     }
 
     /** @test */
