@@ -1,10 +1,11 @@
 <template>
-    <div class="markdown-field">
-        <textarea id="editor"></textarea>
+    <div>
+        <div class="editor" ref="codemirror"></div>
     </div>
 </template>
 <script>
     let CodeMirror = require('codemirror');
+
     require('codemirror/addon/edit/closebrackets');
     require('codemirror/addon/edit/matchbrackets');
     require('codemirror/addon/display/autorefresh');
@@ -28,33 +29,44 @@
         props: {
             value: String
         },
-
-        data(){
-          return {
-              editor: null
-          }
+        data: function () {
+            return {
+                data: this.value || '',
+                mode: 'write',
+                codemirror: null, // the CodeMirror instance
+            };
         },
-
+        watch: {
+            data(data) {
+                this.update(data);
+            },
+        },
         mounted() {
-            this.editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
-                value: this.value || '',
+            let self = this;
+
+            self.codemirror = CodeMirror(this.$refs.codemirror, {
+                value: self.data,
                 mode: 'gfm',
                 keyMap: 'sublime',
                 lineWrapping: true,
                 autoRefresh: true,
             });
 
-            this.editor.on('change', cm => {
-                this.updateValue(cm.doc.getValue())
-            })
-        },
+            self.codemirror.on('change', function (cm) {
+                self.data = cm.doc.getValue();
+            });
 
+            // update CodeMirror if we change the value independently of CodeMirror
+            this.$watch('value', function (val) {
+                if (val !== self.codemirror.doc.getValue()) {
+                    self.codemirror.doc.setValue(val);
+                }
+            });
+        },
         methods: {
-          updateValue(value){
-              this.value = value;
-              this.$emit('input', this.value);
-          }
+            update(value) {
+                this.$emit('input', value);
+            },
         },
-
     }
 </script>
