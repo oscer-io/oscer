@@ -19,12 +19,11 @@ class CreatePageRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'slug' => [
-                'required',
                 'string',
                 'regex:/^[a-zA-Z0-9-]+$/', // like alpha_num but with dashes
                 $uniqueRule,
             ],
-            'body' => ['filled', 'string'],
+            'body' => ['string'],
         ];
     }
 }
