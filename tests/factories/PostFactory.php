@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(Post::class, function (Faker $faker) {
     return [
-        'title' => $faker->words(rand(2, 6), true),
+        'name' => $faker->words(rand(2, 6), true),
         'body' => $faker->paragraphs(rand(3, 7), true),
         'author_id' => factory(User::class)->create(),
         'published_at' => rand(0, 1) == 1 ? null : now()->subMonths(rand(1, 8))->subDays(rand(1, 20)),
