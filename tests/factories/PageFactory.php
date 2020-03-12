@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(Page::class, function (Faker $faker) {
     return [
-        'author_id' => factory(User::class),
+        'author_id' => factory(User::class)->create(),
         'name' => $faker->name,
         'slug' => $faker->unique()->slug,
         'body' => $faker->paragraph,
