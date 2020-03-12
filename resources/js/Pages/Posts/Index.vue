@@ -42,7 +42,7 @@
                                         <div>
                                             <div class="text-sm leading-5 text-gray-900">
                                                 created at:
-                                                <time datetime="2020-01-07">{{post.created_at}}</time>
+                                                <time :datetime="post.created_at">{{post.created_at}}</time>
                                             </div>
                                             <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">
                                                 Tags:
