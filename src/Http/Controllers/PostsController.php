@@ -47,7 +47,7 @@ class PostsController
         unset($data['tags']);
         $post = Post::query()->create(array_merge(
             [
-                'author_id' => auth()->user()->id
+                'author_id' => auth()->user()->id,
             ], $data));
         $post->update(['tags' => $tags]);
 
