@@ -35,7 +35,7 @@ class CmsRouter
             });
     }
 
-    public function registerPageRoutes(string $pathPrefix = 'blog')
+    public function registerPageRoutes(string $pathPrefix = '')
     {
         $slugs = Cache::rememberForever('cms.slugs', function () {
             return Page::query()->get('slug');
