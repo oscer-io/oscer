@@ -71,7 +71,6 @@
     export default {
         components: {
             Layout,
-            MarkdownEditor,
             MarkdownField,
         },
         props: {
@@ -88,7 +87,7 @@
         },
         methods: {
             submit() {
-                this.$inertia.put(this.route('cms.pages.update',{page: this.page.id}), this.form);
+                this.$inertia.put(this.route('cms.pages.update',{page: this.page.id}),  _.pickBy(this.form));
             }
         }
     }
