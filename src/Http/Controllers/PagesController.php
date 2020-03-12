@@ -5,7 +5,6 @@ namespace Bambamboole\LaravelCms\Http\Controllers;
 use Bambamboole\LaravelCms\Http\Requests\CreatePageRequest;
 use Bambamboole\LaravelCms\Http\Requests\UpdatePageRequest;
 use Bambamboole\LaravelCms\Models\Page;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -44,7 +43,7 @@ class PagesController
     {
         $page = Page::create(array_merge(
             [
-                'author_id' => Auth::user()->id,
+                'author_id' => auth()->user()->id,
             ], $request->validated()));
 
         session()->flash('message', ['type' => 'success', 'text' => "Page {$page->name} created"]);
