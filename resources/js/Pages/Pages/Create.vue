@@ -73,7 +73,6 @@
     export default {
         components: {
             Layout,
-            MarkdownEditor,
             MarkdownField,
         },
         data() {
