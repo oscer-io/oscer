@@ -40,7 +40,7 @@ class CmsRouter
         });
 
         $this->router
-            ->middleware([$this->config->get('cms.blog.middleware'), SetLocale::class])
+            ->middleware([$this->config->get('cms.pages.middleware'), SetLocale::class])
             ->prefix($pathPrefix)
             ->as('cms.')
             ->group(function (Router $router) use ($slugs) {
