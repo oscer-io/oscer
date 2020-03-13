@@ -13,7 +13,7 @@ class UpdateUsersTest extends TestCase
     {
         $user = $this->login();
 
-        $this->put(route('cms.users.update', $user), ['name' => 'updated']);
+        $this->put(route('cms.backend.users.update', $user), ['name' => 'updated']);
 
         $this->assertEquals('updated', $user->fresh()->name);
     }
@@ -23,7 +23,7 @@ class UpdateUsersTest extends TestCase
     {
         $user = $this->login();
 
-        $this->put(route('cms.users.update', $user), ['password' => 'test']);
+        $this->put(route('cms.backend.users.update', $user), ['password' => 'test']);
 
         $this->assertFalse(Hash::check('test', $user->fresh()->getAuthPassword()));
     }
@@ -34,7 +34,7 @@ class UpdateUsersTest extends TestCase
         $this->login(['email' => 'test@test.com']);
         $user = factory(User::class)->create();
 
-        $response = $this->put(route('cms.users.update', $user), ['email' => 'test@test.com']);
+        $response = $this->put(route('cms.backend.users.update', $user), ['email' => 'test@test.com']);
 
         $response->assertSessionHasErrors('email');
     }
