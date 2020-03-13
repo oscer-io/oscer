@@ -9,7 +9,8 @@ class PageRenderer
 {
     public function render(Request $request)
     {
-        $slug = end(explode('.', $request->route()->getName()));
+        $pathParts = explode('.', $request->route()->getName());
+        $slug = end($pathParts);
         $page = Page::query()->where('slug', $slug)->firstOrFail();
 
         return view('cms::pages.show', ['page' => $page]);
