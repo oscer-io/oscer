@@ -27,7 +27,7 @@
                         </div>
                     @endif
                 </div>
-                <form class="mt-8" method="POST" action="{{route('cms.backend.auth.attempt')}}">
+                <form class="mt-8" method="POST" action="{{route('cms.auth.attempt')}}">
                     @csrf
                     <div class="rounded-md shadow-sm">
                         <div>
@@ -52,7 +52,7 @@
                         </div>
 
                         <div class="text-sm leading-5">
-                            <a href="{{route('cms.backend.password.forgot')}}"
+                            <a href="{{route('cms.password.forgot')}}"
                                class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
                                 {{__('cms::auth.pages.login.forgot')}}
 

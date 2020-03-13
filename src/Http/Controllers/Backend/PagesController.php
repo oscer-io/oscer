@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Http\Controllers;
+namespace Bambamboole\LaravelCms\Http\Controllers\Backend;
 
 use Bambamboole\LaravelCms\Http\Requests\CreatePageRequest;
 use Bambamboole\LaravelCms\Http\Requests\UpdatePageRequest;

@@ -21,6 +21,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
         $this->registerGuard();
         $this->registerPublishes();
 
+        $router->registerAuthRoutes();
         $router->registerBackendRoutes();
     }
 

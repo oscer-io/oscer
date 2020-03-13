@@ -27,7 +27,7 @@ class Authenticate
             $this->auth->shouldUse('cms');
         } else {
             throw new AuthenticationException(
-                'Unauthenticated.', ['cms'], route('cms.backend.auth.login')
+                'Unauthenticated.', ['cms'], route('cms.auth.login')
             );
         }
 

@@ -35,7 +35,7 @@ class LoginController
 
         $request->session()->invalidate();
 
-        return redirect()->route('cms.backend.auth.login')->with('loggedOut', true);
+        return redirect()->route('cms.auth.login')->with('loggedOut', true);
     }
 
     protected function guard(): StatefulGuard
