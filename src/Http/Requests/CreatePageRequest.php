@@ -7,11 +7,31 @@ use Illuminate\Validation\Rule;
 
 class CreatePageRequest extends FormRequest
 {
+    /**
+     * @return bool
+     */
     public function authorize(): bool
     {
         return true;
     }
 
+    /**
+     * @return array
+     */
+    public function validated()
+    {
+        $data = parent::validated();
+
+        if (!isset($data['body'])) {
+            $data['body'] = '';
+        }
+
+        return $data;
+    }
+
+    /**
+     * @return array
+     */
     public function rules(): array
     {
         $uniqueRule = Rule::unique(config('cms.database_connection').'.pages', 'slug');
