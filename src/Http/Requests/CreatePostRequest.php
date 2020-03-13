@@ -26,10 +26,6 @@ class CreatePostRequest extends FormRequest
             $data['body'] = '';
         }
 
-        if (! isset($data['tags'])) {
-            $data['tags'] = [];
-        }
-
         return $data;
     }
 
