@@ -11,6 +11,8 @@ use Bambamboole\LaravelCms\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Http\Middleware\SetInertiaConfiguration;
 use Bambamboole\LaravelCms\Http\Middleware\SetLocale;
 use Bambamboole\LaravelCms\Models\User;
+use Bambamboole\LaravelCms\Themes\DefaultTheme;
+use Bambamboole\LaravelCms\Themes\Theme;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -98,5 +100,9 @@ class LaravelCmsServiceProvider extends ServiceProvider
             MigrateCommand::class,
             SeedCommand::class,
         ]);
+
+        $this->app->bind(Theme::class, function (){
+            return new DefaultTheme();
+        });
     }
 }
