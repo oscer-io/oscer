@@ -1,38 +1,50 @@
 <template>
-    <layout title="Create new post">
+    <layout title="New post">
         <div>
             <div class="md:flex md:items-center md:justify-between">
                 <div class="flex-1 min-w-0">
                     <h1 class="text-lg leading-6 font-medium text-gray-900">
-                        Create new post
+                        New post
                     </h1>
-                    <p class="mt-1 text-sm leading-5 text-gray-500">
-                        a smart sentence can be written here...
-                    </p>
                 </div>
             </div>
             <form @submit.prevent="submit">
                 <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
                     <div class="sm:col-span-6">
-                        <label for="title" class="block text-sm font-medium leading-5 text-gray-700">
-                            Title
+                        <label for="name" class="block text-sm font-medium leading-5 text-gray-700">
+                            Name
                         </label>
                         <div class="mt-1 rounded-md shadow-sm">
-                            <input id="title" type="text" v-model="form.title"
+                            <input id="name" type="text" v-model="form.name"
                                    class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"/>
                         </div>
-                        <p v-if="$page.errors.title" class="mt-2 text-sm text-red-600">{{ $page.errors.title[0] }}</p>
+                        <p v-if="$page.errors.name" class="mt-2 text-sm text-red-600">{{ $page.errors.name[0] }}</p>
                     </div>
                     <div class="sm:col-span-6">
-                        <tag-input v-model="form.tags" :available-tags="tags"></tag-input>
+                        <label for="slug" class="block text-sm font-medium leading-5 text-gray-700">
+                            Slug
+                        </label>
+                        <div class="mt-1 rounded-md shadow-sm">
+                            <input id="slug" type="text" v-model="form.slug"
+                                   class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"/>
+                        </div>
+                        <p v-if="$page.errors.slug" class="mt-2 text-sm text-red-600">{{ $page.errors.slug[0]}}</p>
                     </div>
-
+                    <div class="sm:col-span-6">
+                        <label for="tags" class="block text-sm font-medium leading-5 text-gray-700">
+                            Tags
+                        </label>
+                        <tag-input class="mt-1" id="tags" v-model="form.tags"
+                                   :available-tags="tags"></tag-input>
+                        <p v-if="$page.errors.tags" class="mt-2 text-sm text-red-600">{{ $page.errors.tags[0] }}</p>
+                    </div>
                     <div class="sm:col-span-6">
                         <label for="body" class="block text-sm font-medium leading-5 text-gray-700">
                             Body
                         </label>
-
-                        <markdown-editor v-model="form.body"></markdown-editor>
+                        <markdown-field id="body"
+                                        class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                        v-model="form.body"/>
                         <p v-if="$page.errors.body" class="mt-2 text-sm text-red-600">{{ $page.errors.body[0]}}</p>
                         <p class="mt-2 text-sm text-gray-500">Write crazy stuff.</p>
                     </div>
@@ -62,13 +74,13 @@
     import _ from 'lodash';
     import Layout from '../../Layout';
     import TagInput from "../../components/TagInput";
-    import MarkdownEditor from "../../components/MarkdownEditor";
+    import MarkdownField from "../../components/Fields/MarkdownField";
 
     export default {
         components: {
             Layout,
+            MarkdownField,
             TagInput,
-            MarkdownEditor
         },
         props: {
             tags: Array
@@ -77,6 +89,7 @@
             return {
                 form: {
                     name: '',
+                    slug: '',
                     body: '',
                     tags: []
                 },

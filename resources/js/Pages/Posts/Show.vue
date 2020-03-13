@@ -1,10 +1,10 @@
 <template>
-    <layout title="Show post">
+    <layout :title="'Show post - ' + post.name + ' (ID: ' + post.id + ')'">
         <div>
             <div class="md:flex md:items-center md:justify-between">
                 <div class="flex-1 min-w-0">
                     <h1 class="text-lg leading-6 font-medium text-gray-900">
-                        {{post.title}}
+                        {{post.name}}
                     </h1>
                     <p class="mt-1 text-sm leading-5 text-gray-500">
                         {{post.slug}}
@@ -30,7 +30,7 @@
                     <span class="block text-sm font-medium leading-5 text-gray-700">
                         Body
                     </span>
-                    <div class="py-3" v-html="post.body">
+                    <div class="py-3" v-html="markdown(post.body)">
                     </div>
                 </div>
             </div>
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+    import marked from 'marked';
     import Layout from '../../Layout';
 
     export default {
@@ -47,6 +48,11 @@
         },
         props: {
             post: Object,
+        },
+        methods: {
+            markdown(value) {
+                return marked(value);
+            }
         }
     }
 </script>

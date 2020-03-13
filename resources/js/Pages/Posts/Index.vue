@@ -1,5 +1,5 @@
 <template>
-    <layout title="posts">
+    <layout title="Posts">
         <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
             <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
                 <div class="ml-4 mt-2">
@@ -26,7 +26,7 @@
                             <div class="min-w-0 flex-1 flex items-center">
                                 <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                                     <div>
-                                        <div class="text-sm leading-5 font-medium text-indigo-600 truncate">{{post.title}}
+                                        <div class="text-sm leading-5 font-medium text-indigo-600 truncate">{{post.name}}
                                         </div>
                                         <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">
                                             <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor"

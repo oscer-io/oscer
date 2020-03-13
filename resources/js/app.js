@@ -3,7 +3,6 @@ import Vue from 'vue'
 import vClickOutside from 'v-click-outside'
 import Router from './lib/Router';
 import route from './mixins/route';
-import marked from 'marked';
 
 window.events = new Vue();
 window.flash = function (type, text) {
@@ -40,7 +39,3 @@ new Vue({
         },
     }),
 }).$mount(app);
-
-global.markdown = function (value) {
-    return marked(value);
-};
