@@ -21,7 +21,7 @@ class LoginController
         if ($this->guard()->attempt($request->validated(), $request->filled('remember'))) {
             $request->session()->regenerate();
 
-            return redirect()->route('cms.posts.index');
+            return redirect()->route('cms.backend.posts.index');
         }
 
         throw ValidationException::withMessages([
