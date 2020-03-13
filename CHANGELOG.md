@@ -2,6 +2,6 @@
 
 All notable changes to `laravel-cms` will be documented in this file
 
-## 1.0.0 - 201X-XX-XX
+## 0.1.0 Targeted at week number 12
 
-- initial release
+- initial release with a MVP

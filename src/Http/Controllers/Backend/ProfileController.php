@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Http\Controllers;
+namespace Bambamboole\LaravelCms\Http\Controllers\Backend;
 
 use Bambamboole\LaravelCms\Http\Requests\UpdateProfileRequest;
 use Illuminate\Support\Facades\Redirect;
@@ -28,6 +28,6 @@ class ProfileController
 
         session()->flash('message', ['type' => 'success', 'text' => __('cms::profile.toast.updated')]);
 
-        return Redirect::route('cms.profile.show');
+        return Redirect::route('cms.backend.profile.show');
     }
 }

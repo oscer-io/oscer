@@ -13,7 +13,7 @@
                 </div>
                 <div class="flex items-center py-2">
                     <inertia-link
-                        :href="route('cms.pages.create')"
+                        :href="route('cms.backend.pages.create')"
                         class="inline-block px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline">
                         Create new page
                     </inertia-link>
@@ -70,7 +70,7 @@
                                 <div class="flex items-center">
                                     <div class="text-sm leading-5">
                                         <div>
-                                            <inertia-link :href="route('cms.pages.show', {page: page.id})"
+                                            <inertia-link :href="route('cms.backend.pages.show', {page: page.id})"
                                                           class="text-indigo-600 hover:text-indigo-900 focus:outline-none hover:underline">
                                                 {{ page.name }}
                                             </inertia-link>
@@ -85,7 +85,7 @@
                                 <div class="flex items-center">
                                     <div class="text-sm leading-5">
                                         <div>
-                                            <inertia-link :href="route('cms.users.show', {user: page.author_id})"
+                                            <inertia-link :href="route('cms.backend.users.show', {user: page.author_id})"
                                                           class="text-indigo-600 hover:text-indigo-900 focus:outline-none hover:underline">
                                                 {{ page.author.name }}
                                             </inertia-link>
@@ -121,7 +121,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
                                 <inertia-link
-                                    :href="route('cms.pages.show', { page: page.id })"
+                                    :href="route('cms.backend.pages.show', { page: page.id })"
                                     class="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline">
                                     Show
                                 </inertia-link>

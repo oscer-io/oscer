@@ -150,7 +150,7 @@
         },
         methods: {
             saveOrder() {
-                this.$inertia.post(this.route('cms.menus.save_order', {name: this.menu.name}), {
+                this.$inertia.post(this.route('cms.backend.menus.save_order', {name: this.menu.name}), {
                     order: this.items.map((value, index) => {
                         return {
                             id: value.id,
@@ -176,13 +176,13 @@
                 }
             },
             saveItem() {
-                this.$inertia.put(this.route('cms.menus.update', {item: this.newItem.id}), this.newItem);
+                this.$inertia.put(this.route('cms.backend.menus.update', {item: this.newItem.id}), this.newItem);
             },
             createItem() {
-                this.$inertia.post(this.route('cms.menus.store', {name: this.menu.name}), this.newItem);
+                this.$inertia.post(this.route('cms.backend.menus.store', {name: this.menu.name}), this.newItem);
             },
             deleteItem(item) {
-                this.$inertia.delete(this.route('cms.menus.delete', {item: item.id}));
+                this.$inertia.delete(this.route('cms.backend.menus.delete', {item: item.id}));
             }
         }
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Http\Controllers;
+namespace Bambamboole\LaravelCms\Http\Controllers\Backend;
 
 use Bambamboole\LaravelCms\Http\Requests\CreateMenuItemRequest;
 use Bambamboole\LaravelCms\Http\Requests\SaveMenuOrderRequest;
@@ -36,7 +36,7 @@ class MenusController
 
         session()->flash('message', ['type' => 'success', 'text' => 'Menu item created']);
 
-        return Redirect::route('cms.menus.show', ['name' => $name]);
+        return Redirect::route('cms.backend.menus.show', ['name' => $name]);
     }
 
     public function saveOrder(SaveMenuOrderRequest $request, string $name)
@@ -51,7 +51,7 @@ class MenusController
 
         session()->flash('message', ['type' => 'success', 'text' => 'Menu reordered']);
 
-        return Redirect::route('cms.menus.show', ['name' => $name]);
+        return Redirect::route('cms.backend.menus.show', ['name' => $name]);
     }
 
     public function delete(int $itemId)
@@ -61,7 +61,7 @@ class MenusController
 
         session()->flash('message', ['type' => 'success', 'text' => 'Menu item deleted']);
 
-        return Redirect::route('cms.menus.show', ['name' => $item->menu]);
+        return Redirect::route('cms.backend.menus.show', ['name' => $item->menu]);
     }
 
     public function update(UpdateMenuItemRequest $request, int $itemId)
@@ -71,6 +71,6 @@ class MenusController
 
         session()->flash('message', ['type' => 'success', 'text' => 'Menu item updated']);
 
-        return Redirect::route('cms.menus.show', ['name' => $item->menu]);
+        return Redirect::route('cms.backend.menus.show', ['name' => $item->menu]);
     }
 }

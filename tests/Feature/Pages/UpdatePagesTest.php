@@ -13,7 +13,7 @@ class UpdatePagesTest extends TestCase
         $this->login();
         $page = factory(Page::class)->create();
 
-        $this->put(route('cms.pages.update', $page), ['name' => 'updated']);
+        $this->put(route('cms.backend.pages.update', $page), ['name' => 'updated']);
         $this->assertEquals('updated', $page->fresh()->name);
     }
 
@@ -24,7 +24,7 @@ class UpdatePagesTest extends TestCase
         factory(Page::class)->create(['slug' => 'slug_unique1']);
         $page = factory(Page::class)->create(['slug' => 'slug_unique2']);
 
-        $response = $this->put(route('cms.pages.update', $page), ['slug' => 'slug_unique1']);
+        $response = $this->put(route('cms.backend.pages.update', $page), ['slug' => 'slug_unique1']);
         $response->assertSessionHasErrors('slug');
     }
 
@@ -36,20 +36,20 @@ class UpdatePagesTest extends TestCase
         $attributes = $page->attributesToArray();
 
         //no whitespace
-        $this->put(route('cms.pages.update', $page), ['slug' => 'a b'])->assertSessionHasErrors('slug');
+        $this->put(route('cms.backend.pages.update', $page), ['slug' => 'a b'])->assertSessionHasErrors('slug');
 
         //underscore
-        $this->put(route('cms.pages.update', $page), ['slug' => '_'])->assertSessionHasErrors('slug');
+        $this->put(route('cms.backend.pages.update', $page), ['slug' => '_'])->assertSessionHasErrors('slug');
 
         //special char
-        $this->put(route('cms.pages.update', $page), ['slug' => '?'])->assertSessionHasErrors('slug');
+        $this->put(route('cms.backend.pages.update', $page), ['slug' => '?'])->assertSessionHasErrors('slug');
 
         //alphaNum
-        $this->put(route('cms.pages.update', $page), array_merge($attributes, ['slug' => 'aAbBbbbCC']))
+        $this->put(route('cms.backend.pages.update', $page), array_merge($attributes, ['slug' => 'aAbBbbbCC']))
             ->assertSessionHasNoErrors();
 
         //dash
-        $this->put(route('cms.pages.update', $page), array_merge($attributes, ['slug' => '-']))
+        $this->put(route('cms.backend.pages.update', $page), array_merge($attributes, ['slug' => '-']))
             ->assertSessionHasNoErrors();
     }
 
@@ -59,7 +59,7 @@ class UpdatePagesTest extends TestCase
         $this->login();
         $page = factory(Page::class)->create();
 
-        $this->put(route('cms.pages.update', $page), ['slug' => ''])->assertSessionHasErrors('slug');
+        $this->put(route('cms.backend.pages.update', $page), ['slug' => ''])->assertSessionHasErrors('slug');
     }
 
     /** @test */
@@ -68,7 +68,7 @@ class UpdatePagesTest extends TestCase
         $this->login();
         $page = factory(Page::class)->create();
 
-        $this->put(route('cms.pages.update', $page), ['name' => ''])->assertSessionHasErrors('name');
+        $this->put(route('cms.backend.pages.update', $page), ['name' => ''])->assertSessionHasErrors('name');
     }
 
     /** @test */
@@ -78,10 +78,10 @@ class UpdatePagesTest extends TestCase
         $page = factory(Page::class)->create();
 
         // First check if the response is 200
-        $this->get(route('cms.pages.show', ['page' => $page]))->assertOk();
+        $this->get(route('cms.backend.pages.show', ['page' => $page]))->assertOk();
 
         // Then delete the page and check the response again
-        $this->delete(route('cms.pages.delete', $page), []);
-        $this->get(route('cms.pages.show', ['page' => $page]))->assertStatus(404);
+        $this->delete(route('cms.backend.pages.delete', $page), []);
+        $this->get(route('cms.backend.pages.show', ['page' => $page]))->assertStatus(404);
     }
 }
