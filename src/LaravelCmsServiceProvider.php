@@ -69,7 +69,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
             SeedCommand::class,
         ]);
 
-        $this->app->singleton(Theme::class, function (){
+        $this->app->singleton(Theme::class, function () {
             return new DefaultTheme();
         });
     }
