@@ -22,7 +22,7 @@ class CreatePageRequest extends FormRequest
     {
         $data = parent::validated();
 
-        if (!isset($data['body'])) {
+        if (! isset($data['body'])) {
             $data['body'] = '';
         }
 
