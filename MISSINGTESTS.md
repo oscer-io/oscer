@@ -38,3 +38,11 @@
     * the locale will be set on user language
 * Post
     * it syncs the tags automatically
+* CmsRouter
+    * blog routes will be registered
+    * blog prefix will be set
+    * blog middleware will be set
+    * page slugs will be cached
+    * page routes will be registered
+    * page prefix will be set
+    * page middleware will be set

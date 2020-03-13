@@ -17,5 +17,11 @@ return [
         'main' => [],
         'footer' => [],
     ],
-    'theme' => DefaultTheme::class
+    'theme' => DefaultTheme::class,
+    'blog' => [
+        'middleware' => 'web',
+    ],
+    'pages' => [
+        'middleware' => 'web',
+    ],
 ];

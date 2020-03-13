@@ -71,15 +71,14 @@
 </template>
 
 <script>
+    import _ from 'lodash';
     import Layout from '../../Layout';
-    import MarkdownEditor from "../../components/MarkdownEditor";
     import MarkdownField from "../../components/Fields/MarkdownField";
     import TagInput from "../../components/TagInput";
 
     export default {
         components: {
             Layout,
-            MarkdownEditor,
             MarkdownField,
             TagInput
         },
@@ -99,7 +98,7 @@
         },
         methods: {
             submit() {
-                this.$inertia.put(this.route('cms.posts.update',{post: this.post.id}), this.form);
+                this.$inertia.put(this.route('cms.posts.update',{post: this.post.id}), _.pickBy(this.form));
             }
         }
     }
