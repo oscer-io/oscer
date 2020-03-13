@@ -4,7 +4,7 @@ namespace Bambamboole\LaravelCms\Http\Controllers;
 
 use Bambamboole\LaravelCms\Models\Post;
 
-class BlogController
+class PostsController
 {
     public function index()
     {

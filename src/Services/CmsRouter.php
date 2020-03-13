@@ -9,7 +9,8 @@ use Bambamboole\LaravelCms\Http\Controllers\Backend\PagesController;
 use Bambamboole\LaravelCms\Http\Controllers\Backend\PostsController;
 use Bambamboole\LaravelCms\Http\Controllers\Backend\ProfileController;
 use Bambamboole\LaravelCms\Http\Controllers\Backend\UsersController;
-use Bambamboole\LaravelCms\Http\Controllers\BlogController;
+use Bambamboole\LaravelCms\Http\Controllers\PagesController as FrontendPagesController;
+use Bambamboole\LaravelCms\Http\Controllers\PostsController as FrontendPostsController;
 use Bambamboole\LaravelCms\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Http\Middleware\SetInertiaConfiguration;
 use Bambamboole\LaravelCms\Http\Middleware\SetLocale;
@@ -47,7 +48,7 @@ class CmsRouter
             ->as('cms.')
             ->group(function (Router $router) use ($pages) {
                 $pages->each(function (Page $page) use ($router) {
-                    $router->get("/{$page->slug}", [PageRenderer::class, 'render'])->name("pages.{$page->slug}");
+                    $router->get("/{$page->slug}", [FrontendPagesController::class, 'show'])->name("pages.{$page->slug}");
                 });
             });
     }
@@ -59,8 +60,8 @@ class CmsRouter
             ->prefix($pathPrefix)
             ->as('cms.')
             ->group(function (Router $router) {
-                $router->get('/', [BlogController::class, 'index'])->name('blog.index');
-                $router->get('/{$slug}', [BlogController::class, 'index'])->name('blog.index');
+                $router->get('/', [FrontendPostsController::class, 'index'])->name('blog.index');
+                $router->get('/{$slug}', [FrontendPostsController::class, 'index'])->name('blog.index');
             });
     }
 
