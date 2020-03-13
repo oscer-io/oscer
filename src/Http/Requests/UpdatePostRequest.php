@@ -15,11 +15,12 @@ class UpdatePostRequest extends FormRequest
     public function validated()
     {
         $data = parent::validated();
-        if (is_null($data['body'])) {
+
+        if (! isset($data['body'])) {
             $data['body'] = '';
         }
 
-        if (is_null($data['tags'])) {
+        if (! isset($data['tags'])) {
             $data['tags'] = [];
         }
 
@@ -32,16 +33,15 @@ class UpdatePostRequest extends FormRequest
             ->ignore($this->route('post'));
 
         return [
-            'name'   => ['filled', 'string'],
+            'name'   => ['required', 'string'],
             'slug'   => [
-                'filled',
                 'string',
                 'regex:/^[a-zA-Z0-9-]+$/', // like alpha_num but with dashes
                 $uniqueRule,
             ],
             'tags'   => ['array'],
             'tags.*' => ['string'],
-            'body'   => ['string', 'nullable'],
+            'body'   => ['string'],
         ];
     }
 }
