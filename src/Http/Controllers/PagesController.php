@@ -27,7 +27,7 @@ class PagesController
 
     public function create()
     {
-        return Inertia::render('Pages/Create', ['page' => new Page()]);
+        return Inertia::render('Pages/Create');
     }
 
     public function update(UpdatePageRequest $request, Page $page)
