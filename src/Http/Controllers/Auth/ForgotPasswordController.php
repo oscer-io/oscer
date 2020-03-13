@@ -42,7 +42,7 @@ class ForgotPasswordController extends Controller
             ));
         }
 
-        return redirect()->route('cms.password.forgot')->with('sent', true);
+        return redirect()->route('cms.backend.password.forgot')->with('sent', true);
     }
 
     /**
@@ -58,11 +58,11 @@ class ForgotPasswordController extends Controller
 
             $author = User::query()->findOrFail($authorId);
         } catch (Throwable $e) {
-            return redirect()->route('cms.password.forgot')->with('invalidResetToken', true);
+            return redirect()->route('cms.backend.password.forgot')->with('invalidResetToken', true);
         }
 
         if (cache('password.reset.'.$authorId) != $token) {
-            return redirect()->route('cms.password.forgot')->with('invalidResetToken', true);
+            return redirect()->route('cms.backend.password.forgot')->with('invalidResetToken', true);
         }
 
         cache()->forget('password.reset.'.$authorId);

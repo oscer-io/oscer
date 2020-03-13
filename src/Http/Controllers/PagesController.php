@@ -36,7 +36,7 @@ class PagesController
 
         session()->flash('message', ['type' => 'success', 'text' => "Page {$page->name} updated"]);
 
-        return Redirect::route('cms.pages.show', ['page' => $page]);
+        return Redirect::route('cms.backend.pages.show', ['page' => $page]);
     }
 
     public function store(CreatePageRequest $request)
@@ -48,7 +48,7 @@ class PagesController
 
         session()->flash('message', ['type' => 'success', 'text' => "Page {$page->name} created"]);
 
-        return Redirect::route('cms.pages.show', ['page' => $page]);
+        return Redirect::route('cms.backend.pages.show', ['page' => $page]);
     }
 
     public function delete(int $pageId)
@@ -58,6 +58,6 @@ class PagesController
 
         session()->flash('message', ['type' => 'success', 'text' => 'Page deleted']);
 
-        return Redirect::route('cms.pages.index');
+        return Redirect::route('cms.backend.pages.index');
     }
 }

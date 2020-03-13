@@ -16,7 +16,9 @@ use Bambamboole\LaravelCms\Http\Middleware\SetLocale;
 use Bambamboole\LaravelCms\Models\Page;
 use Illuminate\Config\Repository;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Schema;
 
 class CmsRouter
 {
@@ -32,17 +34,20 @@ class CmsRouter
 
     public function registerPageRoutes(string $pathPrefix = '')
     {
-        $slugs = Cache::rememberForever('cms.slugs', function () {
+        $pages = Cache::rememberForever('cms.slugs', function () {
+            if (!Schema::connection(config('cms.database_connection'))->hasTable('pages')) {
+                return new Collection();
+            }
             return Page::query()->get('slug');
         });
-
         $this->router
             ->middleware([$this->config->get('cms.pages.middleware'), SetLocale::class])
             ->prefix($pathPrefix)
             ->as('cms.')
-            ->group(function (Router $router) use ($slugs) {
-                $slugs->each(function (string $slug) use ($router) {
-                    $router->get("/{$slug}", [PageRenderer::class, 'render'])->name("pages.{$slug}");
+            ->group(function (Router $router) use ($pages) {
+                $pages->each(function (Page $page) use ($router) {
+
+                    $router->get("/{$page->slug}", [PageRenderer::class, 'render'])->name("pages.{$page->slug}");
                 });
             });
     }
@@ -62,8 +67,7 @@ class CmsRouter
     public function registerBackendRoutes(): void
     {
         $this->router->middleware([$this->config->get('cms.backend.middleware'), SetLocale::class])
-            // @TODO #54 this needs to be changed to cms.backend.
-            ->as('cms.')
+            ->as('cms.backend.')
             ->prefix($this->config->get('cms.backend.url'))
             ->group(function (Router $router) {
                 $router->get('/login', [LoginController::class, 'showLoginForm'])->name('auth.login');
@@ -82,8 +86,7 @@ class CmsRouter
                 SetInertiaConfiguration::class,
                 SetLocale::class,
             ])
-            // @TODO #54 this needs to be changed to cms.backend.
-            ->as('cms.')
+            ->as('cms.backend.')
             ->prefix($this->config->get('cms.backend.url'))
             ->group(function (Router $router) {
                 $router->post('/posts', [PostsController::class, 'store'])->name('posts.store');

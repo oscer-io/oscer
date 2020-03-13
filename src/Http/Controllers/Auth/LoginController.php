@@ -21,7 +21,7 @@ class LoginController
         if ($this->guard()->attempt($request->validated(), $request->filled('remember'))) {
             $request->session()->regenerate();
 
-            return redirect()->route('cms.posts.index');
+            return redirect()->route('cms.backend.posts.index');
         }
 
         throw ValidationException::withMessages([
@@ -35,7 +35,7 @@ class LoginController
 
         $request->session()->invalidate();
 
-        return redirect()->route('cms.auth.login')->with('loggedOut', true);
+        return redirect()->route('cms.backend.auth.login')->with('loggedOut', true);
     }
 
     protected function guard(): StatefulGuard

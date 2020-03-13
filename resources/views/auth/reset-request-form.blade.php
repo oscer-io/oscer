@@ -32,7 +32,7 @@
                     </div>
                 @endif
             </div>
-            <form class="mt-8" method="POST" action="{{route('cms.password.email')}}">
+            <form class="mt-8" method="POST" action="{{route('cms.backend.password.email')}}">
                 @csrf
                 <div class="rounded-md shadow-sm">
                     <div>

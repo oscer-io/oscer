@@ -37,7 +37,7 @@ class PostsController
 
         session()->flash('message', ['type' => 'success', 'text' => __('cms::posts.toast.updated')]);
 
-        return Redirect::route('cms.posts.show', ['post' => $post]);
+        return Redirect::route('cms.backend.posts.show', ['post' => $post]);
     }
 
     public function store(CreatePostRequest $request)
@@ -53,7 +53,7 @@ class PostsController
 
         session()->flash('message', ['type' => 'success', 'text' => __('cms::posts.toast.created')]);
 
-        return Redirect::route('cms.posts.show', ['post' => $post]);
+        return Redirect::route('cms.backend.posts.show', ['post' => $post]);
     }
 
     public function delete(int $postId)
@@ -63,6 +63,6 @@ class PostsController
 
         session()->flash('message', ['type' => 'success', 'text' => 'Post deleted']);
 
-        return Redirect::route('cms.posts.index');
+        return Redirect::route('cms.backend.posts.index');
     }
 }

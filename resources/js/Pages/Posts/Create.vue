@@ -52,7 +52,7 @@
                 <div class="mt-8 border-t border-gray-200 pt-5">
                     <div class="flex justify-end">
                         <span class="inline-flex rounded-md shadow-sm">
-                            <inertia-link :href="route('cms.posts.index')"
+                            <inertia-link :href="route('cms.backend.posts.index')"
                                           class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
                               Cancel
                             </inertia-link>
@@ -97,7 +97,7 @@
         },
         methods: {
             submit() {
-                this.$inertia.post(this.route('cms.posts.store'), _.pickBy(this.form));
+                this.$inertia.post(this.route('cms.backend.posts.store'), _.pickBy(this.form));
             }
         }
     }

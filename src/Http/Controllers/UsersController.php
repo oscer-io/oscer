@@ -34,7 +34,7 @@ class UsersController
 
         session()->flash('message', ['type' => 'success', 'text' => "User {$user->name} updated"]);
 
-        return Redirect::route('cms.users.show', ['user' => $user]);
+        return Redirect::route('cms.backend.users.show', ['user' => $user]);
     }
 
     public function create()
@@ -53,6 +53,6 @@ class UsersController
 
         session()->flash('message', ['type' => 'success', 'text' => "User {$user->name} created"]);
 
-        return Redirect::route('cms.users.show', ['user' => $user]);
+        return Redirect::route('cms.backend.users.show', ['user' => $user]);
     }
 }
