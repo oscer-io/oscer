@@ -20,7 +20,6 @@ use Illuminate\View\Factory;
 
 class LaravelCmsServiceProvider extends ServiceProvider
 {
-
     public function boot(Factory $view, Theme $theme)
     {
         /*
@@ -107,7 +106,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
             SeedCommand::class,
         ]);
 
-        $this->app->bind(Theme::class, function (){
+        $this->app->bind(Theme::class, function () {
             return new DefaultTheme();
         });
     }
