@@ -4,12 +4,12 @@ namespace Bambamboole\LaravelCms\Services;
 
 use Bambamboole\LaravelCms\Http\Controllers\Auth\ForgotPasswordController;
 use Bambamboole\LaravelCms\Http\Controllers\Auth\LoginController;
-use Bambamboole\LaravelCms\Http\Controllers\BlogController;
 use Bambamboole\LaravelCms\Http\Controllers\Backend\MenusController;
 use Bambamboole\LaravelCms\Http\Controllers\Backend\PagesController;
 use Bambamboole\LaravelCms\Http\Controllers\Backend\PostsController;
 use Bambamboole\LaravelCms\Http\Controllers\Backend\ProfileController;
 use Bambamboole\LaravelCms\Http\Controllers\Backend\UsersController;
+use Bambamboole\LaravelCms\Http\Controllers\BlogController;
 use Bambamboole\LaravelCms\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Http\Middleware\SetInertiaConfiguration;
 use Bambamboole\LaravelCms\Http\Middleware\SetLocale;
