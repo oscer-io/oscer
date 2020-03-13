@@ -2,7 +2,6 @@
 
 namespace Bambamboole\LaravelCms\Tests\Feature\Auth;
 
-use Bambamboole\LaravelCms\Models\User;
 use Bambamboole\LaravelCms\Tests\TestCase;
 
 class LogoutTest extends TestCase

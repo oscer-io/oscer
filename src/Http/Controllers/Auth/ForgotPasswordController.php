@@ -32,7 +32,7 @@ class ForgotPasswordController extends Controller
         });
 
         Mail::to($user->email)->send(new ResetPasswordMail(
-            encrypt($user->id . '|' . $token)
+            encrypt($user->id.'|'.$token)
         ));
 
         return redirect()->route('cms.password.forgot')->with('sent', true);
