@@ -21,18 +21,6 @@ class CmsRouter
         $this->config = $config;
     }
 
-    public function registerBlogRoutes(string $pathPrefix = 'blog')
-    {
-        $this->router
-            ->middleware([$this->config->get('cms.blog.middleware'), SetLocale::class])
-            ->prefix($pathPrefix)
-            ->as('cms.')
-            ->group(function (Router $router) {
-                $router->get('/', [BlogController::class, 'index'])->name('blog.index');
-                $router->get('/{$slug}', [BlogController::class, 'index'])->name('blog.index');
-            });
-    }
-
     public function registerPageRoutes(string $pathPrefix = '')
     {
         $slugs = Cache::rememberForever('cms.slugs', function () {
@@ -45,8 +33,20 @@ class CmsRouter
             ->as('cms.')
             ->group(function (Router $router) use ($slugs) {
                 $slugs->each(function (string $slug) use ($router) {
-                    $router->get("/{$slug}", [PageRenderer::class, 'render']);
+                    $router->get("/{$slug}", [PageRenderer::class, 'render'])->name("pages.{$slug}");
                 });
+            });
+    }
+
+    public function registerBlogRoutes(string $pathPrefix = 'blog')
+    {
+        $this->router
+            ->middleware([$this->config->get('cms.blog.middleware'), SetLocale::class])
+            ->prefix($pathPrefix)
+            ->as('cms.')
+            ->group(function (Router $router) {
+                $router->get('/', [BlogController::class, 'index'])->name('blog.index');
+                $router->get('/{$slug}', [BlogController::class, 'index'])->name('blog.index');
             });
     }
 }
