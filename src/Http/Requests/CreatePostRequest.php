@@ -7,11 +7,35 @@ use Illuminate\Validation\Rule;
 
 class CreatePostRequest extends FormRequest
 {
+    /**
+     * @return bool
+     */
     public function authorize(): bool
     {
         return true;
     }
 
+    /**
+     * @return array
+     */
+    public function validated()
+    {
+        $data = parent::validated();
+
+        if (! isset($data['body'])) {
+            $data['body'] = '';
+        }
+
+        if (! isset($data['tags'])) {
+            $data['tags'] = [];
+        }
+
+        return $data;
+    }
+
+    /**
+     * @return array
+     */
     public function rules(): array
     {
         $uniqueRule = Rule::unique(config('cms.database_connection').'.posts', 'slug');
