@@ -5,26 +5,34 @@ namespace Bambamboole\LaravelCms;
 use Bambamboole\LaravelCms\Commands\Development\SeedCommand;
 use Bambamboole\LaravelCms\Commands\MigrateCommand;
 use Bambamboole\LaravelCms\Commands\PublishCommand;
+use Bambamboole\LaravelCms\Http\View\Composers\ThemeViewComposer;
 use Bambamboole\LaravelCms\Models\User;
 use Bambamboole\LaravelCms\Services\CmsRouter;
 use Bambamboole\LaravelCms\Themes\DefaultTheme;
 use Bambamboole\LaravelCms\Themes\Theme;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\Factory;
 
 class LaravelCmsServiceProvider extends ServiceProvider
 {
-    public function boot(CmsRouter $router)
+    public function boot(CmsRouter $router, Factory $view, Theme $theme)
     {
         /*
          * Optional methods to load your package assets
          */
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'cms');
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'cms');
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'cms');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'cms');
         $this->registerGuard();
         $this->registerPublishes();
 
         $router->registerAuthRoutes();
         $router->registerBackendRoutes();
+
+        $view->composer([
+            $theme->getPostShowTemplate(),
+            $theme->getPageTemplate(),
+            $theme->getPostIndexTemplate(),
+        ], ThemeViewComposer::class);
     }
 
     /**
@@ -47,11 +55,11 @@ class LaravelCmsServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../dist' => public_path('vendor/cms'),
+                __DIR__ . '/../dist' => public_path('vendor/cms'),
             ], 'cms-assets');
 
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('cms.php'),
+                __DIR__ . '/../config/config.php' => config_path('cms.php'),
             ], 'cms-config');
         }
     }
@@ -61,7 +69,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'cms');
+        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'cms');
 
         $this->commands([
             PublishCommand::class,
@@ -69,7 +77,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
             SeedCommand::class,
         ]);
 
-        $this->app->singleton(Theme::class, function (){
+        $this->app->singleton(Theme::class, function () {
             return new DefaultTheme();
         });
     }

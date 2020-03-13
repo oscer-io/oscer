@@ -6,7 +6,7 @@ interface Theme
 {
     public function getPageTemplate(): string;
 
-    public function getBlogIndexTemplate(): string;
+    public function getPostIndexTemplate(): string;
 
-    public function getBlogPostTemplate(): string;
+    public function getPostShowTemplate(): string;
 }

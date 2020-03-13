@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Http\ViewComposers;
+namespace Bambamboole\LaravelCms\Http\View\Composers;
 
 use Bambamboole\LaravelCms\Themes\Theme;
 use Illuminate\View\View;

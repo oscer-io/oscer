@@ -9,12 +9,12 @@ class DefaultTheme implements Theme
         return 'cms::pages.show';
     }
 
-    public function getBlogIndexTemplate(): string
+    public function getPostIndexTemplate(): string
     {
         return 'cms::blog.index';
     }
 
-    public function getBlogPostTemplate(): string
+    public function getPostShowTemplate(): string
     {
         return 'cms::blog.index';
     }
