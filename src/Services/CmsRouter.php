@@ -35,9 +35,10 @@ class CmsRouter
     public function registerPageRoutes(string $pathPrefix = '')
     {
         $pages = Cache::rememberForever('cms.slugs', function () {
-            if (!Schema::connection(config('cms.database_connection'))->hasTable('pages')) {
+            if (! Schema::connection(config('cms.database_connection'))->hasTable('pages')) {
                 return new Collection();
             }
+
             return Page::query()->get('slug');
         });
         $this->router
@@ -46,7 +47,6 @@ class CmsRouter
             ->as('cms.')
             ->group(function (Router $router) use ($pages) {
                 $pages->each(function (Page $page) use ($router) {
-
                     $router->get("/{$page->slug}", [PageRenderer::class, 'render'])->name("pages.{$page->slug}");
                 });
             });
