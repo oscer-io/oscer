@@ -43,13 +43,13 @@ class PostsController
     public function store(CreatePostRequest $request)
     {
         $data = $request->validated();
-        $tags = $data['tags'];
-        unset($data['tags']);
-        $post = Post::query()->create(array_merge(
-            [
-                'author_id' => auth()->user()->id,
-            ], $data));
-        $post->update(['tags' => $tags]);
+        if (isset($data['tags'])) {
+            $tags = $data['tags'];
+            unset($data['tags']);
+        }
+        $post = Post::query()->create(array_merge(['author_id' => auth()->user()->id], $data));
+
+        ! isset($tags) ?: $post->update(['tags' => $tags]);
 
         session()->flash('message', ['type' => 'success', 'text' => __('cms::posts.toast.created')]);
 
