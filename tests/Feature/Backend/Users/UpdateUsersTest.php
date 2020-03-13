@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Tests\Feature\Users;
+namespace Bambamboole\LaravelCms\Tests\Feature\Backend\Users;
 
 use Bambamboole\LaravelCms\Models\User;
 use Bambamboole\LaravelCms\Tests\TestCase;
