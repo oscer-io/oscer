@@ -10,18 +10,18 @@ use Bambamboole\LaravelCms\Http\Controllers\Auth\LoginController;
 use Bambamboole\LaravelCms\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Http\Middleware\SetInertiaConfiguration;
 use Bambamboole\LaravelCms\Http\Middleware\SetLocale;
+use Bambamboole\LaravelCms\Http\ViewComposers\ThemeViewComposer;
 use Bambamboole\LaravelCms\Models\User;
 use Bambamboole\LaravelCms\Themes\DefaultTheme;
 use Bambamboole\LaravelCms\Themes\Theme;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\Factory;
 
 class LaravelCmsServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap the application services.
-     */
-    public function boot()
+
+    public function boot(Factory $view, Theme $theme)
     {
         /*
          * Optional methods to load your package assets
@@ -31,6 +31,12 @@ class LaravelCmsServiceProvider extends ServiceProvider
         $this->registerGuard();
         $this->registerRoutes();
         $this->registerPublishes();
+
+        $view->composer([
+            $theme->getBlogIndexTemplate(),
+            $theme->getBlogPostTemplate(),
+            $theme->getPageTemplate(),
+        ], ThemeViewComposer::class);
     }
 
     /**
