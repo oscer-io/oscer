@@ -14,7 +14,7 @@ return [
         'main' => [],
         'footer' => [],
     ],
-    'blog' => [
+    'posts' => [
         'middleware' => 'web',
     ],
     'pages' => [
