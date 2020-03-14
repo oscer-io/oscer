@@ -29,7 +29,7 @@ new Vue({
     render: h => h(InertiaApp, {
         props: {
             initialPage: JSON.parse(app.dataset.page),
-            resolveComponent: name => require(`./Pages/${name}`).default,
+            resolveComponent: name => require(`./views/${name}`).default,
             transformProps: props => {
                 return {
                     ...props,
