@@ -25,10 +25,10 @@ Vue.mixin(route);
 const app = document.getElementById('app');
 
 // Import frequently used (base) components globally & automatically
-let requireComponent = require.context('./components', true, /Base[A-Z]\w+\.(vue|js)$/);
-requireComponent.keys().forEach(function (fileName) {
-    let baseComponentConfig = requireComponent(fileName);
-    let baseComponentName = baseComponentConfig.name || (
+const baseComponents = require.context('./components', true, /Base[A-Z]\w+\.(vue|js)$/);
+baseComponents.keys().forEach(fileName => {
+    const baseComponent = baseComponents(fileName);
+    const baseComponentName = baseComponent.name || (
         fileName
             .split('/')
             .pop()
@@ -36,7 +36,7 @@ requireComponent.keys().forEach(function (fileName) {
     );
     Vue.component(
         baseComponentName,
-        baseComponentConfig.default || baseComponentConfig
+        baseComponent.default || baseComponent
     )
 });
 
