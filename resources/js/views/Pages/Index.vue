@@ -12,11 +12,10 @@
                            placeholder="Search...">
                 </div>
                 <div class="flex items-center py-2">
-                    <inertia-link
-                        :href="route('cms.backend.pages.create')"
-                        class="inline-block px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline">
+                    <InertiaLink :href="route('cms.backend.pages.create')"
+                                 class="inline-block px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline">
                         Create new page
-                    </inertia-link>
+                    </InertiaLink>
                 </div>
             </div>
             <div class="-my-2 py-2 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
@@ -70,10 +69,10 @@
                                 <div class="flex items-center">
                                     <div class="text-sm leading-5">
                                         <div>
-                                            <inertia-link :href="route('cms.backend.pages.show', {page: page.id})"
+                                            <InertiaLink :href="route('cms.backend.pages.show', {page: page.id})"
                                                           class="text-indigo-600 hover:text-indigo-900 focus:outline-none hover:underline">
                                                 {{ page.name }}
-                                            </inertia-link>
+                                            </InertiaLink>
                                         </div>
                                         <div class="text-xs leading-5 text-gray-500">
                                             {{ page.slug }}
@@ -85,10 +84,10 @@
                                 <div class="flex items-center">
                                     <div class="text-sm leading-5">
                                         <div>
-                                            <inertia-link :href="route('cms.backend.users.show', {user: page.author_id})"
+                                            <InertiaLink :href="route('cms.backend.users.show', {user: page.author_id})"
                                                           class="text-indigo-600 hover:text-indigo-900 focus:outline-none hover:underline">
                                                 {{ page.author.name }}
-                                            </inertia-link>
+                                            </InertiaLink>
                                         </div>
                                         <div class="text-xs leading-5 text-gray-500">
                                             {{ page.author.email }}
@@ -120,11 +119,11 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                                <inertia-link
+                                <InertiaLink
                                     :href="route('cms.backend.pages.show', { page: page.id })"
                                     class="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline">
                                     Show
-                                </inertia-link>
+                                </InertiaLink>
                             </td>
                         </tr>
                         </tbody>

@@ -41,7 +41,7 @@
                         <label for="body" class="block text-sm font-medium leading-5 text-gray-700">
                             Body
                         </label>
-                        <markdown-field id="body"
+                        <MarkdownField id="body"
                                         class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                         v-model="form.body"/>
                         <p v-if="$page.errors.body" class="mt-2 text-sm text-red-600">{{ $page.errors.body[0] }}</p>
@@ -51,10 +51,10 @@
                 <div class="mt-8 border-t border-gray-200 pt-5">
                     <div class="flex justify-end">
                         <span class="inline-flex rounded-md shadow-sm">
-                            <inertia-link :href="route('cms.backend.posts.show',{post: post.id})"
+                            <InertiaLink :href="route('cms.backend.posts.show',{post: post.id})"
                                           class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
-                              Cancel
-                            </inertia-link>
+                                Cancel
+                            </InertiaLink>
                         </span>
                         <span class="ml-3 inline-flex rounded-md shadow-sm">
                             <button type="submit"
