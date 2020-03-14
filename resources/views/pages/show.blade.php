@@ -1,1 +1,8 @@
-<h1>single page</h1>
+@extends('cms::layouts.default', ['title' => $page->name])
+
+@section('content')
+    <h1>{{$page->name}}</h1>
+    <div>
+        {!! $page->content !!}
+    </div>
+@endsection

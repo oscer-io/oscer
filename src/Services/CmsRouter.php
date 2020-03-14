@@ -61,7 +61,7 @@ class CmsRouter
             ->as('cms.')
             ->group(function (Router $router) {
                 $router->get('/', [FrontendPostsController::class, 'index'])->name('posts.index');
-                $router->get('/{slug}', [FrontendPostsController::class, 'show'])->name('posts.{slug}');
+                $router->get('/{slug}', [FrontendPostsController::class, 'show'])->name('posts.show');
             });
     }
 

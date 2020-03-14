@@ -23,7 +23,7 @@ class PostsController
     {
         return view(
             $this->theme->getPostShowTemplate(),
-            ['posts' => Post::query()->where('slug', $slug)->firstOrFail()]
+            ['post' => Post::query()->where('slug', $slug)->firstOrFail()]
         );
     }
 }

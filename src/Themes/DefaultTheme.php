@@ -11,11 +11,11 @@ class DefaultTheme implements Theme
 
     public function getPostIndexTemplate(): string
     {
-        return 'cms::blog.index';
+        return 'cms::posts.index';
     }
 
     public function getPostShowTemplate(): string
     {
-        return 'cms::blog.index';
+        return 'cms::posts.show';
     }
 }
