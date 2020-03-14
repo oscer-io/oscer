@@ -74,7 +74,7 @@
     import _ from 'lodash';
     import Layout from '../../Layout';
     import TagInput from "../../components/TagInput";
-    import MarkdownField from "../../components/Fields/MarkdownField";
+    import MarkdownField from "../../components/fields/MarkdownField";
 
     export default {
         components: {
