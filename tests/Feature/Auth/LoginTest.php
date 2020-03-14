@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Tests\Feature;
+namespace Bambamboole\LaravelCms\Tests\Feature\Auth;
 
 use Bambamboole\LaravelCms\Models\User;
 use Bambamboole\LaravelCms\Tests\TestCase;
@@ -14,7 +14,7 @@ class LoginTest extends TestCase
     }
 
     /** @test */
-    public function login_is_possible()
+    public function it_redirects_after_successful_login()
     {
         $user = factory(User::class)->create(['password' => 'secret']);
         $response = $this->post('/admin/login', [

@@ -33,7 +33,7 @@ class CmsRouter
         $this->config = $config;
     }
 
-    public function registerPageRoutes(string $pathPrefix = '')
+    public function registerPagesRoutes(string $pathPrefix = '')
     {
         $pages = Cache::rememberForever('cms.slugs', function () {
             if (! Schema::connection(config('cms.database_connection'))->hasTable('pages')) {
@@ -53,15 +53,15 @@ class CmsRouter
             });
     }
 
-    public function registerBlogRoutes(string $pathPrefix = 'blog')
+    public function registerPostsRoutes(string $pathPrefix = 'posts')
     {
         $this->router
-            ->middleware([$this->config->get('cms.blog.middleware'), SetLocale::class])
+            ->middleware([$this->config->get('cms.posts.middleware'), SetLocale::class])
             ->prefix($pathPrefix)
             ->as('cms.')
             ->group(function (Router $router) {
-                $router->get('/', [FrontendPostsController::class, 'index'])->name('blog.index');
-                $router->get('/{$slug}', [FrontendPostsController::class, 'index'])->name('blog.index');
+                $router->get('/', [FrontendPostsController::class, 'index'])->name('posts.index');
+                $router->get('/{slug}', [FrontendPostsController::class, 'show'])->name('posts.{slug}');
             });
     }
 

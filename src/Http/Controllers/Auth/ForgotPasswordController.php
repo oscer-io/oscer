@@ -2,11 +2,12 @@
 
 namespace Bambamboole\LaravelCms\Http\Controllers\Auth;
 
+use Bambamboole\LaravelCms\Http\Requests\Auth\SendPasswordResetLinkRequest;
 use Bambamboole\LaravelCms\Mail\ResetPasswordMail;
 use Bambamboole\LaravelCms\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
@@ -22,25 +23,17 @@ class ForgotPasswordController extends Controller
         return view('cms::auth.reset-request-form');
     }
 
-    /**
-     * Send password reset email.
-     */
-    public function sendResetLinkEmail(): RedirectResponse
+    public function sendResetLinkEmail(SendPasswordResetLinkRequest $request): RedirectResponse
     {
-        validator(request()->all(), [
-            'email' => 'required|email',
-        ])->validate();
+        $user = User::query()->where('email', $request->input('email'))->first();
 
-        if ($user = User::query()->where('email', request('email'))->first()) {
-            cache(['password.reset.'.$user->id => $token = Str::random()],
-                now()->addMinutes(30)
-            );
-            dump($user);
+        $token = Cache::remember("password.reset.{$user->id}", now()->addMinutes(30), function () {
+            return Str::random();
+        });
 
-            Mail::to($user->email)->send(new ResetPasswordMail(
-                encrypt($user->id.'|'.$token)
-            ));
-        }
+        Mail::to($user->email)->send(new ResetPasswordMail(
+            encrypt($user->id.'|'.$token)
+        ));
 
         return redirect()->route('cms.password.forgot')->with('sent', true);
     }
@@ -54,22 +47,21 @@ class ForgotPasswordController extends Controller
         try {
             $token = decrypt($token);
 
-            [$authorId, $token] = explode('|', $token);
+            [$userId, $token] = explode('|', $token);
 
-            $author = User::query()->findOrFail($authorId);
+            /** @var User $user */
+            $user = User::query()->findOrFail($userId);
         } catch (Throwable $e) {
             return redirect()->route('cms.password.forgot')->with('invalidResetToken', true);
         }
 
-        if (cache('password.reset.'.$authorId) != $token) {
+        if (cache("password.reset.{$userId}") != $token) {
             return redirect()->route('cms.password.forgot')->with('invalidResetToken', true);
         }
 
-        cache()->forget('password.reset.'.$authorId);
+        cache()->forget("password.reset.{$userId}");
 
-        $author->password = Hash::make($password = Str::random());
-
-        $author->save();
+        $user->update(['password' => $password = Str::random()]);
 
         return view('cms::auth.reset-password', [
             'password' => $password,
