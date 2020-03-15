@@ -2,6 +2,8 @@
 
 namespace Bambamboole\LaravelCms\Models;
 
+use Bambamboole\LaravelCms\Themes\Theme;
+
 class Menu
 {
     public string $name;
@@ -16,7 +18,7 @@ class Menu
 
     public static function all()
     {
-        return collect(config('cms.menus'))
+        return collect(app(Theme::class)->getMenus())
             ->keys()
             ->map(function (string $name) {
                 return self::resolve($name);
