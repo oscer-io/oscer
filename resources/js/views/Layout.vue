@@ -131,7 +131,7 @@
 </template>
 
 <script>
-    import Flash from './components/Flash';
+    import Flash from '../components/Flash';
 
     export default {
         props: {

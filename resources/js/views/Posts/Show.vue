@@ -40,7 +40,7 @@
 
 <script>
     import marked from 'marked';
-    import Layout from '../../Layout';
+    import Layout from '../Layout';
 
     export default {
         components: {

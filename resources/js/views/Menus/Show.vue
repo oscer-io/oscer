@@ -111,7 +111,7 @@
 <script>
     import _ from 'lodash';
     import Draggable from 'vuedraggable';
-    import Layout from '../../Layout';
+    import Layout from '../Layout';
     import Modal from "../../components/Modal";
 
     export default {

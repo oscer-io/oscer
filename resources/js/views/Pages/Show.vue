@@ -111,7 +111,7 @@
 </template>
 
 <script>
-    import Layout from '../../Layout';
+    import Layout from '../Layout';
     import marked from 'marked';
 
     export default {

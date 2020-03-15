@@ -64,7 +64,7 @@
 </template>
 
 <script>
-    import Layout from '../../Layout';
+    import Layout from '../Layout';
     import MarkdownField from '../../components/fields/MarkdownField';
 
     export default {

@@ -79,7 +79,7 @@
 </template>
 
 <script>
-    import Layout from '../../Layout';
+    import Layout from '../Layout';
     export default {
         props: {
           users: Array

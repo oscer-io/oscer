@@ -104,7 +104,7 @@
 
 <script>
     import _ from 'lodash';
-    import Layout from '../../Layout';
+    import Layout from '../Layout';
 
     export default {
         components: {

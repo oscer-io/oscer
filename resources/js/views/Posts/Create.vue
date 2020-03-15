@@ -72,7 +72,7 @@
 
 <script>
     import _ from 'lodash';
-    import Layout from '../../Layout';
+    import Layout from '../Layout';
     import TagsField from "../../components/fields/TagsField";
     import MarkdownField from "../../components/fields/MarkdownField";
 
