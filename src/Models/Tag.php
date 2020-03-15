@@ -21,7 +21,7 @@ class Tag extends BaseModel
     use HasSlug;
 
     /**
-     * Update the updated_at of the relationships
+     * Update the updated_at of the relationships.
      *
      * @var array
      */
