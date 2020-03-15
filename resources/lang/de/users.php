@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'edit_page_title' => 'Benutzer bearbeiten - \'{name}\' (ID: {id})',
+    'create_page_title' => 'Neuer Benutzer',
+    'show_page_title' => 'Benutzer anzeigen - \'{name}\' (ID: {id})',
+    'index_page_title' => 'Benutzer',
+    'edit_title' => 'Benutzer bearbeiten - \'{name}\'',
+    'create_title' => 'Neuer Benutzer',
+    'show_title' => 'Benutzer anzeigen - \'{name}\'',
+    'index_title' => 'Benutzer',
+    'name' => 'Name',
+    'email' => 'E-Mail',
+    'bio' => 'Biographie',
+    'bio_tips' => 'Schreibe ein paar Sätze über dich.',
+    'message_no_items' => 'Es wurde noch kein Benutzer erstellt. Warum erstellst du nicht einen?',
+    'created_at' => 'Erstellt am',
+    'published_at' => 'Veröffentlicht am',
+    'updated_at' => 'Geändert am',
+    'button_save' => 'User speichern',
+    'button_cancel' => 'Abbrechen',
+    'button_create' => 'User erstellen',
+    'button_edit' => 'User bearbeiten',
+    'button_show' => 'Anzeigen',
+    'placeholder_search' => 'Suchen...',
+];
