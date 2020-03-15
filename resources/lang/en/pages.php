@@ -15,7 +15,7 @@ return [
     'author' => 'Author',
     'status' => 'Status',
     'date' => 'Date',
-    'message_no_pages' => 'No pages created yet. Click \'new\' to create one.',
+    'message_no_pages' => 'No pages created yet. Why not creating one?',
     'created_at' => 'Created at',
     'published_at' => 'Published at',
     'updated_at' => 'Updated at',
