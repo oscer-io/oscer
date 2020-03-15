@@ -12,7 +12,7 @@ return [
     'name' => 'Name',
     'email' => 'E-Mail',
     'bio' => 'Biographie',
-    'bio_tips' => 'Schreibe ein paar Sätze über dich.',
+    'bio_subtext' => 'Schreibe ein paar Sätze über dich.',
     'message_no_items' => 'Es wurde noch kein Benutzer erstellt. Warum erstellst du nicht einen?',
     'created_at' => 'Erstellt am',
     'published_at' => 'Veröffentlicht am',

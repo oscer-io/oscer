@@ -46,7 +46,7 @@
                         </div>
                         <p v-if="$page.errors.bio" class="mt-2 text-sm text-red-600">{{ $page.errors.bio[0] }}</p>
                         <p class="mt-2 text-sm text-gray-500">
-                            {{ $t('users.bio_tip') }}
+                            {{ $t('users.bio_subtext') }}
                         </p>
                     </div>
                 </div>
