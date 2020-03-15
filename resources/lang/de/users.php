@@ -17,10 +17,10 @@ return [
     'created_at' => 'Erstellt am',
     'published_at' => 'Veröffentlicht am',
     'updated_at' => 'Geändert am',
-    'button_save' => 'User speichern',
+    'button_save' => 'Benutzer speichern',
     'button_cancel' => 'Abbrechen',
-    'button_create' => 'User erstellen',
-    'button_edit' => 'User bearbeiten',
+    'button_create' => 'Benutzer erstellen',
+    'button_edit' => 'Benutzer bearbeiten',
     'button_show' => 'Anzeigen',
     'placeholder_search' => 'Suchen...',
 ];
