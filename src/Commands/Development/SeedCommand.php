@@ -3,6 +3,7 @@
 namespace Bambamboole\LaravelCms\Commands\Development;
 
 use Bambamboole\LaravelCms\Models\MenuItem;
+use Bambamboole\LaravelCms\Models\Page;
 use Bambamboole\LaravelCms\Models\Post;
 use Bambamboole\LaravelCms\Models\Tag;
 use Faker\Generator;
@@ -57,17 +58,23 @@ class SeedCommand extends Command
         });
         $this->info("{$menuItems->count()} menu items seeded.");
 
+        $this->comment('Seeding tags');
         $tags = collect(['General', 'Tech', 'PHP', 'Laravel', 'Vue.js', 'Travel'])
             ->map(function ($name) {
                 return factory(Tag::class)->create(['name' => $name]);
             });
         $this->info("{$tags->count()} tags seeded");
 
+        $this->comment('Seeding posts');
         $posts = factory(Post::class, 10)->create(['author_id' => 1]);
         $posts->each(function (Post $post) use ($tags) {
             $post->tags()->sync($tags->random(rand(1, 3))->pluck('id'));
         });
         $this->info("{$posts->count()} posts seeded and random tags assigned");
+
+        $this->comment('Seeding pages');
+        $pages = factory(Page::class, 10)->create();
+        $this->info("{$pages->count()} pages seeded");
 
         $this->info('Laravel CMS was seeded with dummy data.');
     }
