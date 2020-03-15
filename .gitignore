@@ -1,6 +1,6 @@
 build
 composer.lock
-docs
+/docs/.vuepress/dist
 vendor
 coverage
 /.phpunit.result.cache
