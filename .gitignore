@@ -4,7 +4,4 @@ composer.lock
 vendor
 coverage
 /.phpunit.result.cache
-dist/app.css
-dist/app.js
-dist/app.js.LICENSE.txt
-dist/mix-manifest.json
+
