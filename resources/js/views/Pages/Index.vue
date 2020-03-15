@@ -1,20 +1,23 @@
 <template>
-    <layout title="Pages">
+    <layout :title="$t('pages.index_page_title')">
         <div class="flex flex-col">
             <div class="mb-4">
-                <h1 class="text-3xl font-bolder leading-tight text-gray-900">Pages</h1>
+                <h1 class="text-3xl font-bolder leading-tight text-gray-900">
+                    {{ $t('pages.index_title') }}
+                </h1>
             </div>
             <div class="-mb-2 py-4 flex flex-wrap flex-grow justify-between">
                 <div class="flex items-center py-2">
                     <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                            id="inline-search"
                            type="text"
-                           placeholder="Search...">
+                           :placeholder="$t('pages.placeholder_search')"
+                    />
                 </div>
                 <div class="flex items-center py-2">
                     <InertiaLink :href="route('cms.backend.pages.create')"
                                  class="inline-block px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline">
-                        Create new page
+                        {{ $t('pages.button_create') }}
                     </InertiaLink>
                 </div>
             </div>
@@ -38,16 +41,16 @@
                                        type="checkbox"/>
                             </th>
                             <th class="px-6 py-3 text-left font-medium">
-                                Name
+                                {{ $t('pages.name') }}
                             </th>
                             <th class="px-6 py-3 text-left font-medium">
-                                Author
+                                {{ $t('pages.author') }}
                             </th>
                             <th class="px-6 py-3 text-left font-medium">
-                                Status
+                                {{ $t('pages.status') }}
                             </th>
                             <th class="px-6 py-3 text-left font-medium">
-                                Date
+                                {{ $t('pages.date') }}
                             </th>
                             <th class="px-6 py-3 text-left font-medium">
                             </th>
@@ -56,7 +59,7 @@
                         <tbody class="bg-white">
                         <tr v-if="pages === null || pages.length === 0">
                             <td colspan="7" class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
-                                No pages created yet. Click 'new' to create one.
+                                {{ $t('pages.message_no_pages') }}
                             </td>
                         </tr>
                         <tr v-for="page in pages" v-if="pages !== null"
@@ -103,7 +106,7 @@
                             <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
                                 <div class="text-sm leading-5" v-if="page.published_at === page.updated_at">
                                     <div class="text-sm leading-5">
-                                        published at
+                                        {{ $t('pages.published_at') }}
                                     </div>
                                     <div class="text-xs leading-5">
                                         {{ page.created_at }}
@@ -111,7 +114,7 @@
                                 </div>
                                 <div class="text-sm leading-5" v-else>
                                     <div class="text-sm leading-5">
-                                        updated at
+                                        {{ $t('pages.updated_at') }}
                                     </div>
                                     <div class="text-xs leading-5">
                                         {{ page.updated_at }}
@@ -122,7 +125,7 @@
                                 <InertiaLink
                                     :href="route('cms.backend.pages.show', { page: page.id })"
                                     class="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline">
-                                    Show
+                                    {{ $t('pages.button_show') }}
                                 </InertiaLink>
                             </td>
                         </tr>
