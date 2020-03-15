@@ -13,6 +13,10 @@ return [
     'slug' => 'Slug',
     'body' => 'Inhalt',
     'tags' => 'Schlagwörter',
+    'author' => 'Autor',
+    'status' => 'Status',
+    'date' => 'Datum',
+    'message_no_pages' => 'Es wurden noch keine Beiträge erstellt. Warum erstellst du nicht einen?',
     'created_at' => 'Erstellt am',
     'published_at' => 'Veröffentlicht am',
     'updated_at' => 'Geändert am',
@@ -20,4 +24,5 @@ return [
     'button_cancel' => 'Abbrechen',
     'button_create' => 'Beitrag erstellen',
     'button_edit' => 'Beitrag editieren',
+    'button_show' => 'Anzeigen',
 ];
