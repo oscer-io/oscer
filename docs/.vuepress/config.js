@@ -36,6 +36,15 @@ module.exports = {
                     ['architecture/database-schema', 'Database schema'],
                 ],
 
+            },
+            {
+                title: 'Contribution',
+                collapsable: false,
+                children: [
+                    ['contribution/guidelines', 'Guidelines'],
+                    ['contribution/coding-style-guide', 'Coding Style Guide'],
+                ],
+
             }
         ],
     }
