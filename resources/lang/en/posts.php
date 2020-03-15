@@ -14,6 +14,8 @@ return [
     'body' => 'Body',
     'tags' => 'Tags',
     'created_at' => 'Created at',
+    'published_at' => 'Published at',
+    'updated_at' => 'Updated at',
     'button_save' => 'Save post',
     'button_cancel' => 'Cancel',
     'button_create' => 'Create post',
