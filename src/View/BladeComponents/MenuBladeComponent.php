@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Bambamboole\LaravelCms\View\BladeComponents;
-
 
 use Bambamboole\LaravelCms\Themes\Theme;
 use Illuminate\View\Component;
