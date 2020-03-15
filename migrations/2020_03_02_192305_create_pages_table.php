@@ -15,13 +15,16 @@ class CreatePagesTable extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('author_id');
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('body');
-            $table->timestamps();
+            $table->unsignedBigInteger('author_id');
             $table->dateTime('published_at')->nullable();
-            $table->foreign('author_id')->references('id')->on('users');
+            $table->timestamps();
+
+            $table->foreign('author_id')
+                ->references('id')
+                ->on('users');
         });
     }
 
