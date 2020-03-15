@@ -16,7 +16,7 @@ return [
     'author' => 'Author',
     'status' => 'Status',
     'date' => 'Date',
-    'message_no_posts' => 'No posts created yet. Why not creating one?',
+    'message_no_items' => 'No posts created yet. Why not creating one?',
     'created_at' => 'Created at',
     'published_at' => 'Published at',
     'updated_at' => 'Updated at',

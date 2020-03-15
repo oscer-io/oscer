@@ -16,7 +16,7 @@ return [
     'author' => 'Autor',
     'status' => 'Status',
     'date' => 'Datum',
-    'message_no_posts' => 'Es wurden noch keine Beiträge erstellt. Warum erstellst du nicht einen?',
+    'message_no_items' => 'Es wurden noch keine Beiträge erstellt. Warum erstellst du nicht einen?',
     'created_at' => 'Erstellt am',
     'published_at' => 'Veröffentlicht am',
     'updated_at' => 'Geändert am',
