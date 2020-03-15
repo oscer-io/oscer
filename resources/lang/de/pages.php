@@ -18,7 +18,7 @@ return [
     'message_no_pages' => 'Noch keine Seiten erstellt. Klicke auf \'neu\' um eine zu erstellen.',
     'created_at' => 'Erstellt am',
     'published_at' => 'Veröffentlicht am',
-    'updated_at' => 'Geändert an',
+    'updated_at' => 'Geändert am',
     'button_save' => 'Seite speichern',
     'button_cancel' => 'Abbrechen',
     'button_create' => 'Seite erstellen',
