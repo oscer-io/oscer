@@ -30,6 +30,9 @@
 * Update Posts
     * a post can be updated
     * the data must be valid
+
+Frontend:
+* Theme will be passed to any Frontend view.
  
  ## Unit
 * Menu
