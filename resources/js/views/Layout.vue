@@ -11,34 +11,34 @@
                                  alt=""/>
                         </div>
                         <div class="hidden sm:-my-px sm:ml-6 sm:flex">
-                            <inertia-link :href="route('cms.backend.posts.index')"
+                            <InertiaLink :href="route('cms.backend.posts.index')"
                                           class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm
                             font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300
                             focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150
                             ease-in-out">
                                 Posts
-                            </inertia-link>
-                            <inertia-link :href="route('cms.backend.pages.index')"
+                            </InertiaLink>
+                            <InertiaLink :href="route('cms.backend.pages.index')"
                                           class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm
                             font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300
                             focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150
                             ease-in-out">
                                 Pages
-                            </inertia-link>
-                            <inertia-link :href="route('cms.backend.menus.index')"
+                            </InertiaLink>
+                            <InertiaLink :href="route('cms.backend.menus.index')"
                                           class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm
                             font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300
                             focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150
                             ease-in-out">
                                 Menus
-                            </inertia-link>
-                            <inertia-link :href="route('cms.backend.users.index')"
+                            </InertiaLink>
+                            <InertiaLink :href="route('cms.backend.users.index')"
                                           class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm
                             font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300
                             focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150
                             ease-in-out">
                                 Users
-                            </inertia-link>
+                            </InertiaLink>
                         </div>
                     </div>
                     <div class="hidden sm:ml-6 sm:flex sm:items-center">
@@ -54,14 +54,14 @@
                             <div v-if="open === true" v-click-outside="closeMenu"
                                  class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg z-10">
                                 <div class="py-1 rounded-md bg-white shadow-xs">
-                                    <inertia-link :href="route('cms.backend.profile.show')"
+                                    <InertiaLink :href="route('cms.backend.profile.show')"
                                                   class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
                                         Your
                                         Profile
-                                    </inertia-link>
-                                    <inertia-link :href="route('cms.auth.logout')"
+                                    </InertiaLink>
+                                    <InertiaLink :href="route('cms.auth.logout')"
                                        class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Sign
-                                        out</inertia-link>
+                                        out</InertiaLink>
                                 </div>
                             </div>
                         </div>
@@ -105,15 +105,15 @@
                         </div>
                     </div>
                     <div class="mt-3">
-                        <inertia-link :href="route('cms.backend.menus.index')"
+                        <InertiaLink :href="route('cms.backend.menus.index')"
                                       class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:text-gray-800 focus:bg-gray-100 transition duration-150 ease-in-out">
                             Your
                             Profile
-                        </inertia-link>
-                        <inertia-link :href="route('cms.auth.logout')"
+                        </InertiaLink>
+                        <InertiaLink :href="route('cms.auth.logout')"
                            class="mt-1 block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:text-gray-800 focus:bg-gray-100 transition duration-150 ease-in-out">
                             Sign
-                            out</inertia-link>
+                            out</InertiaLink>
                     </div>
                 </div>
             </div>
@@ -131,7 +131,7 @@
 </template>
 
 <script>
-    import Flash from './components/Flash';
+    import Flash from '../components/Flash';
 
     export default {
         props: {

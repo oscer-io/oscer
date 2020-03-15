@@ -11,12 +11,12 @@
                 </p>
             </div>
             <div class="mt-4 flex md:mt-0 md:ml-4">
-                    <span class="ml-3 shadow-sm rounded-md">
-      <inertia-link :href="route('cms.backend.users.edit', {user: user.id})"
-                    class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-        Edit
-      </inertia-link>
-    </span>
+                <span class="ml-3 shadow-sm rounded-md">
+                    <InertiaLink :href="route('cms.backend.users.edit', {user: user.id})"
+                                class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                        Edit
+                    </InertiaLink>
+                </span>
             </div>
         </div>
         <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
@@ -52,7 +52,7 @@
 </template>
 
 <script>
-    import Layout from '../../Layout';
+    import Layout from '../Layout';
 
     export default {
         components: {
