@@ -59,7 +59,7 @@
                         <tbody class="bg-white">
                         <tr v-if="pages === null || pages.length === 0">
                             <td colspan="7" class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
-                                {{ $t('pages.message_no_pages') }}
+                                {{ $t('pages.message_no_items') }}
                             </td>
                         </tr>
                         <tr v-for="page in pages" v-if="pages !== null"
