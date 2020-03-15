@@ -107,12 +107,10 @@ If you discover any security related issues, please email manuel@christlieb.eu i
 ## Credits
 
 - [Manuel Christlieb](https://github.com/bambamboole)
+- [Emanuel Jacob](https://github.com/slashplusweb)
 - [All Contributors](../../contributors)
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-## Laravel Package Boilerplate
-
-This package was generated using the [Laravel Package Boilerplate](https://laravelpackageboilerplate.com).
