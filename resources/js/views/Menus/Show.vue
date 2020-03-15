@@ -1,65 +1,69 @@
 <template>
-    <layout title="menu show">
+    <layout :title="$t('menus.show_page_title', {name: menu.name, id: menu.id} )">
         <div class="flex justify-between mb-3">
-
-            <h3 class="mb-4 text-lg leading-6 font-medium text-gray-900">
-                Menu: {{menu.name}}
-            </h3>
+            <h1 class="mb-4 text-lg leading-6 font-medium text-gray-900">
+                {{ $t('menus.show_title', {name: menu.name}) }}
+            </h1>
             <div>
-
-            <span class="ml-3 inline-flex rounded-md shadow-sm">
-        <button type="button" @click="openCreateModal"
-                class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500  focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-            New Menu item
-        </button>
-      </span>
+                <span class="ml-3 inline-flex rounded-md shadow-sm">
+                    <button type="button" @click="openCreateModal"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500  focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+                        {{ $t('menus.button_create_item') }}
+                    </button>
+                </span>
             </div>
         </div>
         <div>
             <draggable class="border rounded" v-model="items" v-bind="{ghostClass: 'ghost'}" @start="drag=true" @end="drag=false">
                 <transition-group type="transition" name="flip-list">
-                <div class="flex justify-between border-b cursor-move last:border-b-0 py-2 px-3"
-                     v-for="item in items" :key="item.id">
-                    <div class="flex">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                             class="text-gray-600 mt-1 w-4 h-4 mr-2">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                        <span>{{item.name}} - {{item.url}}</span>
-                    </div>
-                    <div>
-                        <button @click="deleteItem(item)" class="mr-4">
+                    <div class="flex justify-between border-b cursor-move last:border-b-0 py-2 px-3"
+                         v-for="item in items" :key="item.id">
+                        <div class="flex">
                             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                 class="text-gray-600 mt-1 w-4 h-4">
+                                 class="text-gray-600 mt-1 w-4 h-4 mr-2">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                      d="M4 6h16M4 12h16M4 18h16"></path>
                             </svg>
-                        </button>
-                        <button @click="updateItem(item)">
-                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                 class="text-gray-600 mt-1 w-4 h-4">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
-                        </button>
+                            <span>
+                                {{item.name}} - {{item.url}}
+                            </span>
+                        </div>
+                        <div>
+                            <button @click="deleteItem(item)" class="mr-4">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                     class="text-gray-600 mt-1 w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                </svg>
+                            </button>
+                            <button @click="updateItem(item)">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                     class="text-gray-600 mt-1 w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
-                </div>
                 </transition-group>
             </draggable>
         </div>
         <div class="mt-8 border-t border-gray-200 pt-5">
             <div class="flex justify-end">
                 <span class="ml-3 inline-flex rounded-md shadow-sm">
-        <button type="button" @click="saveOrder" :disabled="!reordered"
-                :class="{'bg-gray-600 hover:bg-gray-500': !reordered, 'bg-indigo-600 hover:bg-indigo-500': reordered}"
-                class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white   focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-          <span v-if="reordered">Save order</span>
-          <span v-else>Menu not reordered</span>
-        </button>
-      </span>
+                    <button type="button" @click="saveOrder" :disabled="!reordered"
+                            :class="{'bg-gray-600 hover:bg-gray-500': !reordered, 'bg-indigo-600 hover:bg-indigo-500': reordered}"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+                        <span v-if="reordered">
+                            {{ $t('menus.button_order_save') }}
+                        </span>
+                        <span v-else>
+                            {{ $t('menus.button_order_disabled') }}
+                        </span>
+                    </button>
+                </span>
             </div>
         </div>
         <modal :visible="modal" @close="modal = !modal">
@@ -67,41 +71,38 @@
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="sm:col-span-3">
                         <label for="name" class="block text-sm font-medium leading-5 text-gray-700">
-                            Name
+                            {{ $t('menus.name') }}
                         </label>
                         <div class="mt-1 rounded-md shadow-sm">
                             <input id="name" type="test" v-model="newItem.name"
-                                   class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"/>
+                                   class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                         </div>
-                        <p v-if="$page.errors.name" class="mt-2 text-sm text-red-600">{{ $page.errors.name[0]
-                            }}</p>
+                        <p v-if="$page.errors.name" class="mt-2 text-sm text-red-600">{{ $page.errors.name[0] }}</p>
                     </div>
                     <div class="sm:col-span-3">
                         <label for="url" class="block text-sm font-medium leading-5 text-gray-700">
-                            Url
+                            {{ $t('menus.url') }}
                         </label>
                         <div class="mt-1 rounded-md shadow-sm">
                             <input id="url" type="text" v-model="newItem.url"
-                                   class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"/>
+                                   class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                         </div>
-                        <p v-if="$page.errors.url" class="mt-2 text-sm text-red-600">{{ $page.errors.url[0]
-                            }}</p>
-
+                        <p v-if="$page.errors.url" class="mt-2 text-sm text-red-600">{{ $page.errors.url[0] }}</p>
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-      <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-        <button type="submit"
-                class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-          Create
-        </button>
-      </span>
+                    <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
+                        <button type="submit"
+                                class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                            {{ $t('menus.button_create') }}
+                        </button>
+                    </span>
                     <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-        <button type="button" @click="modal = !modal"
-                class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-          Cancel
-        </button>
-      </span>
+                        <button type="button" @click="modal = !modal"
+                            class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                            {{ $t('menus.button_cancel') }}
+                        </button>
+                    </span>
                 </div>
             </form>
         </modal>
