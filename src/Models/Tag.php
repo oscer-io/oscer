@@ -29,7 +29,7 @@ class Tag extends BaseModel
 
     public function posts()
     {
-        return $this->belongsToMany(Post::class)->withTimestamps();
+        return $this->belongsToMany(Post::class);
     }
 
     public function getSlugOptions(): SlugOptions
