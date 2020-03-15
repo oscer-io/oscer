@@ -5,17 +5,19 @@ namespace Bambamboole\LaravelCms;
 use Bambamboole\LaravelCms\Commands\Development\SeedCommand;
 use Bambamboole\LaravelCms\Commands\MigrateCommand;
 use Bambamboole\LaravelCms\Commands\PublishCommand;
-use Bambamboole\LaravelCms\Http\View\Composers\ThemeViewComposer;
+use Bambamboole\LaravelCms\View\BladeComponents\MenuBladeComponent;
+use Bambamboole\LaravelCms\View\Composers\ThemeViewComposer;
 use Bambamboole\LaravelCms\Models\User;
 use Bambamboole\LaravelCms\Services\CmsRouter;
 use Bambamboole\LaravelCms\Themes\DefaultTheme;
 use Bambamboole\LaravelCms\Themes\Theme;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Factory;
 
 class LaravelCmsServiceProvider extends ServiceProvider
 {
-    public function boot(CmsRouter $router, Factory $view, Theme $theme)
+    public function boot(CmsRouter $router, Factory $view, Theme $theme, BladeCompiler $blade)
     {
         /*
          * Optional methods to load your package assets
@@ -33,6 +35,8 @@ class LaravelCmsServiceProvider extends ServiceProvider
             $theme->getPageTemplate(),
             $theme->getPostIndexTemplate(),
         ], ThemeViewComposer::class);
+
+        $blade->component(MenuBladeComponent::class, 'menu');
     }
 
     /**
