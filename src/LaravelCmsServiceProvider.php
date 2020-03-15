@@ -5,13 +5,17 @@ namespace Bambamboole\LaravelCms;
 use Bambamboole\LaravelCms\Commands\Development\SeedCommand;
 use Bambamboole\LaravelCms\Commands\MigrateCommand;
 use Bambamboole\LaravelCms\Commands\PublishCommand;
+use Bambamboole\LaravelCms\Http\View\Composers\ThemeViewComposer;
 use Bambamboole\LaravelCms\Models\User;
 use Bambamboole\LaravelCms\Services\CmsRouter;
+use Bambamboole\LaravelCms\Themes\DefaultTheme;
+use Bambamboole\LaravelCms\Themes\Theme;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\Factory;
 
 class LaravelCmsServiceProvider extends ServiceProvider
 {
-    public function boot(CmsRouter $router)
+    public function boot(CmsRouter $router, Factory $view, Theme $theme)
     {
         /*
          * Optional methods to load your package assets
@@ -23,6 +27,12 @@ class LaravelCmsServiceProvider extends ServiceProvider
 
         $router->registerAuthRoutes();
         $router->registerBackendRoutes();
+
+        $view->composer([
+            $theme->getPostShowTemplate(),
+            $theme->getPageTemplate(),
+            $theme->getPostIndexTemplate(),
+        ], ThemeViewComposer::class);
     }
 
     /**
@@ -66,5 +76,9 @@ class LaravelCmsServiceProvider extends ServiceProvider
             MigrateCommand::class,
             SeedCommand::class,
         ]);
+
+        $this->app->singleton(Theme::class, function () {
+            return new DefaultTheme();
+        });
     }
 }
