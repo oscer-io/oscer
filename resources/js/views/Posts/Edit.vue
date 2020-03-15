@@ -34,7 +34,7 @@
                         <p v-if="$page.errors.slug" class="mt-2 text-sm text-red-600">{{ $page.errors.slug[0]}}</p>
                     </div>
                     <div class="sm:col-span-6">
-                        <tag-input v-model="form.tags" :available-tags="this.tags" />
+                        <TagsField v-model="form.tags" :available-tags="this.tags" />
                     </div>
 
                     <div class="sm:col-span-6">
@@ -74,13 +74,13 @@
     import _ from 'lodash';
     import Layout from '../../Layout';
     import MarkdownField from "../../components/fields/MarkdownField";
-    import TagInput from "../../components/TagInput";
+    import TagsField from "../../components/fields/TagsField";
 
     export default {
         components: {
             Layout,
             MarkdownField,
-            TagInput
+            TagsField
         },
         props: {
             post: Object,

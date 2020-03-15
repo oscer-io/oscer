@@ -34,8 +34,8 @@
                         <label for="tags" class="block text-sm font-medium leading-5 text-gray-700">
                             Tags
                         </label>
-                        <tag-input class="mt-1" id="tags" v-model="form.tags"
-                                   :available-tags="tags"></tag-input>
+                        <TagsField class="mt-1" id="tags" v-model="form.tags"
+                                   :available-tags="tags" />
                         <p v-if="$page.errors.tags" class="mt-2 text-sm text-red-600">{{ $page.errors.tags[0] }}</p>
                     </div>
                     <div class="sm:col-span-6">
@@ -73,14 +73,14 @@
 <script>
     import _ from 'lodash';
     import Layout from '../../Layout';
-    import TagInput from "../../components/TagInput";
+    import TagsField from "../../components/fields/TagsField";
     import MarkdownField from "../../components/fields/MarkdownField";
 
     export default {
         components: {
             Layout,
             MarkdownField,
-            TagInput,
+            TagsField,
         },
         props: {
             tags: Array
