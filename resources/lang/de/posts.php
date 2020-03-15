@@ -1,9 +1,6 @@
 <?php
 
 return [
-    'failed' => 'Diese Kombination aus Zugangsdaten wurde nicht in unserer Datenbank gefunden.',
-    'throttle' => 'Zu viele Loginversuche. Versuchen Sie es bitte in :seconds Sekunden nochmal.',
-    'posts.name' => 'Zu viele Loginversuche. Versuchen Sie es bitte in :seconds Sekunden nochmal.',
     'edit_page_title' => 'Edit post - \'{name}\' (ID: {id})',
     'create_page_title' => 'New post',
     'show_page_title' => 'Show post - \'{name}\' (ID: {id})',
