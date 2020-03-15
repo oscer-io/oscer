@@ -1,4 +1,4 @@
-# Contributing
+# Contribution Guideline
 
 Contributions are **welcome** and will be fully **credited**.
 
@@ -40,7 +40,7 @@ Before submitting a pull request:
 
 If the project maintainer has any additional requirements, you will find them listed here.
 
-- Respect our **[Coding Style Guide](docs/contribution/coding-style-guide.md)**.
+- Respect our **[Coding Style Guide](coding-style-guide.md)**.
 
 - **Add tests!** - Your patch won't be accepted if it doesn't have tests.
 
