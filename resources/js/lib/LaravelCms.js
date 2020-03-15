@@ -45,12 +45,12 @@ export default new Vue({
             this.bootedCallbacks = [];
         },
 
-        loadMixins() {
+        loadGlobalMixins() {
             Vue.mixin(route);
             return this;
         },
 
-        loadDirectives() {
+        loadGlobalPlugins() {
             Vue.use(vClickOutside);
             return this;
         },
@@ -74,6 +74,7 @@ export default new Vue({
         },
 
         registerFlash() {
+            // window.Vue = Vue;
             window.events = new Vue();
             window.flash = (type, text) => {
                 window.events.$emit('flash', {'type': type, 'text': text});

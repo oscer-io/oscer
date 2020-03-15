@@ -1,9 +1,9 @@
 import LaravelCms from './lib/LaravelCms.js';
 
 LaravelCms
-    .loadMixins()
+    .loadGlobalMixins()
     .loadBaseComponents()
-    .loadDirectives()
+    .loadGlobalPlugins()
     .registerFlash()
     .setContainer('#app')
     .activateInternationalization()
