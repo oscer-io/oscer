@@ -16,7 +16,7 @@ return [
     'author' => 'Author',
     'status' => 'Status',
     'date' => 'Date',
-    'message_no_pages' => 'No pages created yet. Why not creating one?',
+    'message_no_posts' => 'No posts created yet. Why not creating one?',
     'created_at' => 'Created at',
     'published_at' => 'Published at',
     'updated_at' => 'Updated at',
@@ -25,4 +25,5 @@ return [
     'button_create' => 'Create post',
     'button_edit' => 'Edit post',
     'button_show' => 'Show',
+    'placeholder_search' => 'Search...',
 ];
