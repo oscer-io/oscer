@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'show_page_title' => 'Menü anzeigen - \'{name}\' (ID: {id})',
+    'index_page_title' => 'Menüs',
+    'edit_title' => 'Menü bearbeiten - \'{name}\'',
+    'create_title' => 'Neues Menü',
+    'show_title' => 'Menü anzeigen - \'{name}\'',
+    'index_title' => 'Menüs',
+    'name' => 'Name',
+    'url' => 'URL',
+    'message_no_items' => 'Es wurden noch keine Menüs erstellt. Warum erstellst du nicht eins?',
+    'created_at' => 'Erstellt am',
+    'published_at' => 'Veröffentlicht am',
+    'updated_at' => 'Geändert am',
+    'button_save' => 'Menü speichern',
+    'button_cancel' => 'Abbrechen',
+    'button_create' => 'Menü erstellen',
+    'button_create_item' => 'Menüeintrag erstellen',
+    'button_edit' => 'Menü bearbeiten',
+    'button_show' => 'Anzeigen',
+    'button_order_save' => 'Reihenfolge speichern',
+    'button_order_disabled' => 'Reihenfolge nicht geändert',
+    'index_item_count' => '{count} Menüeinträge',
+];
