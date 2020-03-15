@@ -1,4 +1,4 @@
-import LaravelCms from './bootstrap/LaravelCms.js';
+import LaravelCms from './lib/LaravelCms.js';
 
 LaravelCms
     .loadMixins()

@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import route from '../mixins/route';
 import {InertiaApp} from "@inertiajs/inertia-vue";
-import Router from "../lib/Router";
+import Router from "./Router";
 import vClickOutside from "v-click-outside";
 import VueI18n from 'vue-i18n';
 import languageBundle
