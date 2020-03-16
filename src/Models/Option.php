@@ -15,6 +15,6 @@ class Option extends BaseModel
 {
     public static function getValueByKey(string $key): string
     {
-        return static::query()->where('key',$key)->firstOrFail()->value;
+        return static::query()->where('key', $key)->firstOrFail()->value;
     }
 }
