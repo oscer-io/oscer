@@ -11,5 +11,5 @@ features:
   details: Use default Blade features to build your custom Theme.
 - title: Heavy WIP
   details: This project is in a pretty heavy WIP state. NOT PRODUCTION READY
-footer: MIT Licensed | Copyright © 2020 - Manuel Christlieb
+footer: MIT Licensed | Copyright © 2020 - Manuel Christlieb & Emanuel Jacob
 ---
