@@ -16,6 +16,11 @@ class DefaultTheme implements Theme
         ];
     }
 
+    public function getFrontPageTemplate(): string
+    {
+        return $this->getPageTemplate();
+    }
+
     public function getPageTemplate(): string
     {
         return 'cms::pages.show';
