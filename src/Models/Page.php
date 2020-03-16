@@ -61,7 +61,6 @@ class Page extends BaseModel
         return $this->belongsTo(User::class);
     }
 
-
     public function getRenderedBody()
     {
         $languages = ['php', 'bash', 'yaml', 'ini', 'dockerfile'];
