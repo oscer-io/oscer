@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Bambamboole\LaravelCms\Http\Controllers\Backend;
-
 
 use Bambamboole\LaravelCms\Models\Option;
 use Illuminate\Config\Repository;
@@ -31,6 +29,7 @@ class OptionsController
 
                     return $info;
                 })->toArray();
+
                 return $fields;
             });
 
