@@ -1,17 +1,17 @@
 <template>
-    <layout title="Posts">
+    <layout :title="$t('posts.index_page_title')">
         <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
             <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
                 <div class="ml-4 mt-2">
                     <h1 class="text-lg leading-6 font-medium text-gray-900">
-                        Posts
+                        {{ $t('posts.index_title') }}
                     </h1>
                 </div>
                 <div class="ml-4 mt-2 flex-shrink-0">
                     <span class="inline-flex rounded-md shadow-sm">
                         <InertiaLink :href="route('cms.backend.posts.create')"
                                      class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline">
-                            Create new post
+                            {{ $t('posts.button_create') }}
                         </InertiaLink>
                     </span>
                 </div>
@@ -35,17 +35,19 @@
                                                       d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884zM18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
                                                       clip-rule="evenodd"/>
                                             </svg>
-                                            <span class="truncate">{{post.slug}}</span>
+                                            <span class="truncate">
+                                                {{post.slug}}
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="hidden md:block">
                                         <div>
                                             <div class="text-sm leading-5 text-gray-900">
-                                                created at:
+                                                {{ $t('posts.created_at') }}
                                                 <time :datetime="post.created_at">{{post.created_at}}</time>
                                             </div>
                                             <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">
-                                                Tags:
+                                                {{ $t('posts.tags') }}
                                                 <span class="bg-indigo-600 py-1 px-2 ml-1 text-white rounded" v-for="tag in post.tags" v-text="tag.name"></span>
                                             </div>
                                         </div>

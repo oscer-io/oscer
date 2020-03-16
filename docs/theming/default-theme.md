@@ -1,3 +1,8 @@
+# DefaultTheme
+
+The `DefaultTheme` which comes with LaravelCms looks like this:
+
+```php
 <?php
 
 namespace Bambamboole\LaravelCms\Themes;
@@ -31,3 +36,6 @@ class DefaultTheme implements Theme
         return 'cms::posts.show';
     }
 }
+```
+
+It is responsible for the paths of the views which are used for different parts of the CMS.

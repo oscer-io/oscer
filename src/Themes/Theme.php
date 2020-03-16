@@ -4,6 +4,8 @@ namespace Bambamboole\LaravelCms\Themes;
 
 interface Theme
 {
+    public function getMenus(): array;
+
     public function getPageTemplate(): string;
 
     public function getPostIndexTemplate(): string;

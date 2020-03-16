@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'edit_page_title' => 'Seite bearbeiten - \'{name}\' (ID: {id})',
+    'create_page_title' => 'Neue Seite',
+    'show_page_title' => 'Seite anzeigen - \'{name}\' (ID: {id})',
+    'index_page_title' => 'Seiten',
+    'edit_title' => 'Seite bearbeiten - \'{name}\'',
+    'create_title' => 'Neue Seite',
+    'show_title' => 'Seite anzeigen - \'{name}\'',
+    'index_title' => 'Seiten',
+    'name' => 'Name',
+    'slug' => 'Slug',
+    'body' => 'Inhalt',
+    'author' => 'Autor',
+    'status' => 'Status',
+    'date' => 'Datum',
+    'message_no_items' => 'Es wurden noch keine Seiten erstellt. Warum erstellst du nicht eine?',
+    'created_at' => 'Erstellt am',
+    'published_at' => 'Veröffentlicht am',
+    'updated_at' => 'Geändert am',
+    'button_save' => 'Seite speichern',
+    'button_cancel' => 'Abbrechen',
+    'button_create' => 'Seite erstellen',
+    'button_edit' => 'Seite bearbeiten',
+    'button_show' => 'Anzeigen',
+    'placeholder_search' => 'Suchen...',
+];

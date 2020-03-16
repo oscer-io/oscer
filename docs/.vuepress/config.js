@@ -1,7 +1,6 @@
 module.exports = {
     title: 'Laravel CMS',
     description: 'A simple CMS and blogging platform made for developers.',
-    base: '/laravel-cms/',
 
     themeConfig: {
         repo: 'bambamboole/laravel-cms',
@@ -23,9 +22,20 @@ module.exports = {
                 title: 'Usage',
                 collapsable: false,
                 children: [
-                    ['usage/users', 'Users'],
+                    ['usage/user-management', 'Users'],
                     ['usage/pages', 'Pages'],
                     ['usage/posts-tags', 'Posts & Tags'],
+                ],
+
+            },
+            {
+                title: 'Theming',
+                collapsable: false,
+                children: [
+                    ['theming/default-theme', 'DefaultTheme'],
+                    ['theming/menus', 'Menus'],
+                    ['theming/posts', 'Posts'],
+                    ['theming/pages', 'Pages'],
                 ],
 
             },

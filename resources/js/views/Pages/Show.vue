@@ -1,17 +1,17 @@
 <template>
-    <layout :title="'Show page - ' + page.name + ' (ID: ' + page.id + ')'">
+    <layout :title="$t('pages.show_page_title', {name: page.name, id: page.id} )">
         <div class="flex flex-col">
             <div class="-mb-2 py-4 flex flex-wrap flex-grow justify-between">
                 <div class="flex items-center py-2">
                     <h1 class="text-3xl font-bolder leading-tight text-gray-900">
-                        {{ page.name }} - (ID: {{ page.id }})
+                        {{ $t('pages.show_title', {name: page.name} ) }}
                     </h1>
                 </div>
                 <div class="flex items-center py-2">
                     <InertiaLink
                         :href="route('cms.backend.pages.edit', {page: page.id})"
                         class="inline-block px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline">
-                        Edit
+                        {{ $t('pages.button_edit') }}
                     </InertiaLink>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                     <dl>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dd class="text-sm leading-5 font-medium text-gray-500">
-                                Name
+                                {{ $t('pages.name') }}
                             </dd>
                             <dt class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
                                 {{ page.name }}
@@ -28,7 +28,7 @@
                         </div>
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dd class="text-sm leading-5 font-medium text-gray-500">
-                                Slug
+                                {{ $t('pages.slug') }}
                             </dd>
                             <dt class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
                                 {{ page.slug }}
@@ -36,7 +36,7 @@
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dd class="text-sm leading-5 font-medium text-gray-500">
-                                Status
+                                {{ $t('pages.status') }}
                             </dd>
                             <dt class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
                                 <span
@@ -59,7 +59,7 @@
                         </div>
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dd class="text-sm leading-5 font-medium text-gray-500">
-                                Author
+                                {{ $t('pages.author') }}
                             </dd>
                             <dt class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
                                 <div class="flex items-center">
@@ -81,7 +81,7 @@
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dd class="text-sm leading-5 font-medium text-gray-500">
-                                Published at
+                                {{ $t('pages.published_at') }}
                             </dd>
                             <dt class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
                                 {{ page.created_at }}
@@ -89,7 +89,7 @@
                         </div>
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dd class="text-sm leading-5 font-medium text-gray-500">
-                                Updated at
+                                {{ $t('pages.updated_at') }}
                             </dd>
                             <dt class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
                                 {{ page.updated_at }}
@@ -97,7 +97,7 @@
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dd class="text-sm leading-5 font-medium text-gray-500">
-                                Body
+                                {{ $t('pages.body') }}
                             </dd>
                             <dt class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
                                 <div v-html="markdown(page.body)"></div>
