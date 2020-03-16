@@ -1,7 +1,6 @@
 module.exports = {
     title: 'Laravel CMS',
     description: 'A simple CMS and blogging platform made for developers.',
-    base: '/laravel-cms/',
 
     themeConfig: {
         repo: 'bambamboole/laravel-cms',
