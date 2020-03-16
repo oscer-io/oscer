@@ -1,11 +1,11 @@
 <template>
-    <layout title="menus">
+    <layout :title="$t('menus.index_page_title')">
         <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
             <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
                 <div class="ml-4 mt-2">
-                    <h3 class="text-lg leading-6 font-medium text-gray-900">
-                        Menus
-                    </h3>
+                    <h1 class="text-lg leading-6 font-medium text-gray-900">
+                        {{ $t('menus.index_title') }}
+                    </h1>
                 </div>
             </div>
         </div>
@@ -16,10 +16,10 @@
                        class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
                         <div class="flex items-center px-4 py-4 sm:px-6">
                             <div class="min-w-0 flex-1 flex items-center">
-
                                 <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                                     <div>
-                                        <div class="text-sm leading-5 font-medium text-indigo-600 truncate">{{menu.name}}
+                                        <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
+                                            {{menu.name}}
                                         </div>
                                     </div>
                                     <div class="hidden md:block">
@@ -31,7 +31,7 @@
                                                           d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                                           clip-rule="evenodd"/>
                                                 </svg>
-                                                {{menu.items.length}} items
+                                                {{ $t('menus.index_item_count', {count: menu.items.length}) }}
                                             </div>
                                         </div>
                                     </div>
@@ -49,7 +49,6 @@
                 </li>
             </ul>
         </div>
-
     </layout>
 </template>
 
