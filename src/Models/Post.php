@@ -4,6 +4,12 @@ namespace Bambamboole\LaravelCms\Models;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use League\CommonMark\Block\Element\FencedCode;
+use League\CommonMark\Block\Element\IndentedCode;
+use League\CommonMark\CommonMarkConverter;
+use League\CommonMark\Environment;
+use Spatie\CommonMarkHighlighter\FencedCodeRenderer;
+use Spatie\CommonMarkHighlighter\IndentedCodeRenderer;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -72,5 +78,16 @@ class Post extends BaseModel
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function getRenderedBody()
+    {
+        $languages = ['php', 'bash', 'yaml', 'ini', 'dockerfile'];
+        $env = Environment::createCommonMarkEnvironment();
+        $env->addBlockRenderer(FencedCode::class, new FencedCodeRenderer($languages));
+        $env->addBlockRenderer(IndentedCode::class, new IndentedCodeRenderer($languages));
+        $converter = new CommonMarkConverter([], $env);
+
+        return $converter->convertToHtml($this->body);
     }
 }
