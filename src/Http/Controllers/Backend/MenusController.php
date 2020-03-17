@@ -24,17 +24,20 @@ class MenusController
 
     public function store(CreateMenuItemRequest $request, string $name)
     {
-        MenuItem::query()->create(
+        $item = MenuItem::query()->create(
             array_merge(
                 [
-                    'menu' => $name,
+                    'menu'  => $name,
                     'order' => MenuItem::query()->where('menu', $name)->count() + 1,
                 ],
                 $request->validated()
             )
         );
 
-        session()->flash('message', ['type' => 'success', 'text' => 'Menu item created']);
+        session()->flash('message', [
+            'type' => 'success',
+            'text' => __('cms::menus.toast.item_created', ['item' => $item->name])
+        ]);
 
         return Redirect::route('cms.backend.menus.show', ['name' => $name]);
     }
@@ -49,7 +52,10 @@ class MenusController
                 ->update(['order' => $item['order']]);
         }
 
-        session()->flash('message', ['type' => 'success', 'text' => 'Menu reordered']);
+        session()->flash('message', [
+            'type' => 'success',
+            'text' => __('cms::menus.toast.reordered')
+        ]);
 
         return Redirect::route('cms.backend.menus.show', ['name' => $name]);
     }
@@ -59,7 +65,10 @@ class MenusController
         $item = MenuItem::query()->find($itemId);
         $item->delete();
 
-        session()->flash('message', ['type' => 'success', 'text' => 'Menu item deleted']);
+        session()->flash('message', [
+            'type' => 'success',
+            'text' => __('cms::menus.toast.item_deleted', ['item' => $item->name])
+        ]);
 
         return Redirect::route('cms.backend.menus.show', ['name' => $item->menu]);
     }
@@ -69,7 +78,10 @@ class MenusController
         $item = MenuItem::query()->find($itemId);
         $item->update($request->validated());
 
-        session()->flash('message', ['type' => 'success', 'text' => 'Menu item updated']);
+        session()->flash('message', [
+            'type' => 'success',
+            'text' => __('cms::menus.toast.item_updated', ['item' => $item->name])
+        ]);
 
         return Redirect::route('cms.backend.menus.show', ['name' => $item->menu]);
     }

@@ -26,7 +26,10 @@ class ProfileController
     {
         auth()->user()->update($request->validated());
 
-        session()->flash('message', ['type' => 'success', 'text' => __('cms::profile.toast.updated')]);
+        session()->flash('message', [
+            'type' => 'success',
+            'text' =>  __('cms::profile.toast.updated')
+        ]);
 
         return Redirect::route('cms.backend.profile.show');
     }

@@ -16,28 +16,28 @@
                             font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300
                             focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150
                             ease-in-out">
-                                Posts
+                                {{ $t('posts.posts') }}
                             </InertiaLink>
                             <InertiaLink :href="route('cms.backend.pages.index')"
                                           class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm
                             font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300
                             focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150
                             ease-in-out">
-                                Pages
+                                {{ $t('pages.pages') }}
                             </InertiaLink>
                             <InertiaLink :href="route('cms.backend.menus.index')"
                                           class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm
                             font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300
                             focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150
                             ease-in-out">
-                                Menus
+                                {{ $t('menus.menus') }}
                             </InertiaLink>
                             <InertiaLink :href="route('cms.backend.users.index')"
                                           class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm
                             font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300
                             focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150
                             ease-in-out">
-                                Users
+                                {{ $t('users.users') }}
                             </InertiaLink>
                         </div>
                     </div>
@@ -56,12 +56,12 @@
                                 <div class="py-1 rounded-md bg-white shadow-xs">
                                     <InertiaLink :href="route('cms.backend.profile.show')"
                                                   class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
-                                        Your
-                                        Profile
+                                        {{ $t('profile.menu_label') }}
                                     </InertiaLink>
                                     <InertiaLink :href="route('cms.auth.logout')"
-                                       class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Sign
-                                        out</InertiaLink>
+                                       class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                                        {{ $t('auth.logout') }}
+                                    </InertiaLink>
                                 </div>
                             </div>
                         </div>
@@ -107,13 +107,12 @@
                     <div class="mt-3">
                         <InertiaLink :href="route('cms.backend.menus.index')"
                                       class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:text-gray-800 focus:bg-gray-100 transition duration-150 ease-in-out">
-                            Your
-                            Profile
+                            {{ $t('profile.menu_label') }}
                         </InertiaLink>
                         <InertiaLink :href="route('cms.auth.logout')"
-                           class="mt-1 block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:text-gray-800 focus:bg-gray-100 transition duration-150 ease-in-out">
-                            Sign
-                            out</InertiaLink>
+                                     class="mt-1 block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:text-gray-800 focus:bg-gray-100 transition duration-150 ease-in-out">
+                            {{ $t('auth.logout') }}
+                        </InertiaLink>
                     </div>
                 </div>
             </div>
