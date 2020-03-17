@@ -18,7 +18,6 @@ class OptionFieldsResolver
     {
         $this->config = $config;
         $this->theme = $theme;
-
     }
 
     public function getOptionFields()
@@ -45,6 +44,7 @@ class OptionFieldsResolver
         $fields = collect($fields)
             ->map(function ($info, $name) use ($tab) {
                 $info['value'] = $this->getOptionValue("{$tab}/{$name}");
+
                 return $info;
             });
 
@@ -62,7 +62,7 @@ class OptionFieldsResolver
 
     protected function getOptions()
     {
-        if (!$this->options) {
+        if (! $this->options) {
             $this->options = Option::all();
         }
 

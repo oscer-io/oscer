@@ -40,8 +40,8 @@ class DefaultTheme implements Theme
     {
         return [
             'title_prefix' => [
-                'type' => 'text'
-            ]
+                'type' => 'text',
+            ],
         ];
     }
 }
