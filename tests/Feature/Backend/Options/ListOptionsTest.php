@@ -8,7 +8,7 @@ use Bambamboole\LaravelCms\Tests\TestCase;
 class ListOptionsTest extends TestCase
 {
     /** @test */
-    public function it()
+    public function it_merges_the_values_to_the_fields()
     {
         Option::create([
             'key' => 'pages/front_page',
@@ -18,7 +18,7 @@ class ListOptionsTest extends TestCase
         $this->login();
         $response = $this->get('/admin/options');
 
-        dd($response->json());
+        $this->assertEquals('a-page-slug', $response->json('pages.front_page.value'));
     }
 
 }

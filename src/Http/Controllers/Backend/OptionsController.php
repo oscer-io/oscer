@@ -1,40 +1,22 @@
 <?php
 
-
 namespace Bambamboole\LaravelCms\Http\Controllers\Backend;
 
-
-use Bambamboole\LaravelCms\Models\Option;
-use Illuminate\Config\Repository;
+use Bambamboole\LaravelCms\Services\OptionFieldsResolver;
 use Illuminate\Http\Request;
 
 class OptionsController
 {
-    protected Repository $config;
+    protected OptionFieldsResolver $resolver;
 
-    public function __construct(Repository $config)
+    public function __construct(OptionFieldsResolver $resolver)
     {
-        $this->config = $config;
+        $this->resolver = $resolver;
     }
 
     public function index()
     {
-        $options = Option::all()->toArray();
-        $tabs = collect($this->config->get('cms.options'));
-        $tabs = $tabs
-            ->map(function ($fields, $tab) use ($options) {
-                $fields = collect($fields)->map(function ($info, $name) use ($tab, $options) {
-                    $key = "{$tab}/{$name}";
-                    $info['value'] = collect($options)->first(function ($option) use ($key) {
-                        return $option['key'] === $key;
-                    })['value'];
-
-                    return $info;
-                })->toArray();
-                return $fields;
-            });
-
-        return $tabs;
+        return $this->resolver->getOptionFields();
     }
 
     public function store(Request $request)

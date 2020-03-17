@@ -35,4 +35,13 @@ class DefaultTheme implements Theme
     {
         return 'cms::posts.show';
     }
+
+    public function getOptions(): array
+    {
+        return [
+            'title_prefix' => [
+                'type' => 'text'
+            ]
+        ];
+    }
 }

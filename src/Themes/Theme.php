@@ -13,4 +13,6 @@ interface Theme
     public function getPostIndexTemplate(): string;
 
     public function getPostShowTemplate(): string;
+
+    public function getOptions(): array;
 }
