@@ -12,7 +12,7 @@ class ListOptionsTest extends TestCase
     {
         Option::create([
             'key' => 'pages/front_page',
-            'value' => 'a-page-slug'
+            'value' => 'a-page-slug',
         ]);
 
         $this->login();
@@ -20,5 +20,4 @@ class ListOptionsTest extends TestCase
 
         $this->assertEquals('a-page-slug', $response->json('pages.front_page.value'));
     }
-
 }

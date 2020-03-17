@@ -21,7 +21,6 @@ use Illuminate\Config\Repository;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 
 class CmsRouter
@@ -40,7 +39,7 @@ class CmsRouter
     {
         /** @var Collection $pages */
         $pages = Cache::rememberForever('cms.slugs', function () {
-            if (!Schema::connection(config('cms.database_connection'))->hasTable('pages')) {
+            if (! Schema::connection(config('cms.database_connection'))->hasTable('pages')) {
                 return new Collection();
             }
 
@@ -57,8 +56,10 @@ class CmsRouter
                     if ($page->slug === $frontPageSlug) {
                         $router->get('/', [FrontendPagesController::class, 'frontPage'])
                             ->name('pages.front_page');
+
                         return false;
                     }
+
                     return true;
                 })->each(function (Page $page) use ($router) {
                     $router->get("/{$page->slug}", [FrontendPagesController::class, 'show'])
