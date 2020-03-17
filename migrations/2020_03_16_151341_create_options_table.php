@@ -16,7 +16,7 @@ class CreateOptionsTable extends Migration
         Schema::create('options', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('key')->unique();
-            $table->text('value')->unique();
+            $table->text('value')->nullable();
             $table->timestamps();
         });
     }
