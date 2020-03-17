@@ -5,6 +5,7 @@ namespace Bambamboole\LaravelCms\Services;
 use Bambamboole\LaravelCms\Models\Option;
 use Bambamboole\LaravelCms\Themes\Theme;
 use Illuminate\Config\Repository;
+use Illuminate\Support\Collection;
 
 class OptionFieldsResolver
 {
@@ -20,7 +21,7 @@ class OptionFieldsResolver
         $this->theme = $theme;
     }
 
-    public function getOptionFields()
+    public function getOptionFields(): Collection
     {
         return $this
             ->getMergedOptionFields()
@@ -29,7 +30,7 @@ class OptionFieldsResolver
             });
     }
 
-    protected function getMergedOptionFields()
+    protected function getMergedOptionFields(): Collection
     {
         return collect(
             array_merge(
@@ -39,7 +40,7 @@ class OptionFieldsResolver
         );
     }
 
-    protected function mergeValuesIntoOptionFields(string $tab, array $fields)
+    protected function mergeValuesIntoOptionFields(string $tab, array $fields): Collection
     {
         $fields = collect($fields)
             ->map(function ($info, $name) use ($tab) {
@@ -51,7 +52,7 @@ class OptionFieldsResolver
         return $fields;
     }
 
-    protected function getOptionValue($key)
+    protected function getOptionValue($key): ?string
     {
         $option = $this->getOptions()->first(function ($option) use ($key) {
             return $option['key'] === $key;
@@ -60,9 +61,9 @@ class OptionFieldsResolver
         return $option ? $option->value : null;
     }
 
-    protected function getOptions()
+    protected function getOptions(): Collection
     {
-        if (! $this->options) {
+        if (!$this->options) {
             $this->options = Option::all();
         }
 
