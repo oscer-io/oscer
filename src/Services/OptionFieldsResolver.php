@@ -63,7 +63,7 @@ class OptionFieldsResolver
 
     protected function getOptions(): Collection
     {
-        if (!$this->options) {
+        if (! $this->options) {
             $this->options = Option::all();
         }
 
