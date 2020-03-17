@@ -34,7 +34,7 @@ class UsersController
 
         session()->flash('message', [
             'type' => 'success',
-            'text' => __('cms::users.toast.updated', ['user' => $user->name])
+            'text' => __('cms::users.toast.updated', ['user' => $user->name]),
         ]);
 
         return Redirect::route('cms.backend.users.show', ['user' => $user]);
@@ -56,7 +56,7 @@ class UsersController
 
         session()->flash('message', [
             'type' => 'success',
-            'text' => __('cms::users.toast.created', ['user' => $user->name])
+            'text' => __('cms::users.toast.created', ['user' => $user->name]),
         ]);
 
         return Redirect::route('cms.backend.users.show', ['user' => $user]);

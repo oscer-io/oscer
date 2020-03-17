@@ -36,7 +36,7 @@ class MenusController
 
         session()->flash('message', [
             'type' => 'success',
-            'text' => __('cms::menus.toast.item_created', ['item' => $item->name])
+            'text' => __('cms::menus.toast.item_created', ['item' => $item->name]),
         ]);
 
         return Redirect::route('cms.backend.menus.show', ['name' => $name]);
@@ -54,7 +54,7 @@ class MenusController
 
         session()->flash('message', [
             'type' => 'success',
-            'text' => __('cms::menus.toast.reordered')
+            'text' => __('cms::menus.toast.reordered'),
         ]);
 
         return Redirect::route('cms.backend.menus.show', ['name' => $name]);
@@ -67,7 +67,7 @@ class MenusController
 
         session()->flash('message', [
             'type' => 'success',
-            'text' => __('cms::menus.toast.item_deleted', ['item' => $item->name])
+            'text' => __('cms::menus.toast.item_deleted', ['item' => $item->name]),
         ]);
 
         return Redirect::route('cms.backend.menus.show', ['name' => $item->menu]);
@@ -80,7 +80,7 @@ class MenusController
 
         session()->flash('message', [
             'type' => 'success',
-            'text' => __('cms::menus.toast.item_updated', ['item' => $item->name])
+            'text' => __('cms::menus.toast.item_updated', ['item' => $item->name]),
         ]);
 
         return Redirect::route('cms.backend.menus.show', ['name' => $item->menu]);

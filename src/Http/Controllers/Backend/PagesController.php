@@ -36,7 +36,7 @@ class PagesController
 
         session()->flash('message', [
             'type' => 'success',
-            'text' => __('cms::pages.toast.updated', ['page' => $page->name])
+            'text' => __('cms::pages.toast.updated', ['page' => $page->name]),
         ]);
 
         return Redirect::route('cms.backend.pages.show', ['page' => $page]);
@@ -51,7 +51,7 @@ class PagesController
 
         session()->flash('message', [
             'type' => 'success',
-            'text' => __('cms::pages.toast.created', ['page' => $page->name])
+            'text' => __('cms::pages.toast.created', ['page' => $page->name]),
         ]);
 
         return Redirect::route('cms.backend.pages.show', ['page' => $page]);
@@ -64,7 +64,7 @@ class PagesController
 
         session()->flash('message', [
             'type' => 'success',
-            'text' => __('cms::pages.toast.deleted', ['page' => $page->name])
+            'text' => __('cms::pages.toast.deleted', ['page' => $page->name]),
         ]);
 
         return Redirect::route('cms.backend.pages.index');

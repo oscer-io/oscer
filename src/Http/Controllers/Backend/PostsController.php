@@ -37,7 +37,7 @@ class PostsController
 
         session()->flash('message', [
             'type' => 'success',
-            'text' => __('cms::posts.toast.updated', ['post' => $post->name])
+            'text' => __('cms::posts.toast.updated', ['post' => $post->name]),
         ]);
 
         return Redirect::route('cms.backend.posts.show', ['post' => $post]);
@@ -52,11 +52,11 @@ class PostsController
         }
         $post = Post::query()->create(array_merge(['author_id' => auth()->user()->id], $data));
 
-        !isset($tags) ?: $post->update(['tags' => $tags]);
+        ! isset($tags) ?: $post->update(['tags' => $tags]);
 
         session()->flash('message', [
             'type' => 'success',
-            'text' => __('cms::posts.toast.created', ['post' => $post->name])
+            'text' => __('cms::posts.toast.created', ['post' => $post->name]),
         ]);
 
         return Redirect::route('cms.backend.posts.show', ['post' => $post]);
@@ -69,7 +69,7 @@ class PostsController
 
         session()->flash('message', [
             'type' => 'success',
-            'text' => __('cms::posts.toast.deleted', ['post' => $post->name])
+            'text' => __('cms::posts.toast.deleted', ['post' => $post->name]),
         ]);
 
         return Redirect::route('cms.backend.posts.index');

@@ -28,7 +28,7 @@ class ProfileController
 
         session()->flash('message', [
             'type' => 'success',
-            'text' =>  __('cms::profile.toast.updated')
+            'text' =>  __('cms::profile.toast.updated'),
         ]);
 
         return Redirect::route('cms.backend.profile.show');
