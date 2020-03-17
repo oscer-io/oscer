@@ -2,8 +2,9 @@
 
 namespace Bambamboole\LaravelCms\Http\Controllers\Backend;
 
+use Bambamboole\LaravelCms\Http\Requests\CreateOrUpdateOptionRequest;
+use Bambamboole\LaravelCms\Models\Option;
 use Bambamboole\LaravelCms\Services\OptionFieldsResolver;
-use Illuminate\Http\Request;
 
 class OptionsController
 {
@@ -19,11 +20,8 @@ class OptionsController
         return $this->resolver->getOptionFields();
     }
 
-    public function store(Request $request)
+    public function store(CreateOrUpdateOptionRequest $request)
     {
-        $data = [
-            'key' => 'pages/front_page',
-            'value' => 'a-page-slug',
-        ];
+        return Option::query()->updateOrCreate($request->validated());
     }
 }

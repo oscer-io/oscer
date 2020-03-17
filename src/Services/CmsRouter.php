@@ -142,6 +142,7 @@ class CmsRouter
                 $router->put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
                 $router->get('/options', [OptionsController::class, 'index'])->name('options.index');
+                $router->post('/options', [OptionsController::class, 'store'])->name('options.store');
             });
     }
 }
