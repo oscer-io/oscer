@@ -39,7 +39,7 @@ class CmsRouter
     {
         /** @var Collection $pages */
         $pages = Cache::rememberForever('cms.slugs', function () {
-            if (!Schema::connection(config('cms.database_connection'))->hasTable('pages')) {
+            if (! Schema::connection(config('cms.database_connection'))->hasTable('pages')) {
                 return new Collection();
             }
 
@@ -51,14 +51,15 @@ class CmsRouter
             ->prefix($pathPrefix)
             ->as('cms.')
             ->group(function (Router $router) use ($pages) {
-
                 if ($frontPageSlug = Option::getValueByKey('pages.front_page')) {
                     $pages = $pages->filter(function (Page $page) use ($router, $frontPageSlug) {
                         if ($page->slug === $frontPageSlug) {
                             $router->get('/', [FrontendPagesController::class, 'frontPage'])
                                 ->name('pages.front_page');
+
                             return false;
                         }
+
                         return true;
                     });
                 }
