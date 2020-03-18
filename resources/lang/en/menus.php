@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'menus' => 'menus',
     'show_page_title' => 'Show menu - \'{name}\' (ID: {id})',
     'index_page_title' => 'Menus',
     'edit_title' => 'Edit menu - \'{name}\'',
@@ -22,4 +23,8 @@ return [
     'button_order_save' => 'Save order',
     'button_order_disabled' => 'Menu not reordered',
     'index_item_count' => '{count} menu items',
+    'toast.item_updated' => 'Menu item \':item\' updated',
+    'toast.item_created' => 'Menu item \':item\' created',
+    'toast.item_deleted' => 'Menu item \':item\' deleted',
+    'toast.reordered' => 'Menu reordered',
 ];

@@ -18,7 +18,7 @@ return [
         ],
         'new_password' => [
             'title' => 'Your new Password',
-            'text' =>'Copy it and head to the login page.',
+            'text' => 'Copy it and head to the login page.',
             'goto' => 'Go To Login Page',
         ],
     ],
@@ -26,12 +26,12 @@ return [
     'mails' => [
         'salutation' => 'Hello',
         'your_password' => [
-            'text' => 'THis is insecure and needs to be reimplemented :-)',
+            'text' => 'This is insecure and needs to be reimplemented :-)',
             'value_label' => 'Your password',
         ],
         'password_reset' => [
             'text' => 'Please follow this link to reset your password',
         ],
     ],
-
+    'logout' => 'Sign out',
 ];

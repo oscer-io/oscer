@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'menus' => 'Menüs',
     'show_page_title' => 'Menü anzeigen - \'{name}\' (ID: {id})',
     'index_page_title' => 'Menüs',
     'edit_title' => 'Menü bearbeiten - \'{name}\'',
@@ -22,4 +23,8 @@ return [
     'button_order_save' => 'Reihenfolge speichern',
     'button_order_disabled' => 'Reihenfolge nicht geändert',
     'index_item_count' => '{count} Menüeinträge',
+    'toast.item_updated' => 'Menüeintrag \':item\' aktualisiert',
+    'toast.item_created' => 'Menüeintrag \':item\' erstellt',
+    'toast.item_deleted' => 'Menüeintrag \':item\' gelöscht',
+    'toast.reordered' => 'Menüreihenfolge geändert',
 ];

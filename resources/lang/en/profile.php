@@ -1,7 +1,9 @@
 <?php
 
 return [
+    'profile' => 'Profile',
     'menu_label' => 'Your Profile',
+    'menu_logout' => 'Sign out',
     'label' => 'Profile',
     'subtitle' => 'This information will be displayed publicly so be careful what you share.',
     'name' => 'Name',
@@ -14,7 +16,5 @@ return [
     'change_password' => 'Change your password',
     'password' => 'Password',
     'password_confirmation' => 'Confirm password',
-    'toast' => [
-        'updated' => 'Profile updated',
-    ],
+    'toast.updated' => 'Profile updated',
 ];
