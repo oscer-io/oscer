@@ -10,27 +10,27 @@ interface Theme
      *  'main_menu' => [
      *      'template' => 'cms:menus.main'
      *  ]
-     * ]
+     * ].
      */
     public function getMenus(): array;
 
     /**
-     * Declare which template will be used for the front page
+     * Declare which template will be used for the front page.
      */
     public function getFrontPageTemplate(): string;
 
     /**
-     * Declare which template will be used for pages
+     * Declare which template will be used for pages.
      */
     public function getPageTemplate(): string;
 
     /**
-     * Declare which template will be used for the post index page
+     * Declare which template will be used for the post index page.
      */
     public function getPostIndexTemplate(): string;
 
     /**
-     * Declare which template will be used for a single post page
+     * Declare which template will be used for a single post page.
      */
     public function getPostShowTemplate(): string;
 
