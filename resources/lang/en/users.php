@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'users' => 'Users',
     'edit_page_title' => 'Edit user - \'{name}\' (ID: {id})',
     'create_page_title' => 'New user',
     'show_page_title' => 'Show user - \'{name}\' (ID: {id})',
@@ -23,4 +24,6 @@ return [
     'button_edit' => 'Edit user',
     'button_show' => 'Show',
     'placeholder_search' => 'Search...',
+    'toast.updated' => 'User \':user\' updated',
+    'toast.created' => 'User \':user\' created',
 ];

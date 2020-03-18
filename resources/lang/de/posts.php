@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'posts' => 'Beiträge',
     'edit_page_title' => 'Beitrag bearbeiten - \'{name}\' (ID: {id})',
     'create_page_title' => 'Neuer Beitrag',
     'show_page_title' => 'Beitrag anzeigen - \'{name}\' (ID: {id})',
@@ -25,5 +26,8 @@ return [
     'button_create' => 'Beitrag erstellen',
     'button_edit' => 'Beitrag editieren',
     'button_show' => 'Anzeigen',
-    'placeholder_search' => 'Search...',
+    'placeholder_search' => 'Suchen...',
+    'toast.updated' => 'Beitrag \':post\' aktualisiert',
+    'toast.created' => 'Beitrag \':post\' erstellt',
+    'toast.deleted' => 'Beitrag \':post\' gelöscht',
 ];

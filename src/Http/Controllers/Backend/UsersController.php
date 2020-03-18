@@ -32,7 +32,10 @@ class UsersController
     {
         $user->update($request->validated());
 
-        session()->flash('message', ['type' => 'success', 'text' => "User {$user->name} updated"]);
+        session()->flash('message', [
+            'type' => 'success',
+            'text' => __('cms::users.toast.updated', ['user' => $user->name]),
+        ]);
 
         return Redirect::route('cms.backend.users.show', ['user' => $user]);
     }
@@ -51,7 +54,10 @@ class UsersController
 
         Mail::to($user->email)->send(new NewUserCreatedMail($password));
 
-        session()->flash('message', ['type' => 'success', 'text' => "User {$user->name} created"]);
+        session()->flash('message', [
+            'type' => 'success',
+            'text' => __('cms::users.toast.created', ['user' => $user->name]),
+        ]);
 
         return Redirect::route('cms.backend.users.show', ['user' => $user]);
     }
