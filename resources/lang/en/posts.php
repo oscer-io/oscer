@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'posts' => 'Posts',
     'edit_page_title' => 'Edit post - \'{name}\' (ID: {id})',
     'create_page_title' => 'Newposts.php post',
     'show_page_title' => 'Show post - \'{name}\' (ID: {id})',
@@ -26,4 +27,7 @@ return [
     'button_edit' => 'Edit post',
     'button_show' => 'Show',
     'placeholder_search' => 'Search...',
+    'toast.updated' => 'Post \':post\' updated',
+    'toast.created' => 'Post \':post\' created',
+    'toast.deleted' => 'Post \':post\' deleted',
 ];

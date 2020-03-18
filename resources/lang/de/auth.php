@@ -1,17 +1,37 @@
 <?php
 
 return [
-    /*
-    |--------------------------------------------------------------------------
-    | Authentication Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used during authentication for various
-    | messages that we need to display to the user. You are free to modify
-    | these language lines according to your application's requirements.
-    |
-    */
 
-    'failed' => 'Diese Kombination aus Zugangsdaten wurde nicht in unserer Datenbank gefunden.',
-    'throttle' => 'Zu viele Loginversuche. Versuchen Sie es bitte in :seconds Sekunden nochmal.',
+    'pages' => [
+        'login' => [
+            'title' => 'Bei deinem Account anmelden',
+            'logged_out' => 'Du wurdest abgemeldet.',
+            'remember' => 'Angemeldet bleiben',
+            'forgot' => 'Passwort vergessen?',
+            'login' => 'Anmelden',
+        ],
+        'reset_password' => [
+            'title' => 'Passwort zurücksetzen',
+            'error' => 'Ungültiger reset token.',
+            'success' => 'Du solltest in Kürze eine E-Mail erhalten.',
+            'reset' => 'Passwort zurücksetzen',
+        ],
+        'new_password' => [
+            'title' => 'Dein neues Passwort',
+            'text' => 'Kopiere es und gehe zur Anmeldeseite.',
+            'goto' => 'Gehe zur Anmeldeseite',
+        ],
+    ],
+
+    'mails' => [
+        'salutation' => 'Hallo',
+        'your_password' => [
+            'text' => 'This is insecure and needs to be reimplemented :-)',
+            'value_label' => 'Dein Passwort',
+        ],
+        'password_reset' => [
+            'text' => 'Bitte folge dem Link um dein Passwort zurückzusetzen.',
+        ],
+    ],
+    'logout' => 'Abmelden',
 ];

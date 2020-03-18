@@ -50,13 +50,14 @@
                                 <textarea id="about" rows="3" v-model="form.bio"
                                           class="form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"></textarea>
                         </div>
-                        <p v-if="$page.errors.bio" class="mt-2 text-sm text-red-600">{{ $page.errors.bio[0]
-                            }}</p>
+                        <p v-if="$page.errors.bio" class="mt-2 text-sm text-red-600">{{ $page.errors.bio[0] }}</p>
                         <p class="mt-2 text-sm text-gray-500">{{$t('profile.bio_subtext')}}</p>
                     </div>
 
                     <div class="sm:col-span-6">
-                        <p class="mt-2 text-sm text-gray-500">Change your password</p>
+                        <p class="mt-2 text-sm text-gray-500">
+                            {{$t('profile.change_password')}}
+                        </p>
                     </div>
                     <div class="sm:col-span-3">
                         <label for="password" class="block text-sm font-medium leading-5 text-gray-700">
