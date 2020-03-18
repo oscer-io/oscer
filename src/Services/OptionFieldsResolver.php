@@ -44,7 +44,7 @@ class OptionFieldsResolver
     {
         $fields = collect($fields)
             ->map(function ($info, $name) use ($tab) {
-                $info['value'] = $this->getOptionValue("{$tab}/{$name}");
+                $info['value'] = $this->getOptionValue("{$tab}.{$name}");
 
                 return $info;
             });

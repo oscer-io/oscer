@@ -13,7 +13,7 @@ class OptionFieldsResolverTest extends TestCase
     public function it_merges_the_values_to_the_fields()
     {
         factory(Option::class)->create([
-            'key' => 'pages/front_page',
+            'key' => 'pages.front_page',
             'value' => 'a-page-slug',
         ]);
 
