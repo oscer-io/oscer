@@ -8,16 +8,17 @@ use Bambamboole\LaravelCms\Tests\TestCase;
 class ListOptionsTest extends TestCase
 {
     /** @test */
-    public function it_merges_the_values_to_the_fields()
+    public function the_user_needs_to_be_authenticated()
     {
-        Option::create([
-            'key' => 'pages/front_page',
-            'value' => 'a-page-slug',
-        ]);
+        $this->get('/admin/options')->assertRedirect('/admin/login');
+    }
 
+    /** @test */
+    public function options_can_be_retrieved()
+    {
         $this->login();
-        $response = $this->get('/admin/options');
 
-        $this->assertEquals('a-page-slug', $response->json('pages.front_page.value'));
+        // @TODO better assertion
+        $this->get('/admin/options')->assertOk();
     }
 }
