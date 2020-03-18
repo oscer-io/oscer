@@ -40,6 +40,7 @@ class DefaultTheme implements Theme
     {
         return [
             'title_prefix' => [
+                'label' => 'Title prefix',
                 'type' => 'text',
             ],
         ];

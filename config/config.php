@@ -19,6 +19,7 @@ return [
     'options' => [
         'pages' => [
             'front_page' => [
+                'label' => 'Frontpage Slug',
                 'type' => 'text',
             ],
         ],
