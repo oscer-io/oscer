@@ -2,7 +2,6 @@
 
 namespace Bambamboole\LaravelCms\Tests\Feature\Backend\Options;
 
-use Bambamboole\LaravelCms\Models\Option;
 use Bambamboole\LaravelCms\Tests\TestCase;
 
 class ListOptionsTest extends TestCase
