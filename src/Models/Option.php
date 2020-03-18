@@ -13,8 +13,10 @@ use Illuminate\Support\Carbon;
  */
 class Option extends BaseModel
 {
-    public static function getValueByKey(string $key): string
+    public static function getValueByKey(string $key, $default = null): ?string
     {
-        return static::query()->where('key', $key)->firstOrFail()->value;
+        $option = static::query()->where('key', $key)->first();
+
+        return $option ? $option->value : null;
     }
 }
