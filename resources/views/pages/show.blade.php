@@ -3,6 +3,6 @@
 @section('content')
     <h1>{{$page->name}}</h1>
     <div>
-        {!! $page->getRenderedBody !!}
+        {!! $page->getRenderedBody() !!}
     </div>
 @endsection
