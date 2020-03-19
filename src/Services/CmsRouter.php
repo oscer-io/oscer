@@ -46,6 +46,10 @@ class CmsRouter
             return Page::query()->get('slug');
         });
 
+        if (! Schema::connection(config('cms.database_connection'))->hasTable('options')) {
+            return new Collection();
+        }
+
         $this->router
             ->middleware([$middleware, SetLocale::class])
             ->prefix($pathPrefix)
