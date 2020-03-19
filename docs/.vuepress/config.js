@@ -14,6 +14,7 @@ module.exports = {
                 collapsable: false,
                 children: [
                     ['getting-started/installation', 'Installation'],
+                    ['getting-started/configuration', 'Configuration'],
                     ['getting-started/dummy-data', 'Seed dummy data'],
                 ],
 
