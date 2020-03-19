@@ -10,12 +10,6 @@ return [
         'url' => 'admin',
         'middleware' => 'web',
     ],
-    'posts' => [
-        'middleware' => 'web',
-    ],
-    'pages' => [
-        'middleware' => 'web',
-    ],
     'options' => [
         'pages' => [
             'front_page' => [

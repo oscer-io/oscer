@@ -35,7 +35,7 @@ class CmsRouter
         $this->config = $config;
     }
 
-    public function registerPagesRoutes(string $pathPrefix = '')
+    public function registerPagesRoutes(string $pathPrefix = '', $middleware = 'web')
     {
         /** @var Collection $pages */
         $pages = Cache::rememberForever('cms.slugs', function () {
@@ -47,7 +47,7 @@ class CmsRouter
         });
 
         $this->router
-            ->middleware([$this->config->get('cms.pages.middleware'), SetLocale::class])
+            ->middleware([$middleware, SetLocale::class])
             ->prefix($pathPrefix)
             ->as('cms.')
             ->group(function (Router $router) use ($pages) {
@@ -70,10 +70,10 @@ class CmsRouter
             });
     }
 
-    public function registerPostsRoutes(string $pathPrefix = 'posts')
+    public function registerPostsRoutes(string $pathPrefix = 'posts', $middleware = 'web')
     {
         $this->router
-            ->middleware([$this->config->get('cms.posts.middleware'), SetLocale::class])
+            ->middleware([$middleware, SetLocale::class])
             ->prefix($pathPrefix)
             ->as('cms.')
             ->group(function (Router $router) {
