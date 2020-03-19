@@ -20,6 +20,7 @@
         "inertiajs/inertia-laravel": "^0.2.5",
         "laravel/framework": "^7.0",
         "spatie/commonmark-highlighter": "^2.1",
+        "spatie/laravel-permission": "^3.11",
         "spatie/laravel-sluggable": "^2.4"
     },
     "require-dev": {
