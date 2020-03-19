@@ -124,6 +124,6 @@ class SeedCommand extends Command
 
     protected function seedOptions()
     {
-        Option::query()->create(['key' => 'pages.front_page','value' => 'front-page']);
+        Option::query()->create(['key' => 'pages.front_page', 'value' => 'front-page']);
     }
 }
