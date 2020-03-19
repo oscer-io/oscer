@@ -8,4 +8,5 @@ LaravelCms
     .setContainer('#app')
     .activateInternationalization()
     .activateInertia()
+    .activateVueTailwind()
     .start();

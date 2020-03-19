@@ -6,6 +6,8 @@ import vClickOutside from "v-click-outside";
 import VueI18n from 'vue-i18n';
 import languageBundle
     from '@kirschbaum-development/laravel-translations-loader/php?parameters={{ $1 }}!@kirschbaum-development/laravel-translations-loader';
+import VueTailwind from 'vue-tailwind';
+import Theme from './laravelCmsTheme';
 
 export default new Vue({
     data() {
@@ -111,5 +113,12 @@ export default new Vue({
             });
             return this;
         },
+
+        activateVueTailwind(){
+            Vue.use(VueTailwind, {
+                theme: Theme
+            });
+            return this;
+        }
     }
 });
