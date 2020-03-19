@@ -83,6 +83,9 @@ php artisan cms:migrate
 ```  
 If you migrate the first time, it will also create a user and show the credentials in the console.
 
+## Documentation
+See the [docs](https://laravel-cms.io) for detailed installation and usage instructions.
+
 ## Usage
 Head to the `/admin/login` route and use the credentials from the first migration.
 
