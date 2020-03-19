@@ -9,6 +9,7 @@ module.exports = {
         displayAllHeaders: true,
         sidebarDepth: 0,
         sidebar: [
+            ['introduction', 'Introduction'],
             {
                 title: 'Getting Started',
                 collapsable: false,
