@@ -29,7 +29,7 @@ class PagesController
     {
         $page = Page::query()->where(
             'slug',
-            Option::getValueByKey('pages/front_page')
+            Option::getValueByKey('pages.front_page')
         )->firstOrFail();
 
         return view($this->theme->getFrontPageTemplate(), ['page' => $page]);
