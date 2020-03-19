@@ -2,6 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Http\Controllers;
 
+use Bambamboole\LaravelCms\Models\Option;
 use Bambamboole\LaravelCms\Models\Page;
 use Bambamboole\LaravelCms\Themes\Theme;
 use Illuminate\Http\Request;
@@ -22,5 +23,15 @@ class PagesController
         $page = Page::query()->where('slug', $slug)->firstOrFail();
 
         return view($this->theme->getPageTemplate(), ['page' => $page]);
+    }
+
+    public function frontPage()
+    {
+        $page = Page::query()->where(
+            'slug',
+            Option::getValueByKey('pages/front_page')
+        )->firstOrFail();
+
+        return view($this->theme->getFrontPageTemplate(), ['page' => $page]);
     }
 }

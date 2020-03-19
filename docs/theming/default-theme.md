@@ -1,5 +1,4 @@
 # DefaultTheme
-
 The `DefaultTheme` which comes with LaravelCms looks like this:
 
 ```php
@@ -37,5 +36,3 @@ class DefaultTheme implements Theme
     }
 }
 ```
-
-It is responsible for the paths of the views which are used for different parts of the CMS.

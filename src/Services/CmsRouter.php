@@ -5,6 +5,7 @@ namespace Bambamboole\LaravelCms\Services;
 use Bambamboole\LaravelCms\Http\Controllers\Auth\ForgotPasswordController;
 use Bambamboole\LaravelCms\Http\Controllers\Auth\LoginController;
 use Bambamboole\LaravelCms\Http\Controllers\Backend\MenusController;
+use Bambamboole\LaravelCms\Http\Controllers\Backend\OptionsController;
 use Bambamboole\LaravelCms\Http\Controllers\Backend\PagesController;
 use Bambamboole\LaravelCms\Http\Controllers\Backend\PostsController;
 use Bambamboole\LaravelCms\Http\Controllers\Backend\ProfileController;
@@ -14,6 +15,7 @@ use Bambamboole\LaravelCms\Http\Controllers\PostsController as FrontendPostsCont
 use Bambamboole\LaravelCms\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Http\Middleware\SetInertiaConfiguration;
 use Bambamboole\LaravelCms\Http\Middleware\SetLocale;
+use Bambamboole\LaravelCms\Models\Option;
 use Bambamboole\LaravelCms\Models\Page;
 use Illuminate\Config\Repository;
 use Illuminate\Routing\Router;
@@ -35,6 +37,7 @@ class CmsRouter
 
     public function registerPagesRoutes(string $pathPrefix = '')
     {
+        /** @var Collection $pages */
         $pages = Cache::rememberForever('cms.slugs', function () {
             if (! Schema::connection(config('cms.database_connection'))->hasTable('pages')) {
                 return new Collection();
@@ -42,13 +45,27 @@ class CmsRouter
 
             return Page::query()->get('slug');
         });
+
         $this->router
             ->middleware([$this->config->get('cms.pages.middleware'), SetLocale::class])
             ->prefix($pathPrefix)
             ->as('cms.')
             ->group(function (Router $router) use ($pages) {
+                if ($frontPageSlug = Option::getValueByKey('pages.front_page')) {
+                    $pages = $pages->filter(function (Page $page) use ($router, $frontPageSlug) {
+                        if ($page->slug === $frontPageSlug) {
+                            $router->get('/', [FrontendPagesController::class, 'frontPage'])
+                                ->name('pages.front_page');
+
+                            return false;
+                        }
+
+                        return true;
+                    });
+                }
                 $pages->each(function (Page $page) use ($router) {
-                    $router->get("/{$page->slug}", [FrontendPagesController::class, 'show'])->name("pages.{$page->slug}");
+                    $router->get("/{$page->slug}", [FrontendPagesController::class, 'show'])
+                        ->name("pages.{$page->slug}");
                 });
             });
     }
@@ -125,6 +142,9 @@ class CmsRouter
                 $router->get('/profile', [ProfileController::class, 'show'])->name('profile.show');
                 $router->get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
                 $router->put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+                $router->get('/options', [OptionsController::class, 'index'])->name('options.index');
+                $router->post('/options', [OptionsController::class, 'store'])->name('options.store');
             });
     }
 }

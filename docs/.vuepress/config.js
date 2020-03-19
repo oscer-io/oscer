@@ -32,6 +32,7 @@ module.exports = {
                 title: 'Theming',
                 collapsable: false,
                 children: [
+                    ['theming/introduction', 'Introduction'],
                     ['theming/default-theme', 'DefaultTheme'],
                     ['theming/menus', 'Menus'],
                     ['theming/posts', 'Posts'],

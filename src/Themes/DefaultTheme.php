@@ -16,6 +16,11 @@ class DefaultTheme implements Theme
         ];
     }
 
+    public function getFrontPageTemplate(): string
+    {
+        return $this->getPageTemplate();
+    }
+
     public function getPageTemplate(): string
     {
         return 'cms::pages.show';
@@ -29,5 +34,15 @@ class DefaultTheme implements Theme
     public function getPostShowTemplate(): string
     {
         return 'cms::posts.show';
+    }
+
+    public function getOptions(): array
+    {
+        return [
+            'title_prefix' => [
+                'label' => 'Title prefix',
+                'type' => 'text',
+            ],
+        ];
     }
 }

@@ -16,4 +16,12 @@ return [
     'pages' => [
         'middleware' => 'web',
     ],
+    'options' => [
+        'pages' => [
+            'front_page' => [
+                'label' => 'Frontpage Slug',
+                'type' => 'text',
+            ],
+        ],
+    ],
 ];
