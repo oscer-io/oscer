@@ -35,16 +35,19 @@ class CmsRouter
         $this->config = $config;
     }
 
+    public function isMigrated()
+    {
+        return Schema::hasTable('cms_pages')
+            && Schema::hasTable('options');
+    }
+
     public function registerPagesRoutes(string $pathPrefix = '', $middleware = 'web')
     {
-        /** @var Collection $pages */
-        $pages = Cache::rememberForever('cms.slugs', function () {
-            if (! Schema::connection(config('cms.database_connection'))->hasTable('pages')) {
-                return new Collection();
-            }
+        if (!$this->isMigrated()){
+            return;
+        }
 
-            return Page::query()->get('slug');
-        });
+        $pages = Page::query()->get('slug');
 
         $this->router
             ->middleware([$middleware, SetLocale::class])
