@@ -7,6 +7,7 @@ use Bambamboole\LaravelCms\Models\Option;
 use Bambamboole\LaravelCms\Models\Page;
 use Bambamboole\LaravelCms\Models\Post;
 use Bambamboole\LaravelCms\Models\Tag;
+use Bambamboole\LaravelCms\Models\User;
 use Faker\Generator;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Foundation\Application;
@@ -31,15 +32,25 @@ class SeedCommand extends Command
             return Factory::construct($faker, base_path('vendor/bambamboole/laravel-cms/tests/factories'));
         });
 
-        $this->seedTagsAndPosts();
-        $this->seedPages();
+        $user = User::query()->create([
+            'name' => 'First user',
+            'bio' => 'This is me.',
+            'email' => 'admin@admin.com',
+            'password' => 'password',
+        ]);
+
+        $this->line('User email: <info>admin@admin.com</info>');
+        $this->line('Password: <info>password</info>');
+
+        $this->seedTagsAndPosts($user);
+        $this->seedPages($user);
         $this->seedMenuItems();
         $this->seedOptions();
 
         $this->info('Laravel CMS was seeded with dummy data.');
     }
 
-    protected function seedTagsAndPosts()
+    protected function seedTagsAndPosts($user)
     {
         $this->comment('Seeding tags');
         $tags = collect(['General', 'Tech', 'PHP', 'Laravel', 'Vue.js', 'Travel'])
@@ -49,7 +60,7 @@ class SeedCommand extends Command
         $this->info("{$tags->count()} tags seeded");
 
         $this->comment('Seeding posts');
-        $posts = factory(Post::class, 10)->create(['author_id' => 1]);
+        $posts = factory(Post::class, 10)->create(['author_id' => $user->id]);
         $posts->each(function (Post $post) use ($tags) {
             $post->tags()->sync($tags->random(rand(1, 3))->pluck('id'));
         });
@@ -59,7 +70,7 @@ class SeedCommand extends Command
     protected function seedMenuItems()
     {
         $this->comment('Seeding menu items');
-        collect([
+        $menuItems = collect([
             [
                 'name' => 'About me',
                 'menu' => 'main',
@@ -86,12 +97,12 @@ class SeedCommand extends Command
             ],
         ])->map(function ($data) {
             return factory(MenuItem::class)->create($data);
-        })->tap(function (Collection $menuItems) {
-            $this->info("{$menuItems->count()} menu items seeded.");
         });
+
+        $this->info("{$menuItems->count()} menu items seeded.");
     }
 
-    protected function seedPages()
+    protected function seedPages($user)
     {
         $this->comment('Seeding pages');
         collect([
@@ -115,8 +126,8 @@ class SeedCommand extends Command
                 'slug' => 'privacy',
                 'body' => $this->faker->paragraphs(rand(3, 5), true),
             ],
-        ])->each(function ($page) {
-            factory(Page::class)->create($page);
+        ])->map(function ($page) use ($user) {
+            return factory(Page::class)->create(array_merge($page,['author_id' => $user->id]));
         })->tap(function (Collection $pages) {
             $this->info("{$pages->count()} pages seeded");
         });
