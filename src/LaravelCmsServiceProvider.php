@@ -22,6 +22,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
          * Optional methods to load your package assets
          */
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'cms');
+        $this->loadMigrationsFrom(__DIR__.'/../migrations');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'cms');
         $this->registerGuard();
         $this->registerPublishes();

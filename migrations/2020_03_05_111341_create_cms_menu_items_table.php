@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMenuItemsTable extends Migration
+class CreateCmsMenuItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateMenuItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('menu_items', function (Blueprint $table) {
+        Schema::create('cms_menu_items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('menu');
@@ -30,6 +30,6 @@ class CreateMenuItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menu_items');
+        Schema::dropIfExists('cms_menu_items');
     }
 }

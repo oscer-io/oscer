@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateCmsPagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,18 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('cms_pages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->text('bio');
-            $table->string('avatar')->nullable();
-            $table->string('language')->default('en');
-            $table->rememberToken();
+            $table->string('slug')->unique();
+            $table->text('body');
+            $table->unsignedBigInteger('author_id');
+            $table->dateTime('published_at')->nullable();
             $table->timestamps();
+
+            $table->foreign('author_id')
+                ->references('id')
+                ->on('cms_users');
         });
     }
 
@@ -33,6 +35,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('cms_pages');
     }
 }
