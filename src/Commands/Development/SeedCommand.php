@@ -127,7 +127,7 @@ class SeedCommand extends Command
                 'body' => $this->faker->paragraphs(rand(3, 5), true),
             ],
         ])->map(function ($page) use ($user) {
-            return factory(Page::class)->create(array_merge($page,['author_id' => $user->id]));
+            return factory(Page::class)->create(array_merge($page, ['author_id' => $user->id]));
         })->tap(function (Collection $pages) {
             $this->info("{$pages->count()} pages seeded");
         });

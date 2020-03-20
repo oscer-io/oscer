@@ -16,7 +16,7 @@ abstract class BaseModel extends Model
      */
     public function getTable()
     {
-        return 'cms_' . Str::snake(Str::pluralStudly(class_basename($this)));
+        return 'cms_'.Str::snake(Str::pluralStudly(class_basename($this)));
     }
 
     /**
@@ -28,6 +28,6 @@ abstract class BaseModel extends Model
      */
     public function joiningTable($related, $instance = null)
     {
-        return 'cms_' . parent::joiningTable($related, $instance);
+        return 'cms_'.parent::joiningTable($related, $instance);
     }
 }
