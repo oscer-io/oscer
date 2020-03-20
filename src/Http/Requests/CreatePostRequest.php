@@ -3,7 +3,6 @@
 namespace Bambamboole\LaravelCms\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class CreatePostRequest extends FormRequest
 {

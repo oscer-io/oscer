@@ -19,7 +19,7 @@ class UpdateUserRequest extends FormRequest
             'email' => [
                 'filled',
                 'email',
-                Rule::unique('cms_users', 'email')->ignore($this->route('user'))
+                Rule::unique('cms_users', 'email')->ignore($this->route('user')),
             ],
             'bio' => ['filled', 'string'],
         ];

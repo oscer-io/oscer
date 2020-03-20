@@ -19,7 +19,7 @@ class UpdateProfileRequest extends FormRequest
             'email' => [
                 'required',
                 'email',
-                Rule::unique('cms_users', 'email')->ignore(auth()->user()->id)
+                Rule::unique('cms_users', 'email')->ignore(auth()->user()->id),
             ],
             'bio' => ['required', 'string'],
             'password' => ['filled', 'confirmed'],
