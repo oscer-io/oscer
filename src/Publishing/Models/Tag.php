@@ -3,7 +3,6 @@
 namespace Bambamboole\LaravelCms\Publishing\Models;
 
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
-use Bambamboole\LaravelCms\Publishing\Models\Post;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Spatie\Sluggable\HasSlug;

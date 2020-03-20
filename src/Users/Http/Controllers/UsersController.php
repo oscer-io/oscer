@@ -2,10 +2,10 @@
 
 namespace Bambamboole\LaravelCms\Users\Http\Controllers;
 
-use Bambamboole\LaravelCms\Users\Http\Requests\CreateUserRequest;
-use Bambamboole\LaravelCms\Users\Http\Requests\UpdateUserRequest;
 use Bambamboole\LaravelCms\Auth\Mails\NewUserCreatedMail;
 use Bambamboole\LaravelCms\Auth\Models\User;
+use Bambamboole\LaravelCms\Users\Http\Requests\CreateUserRequest;
+use Bambamboole\LaravelCms\Users\Http\Requests\UpdateUserRequest;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
