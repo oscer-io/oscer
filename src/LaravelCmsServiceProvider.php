@@ -2,21 +2,21 @@
 
 namespace Bambamboole\LaravelCms;
 
-use Bambamboole\LaravelCms\Commands\Development\SeedCommand;
-use Bambamboole\LaravelCms\Commands\PublishCommand;
-use Bambamboole\LaravelCms\Models\User;
-use Bambamboole\LaravelCms\Services\CmsRouter;
-use Bambamboole\LaravelCms\Themes\DefaultTheme;
-use Bambamboole\LaravelCms\Themes\Theme;
-use Bambamboole\LaravelCms\View\BladeComponents\MenuBladeComponent;
-use Bambamboole\LaravelCms\View\Composers\ThemeViewComposer;
+use Bambamboole\LaravelCms\Core\Commands\Development\SeedCommand;
+use Bambamboole\LaravelCms\Core\Commands\PublishCommand;
+use Bambamboole\LaravelCms\Auth\Models\User;
+use Bambamboole\LaravelCms\Routing\BackendRouter;
+use Bambamboole\LaravelCms\Theming\DefaultTheme;
+use Bambamboole\LaravelCms\Theming\Contracts\Theme;
+use Bambamboole\LaravelCms\Theming\BladeComponents\MenuBladeComponent;
+use Bambamboole\LaravelCms\Theming\ViewComposers\ThemeViewComposer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Factory;
 
 class LaravelCmsServiceProvider extends ServiceProvider
 {
-    public function boot(CmsRouter $router, Factory $view, Theme $theme, BladeCompiler $blade)
+    public function boot(BackendRouter $router, Factory $view, Theme $theme, BladeCompiler $blade)
     {
         /*
          * Optional methods to load your package assets

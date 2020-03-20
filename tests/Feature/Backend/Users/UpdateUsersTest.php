@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Tests\Feature\Backend\Users;
 
-use Bambamboole\LaravelCms\Models\User;
+use Bambamboole\LaravelCms\Auth\Models\User;
 use Bambamboole\LaravelCms\Tests\TestCase;
 use Illuminate\Support\Facades\Hash;
 

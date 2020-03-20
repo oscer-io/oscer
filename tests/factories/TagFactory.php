@@ -2,7 +2,7 @@
 
 /** @var Factory $factory */
 
-use Bambamboole\LaravelCms\Models\Tag;
+use Bambamboole\LaravelCms\Publishing\Models\Tag;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
 
