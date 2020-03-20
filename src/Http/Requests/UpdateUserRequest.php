@@ -14,12 +14,13 @@ class UpdateUserRequest extends FormRequest
 
     public function rules(): array
     {
-        $uniqueRule = Rule::unique(config('cms.database_connection').'.users', 'email')
-            ->ignore($this->route('user'));
-
         return [
             'name' => ['filled', 'string'],
-            'email' => ['filled', 'email', $uniqueRule],
+            'email' => [
+                'filled',
+                'email',
+                Rule::unique('cms_users', 'email')->ignore($this->route('user'))
+            ],
             'bio' => ['filled', 'string'],
         ];
     }

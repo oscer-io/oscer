@@ -14,11 +14,9 @@ class CreateUserRequest extends FormRequest
 
     public function rules(): array
     {
-        $uniqueRule = Rule::unique(config('cms.database_connection').'.users', 'email');
-
         return [
             'name' => ['required', 'string'],
-            'email' => ['required', 'email', $uniqueRule],
+            'email' => ['required', 'email', 'unique:cms_users,email'],
             'bio' => ['filled', 'string'],
         ];
     }

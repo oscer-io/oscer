@@ -34,14 +34,12 @@ class CreatePostRequest extends FormRequest
      */
     public function rules(): array
     {
-        $uniqueRule = Rule::unique(config('cms.database_connection').'.posts', 'slug');
-
         return [
             'name' => ['required', 'string'],
             'slug' => [
                 'string',
                 'regex:/^[a-zA-Z0-9-]+$/', // like alpha_num but with dashes
-                $uniqueRule,
+                'unique:cms_posts,slug',
             ],
             'tags' => ['array'],
             'tags.*' => ['string'],

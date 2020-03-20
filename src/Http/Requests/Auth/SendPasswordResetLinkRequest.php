@@ -14,10 +14,8 @@ class SendPasswordResetLinkRequest extends FormRequest
 
     public function rules(): array
     {
-        $existsRule = Rule::exists(config('cms.database_connection').'.users', 'email');
-
         return [
-            'email' => ['required', 'email', $existsRule],
+            'email' => ['required', 'email', 'exists:cms_users,email'],
         ];
     }
 }

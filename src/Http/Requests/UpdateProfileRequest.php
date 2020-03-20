@@ -14,12 +14,13 @@ class UpdateProfileRequest extends FormRequest
 
     public function rules(): array
     {
-        $uniqueRule = Rule::unique(config('cms.database_connection').'.users', 'email')
-            ->ignore(auth()->user()->id);
-
         return [
             'name' => ['required', 'string'],
-            'email' => ['required', 'email', $uniqueRule],
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('cms_users', 'email')->ignore(auth()->user()->id)
+            ],
             'bio' => ['required', 'string'],
             'password' => ['filled', 'confirmed'],
         ];
