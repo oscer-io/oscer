@@ -19,8 +19,6 @@ use Bambamboole\LaravelCms\Models\Option;
 use Bambamboole\LaravelCms\Models\Page;
 use Illuminate\Config\Repository;
 use Illuminate\Routing\Router;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 
 class CmsRouter
@@ -43,7 +41,7 @@ class CmsRouter
 
     public function registerPagesRoutes(string $pathPrefix = '', $middleware = 'web')
     {
-        if (!$this->isMigrated()){
+        if (! $this->isMigrated()) {
             return;
         }
 
