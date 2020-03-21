@@ -5,6 +5,7 @@ namespace Bambamboole\LaravelCms\Auth\Models;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Carbon;
+use Laravel\Sanctum\HasApiTokens;
 
 /**
  * @property int id
@@ -17,6 +18,8 @@ use Illuminate\Support\Carbon;
  */
 class User extends BaseModel implements Authenticatable
 {
+    use HasApiTokens;
+
     /**
      * The attributes excluded from the model's JSON form.
      *

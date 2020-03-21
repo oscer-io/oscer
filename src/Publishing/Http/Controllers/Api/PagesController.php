@@ -14,6 +14,6 @@ class PagesController
 
     public function show(int $id)
     {
-        return new PageResource(Page::query()->firstOrFail($id));
+        return new PageResource(Page::query()->findOrFail($id));
     }
 }
