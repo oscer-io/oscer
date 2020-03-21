@@ -11,7 +11,6 @@ use Bambamboole\LaravelCms\Theming\BladeComponents\MenuBladeComponent;
 use Bambamboole\LaravelCms\Theming\Contracts\Theme;
 use Bambamboole\LaravelCms\Theming\DefaultTheme;
 use Bambamboole\LaravelCms\Theming\ViewComposers\ThemeViewComposer;
-use Illuminate\Cache\Repository;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Factory;
@@ -22,7 +21,6 @@ class LaravelCmsServiceProvider extends ServiceProvider
         ApiRouter $apiRouter,
         BackendRouter $backendRouter,
         BladeCompiler $blade,
-        Repository $config,
         Factory $view,
         Theme $theme
     ) {
