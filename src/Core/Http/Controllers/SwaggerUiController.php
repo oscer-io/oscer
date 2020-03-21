@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Bambamboole\LaravelCms\Core\Http\Controllers;
-
 
 class SwaggerUiController
 {
