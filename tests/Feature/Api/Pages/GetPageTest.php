@@ -24,6 +24,6 @@ class GetPageTest extends ApiTestCase
         $response = $this->get("/api/cms/pages/{$page->id}");
 
         $response->assertOk();
-        $this->assertJsonSchema('responses/page',  $response->getContent());
+        $this->assertJsonSchema('responses/page', $response->getContent());
     }
 }
