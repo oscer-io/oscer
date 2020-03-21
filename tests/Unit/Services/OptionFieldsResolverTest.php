@@ -2,8 +2,8 @@
 
 namespace Bambamboole\LaravelCms\Tests\Unit\Services;
 
-use Bambamboole\LaravelCms\Models\Option;
-use Bambamboole\LaravelCms\Services\OptionFieldsResolver;
+use Bambamboole\LaravelCms\Options\Models\Option;
+use Bambamboole\LaravelCms\Options\OptionFieldsResolver;
 use Bambamboole\LaravelCms\Tests\TestCase;
 use Illuminate\Support\Arr;
 

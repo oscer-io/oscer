@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Tests\Feature\Backend\Pages;
 
-use Bambamboole\LaravelCms\Models\Page;
+use Bambamboole\LaravelCms\Publishing\Models\Page;
 use Bambamboole\LaravelCms\Tests\TestCase;
 
 class UpdatePagesTest extends TestCase

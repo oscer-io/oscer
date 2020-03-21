@@ -2,8 +2,8 @@
 
 namespace Bambamboole\LaravelCms\Tests;
 
+use Bambamboole\LaravelCms\Auth\Models\User;
 use Bambamboole\LaravelCms\LaravelCmsServiceProvider;
-use Bambamboole\LaravelCms\Models\User;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase

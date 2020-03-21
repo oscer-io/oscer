@@ -18,12 +18,12 @@ Create a new `CmsServiceProvider` with the following `boot()` call:
 
 namespace App\Providers;
 
-use Bambamboole\LaravelCms\Services\CmsRouter;
+use Bambamboole\LaravelCms\Routing\FrontendRouter;
 use Illuminate\Support\ServiceProvider;
 
 class CmsServiceProvider extends ServiceProvider
 {
-    public function boot(CmsRouter $router)
+    public function boot(FrontendRouter $router)
     {
         $router->registerPagesRoutes();
         $router->registerPostsRoutes();
