@@ -31,7 +31,7 @@ class IssueTokenTest extends ApiTestCase
 
         $response = $this->post('/api/cms/auth/token', [
             'email' => $user->email,
-            'password' => 'secret'
+            'password' => 'secret',
         ]);
 
         $response->assertStatus(201);

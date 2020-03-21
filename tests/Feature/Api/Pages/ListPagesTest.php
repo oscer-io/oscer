@@ -25,6 +25,6 @@ class ListPagesTest extends ApiTestCase
         $response = $this->get('/api/cms/pages');
 
         $response->assertOk();
-        $this->assertJsonSchema('responses/page-collection',  $response->getContent());
+        $this->assertJsonSchema('responses/page-collection', $response->getContent());
     }
 }
