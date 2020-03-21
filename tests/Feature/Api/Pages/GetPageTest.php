@@ -5,7 +5,7 @@ namespace Bambamboole\LaravelCms\Tests\Feature\Api\Pages;
 use Bambamboole\LaravelCms\Publishing\Models\Page;
 use Bambamboole\LaravelCms\Tests\ApiTestCase;
 
-class ListPagesTest extends ApiTestCase
+class GetPageTest extends ApiTestCase
 {
     /** @test */
     public function the_request_needs_to_be_authenticated()
@@ -24,6 +24,6 @@ class ListPagesTest extends ApiTestCase
         $response = $this->get("/api/cms/pages/{$page->id}");
 
         $response->assertOk();
-        $this->assertJsonSchema('responses/page',  $response->getContent());
+        $this->assertJsonSchema('responses/page', $response->getContent());
     }
 }
