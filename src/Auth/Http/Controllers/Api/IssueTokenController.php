@@ -15,7 +15,7 @@ class IssueTokenController
         /** @var User $user */
         $user = User::query()->where('email', $request->input('email'))->first();
 
-        if (! $user || ! Hash::check($request->input('password'), $user->getAuthPassword())) {
+        if (!$user || !Hash::check($request->input('password'), $user->getAuthPassword())) {
             throw new HttpResponseException(response()->json([
                 'errors' => [
                     'email' => ['The provided credentials are incorrect.'],
@@ -23,6 +23,6 @@ class IssueTokenController
             ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY));
         }
 
-        return $user->createToken('admin_ui')->plainTextToken;
+        return response()->json(['token' => $user->createToken('admin_ui')->plainTextToken], 201);
     }
 }

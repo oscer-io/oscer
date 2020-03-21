@@ -33,6 +33,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
         $this->registerPublishes();
 
         $apiRouter->registerApiRoutes();
+        $apiRouter->withSwaggerUi();
 
         $backendRouter->registerAuthRoutes();
         $backendRouter->registerBackendRoutes();
@@ -67,6 +68,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../dist' => public_path('vendor/cms'),
+                __DIR__.'/../resources/open-api' => public_path('vendor/cms/open-api'),
             ], 'cms-assets');
 
             $this->publishes([
