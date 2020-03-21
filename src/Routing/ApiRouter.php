@@ -45,6 +45,7 @@ class ApiRouter
             ->prefix($this->prefix)
             ->group(function (Router $router) {
                 $router->get('/pages', [PagesController::class, 'index'])->name('pages.index');
+                $router->post('/pages', [PagesController::class, 'store'])->name('pages.store');
                 $router->get('/pages/{id}', [PagesController::class, 'show'])->name('pages.index');
             });
     }

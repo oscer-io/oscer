@@ -53,6 +53,32 @@ paths:
       operationId: get-pages
       security:
         - Token: []
+    post:
+      summary: ''
+      operationId: post-pages
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/page.json
+      security:
+        - Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                slug:
+                  type: string
+                body:
+                  type: string
+              required:
+                - name
   '/pages/{page_id}':
     parameters:
       - schema:
