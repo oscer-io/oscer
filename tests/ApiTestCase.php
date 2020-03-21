@@ -8,9 +8,7 @@ use Laravel\Sanctum\Sanctum;
 use Laravel\Sanctum\SanctumServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use PHPUnit\Framework\AssertionFailedError;
-use sixlive\JsonSchemaAssertions\Concerns\AssertsJsonSchema;
 use sixlive\JsonSchemaAssertions\SchemaAssertion;
-use Symfony\Component\Yaml\Yaml;
 
 class ApiTestCase extends BaseTestCase
 {
@@ -19,9 +17,9 @@ class ApiTestCase extends BaseTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->loadMigrationsFrom(['--path' => __DIR__ . '/../migrations']);
-        $this->loadMigrationsFrom(['--path' => __DIR__ . '/../vendor/laravel/sanctum/database/migrations']);
-        $this->withFactories(__DIR__ . '/factories');
+        $this->loadMigrationsFrom(['--path' => __DIR__.'/../migrations']);
+        $this->loadMigrationsFrom(['--path' => __DIR__.'/../vendor/laravel/sanctum/database/migrations']);
+        $this->withFactories(__DIR__.'/factories');
     }
 
     /**
@@ -34,7 +32,7 @@ class ApiTestCase extends BaseTestCase
     public function assertJsonSchema($schema, string $json): void
     {
         (new SchemaAssertion())
-            ->schema(__DIR__ . '/../resources/open-api/' . $schema)
+            ->schema(__DIR__.'/../resources/open-api/'.$schema)
             ->assert($json);
     }
 
