@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Auth\Mail;
+namespace Bambamboole\LaravelCms\Auth\Mails;
 
 use Illuminate\Mail\Mailable;
 
