@@ -3,7 +3,6 @@
 namespace Bambamboole\LaravelCms\Publishing\Http\Requests;
 
 use Bambamboole\LaravelCms\Core\Http\Requests\BaseRequest;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 class UpdatePageRequest extends BaseRequest

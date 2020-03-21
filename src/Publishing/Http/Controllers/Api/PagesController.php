@@ -26,7 +26,6 @@ class PagesController
                 'author_id' => auth()->user()->id,
             ], $request->validated()));
 
-
         return (new PageResource($page))
             ->response()
             ->setStatusCode(201);

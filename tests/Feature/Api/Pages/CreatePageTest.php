@@ -30,7 +30,7 @@ class CreatePageTest extends ApiTestCase
      * @test
      * @dataProvider invalidData
      */
-    public function data_needs_to_be_valid(string  $errorKey, array $overrides)
+    public function data_needs_to_be_valid(string $errorKey, array $overrides)
     {
         $this->login();
 
@@ -43,8 +43,8 @@ class CreatePageTest extends ApiTestCase
     public function invalidData()
     {
         return [
-          ['name', ['name' => '']],
-          ['slug', ['slug' => '']],
+            ['name', ['name' => '']],
+            ['slug', ['slug' => '']],
         ];
     }
 }
