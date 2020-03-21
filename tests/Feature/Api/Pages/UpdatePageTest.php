@@ -16,6 +16,16 @@ class UpdatePageTest extends ApiTestCase
     }
 
     /** @test */
+    public function a_unknown_id_returns_404()
+    {
+        $this->login();
+
+        $response = $this->patch("/api/cms/pages/1337", ['name' => 'updated_name']);
+
+        $response->assertStatus(404);
+    }
+
+    /** @test */
     public function a_page_can_be_updated()
     {
         $page = factory(Page::class)->create();

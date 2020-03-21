@@ -38,4 +38,11 @@ class PagesController
 
         return new PageResource($page);
     }
+
+    public function delete(int $id)
+    {
+        Page::query()->findOrFail($id)->delete();
+
+        return ['success' => true];
+    }
 }

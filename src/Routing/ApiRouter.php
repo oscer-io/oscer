@@ -48,6 +48,7 @@ class ApiRouter
                 $router->post('/pages', [PagesController::class, 'store'])->name('pages.store');
                 $router->get('/pages/{id}', [PagesController::class, 'show'])->name('pages.index');
                 $router->patch('/pages/{id}', [PagesController::class, 'update'])->name('pages.update');
+                $router->delete('/pages/{id}', [PagesController::class, 'delete'])->name('pages.delete');
             });
     }
 

@@ -24,6 +24,7 @@ class CreatePageTest extends ApiTestCase
 
         $response->assertStatus(201);
         $this->assertJsonSchema('responses/page', $response->getContent());
+        $this->assertEquals(1, Page::query()->count());
     }
 
     /**

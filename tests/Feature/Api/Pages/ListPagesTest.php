@@ -18,7 +18,7 @@ class ListPagesTest extends ApiTestCase
     /** @test */
     public function paginated_posts_can_be_fetched()
     {
-        factory(Page::class, 20)->create();
+        factory(Page::class, 5)->create();
 
         $this->login();
 
