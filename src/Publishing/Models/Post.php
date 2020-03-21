@@ -4,7 +4,6 @@ namespace Bambamboole\LaravelCms\Publishing\Models;
 
 use Bambamboole\LaravelCms\Auth\Models\User;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
-use Bambamboole\LaravelCms\Publishing\Models\Tag;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use League\CommonMark\Block\Element\FencedCode;

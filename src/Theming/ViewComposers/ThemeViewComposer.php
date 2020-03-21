@@ -2,8 +2,8 @@
 
 namespace Bambamboole\LaravelCms\Theming\ViewComposers;
 
-use Illuminate\View\View;
 use Bambamboole\LaravelCms\Theming\Contracts\Theme;
+use Illuminate\View\View;
 
 class ThemeViewComposer
 {

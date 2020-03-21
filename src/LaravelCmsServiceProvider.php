@@ -2,13 +2,13 @@
 
 namespace Bambamboole\LaravelCms;
 
+use Bambamboole\LaravelCms\Auth\Models\User;
 use Bambamboole\LaravelCms\Core\Commands\Development\SeedCommand;
 use Bambamboole\LaravelCms\Core\Commands\PublishCommand;
-use Bambamboole\LaravelCms\Auth\Models\User;
 use Bambamboole\LaravelCms\Routing\BackendRouter;
-use Bambamboole\LaravelCms\Theming\DefaultTheme;
-use Bambamboole\LaravelCms\Theming\Contracts\Theme;
 use Bambamboole\LaravelCms\Theming\BladeComponents\MenuBladeComponent;
+use Bambamboole\LaravelCms\Theming\Contracts\Theme;
+use Bambamboole\LaravelCms\Theming\DefaultTheme;
 use Bambamboole\LaravelCms\Theming\ViewComposers\ThemeViewComposer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;

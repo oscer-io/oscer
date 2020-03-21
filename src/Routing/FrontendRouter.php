@@ -1,12 +1,10 @@
 <?php
 
-
 namespace Bambamboole\LaravelCms\Routing;
 
-
+use Bambamboole\LaravelCms\Core\Http\Middleware\SetLocale;
 use Bambamboole\LaravelCms\Frontend\Http\Controllers\PagesController;
 use Bambamboole\LaravelCms\Frontend\Http\Controllers\PostsController;
-use Bambamboole\LaravelCms\Core\Http\Middleware\SetLocale;
 use Bambamboole\LaravelCms\Options\Models\Option;
 use Bambamboole\LaravelCms\Publishing\Models\Page;
 use Illuminate\Routing\Router;
@@ -29,7 +27,7 @@ class FrontendRouter
 
     public function registerPagesRoutes(string $pathPrefix = '', $middleware = 'web')
     {
-        if (!$this->isMigrated()) {
+        if (! $this->isMigrated()) {
             return;
         }
 
