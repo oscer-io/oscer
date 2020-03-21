@@ -32,8 +32,6 @@ paths:
               required:
                 - email
                 - password
-      security:
-        - Token: []
       parameters: []
       tags:
         - Auth
@@ -79,6 +77,8 @@ paths:
                   type: string
               required:
                 - name
+      tags:
+        - Publishing
   '/pages/{page_id}':
     parameters:
       - schema:
@@ -124,6 +124,8 @@ paths:
                   type: string
                 body:
                   type: string
+      tags:
+        - Publishing
     delete:
       summary: ''
       operationId: delete-pages-page_id
@@ -137,6 +139,10 @@ paths:
                 properties:
                   success:
                     type: boolean
+      tags:
+        - Publishing
+      security:
+        - Token: []
 components:
   schemas: {}
   securitySchemes:
