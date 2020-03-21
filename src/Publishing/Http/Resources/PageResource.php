@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Http\Resources;
+namespace Bambamboole\LaravelCms\Publishing\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

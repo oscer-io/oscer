@@ -5,30 +5,38 @@ namespace Bambamboole\LaravelCms;
 use Bambamboole\LaravelCms\Auth\Models\User;
 use Bambamboole\LaravelCms\Core\Commands\Development\SeedCommand;
 use Bambamboole\LaravelCms\Core\Commands\PublishCommand;
+use Bambamboole\LaravelCms\Routing\ApiRouter;
 use Bambamboole\LaravelCms\Routing\BackendRouter;
 use Bambamboole\LaravelCms\Theming\BladeComponents\MenuBladeComponent;
 use Bambamboole\LaravelCms\Theming\Contracts\Theme;
 use Bambamboole\LaravelCms\Theming\DefaultTheme;
 use Bambamboole\LaravelCms\Theming\ViewComposers\ThemeViewComposer;
+use Illuminate\Cache\Repository;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Factory;
 
 class LaravelCmsServiceProvider extends ServiceProvider
 {
-    public function boot(BackendRouter $router, Factory $view, Theme $theme, BladeCompiler $blade)
+    public function boot(
+        ApiRouter $apiRouter,
+        BackendRouter $backendRouter,
+        BladeCompiler $blade,
+        Repository $config,
+        Factory $view,
+        Theme $theme
+    )
     {
-        /*
-         * Optional methods to load your package assets
-         */
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'cms');
-        $this->loadMigrationsFrom(__DIR__.'/../migrations');
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'cms');
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'cms');
+        $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'cms');
         $this->registerGuard();
         $this->registerPublishes();
 
-        $router->registerAuthRoutes();
-        $router->registerBackendRoutes();
+        $apiRouter->registerApiRoutes();
+
+        $backendRouter->registerAuthRoutes();
+        $backendRouter->registerBackendRoutes();
 
         $view->composer([
             $theme->getPostShowTemplate(),
@@ -59,11 +67,11 @@ class LaravelCmsServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../dist' => public_path('vendor/cms'),
+                __DIR__ . '/../dist' => public_path('vendor/cms'),
             ], 'cms-assets');
 
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('cms.php'),
+                __DIR__ . '/../config/config.php' => config_path('cms.php'),
             ], 'cms-config');
         }
     }
@@ -73,7 +81,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'cms');
+        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'cms');
 
         $this->commands([
             PublishCommand::class,
