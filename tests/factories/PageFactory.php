@@ -22,7 +22,7 @@ $factory->define(Page::class, function (Faker $faker) {
     $randomImgUrl = 'https://picsum.photos/300/300?random='.$faker->unique()->randomNumber(5, true);
 
     return [
-        'author_id' => rand(0, 1) == 1 ? factory(User::class)->create(['avatar' => $randomImgUrl]) : User::all()->random()->id,
+        'author_id' => factory(User::class)->create(['avatar' => $randomImgUrl]),
         'name' => $faker->name,
         'slug' => $faker->unique()->slug,
         'body' => $faker->paragraph,

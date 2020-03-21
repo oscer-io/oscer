@@ -35,10 +35,13 @@ paths:
       security:
         - Token: []
       parameters: []
+      tags:
+        - Auth
   /pages:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - Publishing
       responses:
         '200':
           description: OK
@@ -59,7 +62,8 @@ paths:
         required: true
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - Publishing
       responses:
         '200':
           description: OK
@@ -68,6 +72,8 @@ paths:
               schema:
                 $ref: ../responses/page-response.yaml
       operationId: get-pages-page_id
+      security:
+        - Token: []
 components:
   schemas: {}
   securitySchemes:

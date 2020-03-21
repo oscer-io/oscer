@@ -10,7 +10,7 @@ class ListPagesTest extends ApiTestCase
     /** @test */
     public function the_request_needs_to_be_authenticated()
     {
-        $response = $this->get('/api/cms/pages');
+        $response = $this->get('/api/cms/pages/1');
 
         $response->assertStatus(401);
     }
@@ -18,13 +18,12 @@ class ListPagesTest extends ApiTestCase
     /** @test */
     public function paginated_posts_can_be_fetched()
     {
-        factory(Page::class,20)->create();
-
+        $page = factory(Page::class)->create();
         $this->login();
 
-        $response = $this->get('/api/cms/pages');
+        $response = $this->get("/api/cms/pages/{$page->id}");
 
         $response->assertOk();
-        $this->assertJsonSchema('responses/page-collection',  $response->getContent());
+        $this->assertJsonSchema('responses/page',  $response->getContent());
     }
 }
