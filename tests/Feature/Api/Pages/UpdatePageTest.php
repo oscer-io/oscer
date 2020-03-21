@@ -20,7 +20,7 @@ class UpdatePageTest extends ApiTestCase
     {
         $this->login();
 
-        $response = $this->patch("/api/cms/pages/1337", ['name' => 'updated_name']);
+        $response = $this->patch('/api/cms/pages/1337', ['name' => 'updated_name']);
 
         $response->assertStatus(404);
     }

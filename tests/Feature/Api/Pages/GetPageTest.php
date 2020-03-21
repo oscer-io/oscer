@@ -20,7 +20,7 @@ class GetPageTest extends ApiTestCase
     {
         $this->login();
 
-        $response = $this->get("/api/cms/pages/1337");
+        $response = $this->get('/api/cms/pages/1337');
 
         $response->assertStatus(404);
     }
