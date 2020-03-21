@@ -3,6 +3,7 @@
 namespace Bambamboole\LaravelCms\Publishing\Http\Controllers\Api;
 
 use Bambamboole\LaravelCms\Publishing\Http\Requests\CreatePageRequest;
+use Bambamboole\LaravelCms\Publishing\Http\Requests\UpdatePageRequest;
 use Bambamboole\LaravelCms\Publishing\Http\Resources\PageResource;
 use Bambamboole\LaravelCms\Publishing\Models\Page;
 
@@ -29,5 +30,13 @@ class PagesController
         return (new PageResource($page))
             ->response()
             ->setStatusCode(201);
+    }
+
+    public function update(UpdatePageRequest $request, int $id)
+    {
+        $page = Page::query()->findOrFail($id);
+        $page->update($request->validated());
+
+        return new PageResource($page);
     }
 }

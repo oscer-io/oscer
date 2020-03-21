@@ -2,19 +2,12 @@
 
 namespace Bambamboole\LaravelCms\Publishing\Http\Requests;
 
+use Bambamboole\LaravelCms\Core\Http\Requests\BaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdatePageRequest extends FormRequest
+class UpdatePageRequest extends BaseRequest
 {
-    /**
-     * @return bool
-     */
-    public function authorize(): bool
-    {
-        return true;
-    }
-
     /**
      * @return array
      */
@@ -29,9 +22,6 @@ class UpdatePageRequest extends FormRequest
         return $data;
     }
 
-    /**
-     * @return array
-     */
     public function rules(): array
     {
         return [

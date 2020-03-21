@@ -47,6 +47,7 @@ class ApiRouter
                 $router->get('/pages', [PagesController::class, 'index'])->name('pages.index');
                 $router->post('/pages', [PagesController::class, 'store'])->name('pages.store');
                 $router->get('/pages/{id}', [PagesController::class, 'show'])->name('pages.index');
+                $router->patch('/pages/{id}', [PagesController::class, 'update'])->name('pages.update');
             });
     }
 
