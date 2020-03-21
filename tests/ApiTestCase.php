@@ -1,0 +1,43 @@
+<?php
+
+namespace Bambamboole\LaravelCms\Tests;
+
+use Bambamboole\LaravelCms\Auth\Models\User;
+use Bambamboole\LaravelCms\LaravelCmsServiceProvider;
+use Orchestra\Testbench\TestCase as BaseTestCase;
+use PHPUnit\Framework\AssertionFailedError;
+use sixlive\JsonSchemaAssertions\Concerns\AssertsJsonSchema;
+use sixlive\JsonSchemaAssertions\SchemaAssertion;
+use Symfony\Component\Yaml\Yaml;
+
+class ApiTestCase extends BaseTestCase
+{
+    protected $defaultHeaders = ['Accept' => 'application/json'];
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->loadMigrationsFrom(['--path' => __DIR__ . '/../migrations']);
+        $this->loadMigrationsFrom(['--path' => __DIR__ . '/../vendor/laravel/sanctum/database/migrations']);
+        $this->withFactories(__DIR__ . '/factories');
+    }
+
+    /**
+     * @param array|string $schema
+     * @param string . $json
+     * @return void
+     *
+     * @throws AssertionFailedError
+     */
+    public function assertJsonSchema($schema, string $json): void
+    {
+        (new SchemaAssertion())
+            ->schema(Yaml::parseFile(__DIR__ . '/../resources/open-api/' . $schema))
+            ->assert($json);
+    }
+
+    protected function getPackageProviders($app)
+    {
+        return [LaravelCmsServiceProvider::class];
+    }
+}
