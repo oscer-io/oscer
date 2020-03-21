@@ -3,7 +3,6 @@
 namespace Bambamboole\LaravelCms\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class CreatePageRequest extends FormRequest
 {
@@ -34,14 +33,12 @@ class CreatePageRequest extends FormRequest
      */
     public function rules(): array
     {
-        $uniqueRule = Rule::unique(config('cms.database_connection').'.pages', 'slug');
-
         return [
             'name' => ['required', 'string'],
             'slug' => [
                 'string',
                 'regex:/^[a-zA-Z0-9-]+$/', // like alpha_num but with dashes
-                $uniqueRule,
+                'unique:cms_pages,slug',
             ],
             'body' => ['string'],
         ];

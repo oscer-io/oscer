@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTagsTable extends Migration
+class CreateCmsTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('cms_tags', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('slug')->unique();
@@ -21,18 +21,18 @@ class CreateTagsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('post_tag', function (Blueprint $table) {
+        Schema::create('cms_post_tag', function (Blueprint $table) {
             $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('tag_id');
 
             $table->foreign('post_id')
                 ->references('id')
-                ->on('posts')
+                ->on('cms_posts')
                 ->cascadeOnDelete();
 
             $table->foreign('tag_id')
                 ->references('id')
-                ->on('tags')
+                ->on('cms_tags')
                 ->cascadeOnDelete();
         });
     }
@@ -44,7 +44,7 @@ class CreateTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('cms_tags');
         Schema::dropIfExists('post_tag');
     }
 }

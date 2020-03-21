@@ -3,7 +3,6 @@
 namespace Bambamboole\LaravelCms;
 
 use Bambamboole\LaravelCms\Commands\Development\SeedCommand;
-use Bambamboole\LaravelCms\Commands\MigrateCommand;
 use Bambamboole\LaravelCms\Commands\PublishCommand;
 use Bambamboole\LaravelCms\Models\User;
 use Bambamboole\LaravelCms\Services\CmsRouter;
@@ -23,6 +22,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
          * Optional methods to load your package assets
          */
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'cms');
+        $this->loadMigrationsFrom(__DIR__.'/../migrations');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'cms');
         $this->registerGuard();
         $this->registerPublishes();
@@ -77,7 +77,6 @@ class LaravelCmsServiceProvider extends ServiceProvider
 
         $this->commands([
             PublishCommand::class,
-            MigrateCommand::class,
             SeedCommand::class,
         ]);
 

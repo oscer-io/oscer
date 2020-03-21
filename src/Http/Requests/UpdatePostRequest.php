@@ -25,15 +25,12 @@ class UpdatePostRequest extends FormRequest
 
     public function rules(): array
     {
-        $uniqueRule = Rule::unique(config('cms.database_connection').'.posts', 'slug')
-            ->ignore($this->route('post'));
-
         return [
             'name'   => ['required', 'string'],
             'slug'   => [
                 'string',
                 'regex:/^[a-zA-Z0-9-]+$/', // like alpha_num but with dashes
-                $uniqueRule,
+                Rule::unique('cms_posts', 'slug')->ignore($this->route('post')),
             ],
             'tags'   => ['array'],
             'tags.*' => ['string'],
