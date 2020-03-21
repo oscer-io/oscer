@@ -32,7 +32,7 @@ class DeletePageTest extends ApiTestCase
     {
         $this->login();
 
-        $response = $this->delete("/api/cms/pages/1337");
+        $response = $this->delete('/api/cms/pages/1337');
 
         $response->assertStatus(404);
     }
