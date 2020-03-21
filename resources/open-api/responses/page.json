@@ -1,0 +1,12 @@
+{
+  "title": "page",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "../models/page.json"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

@@ -35,6 +35,6 @@ class IssueTokenTest extends ApiTestCase
         ]);
 
         $response->assertStatus(201);
-        $this->assertJsonSchema('responses/issue-token-response.yaml', $response->getContent());
+        $this->assertJsonSchema('responses/issue-token', $response->getContent());
     }
 }

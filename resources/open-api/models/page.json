@@ -1,0 +1,24 @@
+{
+  "title": "page",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "body": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "slug",
+    "body"
+  ]
+}

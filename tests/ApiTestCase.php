@@ -4,6 +4,8 @@ namespace Bambamboole\LaravelCms\Tests;
 
 use Bambamboole\LaravelCms\Auth\Models\User;
 use Bambamboole\LaravelCms\LaravelCmsServiceProvider;
+use Laravel\Sanctum\Sanctum;
+use Laravel\Sanctum\SanctumServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use PHPUnit\Framework\AssertionFailedError;
 use sixlive\JsonSchemaAssertions\Concerns\AssertsJsonSchema;
@@ -32,12 +34,23 @@ class ApiTestCase extends BaseTestCase
     public function assertJsonSchema($schema, string $json): void
     {
         (new SchemaAssertion())
-            ->schema(Yaml::parseFile(__DIR__ . '/../resources/open-api/' . $schema))
+            ->schema(__DIR__ . '/../resources/open-api/' . $schema)
             ->assert($json);
     }
 
     protected function getPackageProviders($app)
     {
-        return [LaravelCmsServiceProvider::class];
+        return [
+            LaravelCmsServiceProvider::class,
+            SanctumServiceProvider::class,
+        ];
+    }
+
+    protected function login(array $overrides = []): User
+    {
+        $user = factory(User::class)->create($overrides);
+        Sanctum::actingAs($user);
+
+        return $user;
     }
 }

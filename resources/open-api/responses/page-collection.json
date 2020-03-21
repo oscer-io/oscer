@@ -1,0 +1,21 @@
+{
+  "title": "page-collection",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "items": {
+        "$ref": "../models/page.json"
+      }
+    },
+    "links": {
+      "$ref": "./links.json"
+    },
+    "meta": {
+      "$ref": "./meta.json"
+    }
+  }
+}
