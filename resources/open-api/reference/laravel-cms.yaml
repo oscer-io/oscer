@@ -1,0 +1,77 @@
+openapi: 3.0.0
+info:
+  title: Laravel CMS
+  version: '1.0'
+  description: ''
+servers:
+  - url: 'http://web.cms.test/api/cms'
+paths:
+  /auth/token:
+    post:
+      summary: Issuing an API token
+      operationId: post-auth-token
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/issue-token-response.yaml
+        '422':
+          description: Unprocessable Entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - password
+      security:
+        - Token: []
+      parameters: []
+  /pages:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/page-collection-response.yaml
+              examples: {}
+      operationId: get-pages
+      security:
+        - Token: []
+  '/pages/{page_id}':
+    parameters:
+      - schema:
+          type: string
+        name: page_id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/page-response.yaml
+      operationId: get-pages-page_id
+components:
+  schemas: {}
+  securitySchemes:
+    Token:
+      name: Authorization
+      type: apiKey
+      in: header

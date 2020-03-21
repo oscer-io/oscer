@@ -1,0 +1,19 @@
+title: Links information of response
+type: object
+description: This is part of collection responses. It contains the urls for different resources
+properties:
+  first:
+    type: string
+  last:
+    type: string
+  prev:
+    type:
+      - string
+      - 'null'
+  next:
+    type:
+      - string
+      - 'null'
+required:
+  - first
+  - last
