@@ -4,7 +4,7 @@ The `DefaultTheme` which comes with LaravelCms looks like this:
 ```php
 <?php
 
-namespace Bambamboole\LaravelCms\Themes;
+namespace Bambamboole\LaravelCms\Theming;
 
 class DefaultTheme implements Theme
 {
