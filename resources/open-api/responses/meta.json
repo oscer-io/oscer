@@ -1,0 +1,42 @@
+{
+  "title": "meta",
+  "type": "object",
+  "properties": {
+    "current_page": {
+      "type": "integer"
+    },
+    "last_page": {
+      "type": "integer"
+    },
+    "per_page": {
+      "type": "integer"
+    },
+    "total": {
+      "type": "integer"
+    },
+    "from": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "to": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "path": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "current_page",
+    "last_page",
+    "per_page",
+    "total",
+    "from",
+    "to",
+    "path"
+  ]
+}

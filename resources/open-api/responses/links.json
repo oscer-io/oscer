@@ -1,0 +1,28 @@
+{
+  "title": "links",
+  "type": "object",
+  "properties": {
+    "first": {
+      "type": "string"
+    },
+    "last": {
+      "type": "string"
+    },
+    "prev": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "next": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "first",
+    "last"
+  ]
+}

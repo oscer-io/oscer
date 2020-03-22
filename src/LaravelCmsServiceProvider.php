@@ -5,30 +5,37 @@ namespace Bambamboole\LaravelCms;
 use Bambamboole\LaravelCms\Auth\Models\User;
 use Bambamboole\LaravelCms\Core\Commands\Development\SeedCommand;
 use Bambamboole\LaravelCms\Core\Commands\PublishCommand;
+use Bambamboole\LaravelCms\Routing\ApiRouter;
 use Bambamboole\LaravelCms\Routing\BackendRouter;
 use Bambamboole\LaravelCms\Theming\BladeComponents\MenuBladeComponent;
 use Bambamboole\LaravelCms\Theming\Contracts\Theme;
 use Bambamboole\LaravelCms\Theming\DefaultTheme;
 use Bambamboole\LaravelCms\Theming\ViewComposers\ThemeViewComposer;
+use Illuminate\Config\Repository;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Factory;
 
 class LaravelCmsServiceProvider extends ServiceProvider
 {
-    public function boot(BackendRouter $router, Factory $view, Theme $theme, BladeCompiler $blade)
-    {
-        /*
-         * Optional methods to load your package assets
-         */
+    public function boot(
+        ApiRouter $apiRouter,
+        BackendRouter $backendRouter,
+        BladeCompiler $blade,
+        Factory $view,
+        Repository $config,
+        Theme $theme
+    ) {
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'cms');
         $this->loadMigrationsFrom(__DIR__.'/../migrations');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'cms');
-        $this->registerGuard();
+        $this->registerGuard($config);
         $this->registerPublishes();
 
-        $router->registerAuthRoutes();
-        $router->registerBackendRoutes();
+        $apiRouter->registerApiRoutes();
+
+        $backendRouter->registerAuthRoutes();
+        $backendRouter->registerBackendRoutes();
 
         $view->composer([
             $theme->getPostShowTemplate(),
@@ -42,17 +49,24 @@ class LaravelCmsServiceProvider extends ServiceProvider
     /**
      * Register the package's guard.
      */
-    protected function registerGuard(): void
+    protected function registerGuard(Repository $config): void
     {
-        $this->app['config']->set('auth.providers.cms_users', [
+        $config->set('auth.providers.cms_users', [
             'driver' => 'eloquent',
             'model' => User::class,
         ]);
 
-        $this->app['config']->set('auth.guards.cms', [
+        $config->set('auth.guards.cms', [
             'driver' => 'session',
             'provider' => 'cms_users',
         ]);
+
+        $statefulHosts = $config->get('sanctum.stateful');
+        $statefulHosts = is_array($statefulHosts)
+            ? $statefulHosts[] = $config->get('cms.backend.domain')
+            : [$statefulHosts, $config->get('cms.backend.domain')];
+
+        $config->set('sanctum.stateful', $statefulHosts);
     }
 
     protected function registerPublishes(): void

@@ -1,0 +1,150 @@
+openapi: 3.0.0
+info:
+  title: Laravel CMS
+  version: '1.0'
+  description: ''
+paths:
+  /auth/token:
+    post:
+      summary: Issuing an API token
+      operationId: post-auth-token
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/issue-token.json
+        '422':
+          description: Unprocessable Entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - password
+      parameters: []
+      tags:
+        - Auth
+  /pages:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Publishing
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/page-collection.json
+              examples: {}
+      operationId: get-pages
+      security:
+        - Token: []
+    post:
+      summary: ''
+      operationId: post-pages
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/page.json
+      security:
+        - Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                slug:
+                  type: string
+                body:
+                  type: string
+              required:
+                - name
+      tags:
+        - Publishing
+  '/pages/{page_id}':
+    parameters:
+      - schema:
+          type: string
+        name: page_id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Publishing
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/page.json
+      operationId: get-pages-page_id
+      security:
+        - Token: []
+    patch:
+      summary: ''
+      operationId: patch-pages-page_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/page.json
+      security:
+        - Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                slug:
+                  type: string
+                body:
+                  type: string
+      tags:
+        - Publishing
+    delete:
+      summary: ''
+      operationId: delete-pages-page_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+      tags:
+        - Publishing
+      security:
+        - Token: []
+components:
+  schemas: {}
+  securitySchemes:
+    Token:
+      name: Authorization
+      type: apiKey
+      in: header

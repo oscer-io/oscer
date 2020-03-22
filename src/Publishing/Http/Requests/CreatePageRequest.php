@@ -2,18 +2,10 @@
 
 namespace Bambamboole\LaravelCms\Publishing\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use Bambamboole\LaravelCms\Core\Http\Requests\BaseRequest;
 
-class CreatePageRequest extends FormRequest
+class CreatePageRequest extends BaseRequest
 {
-    /**
-     * @return bool
-     */
-    public function authorize(): bool
-    {
-        return true;
-    }
-
     /**
      * @return array
      */
