@@ -14,7 +14,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../responses/issue-token-response.yaml
+                $ref: ../responses/issue-token.json
         '422':
           description: Unprocessable Entity
       requestBody:
@@ -44,7 +44,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../responses/page-collection-response.yaml
+                $ref: ../responses/page-collection.json
               examples: {}
       operationId: get-pages
       security:
@@ -94,7 +94,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../responses/page-response.yaml
+                $ref: ../responses/page.json
       operationId: get-pages-page_id
       security:
         - Token: []

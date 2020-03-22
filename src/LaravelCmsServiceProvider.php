@@ -33,7 +33,6 @@ class LaravelCmsServiceProvider extends ServiceProvider
         $this->registerPublishes();
 
         $apiRouter->registerApiRoutes();
-        $apiRouter->withSwaggerUi();
 
         $backendRouter->registerAuthRoutes();
         $backendRouter->registerBackendRoutes();
@@ -61,18 +60,24 @@ class LaravelCmsServiceProvider extends ServiceProvider
             'driver' => 'session',
             'provider' => 'cms_users',
         ]);
+
+        $statefulHosts = $config->get('sanctum.stateful');
+        $statefulHosts = is_array($statefulHosts)
+            ? $statefulHosts[] = $config->get('cms.backend.domain')
+            : [$statefulHosts, $config->get('cms.backend.domain')];
+
+        $config->set('sanctum.stateful', $statefulHosts);
     }
 
     protected function registerPublishes(): void
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../dist' => public_path('vendor/cms'),
-                __DIR__.'/../resources/open-api' => public_path('vendor/cms/open-api'),
+                __DIR__ . '/../dist' => public_path('vendor/cms'),
             ], 'cms-assets');
 
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('cms.php'),
+                __DIR__ . '/../config/config.php' => config_path('cms.php'),
             ], 'cms-config');
         }
     }
@@ -82,7 +87,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'cms');
+        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'cms');
 
         $this->commands([
             PublishCommand::class,

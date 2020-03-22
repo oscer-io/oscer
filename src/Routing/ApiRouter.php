@@ -3,11 +3,12 @@
 namespace Bambamboole\LaravelCms\Routing;
 
 use Bambamboole\LaravelCms\Auth\Http\Controllers\Api\IssueTokenController;
-use Bambamboole\LaravelCms\Core\Http\Controllers\GetOpenApiDefinitionController;
+use Bambamboole\LaravelCms\Core\Http\Controllers\OpenApiController;
 use Bambamboole\LaravelCms\Core\Http\Controllers\SwaggerUiController;
 use Bambamboole\LaravelCms\Publishing\Http\Controllers\Api\PagesController;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Routing\Router;
+use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
 class ApiRouter
 {
@@ -16,6 +17,7 @@ class ApiRouter
     protected string $prefix = 'api/cms/';
 
     protected array $middleware = [
+        EnsureFrontendRequestsAreStateful::class,
         'throttle:60,1',
         SubstituteBindings::class,
     ];
@@ -33,6 +35,9 @@ class ApiRouter
             ->prefix($this->prefix)
             ->group(function (Router $router) {
                 $router->post('/auth/token', IssueTokenController::class)->name('auth.token');
+                $router->get('/swagger-ui', SwaggerUiController::class)->name('swagger-ui');
+                $router->get('/open-api/reference/definition.yaml', [OpenApiController::class,'reference'])->name('oas.reference');
+                $router->get('/open-api/{folder}/{file}', [OpenApiController::class,'file'])->name('oas.file');
             });
 
         $this->registerProtectedApiRoutes();
@@ -50,24 +55,6 @@ class ApiRouter
                 $router->get('/pages/{id}', [PagesController::class, 'show'])->name('pages.index');
                 $router->patch('/pages/{id}', [PagesController::class, 'update'])->name('pages.update');
                 $router->delete('/pages/{id}', [PagesController::class, 'delete'])->name('pages.delete');
-            });
-    }
-
-    public function withSwaggerUi()
-    {
-        $this->router
-            ->middleware('web')
-            ->as('cms.api.')
-            ->prefix($this->prefix)
-            ->group(function (Router $router) {
-                $router->get('/swagger-ui', SwaggerUiController::class)->name('swagger-ui');
-            });
-
-        $this->router
-            ->middleware('web')
-            ->as('cms.api.')
-            ->group(function (Router $router) {
-                $router->get('/vendor/cms/open-api/reference/definition.yaml', GetOpenApiDefinitionController::class)->name('oas.definition');
             });
     }
 }
