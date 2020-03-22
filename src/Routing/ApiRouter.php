@@ -3,6 +3,7 @@
 namespace Bambamboole\LaravelCms\Routing;
 
 use Bambamboole\LaravelCms\Auth\Http\Controllers\Api\IssueTokenController;
+use Bambamboole\LaravelCms\Core\Http\Controllers\GetOpenApiDefinitionController;
 use Bambamboole\LaravelCms\Core\Http\Controllers\SwaggerUiController;
 use Bambamboole\LaravelCms\Publishing\Http\Controllers\Api\PagesController;
 use Illuminate\Routing\Middleware\SubstituteBindings;
@@ -60,6 +61,13 @@ class ApiRouter
             ->prefix($this->prefix)
             ->group(function (Router $router) {
                 $router->get('/swagger-ui', SwaggerUiController::class)->name('swagger-ui');
+            });
+
+        $this->router
+            ->middleware('web')
+            ->as('cms.api.')
+            ->group(function (Router $router) {
+                $router->get('/vendor/cms/open-api/reference/definition.yaml', GetOpenApiDefinitionController::class)->name('oas.definition');
             });
     }
 }

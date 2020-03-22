@@ -3,8 +3,6 @@ info:
   title: Laravel CMS
   version: '1.0'
   description: ''
-servers:
-  - url: 'http://web.cms.test/api/cms'
 paths:
   /auth/token:
     post:
