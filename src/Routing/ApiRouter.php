@@ -36,8 +36,8 @@ class ApiRouter
             ->group(function (Router $router) {
                 $router->post('/auth/token', IssueTokenController::class)->name('auth.token');
                 $router->get('/swagger-ui', SwaggerUiController::class)->name('swagger-ui');
-                $router->get('/open-api/reference/definition.yaml', [OpenApiController::class,'reference'])->name('oas.reference');
-                $router->get('/open-api/{folder}/{file}', [OpenApiController::class,'file'])->name('oas.file');
+                $router->get('/open-api/reference/definition.yaml', [OpenApiController::class, 'reference'])->name('oas.reference');
+                $router->get('/open-api/{folder}/{file}', [OpenApiController::class, 'file'])->name('oas.file');
             });
 
         $this->registerProtectedApiRoutes();

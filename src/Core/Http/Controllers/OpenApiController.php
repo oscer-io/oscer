@@ -9,10 +9,10 @@ class OpenApiController
 {
     public function reference()
     {
-        $definition = Yaml::parseFile(__DIR__ . '/../../../../resources/open-api/reference/laravel-cms.yaml');
+        $definition = Yaml::parseFile(__DIR__.'/../../../../resources/open-api/reference/laravel-cms.yaml');
 
         $definition['servers'] = [
-            ['url' => config('cms.backend.domain') . '/api/cms'],
+            ['url' => config('cms.backend.domain').'/api/cms'],
         ];
 
         return Yaml::dump($definition);
@@ -20,7 +20,8 @@ class OpenApiController
 
     public function file(string $folder, string $file)
     {
-        $content = File::get(__DIR__ . "/../../../../resources/open-api/{$folder}/{$file}");
+        $content = File::get(__DIR__."/../../../../resources/open-api/{$folder}/{$file}");
+
         return $content;
     }
 }
