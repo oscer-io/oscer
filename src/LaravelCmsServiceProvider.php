@@ -56,7 +56,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
             'model' => User::class,
         ]);
 
-        $config->set('auth.guards.cms', [
+        $config->set('auth.guards.web', [
             'driver' => 'session',
             'provider' => 'cms_users',
         ]);

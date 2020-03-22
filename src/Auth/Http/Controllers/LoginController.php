@@ -40,6 +40,6 @@ class LoginController
 
     protected function guard(): StatefulGuard
     {
-        return Auth::guard('cms');
+        return Auth::guard('web');
     }
 }
