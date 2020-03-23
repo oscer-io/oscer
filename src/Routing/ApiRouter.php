@@ -3,6 +3,7 @@
 namespace Bambamboole\LaravelCms\Routing;
 
 use Bambamboole\LaravelCms\Auth\Http\Controllers\Api\IssueTokenController;
+use Bambamboole\LaravelCms\Auth\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Core\Http\Controllers\OpenApiController;
 use Bambamboole\LaravelCms\Core\Http\Controllers\SwaggerUiController;
 use Bambamboole\LaravelCms\Publishing\Http\Controllers\Api\PagesController;
@@ -20,7 +21,6 @@ class ApiRouter
     protected string $prefix = 'api/cms/';
 
     protected array $middleware = [
-        EnsureFrontendRequestsAreStateful::class,
         'throttle:60,1',
         SubstituteBindings::class,
     ];
@@ -49,7 +49,7 @@ class ApiRouter
     protected function registerProtectedApiRoutes()
     {
         $this->router
-            ->middleware([...$this->middleware, 'auth:sanctum'])
+            ->middleware([EnsureFrontendRequestsAreStateful::class, ...$this->middleware, Authenticate::class])
             ->as('cms.api.')
             ->prefix($this->prefix)
             ->group(function (Router $router) {

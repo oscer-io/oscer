@@ -60,11 +60,8 @@ class LaravelCmsServiceProvider extends ServiceProvider
             'driver' => 'session',
             'provider' => 'cms_users',
         ]);
-
         $statefulHosts = $config->get('sanctum.stateful');
-        $statefulHosts = is_array($statefulHosts)
-            ? $statefulHosts[] = $config->get('cms.backend.domain')
-            : [$statefulHosts, $config->get('cms.backend.domain')];
+        $statefulHosts[] = $config->get('cms.backend.domain');
 
         $config->set('sanctum.stateful', $statefulHosts);
     }

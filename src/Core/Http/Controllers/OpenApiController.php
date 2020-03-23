@@ -12,7 +12,7 @@ class OpenApiController
         $definition = Yaml::parseFile(__DIR__.'/../../../../resources/open-api/reference/laravel-cms.yaml');
 
         $definition['servers'] = [
-            ['url' => config('cms.backend.domain').'/api/cms'],
+            ['url' => 'http://'.config('cms.backend.domain').'/api/cms'],
         ];
 
         return Yaml::dump($definition);

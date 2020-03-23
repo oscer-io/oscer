@@ -2,7 +2,9 @@ openapi: 3.0.0
 info:
   title: Laravel CMS
   version: '1.0'
-  description: ''
+  description: useful description needed
+servers:
+  - url: 'http://web.cms.test/api/cms'
 paths:
   /auth/token:
     post:
@@ -30,9 +32,15 @@ paths:
               required:
                 - email
                 - password
+            examples:
+              Example:
+                value:
+                  email: admin@admin.com
+                  password: password
       parameters: []
       tags:
         - Auth
+      description: useful description needed
   /pages:
     get:
       summary: Your GET endpoint
@@ -49,6 +57,7 @@ paths:
       operationId: get-pages
       security:
         - Token: []
+      description: useful description needed
     post:
       summary: ''
       operationId: post-pages
@@ -77,6 +86,7 @@ paths:
                 - name
       tags:
         - Publishing
+      description: useful description needed
   '/pages/{page_id}':
     parameters:
       - schema:
@@ -98,6 +108,7 @@ paths:
       operationId: get-pages-page_id
       security:
         - Token: []
+      description: useful description needed
     patch:
       summary: ''
       operationId: patch-pages-page_id
@@ -124,6 +135,7 @@ paths:
                   type: string
       tags:
         - Publishing
+      description: useful description needed
     delete:
       summary: ''
       operationId: delete-pages-page_id
@@ -141,6 +153,7 @@ paths:
         - Publishing
       security:
         - Token: []
+      description: useful description needed
 components:
   schemas: {}
   securitySchemes:
@@ -148,3 +161,6 @@ components:
       name: Authorization
       type: apiKey
       in: header
+tags:
+  - name: Auth
+  - name: Publishing

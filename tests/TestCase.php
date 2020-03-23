@@ -4,6 +4,8 @@ namespace Bambamboole\LaravelCms\Tests;
 
 use Bambamboole\LaravelCms\Auth\Models\User;
 use Bambamboole\LaravelCms\LaravelCmsServiceProvider;
+use Laravel\Sanctum\Sanctum;
+use Laravel\Sanctum\SanctumServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
@@ -17,13 +19,16 @@ class TestCase extends BaseTestCase
 
     protected function getPackageProviders($app)
     {
-        return [LaravelCmsServiceProvider::class];
+        return [
+            LaravelCmsServiceProvider::class,
+            SanctumServiceProvider::class,
+        ];
     }
 
     protected function login(array $overrides = []): User
     {
         $user = factory(User::class)->create($overrides);
-        $this->actingAs($user, 'cms');
+        Sanctum::actingAs($user);
 
         return $user;
     }

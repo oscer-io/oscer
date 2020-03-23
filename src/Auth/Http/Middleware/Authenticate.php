@@ -23,11 +23,11 @@ class Authenticate
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($this->auth->guard('web')->check()) {
-            $this->auth->shouldUse('web');
+        if ($this->auth->guard('sanctum')->check()) {
+            $this->auth->shouldUse('sanctum');
         } else {
             throw new AuthenticationException(
-                'Unauthenticated.', ['web'], route('cms.auth.login')
+                'Unauthenticated.', ['sanctum'], route('cms.auth.login')
             );
         }
 
