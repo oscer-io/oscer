@@ -20,7 +20,7 @@ class UpdateProfileTest extends ApiTestCase
     {
         $user = $this->login();
 
-        $response = $this->patch("/api/cms/profile", ['name' => 'updated_name']);
+        $response = $this->patch('/api/cms/profile', ['name' => 'updated_name']);
 
         $response->assertOk();
         $this->assertEquals('updated_name', $user->fresh()->name);
@@ -35,7 +35,7 @@ class UpdateProfileTest extends ApiTestCase
     {
         $this->login();
 
-        $response = $this->patch("/api/cms/profile", $data);
+        $response = $this->patch('/api/cms/profile', $data);
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors($errorKey);
@@ -57,7 +57,7 @@ class UpdateProfileTest extends ApiTestCase
         factory(User::class)->create(['email' => 'test@test.com']);
         $this->login();
 
-        $response = $this->patch("/api/cms/profile", ['email' => 'test@test.com']);
+        $response = $this->patch('/api/cms/profile', ['email' => 'test@test.com']);
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors('email');

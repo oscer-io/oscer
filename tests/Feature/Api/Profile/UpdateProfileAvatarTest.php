@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Bambamboole\LaravelCms\Tests\Feature\Api\Profile;
-
 
 use Bambamboole\LaravelCms\Tests\ApiTestCase;
 use Illuminate\Http\UploadedFile;
@@ -17,12 +15,11 @@ class UpdateProfileAvatarTest extends ApiTestCase
         $user = $this->login();
         $this->assertNull($user->getRawOriginal('avatar'));
 
-        $response = $this->post('/api/cms/profile/avatar',[
-            'avatar' => UploadedFile::fake()->image('avatar.jpg')
+        $response = $this->post('/api/cms/profile/avatar', [
+            'avatar' => UploadedFile::fake()->image('avatar.jpg'),
         ]);
 
         $response->assertOk();
         $this->assertNotNull($user->fresh()->getRawOriginal('avatar'));
     }
-
 }

@@ -21,7 +21,7 @@ class ListUsersTest extends ApiTestCase
         $this->login();
         factory(User::class, 5)->create();
 
-        $response = $this->get("/api/cms/users");
+        $response = $this->get('/api/cms/users');
 
         $response->assertOk();
         $this->assertJsonSchema('responses/user-collection', $response->getContent());
