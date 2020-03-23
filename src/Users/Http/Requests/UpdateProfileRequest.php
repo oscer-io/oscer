@@ -15,13 +15,13 @@ class UpdateProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string'],
+            'name' => ['filled', 'string'],
             'email' => [
-                'required',
+                'filled',
                 'email',
                 Rule::unique('cms_users', 'email')->ignore(auth()->user()->id),
             ],
-            'bio' => ['required', 'string'],
+            'bio' => ['filled', 'string'],
             'password' => ['filled', 'confirmed'],
         ];
     }

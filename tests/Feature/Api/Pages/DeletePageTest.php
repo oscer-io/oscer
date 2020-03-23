@@ -16,7 +16,7 @@ class DeletePageTest extends ApiTestCase
     }
 
     /** @test */
-    public function a_page_can_be_updated()
+    public function a_page_can_be_deleted()
     {
         $page = factory(Page::class)->create();
         $this->login();

@@ -1,5 +1,5 @@
 {
-  "title": "issue-token",
+  "title": "issue-token response",
   "type": "object",
   "properties": {
     "token": {

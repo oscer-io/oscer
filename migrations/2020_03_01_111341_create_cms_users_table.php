@@ -18,7 +18,7 @@ class CreateCmsUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->text('bio');
+            $table->text('bio')->nullable();
             $table->string('avatar')->nullable();
             $table->string('language')->default('en');
             $table->rememberToken();

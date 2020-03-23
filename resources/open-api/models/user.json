@@ -1,28 +1,29 @@
 {
-  "title": "links response part",
+  "title": "user",
   "type": "object",
   "properties": {
-    "first": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
       "type": "string"
     },
-    "last": {
+    "email": {
       "type": "string"
     },
-    "prev": {
+    "bio": {
       "type": [
         "string",
         "null"
       ]
     },
-    "next": {
-      "type": [
-        "string",
-        "null"
-      ]
+    "avatar": {
+      "type": "string"
     }
   },
   "required": [
-    "first",
-    "last"
+    "id",
+    "name",
+    "email"
   ]
 }

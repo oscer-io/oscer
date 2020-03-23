@@ -7,6 +7,8 @@ use Bambamboole\LaravelCms\Core\Http\Controllers\OpenApiController;
 use Bambamboole\LaravelCms\Core\Http\Controllers\SwaggerUiController;
 use Bambamboole\LaravelCms\Publishing\Http\Controllers\Api\PagesController;
 use Bambamboole\LaravelCms\Users\Http\Controllers\Api\ProfileAvatarController;
+use Bambamboole\LaravelCms\Users\Http\Controllers\Api\ProfileController;
+use Bambamboole\LaravelCms\Users\Http\Controllers\Api\UsersController;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Routing\Router;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
@@ -39,7 +41,6 @@ class ApiRouter
                 $router->get('/swagger-ui', SwaggerUiController::class)->name('swagger-ui');
                 $router->get('/open-api/reference/definition.yaml', [OpenApiController::class, 'reference'])->name('oas.reference');
                 $router->get('/open-api/{folder}/{file}', [OpenApiController::class, 'file'])->name('oas.file');
-                $router->post('/profile/avatar', [ProfileAvatarController::class, 'update'])->name('profile.avatar');
             });
 
         $this->registerProtectedApiRoutes();
@@ -57,6 +58,16 @@ class ApiRouter
                 $router->get('/pages/{id}', [PagesController::class, 'show'])->name('pages.index');
                 $router->patch('/pages/{id}', [PagesController::class, 'update'])->name('pages.update');
                 $router->delete('/pages/{id}', [PagesController::class, 'delete'])->name('pages.delete');
+
+                $router->get('/users', [UsersController::class, 'index'])->name('users.index');
+                $router->post('/users', [UsersController::class, 'store'])->name('users.store');
+                $router->get('/users/{user}', [UsersController::class, 'show'])->name('users.index');
+                $router->patch('/users/{user}', [UsersController::class, 'update'])->name('users.update');
+                $router->delete('/users/{user}', [UsersController::class, 'delete'])->name('users.delete');
+
+                $router->post('/profile/avatar', [ProfileAvatarController::class, 'update'])->name('profile.avatar');
+
+                $router->patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
             });
     }
 }
