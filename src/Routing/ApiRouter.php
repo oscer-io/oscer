@@ -6,6 +6,7 @@ use Bambamboole\LaravelCms\Auth\Http\Controllers\Api\IssueTokenController;
 use Bambamboole\LaravelCms\Core\Http\Controllers\OpenApiController;
 use Bambamboole\LaravelCms\Core\Http\Controllers\SwaggerUiController;
 use Bambamboole\LaravelCms\Publishing\Http\Controllers\Api\PagesController;
+use Bambamboole\LaravelCms\Users\Http\Controllers\Api\ProfileAvatarController;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Routing\Router;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
@@ -38,6 +39,7 @@ class ApiRouter
                 $router->get('/swagger-ui', SwaggerUiController::class)->name('swagger-ui');
                 $router->get('/open-api/reference/definition.yaml', [OpenApiController::class, 'reference'])->name('oas.reference');
                 $router->get('/open-api/{folder}/{file}', [OpenApiController::class, 'file'])->name('oas.file');
+                $router->post('/profile/avatar', [ProfileAvatarController::class, 'update'])->name('profile.avatar');
             });
 
         $this->registerProtectedApiRoutes();

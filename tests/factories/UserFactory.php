@@ -23,5 +23,6 @@ $factory->define(User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => 'password', // password
         'bio' => $faker->paragraphs(rand(1, 3), true),
+        'avatar' => null,
     ];
 });
