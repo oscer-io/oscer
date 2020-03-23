@@ -66,7 +66,7 @@ class OptionRepository
     protected function getOptions(): Collection
     {
         if (! $this->options) {
-            $this->options = Option::all()->map(function (Option $option){
+            $this->options = Option::all()->map(function (Option $option) {
                 return new OptionResource($option);
             });
         }
