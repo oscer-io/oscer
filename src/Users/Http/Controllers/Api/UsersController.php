@@ -32,7 +32,7 @@ class UsersController
     public function store(CreateUserRequest $request)
     {
         $user = User::query()->create(array_merge([
-            'password' => $password = Str::random(),],
+            'password' => $password = Str::random(), ],
             $request->validated()
         ));
 

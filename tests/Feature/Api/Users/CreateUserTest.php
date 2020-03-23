@@ -25,7 +25,7 @@ class CreateUserTest extends ApiTestCase
 
         $this->login();
 
-        $response = $this->post("/api/cms/users", [
+        $response = $this->post('/api/cms/users', [
             'name' => 'test',
             'email' => 'test@test.com',
         ]);
@@ -43,7 +43,7 @@ class CreateUserTest extends ApiTestCase
     {
         $this->login();
 
-        $response = $this->post("/api/cms/users", factory(User::class)->raw($data));
+        $response = $this->post('/api/cms/users', factory(User::class)->raw($data));
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors($errorKey);
@@ -64,7 +64,7 @@ class CreateUserTest extends ApiTestCase
         factory(User::class)->create(['email' => 'test@test.com']);
         $this->login();
 
-        $response = $this->post("/api/cms/users", [
+        $response = $this->post('/api/cms/users', [
             'name' => 'test',
             'email' => 'test@test.com',
         ]);

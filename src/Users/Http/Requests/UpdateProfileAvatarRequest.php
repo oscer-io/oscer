@@ -1,21 +1,18 @@
 <?php
 
-
 namespace Bambamboole\LaravelCms\Users\Http\Requests;
-
 
 use Bambamboole\LaravelCms\Core\Http\Requests\BaseRequest;
 
 class UpdateProfileAvatarRequest extends BaseRequest
 {
-
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-          'avatar' => 'required'
+            'avatar' => 'required',
         ];
     }
 }
