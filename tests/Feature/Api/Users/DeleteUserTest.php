@@ -10,6 +10,7 @@ class DeleteUserTest extends ApiTestCase
     /** @test */
     public function the_request_needs_to_be_authenticated()
     {
+        factory(User::class)->create();
         $response = $this->delete('/api/cms/users/1');
 
         $response->assertStatus(401);

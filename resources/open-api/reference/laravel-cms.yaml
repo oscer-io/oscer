@@ -154,6 +154,221 @@ paths:
       security:
         - Token: []
       description: useful description needed
+  /users:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/user-collection.json
+      operationId: get-users
+      description: filll with useful description
+      security:
+        - Token: []
+    post:
+      summary: ''
+      operationId: post-users
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/user.json
+      security:
+        - Token: []
+      description: needs description
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                bio:
+                  type: string
+              required:
+                - name
+                - email
+      tags:
+        - Users
+  '/users/{user_id}':
+    parameters:
+      - schema:
+          type: string
+        name: user_id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/user.json
+      operationId: get-users-user_id
+      description: fetch a single user resource
+      security:
+        - Token: []
+    patch:
+      summary: ''
+      operationId: patch-users-user_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/user.json
+      description: updates a single user resource
+      security:
+        - Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                bio:
+                  type: string
+      tags:
+        - Users
+    delete:
+      summary: ''
+      operationId: delete-users-user_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+      description: deletes a single user resource
+      tags:
+        - Users
+      security:
+        - Token: []
+  /options:
+    get:
+      summary: Create or update a single option
+      tags:
+        - Options
+      responses:
+        '200':
+          description: OK
+      operationId: get-options
+      description: get all available options wrapped by their tabs
+      security:
+        - Token: []
+    post:
+      summary: ''
+      operationId: post-options
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/option.json
+      description: create or update a single option
+      security:
+        - Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                value:
+                  type: string
+              required:
+                - key
+                - value
+      tags:
+        - Options
+  /profile:
+    patch:
+      summary: Update profile
+      operationId: patch-profile
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/user.json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                bio:
+                  type: string
+                password:
+                  type: string
+                password_confirmation:
+                  type: string
+      tags:
+        - Profile
+      description: update your own profile. No values required.
+      security:
+        - Token: []
+  /profile/avatar:
+    post:
+      summary: Update profile avatar
+      operationId: post-profile-avatar
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  avatar:
+                    type: string
+      description: Update your avatar with a new image
+      security:
+        - Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                avatar:
+                  type: string
+                  format: binary
+              required:
+                - avatar
+      tags:
+        - Profile
 components:
   schemas: {}
   securitySchemes:
@@ -164,3 +379,6 @@ components:
 tags:
   - name: Auth
   - name: Publishing
+  - name: Users
+  - name: Profile
+  - name: Options

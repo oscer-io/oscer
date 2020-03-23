@@ -4,15 +4,15 @@ namespace Bambamboole\LaravelCms\Options\Http\Controllers;
 
 use Bambamboole\LaravelCms\Options\Http\Requests\CreateOrUpdateOptionRequest;
 use Bambamboole\LaravelCms\Options\Models\Option;
-use Bambamboole\LaravelCms\Options\OptionFieldsResolver;
+use Bambamboole\LaravelCms\Options\OptionRepository;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class OptionsController
 {
-    protected OptionFieldsResolver $resolver;
+    protected OptionRepository $resolver;
 
-    public function __construct(OptionFieldsResolver $resolver)
+    public function __construct(OptionRepository $resolver)
     {
         $this->resolver = $resolver;
     }

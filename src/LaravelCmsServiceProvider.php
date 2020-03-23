@@ -64,6 +64,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
         $statefulHosts[] = $config->get('cms.backend.domain');
 
         $config->set('sanctum.stateful', $statefulHosts);
+        $config->set('sanctum.middleware.verify_csrf_token', \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class);
     }
 
     protected function registerPublishes(): void

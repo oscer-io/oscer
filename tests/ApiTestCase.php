@@ -39,8 +39,8 @@ class ApiTestCase extends BaseTestCase
     protected function getPackageProviders($app)
     {
         return [
-            LaravelCmsServiceProvider::class,
             SanctumServiceProvider::class,
+            LaravelCmsServiceProvider::class,
         ];
     }
 

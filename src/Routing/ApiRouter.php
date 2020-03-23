@@ -6,6 +6,7 @@ use Bambamboole\LaravelCms\Auth\Http\Controllers\Api\IssueTokenController;
 use Bambamboole\LaravelCms\Auth\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Core\Http\Controllers\OpenApiController;
 use Bambamboole\LaravelCms\Core\Http\Controllers\SwaggerUiController;
+use Bambamboole\LaravelCms\Options\Http\Controllers\Api\OptionsController;
 use Bambamboole\LaravelCms\Publishing\Http\Controllers\Api\PagesController;
 use Bambamboole\LaravelCms\Users\Http\Controllers\Api\ProfileAvatarController;
 use Bambamboole\LaravelCms\Users\Http\Controllers\Api\ProfileController;
@@ -68,6 +69,9 @@ class ApiRouter
                 $router->post('/profile/avatar', [ProfileAvatarController::class, 'update'])->name('profile.avatar');
 
                 $router->patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+                $router->get('/options', [OptionsController::class, 'index'])->name('options.index');
+                $router->post('/options', [OptionsController::class, 'store'])->name('options.store');
             });
     }
 }

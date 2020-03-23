@@ -2,12 +2,13 @@
 
 namespace Bambamboole\LaravelCms\Options;
 
+use Bambamboole\LaravelCms\Options\Http\Resources\OptionResource;
 use Bambamboole\LaravelCms\Options\Models\Option;
 use Bambamboole\LaravelCms\Theming\Contracts\Theme;
 use Illuminate\Config\Repository;
 use Illuminate\Support\Collection;
 
-class OptionFieldsResolver
+class OptionRepository
 {
     protected Repository $config;
 
@@ -65,9 +66,19 @@ class OptionFieldsResolver
     protected function getOptions(): Collection
     {
         if (! $this->options) {
-            $this->options = Option::all();
+            $this->options = Option::all()->map(function (Option $option){
+                return new OptionResource($option);
+            });
         }
 
         return $this->options;
+    }
+
+    public function store(string $key, string $value)
+    {
+        return Option::query()->updateOrCreate(
+            ['key' => $key],
+            ['value' => $value]
+        );
     }
 }
