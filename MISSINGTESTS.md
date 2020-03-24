@@ -31,6 +31,19 @@
     * a post can be updated
     * the data must be valid
 
+* Api
+    * all options stuff
+    * Create menu item
+        * a menu item can be created
+        * the data needs to be valid (all cases)
+    * Update menu item
+        * a menu item can be updated
+        * the data needs to be valid (all cases)
+    * Delete menu item
+        * a menu item can be deleted
+    * Reorder menu items
+        * the menu items can be reordered
+
 Frontend:
 * Theme will be passed to any Frontend view.
  

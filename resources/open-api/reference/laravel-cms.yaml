@@ -369,6 +369,81 @@ paths:
                 - avatar
       tags:
         - Profile
+  /menus:
+    get:
+      summary: get all menus with item
+      tags:
+        - Menus
+      responses:
+        '200':
+          description: OK
+      operationId: get-menus
+      description: get all menus with ordered items
+      security:
+        - Token: []
+  '/menus/{menu_name}':
+    parameters:
+      - schema:
+          type: string
+        name: menu_name
+        in: path
+        required: true
+    post:
+      summary: ''
+      operationId: post-menus-menu_name
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      security:
+        - Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                url:
+                  type: string
+              required:
+                - name
+                - url
+      description: ''
+    patch:
+      summary: ''
+      operationId: put-menus-menu_name
+      responses:
+        '200':
+          description: OK
+      description: update a menu item
+      security:
+        - Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                url:
+                  type: string
+              required:
+                - name
+                - url
+    delete:
+      summary: ''
+      operationId: delete-menus-menu_name
+      responses:
+        '200':
+          description: OK
+      description: delete a single menu item
 components:
   schemas: {}
   securitySchemes:
@@ -382,3 +457,4 @@ tags:
   - name: Users
   - name: Profile
   - name: Options
+  - name: Menus

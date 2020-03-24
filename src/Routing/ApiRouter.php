@@ -6,6 +6,8 @@ use Bambamboole\LaravelCms\Auth\Http\Controllers\Api\IssueTokenController;
 use Bambamboole\LaravelCms\Auth\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Core\Http\Controllers\OpenApiController;
 use Bambamboole\LaravelCms\Core\Http\Controllers\SwaggerUiController;
+use Bambamboole\LaravelCms\Menus\Http\Controllers\Api\MenuOrderController;
+use Bambamboole\LaravelCms\Menus\Http\Controllers\Api\MenusController;
 use Bambamboole\LaravelCms\Options\Http\Controllers\Api\OptionsController;
 use Bambamboole\LaravelCms\Publishing\Http\Controllers\Api\PagesController;
 use Bambamboole\LaravelCms\Users\Http\Controllers\Api\ProfileAvatarController;
@@ -72,6 +74,13 @@ class ApiRouter
 
                 $router->get('/options', [OptionsController::class, 'index'])->name('options.index');
                 $router->post('/options', [OptionsController::class, 'store'])->name('options.store');
+
+                $router->get('/menus', [MenusController::class, 'index'])->name('menus.index');
+                $router->post('/menus/{name}/items', [MenusController::class, 'store'])->name('menus.store');
+                $router->put('/menus/{name}/items/{id}', [MenusController::class, 'update'])->name('menus.update');
+                $router->delete('/menus/{name}/items/{id}', [MenusController::class, 'delete'])->name('menus.delete');
+
+                $router->post('/menus/{name}/save_order', [MenuOrderController::class, 'update'])->name('menus.save_order');
             });
     }
 }
