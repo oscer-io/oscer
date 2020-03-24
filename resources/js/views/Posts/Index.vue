@@ -1,5 +1,5 @@
 <template>
-    <layout :title="$t('posts.index_page_title')">
+    <div>
         <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
             <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
                 <div class="ml-4 mt-2">
@@ -9,10 +9,10 @@
                 </div>
                 <div class="ml-4 mt-2 flex-shrink-0">
                     <span class="inline-flex rounded-md shadow-sm">
-                        <InertiaLink :href="route('cms.backend.posts.create')"
+                        <a href="#"
                                      class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline">
                             {{ $t('posts.button_create') }}
-                        </InertiaLink>
+                        </a>
                     </span>
                 </div>
             </div>
@@ -66,17 +66,22 @@
                 </li>
             </ul>
         </div>
-    </layout>
+        </div>
 </template>
 
 <script>
-    import Layout from '../Layout';
+    import axios from 'axios';
+
     export default {
-        props: {
-            posts: Array
+        data(){
+            return {
+                posts: []
+            }
         },
-        components: {
-            Layout
-        },
+        async mounted() {
+            // posts endpoint not implemented because of the thoughts to only use one model with different types
+            const response = await axios.get('/api/cms/posts');
+            this.posts = response.data.data
+        }
     }
 </script>

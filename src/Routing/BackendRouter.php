@@ -5,6 +5,7 @@ namespace Bambamboole\LaravelCms\Routing;
 use Bambamboole\LaravelCms\Auth\Http\Controllers\ForgotPasswordController;
 use Bambamboole\LaravelCms\Auth\Http\Controllers\LoginController;
 use Bambamboole\LaravelCms\Auth\Http\Middleware\Authenticate;
+use Bambamboole\LaravelCms\Core\Http\Controllers\BackendController;
 use Bambamboole\LaravelCms\Core\Http\Middleware\SetInertiaConfiguration;
 use Bambamboole\LaravelCms\Core\Http\Middleware\SetLocale;
 use Bambamboole\LaravelCms\Menus\Http\Controllers\MenusController;
@@ -56,6 +57,9 @@ class BackendRouter
             ->as('cms.backend.')
             ->prefix($this->config->get('cms.backend.url'))
             ->group(function (Router $router) {
+                $router->get('/', BackendController::class)->name('start');
+                $router->get('/{view}', BackendController::class)
+                    ->where('view', '.*')->name('router');
                 $router->post('/posts', [PostsController::class, 'store'])->name('posts.store');
                 $router->get('/posts', [PostsController::class, 'index'])->name('posts.index');
                 $router->get('/posts/create', [PostsController::class, 'create'])->name('posts.create');

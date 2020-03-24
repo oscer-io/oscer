@@ -1,5 +1,5 @@
 <template>
-    <layout :title="$t('menus.index_page_title')">
+    <div>
         <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
             <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
                 <div class="ml-4 mt-2">
@@ -12,7 +12,7 @@
         <div class="bg-white shadow overflow-hidden sm:rounded-md">
             <ul>
                 <li v-for="menu in menus">
-                    <a :href="route('cms.backend.menus.show', {name: menu.name})"
+                    <a href="#"
                        class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
                         <div class="flex items-center px-4 py-4 sm:px-6">
                             <div class="min-w-0 flex-1 flex items-center">
@@ -49,17 +49,22 @@
                 </li>
             </ul>
         </div>
-    </layout>
+    </div>
 </template>
 
 <script>
-    import Layout from '../Layout';
+    import axios from 'axios';
+
     export default {
-        props: {
-            menus: Array
+        data(){
+            return {
+                menus: []
+            }
         },
-        components: {
-            Layout
-        },
+        async mounted() {
+            // posts endpoint not implemented because of the thoughts to only use one model with different types
+            const response = await axios.get('/api/cms/menus');
+            this.menus = response.data.data
+        }
     }
 </script>

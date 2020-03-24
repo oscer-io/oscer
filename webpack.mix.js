@@ -14,7 +14,30 @@ let tailwindcss = require('tailwindcss');
 mix.options({processCssUrls: false})
     .setPublicPath('dist')
     .js('resources/js/app.js', 'dist')
+    .version();
+
+mix.options({processCssUrls: false})
+    .setPublicPath('dist')
     .js('resources/js/swagger-ui.js', 'dist')
-    .sass('resources/sass/app.scss', 'dist', {}, [tailwindcss('./tailwind.config.js')])
     .sass('resources/sass/swagger-ui.scss', 'dist')
+    .version();
+
+mix.options({processCssUrls: false})
+    .setPublicPath('dist')
+    .js('resources/js/cms.js', 'dist')
+    .sass('resources/sass/app.scss', 'dist', {}, [tailwindcss('./tailwind.config.js')])
+    .webpackConfig({
+        module: {
+            rules: [
+                {
+                    test: /\.(postcss)$/,
+                    use: [
+                        'vue-style-loader',
+                        { loader: 'css-loader', options: { importLoaders: 1 } },
+                        'postcss-loader'
+                    ]
+                }
+            ],
+        },
+    })
     .version();

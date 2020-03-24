@@ -72,7 +72,7 @@
 <script>
     import _ from 'lodash';
     import Layout from '../Layout';
-
+    import axios from 'axios';
     export default {
         components: {
             Layout
@@ -93,7 +93,10 @@
         },
         methods: {
             submit() {
-                this.$inertia.post(this.route('cms.backend.users.store'), _.pickBy(this.form));
+                axios.post(this.route('cms.backend.users.store'), _.pickBy(this.form))
+                    .then(response => {
+                        console.log(response.data)
+                    });
             }
         }
     }

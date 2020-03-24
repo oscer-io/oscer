@@ -1,8 +1,8 @@
 <template>
-    <layout :title="$t('options.index_page_title')">
+    <div>
         <h1>{{$t('options.index_page_title')}}</h1>
         <Tabs :options="{ useUrlFragment: false }">
-            <Tab v-for="(fields,tab) in options" :key="tab" :name="tab">
+            <Tab v-if="options" v-for="(fields,tab) in options" :key="tab" :name="tab">
 
                 <OptionField v-for="option in fields"
                              :key="option.key"
@@ -11,7 +11,7 @@
             </Tab>
 
         </Tabs>
-    </layout>
+    </div>
 </template>
 
 <script>
@@ -19,10 +19,18 @@
     import Tabs from "../../components/Tabs";
     import Layout from '../Layout';
     import OptionField from "./OptionField";
+    import axios from "axios";
 
     export default {
-        props: {
-            options: Object
+        data(){
+          return {
+              options: null
+          }
+        },
+        async mounted() {
+            // posts endpoint not implemented because of the thoughts to only use one model with different types
+            const response = await axios.get('/api/cms/options');
+            this.options = response.data.data
         },
         components: {
             OptionField,
