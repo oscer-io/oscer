@@ -140,10 +140,14 @@
 </template>
 
 <script>
+    import Loading from "../../components/Loading";
     import axios from 'axios';
 
     export default {
-        data(){
+        components: {
+            Loading
+        },
+        data() {
             return {
                 isLoading: true,
                 pages: []

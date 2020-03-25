@@ -140,5 +140,11 @@
 
 </script>
 <script src="{{ mix('cms.js', 'vendor/cms') }}"></script>
+<script>
+    window.Cms = new CmsFactory({})
+</script>
+<script>
+    Cms.start()
+</script>
 </body>
 </html>
