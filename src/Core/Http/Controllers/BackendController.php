@@ -11,14 +11,14 @@ class BackendController
 
     public function __construct(Router $router)
     {
-
         $this->router = $router;
     }
+
     public function show(Request $request)
     {
         return view('cms::backend', [
             'user' => $request->user(),
-            'routes' => $this->getRoutes()
+            'routes' => $this->getRoutes(),
         ]);
     }
 
