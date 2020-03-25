@@ -57,12 +57,17 @@
                     </tr>
                     </thead>
                     <tbody class="bg-white">
-                    <tr v-if="pages.length === 0">
+                    <tr v-if="isLoading === true">
+                        <td colspan="7" class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
+                            <loading/>
+                        </td>
+                    </tr>
+                    <tr v-if="isLoading === false && pages.length === 0">
                         <td colspan="7" class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
                             {{ $t('pages.message_no_items') }}
                         </td>
                     </tr>
-                    <tr v-for="page in pages" v-if="pages.length !== 0"
+                    <tr v-for="page in pages" v-if="isLoading === false && pages.length !== 0"
                         class="border-b border-gray-200 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
                         <td class="px-6 py-4 whitespace-no-wrap">
                             <input class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
@@ -140,12 +145,14 @@
     export default {
         data(){
             return {
+                isLoading: true,
                 pages: []
             }
         },
         async mounted() {
             const response = await axios.get('/api/cms/pages');
-            this.pages = response.data.data
+            this.pages = response.data.data;
+            this.isLoading = false;
         }
     }
 </script>

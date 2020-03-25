@@ -15,7 +15,7 @@
 </head>
 <body class="min-w-site bg-40 text-black min-h-full">
 <div id="cms">
-    <div class="h-screen flex overflow-hidden bg-gray-100">
+    <div v-cloak class="h-screen flex overflow-hidden bg-gray-100">
         <!-- Static sidebar for desktop -->
         <div class="hidden md:flex md:flex-shrink-0">
             <div class="flex flex-col w-64">
@@ -136,6 +136,9 @@
         </div>
     </div>
 </div>
+<script>
+
+</script>
 <script src="{{ mix('cms.js', 'vendor/cms') }}"></script>
 </body>
 </html>

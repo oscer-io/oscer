@@ -57,8 +57,8 @@ class BackendRouter
             ->as('cms.backend.')
             ->prefix($this->config->get('cms.backend.url'))
             ->group(function (Router $router) {
-                $router->get('/', BackendController::class)->name('start');
-                $router->get('/{view}', BackendController::class)
+                $router->get('/', [BackendController::class,'show'])->name('start');
+                $router->get('/{view}', [BackendController::class,'show'])
                     ->where('view', '.*')->name('router');
                 $router->post('/posts', [PostsController::class, 'store'])->name('posts.store');
                 $router->get('/posts', [PostsController::class, 'index'])->name('posts.index');
