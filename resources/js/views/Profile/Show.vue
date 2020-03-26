@@ -1,6 +1,4 @@
 <template>
-    <layout title="My Profile">
-
         <div>
 
             <div class="md:flex md:items-center md:justify-between">
@@ -14,10 +12,10 @@
                 </div>
                 <div class="mt-4 flex md:mt-0 md:ml-4">
                     <span class="ml-3 shadow-sm rounded-md">
-                        <InertiaLink :href="route('cms.backend.profile.edit')"
+                        <router-link :to="{name:'profile.edit'}"
                                      class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
                             {{$t('profile.edit')}}
-                        </InertiaLink>
+                        </router-link>
                     </span>
                 </div>
             </div>
@@ -50,28 +48,15 @@
             </div>
 
         </div>
-    </layout>
 </template>
 
 <script>
-    import Layout from '../Layout';
-
     export default {
-        components: {
-            Layout
-        },
-        props: {
-            user: Object,
-        },
         created() {
         },
         data() {
             return {
-                form: {
-                    name: this.user.name,
-                    email: this.user.email,
-                    bio: this.user.bio
-                },
+                user: window.Cms.config.user
             }
         },
     }

@@ -4,9 +4,7 @@ import routes from './routes'
 
 Vue.use(Router);
 
-const router = new Router({
+export default new Router({
     mode: 'history',
     routes
 });
-
-export default router;

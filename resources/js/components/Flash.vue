@@ -25,13 +25,8 @@
 </template>
 
 <script>
-    import _ from 'lodash';
 
     export default {
-
-        props: {
-            messageData: Object
-        },
 
         data() {
             return {
@@ -43,24 +38,8 @@
             }
         },
 
-        watch: {
-            messageData(message) {
-                this.flash(message);
-            }
-        },
-
         created() {
-            if (!_.isEmpty(this.messageData)) {
-                this.flash({
-                    type: this.messageData.type,
-                    text: this.messageData.text,
-                });
-            }
-
-            window.events.$on(
-                'flash', data => this.flash(data)
-            );
-
+            window.Cms.$on('flash', data => this.flash(data));
         },
 
         methods: {

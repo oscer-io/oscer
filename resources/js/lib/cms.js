@@ -4,8 +4,9 @@ import i18n from './i18n';
 import Loading from '../components/Loading';
 import Dropdown from '../components/Dropdown';
 import NavbarLink from '../components/NavbarLink';
+import Flash from "../components/Flash";
 
-export default class LaravelCms {
+export default class Cms {
 
     constructor(config) {
         this.bus = new Vue();
@@ -41,8 +42,24 @@ export default class LaravelCms {
             components: {
                 Dropdown,
                 Loading,
-                NavbarLink
-            }
+                NavbarLink,
+                Flash
+            },
+            data() {
+                return {
+                    transitionName: 'fade'
+                }
+            },
+            created() {
+                this.$router.beforeEach((to, from, next) => {
+
+                    const toDepth = to.path.split('/').length;
+                    const fromDepth = from.path.split('/').length;
+                    this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
+
+                    next();
+                });
+            },
         })
     }
 
@@ -54,10 +71,10 @@ export default class LaravelCms {
     }
 
     /**
-     * Emit an event on the event bus
+     * flash a message via the event bus
      */
-    $emit(...args) {
-        this.bus.$emit(...args)
+    flash(type, text) {
+        this.bus.$emit('flash', {'type': type, 'text': text});
     }
-
 }
+

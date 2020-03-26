@@ -1,5 +1,7 @@
 @extends('cms::layouts.backend')
 
 @section('content')
-    <router-view></router-view>
+    <transition :name="transitionName" mode="out-in">
+        <router-view/>
+    </transition>
 @endsection

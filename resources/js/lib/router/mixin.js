@@ -1,3 +1,4 @@
+import Router from "./router";
 export default {
     methods: {
         route(name, params = {}) {
