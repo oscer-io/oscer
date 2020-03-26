@@ -3,6 +3,7 @@ import PostsIndex from '../../views/Posts/Index';
 import MenusIndex from '../../views/Menus/Index';
 import OptionsIndex from '../../views/Options/Index';
 import UsersIndex from '../../views/Users/Index';
+import ShowUser from '../../views/Users/Show';
 import ProfileShow from '../../views/Profile/Show';
 import ProfileEdit from '../../views/Profile/Edit';
 
@@ -39,6 +40,12 @@ export default [
         path: '/admin/users',
         name: 'users.index',
         component: UsersIndex
+    },
+    {
+        path: '/admin/users/:id',
+        name: 'users.show',
+        component: ShowUser,
+        props: true
     },
     {
         path: '/admin/profile',

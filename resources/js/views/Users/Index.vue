@@ -10,7 +10,7 @@
                 <div class="ml-4 mt-2 flex-shrink-0">
                     <span class="inline-flex rounded-md shadow-sm">
                         <a href="#"
-                                     class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline">
+                           class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline">
                             {{ $t('users.button_create') }}
                         </a>
                     </span>
@@ -20,8 +20,8 @@
         <div class="bg-white shadow overflow-hidden sm:rounded-md">
             <ul>
                 <li v-for="user in users">
-                    <a href="#"
-                        class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
+                    <router-link :to="{name: 'users.show',params: {id: user.id}}"
+                                 class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
 
                         <div class="flex items-center px-4 py-4 sm:px-6">
                             <div class="min-w-0 flex-1 flex items-center">
@@ -71,7 +71,7 @@
                                 </svg>
                             </div>
                         </div>
-                    </a>
+                    </router-link>
                 </li>
             </ul>
         </div>
@@ -82,7 +82,7 @@
     import axios from 'axios';
 
     export default {
-        data(){
+        data() {
             return {
                 users: []
             }
