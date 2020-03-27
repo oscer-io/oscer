@@ -9,10 +9,10 @@
                 </div>
                 <div class="ml-4 mt-2 flex-shrink-0">
                     <span class="inline-flex rounded-md shadow-sm">
-                        <a href="#"
+                        <router-link :to="{name: 'users.create'}"
                            class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline">
                             {{ $t('users.button_create') }}
-                        </a>
+                        </router-link>
                     </span>
                 </div>
             </div>

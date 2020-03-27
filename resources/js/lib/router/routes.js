@@ -3,9 +3,6 @@ import ShowPage from '../../views/Pages/Show';
 import EditPage from '../../views/Pages/Edit';
 import PostsIndex from '../../views/Posts/Index';
 
-import UsersIndex from '../../views/Users/Index';
-import ShowUser from '../../views/Users/Show';
-import EditUser from '../../views/Users/Edit';
 
 const NotFound = {template: '<div>not found</div>'};
 const Admin = {template: '<div>Admin index</div>'};
@@ -13,6 +10,7 @@ const Admin = {template: '<div>Admin index</div>'};
 import menuRoutes from '../../modules/menus/routes';
 import optionRoutes from '../../modules/options/routes';
 import profileRoutes from '../../modules/profile/routes';
+import userRoutes from '../../modules/users/routes';
 
 export default [
     {
@@ -42,29 +40,14 @@ export default [
         name: 'posts.index',
         component: PostsIndex
     },
-    {
-        path: '/admin/users',
-        name: 'users.index',
-        component: UsersIndex
-    },
-    {
-        path: '/admin/users/:id',
-        name: 'users.show',
-        component: ShowUser,
-        props: true
-    },
-    {
-        path: '/admin/users/:id/edit',
-        name: 'users.edit',
-        component: EditUser,
-        props: true
-    },
+
+    ...menuRoutes,
+    ...optionRoutes,
+    ...profileRoutes,
+    ...userRoutes,
     {
         path: '*',
         name: 'catch-all',
         component: NotFound
     },
-    ...menuRoutes,
-    ...optionRoutes,
-    ...profileRoutes,
 ];
