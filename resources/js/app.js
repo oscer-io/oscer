@@ -1,8 +1,9 @@
 import Cms from './lib/cms';
 
 /**
- * Register all global components and fields
+ * Register all global mixins, components and fields
  */
+import './lib/mixins';
 import './lib/components';
 import './lib/fields';
 

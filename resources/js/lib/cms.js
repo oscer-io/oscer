@@ -3,8 +3,6 @@ import VueJSModal from "vue-js-modal";
 import router from "./router";
 import i18n from './i18n';
 
-import {titleMixin} from './mixins';
-
 export default class Cms {
 
     constructor(config) {
@@ -35,7 +33,6 @@ export default class Cms {
         this.boot();
 
         Vue.use(VueJSModal, {dynamic: true});
-        Vue.mixin(titleMixin);
 
         this.app = new Vue({
             el: '#cms',

@@ -26,7 +26,6 @@
 </template>
 
 <script>
-    import expiringStorage from '../lib/ExpiringStorage';
     export default {
         props: {
             cacheLifetime: {
@@ -59,11 +58,6 @@
             window.addEventListener('hashchange', () => this.selectTab(window.location.hash));
             if (this.findTab(window.location.hash)) {
                 this.selectTab(window.location.hash);
-                return;
-            }
-            const previousSelectedTabHash = expiringStorage.get(this.storageKey);
-            if (this.findTab(previousSelectedTabHash)) {
-                this.selectTab(previousSelectedTabHash);
                 return;
             }
             if(this.options.defaultTabHash !== null && this.findTab("#" + this.options.defaultTabHash)) {
@@ -102,7 +96,6 @@
                 this.activeTabHash = selectedTab.hash;
                 this.activeTabIndex = this.getTabIndex(selectedTabHash);
                 this.lastActiveTabHash = this.activeTabHash = selectedTab.hash;
-                expiringStorage.set(this.storageKey, selectedTab.hash, this.cacheLifetime);
             },
             setTabVisible(hash, visible) {
                 const tab = this.findTab(hash);

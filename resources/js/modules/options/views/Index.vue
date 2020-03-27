@@ -2,7 +2,7 @@
     <div>
         <h1>{{$t('options.index_page_title')}}</h1>
         <Tabs :options="{ useUrlFragment: false }">
-            <Tab v-if="options" v-for="(fields,tab) in options" :key="tab" :name="tab">
+            <Tab v-if="options" v-for="(fields,tab) in options" :key="tab" :name="tab" :active="tab === 'pages'">
 
                 <OptionField v-for="option in fields"
                              :key="option.key"
