@@ -1,9 +1,3 @@
-import PagesIndex from '../../views/Pages/Index';
-import ShowPage from '../../views/Pages/Show';
-import EditPage from '../../views/Pages/Edit';
-import PostsIndex from '../../views/Posts/Index';
-
-
 const NotFound = {template: '<div>not found</div>'};
 const Admin = {template: '<div>Admin index</div>'};
 
@@ -18,33 +12,12 @@ export default [
         name: 'dashboard',
         component: Admin
     },
-    {
-        path: '/admin/pages',
-        name: 'pages.index',
-        component: PagesIndex
-    },
-    {
-        path: '/admin/pages/:id',
-        name: 'pages.show',
-        component: ShowPage,
-        props: true
-    },
-    {
-        path: '/admin/pages/:id/edit',
-        name: 'pages.edit',
-        component: EditPage,
-        props: true
-    },
-    {
-        path: '/admin/posts',
-        name: 'posts.index',
-        component: PostsIndex
-    },
 
     ...menuRoutes,
     ...optionRoutes,
     ...profileRoutes,
     ...userRoutes,
+
     {
         path: '*',
         name: 'catch-all',

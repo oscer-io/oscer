@@ -1,8 +1,8 @@
 import Vue from 'vue';
 
-import FieldWrapper from "../components/fields/FieldWrapper";
-import TextField from "../components/fields/TextField";
-import TextAreaField from "../components/fields/TextAreaField";
+import FieldWrapper from "../fields/FieldWrapper";
+import TextField from "../fields/TextField";
+import TextAreaField from "../fields/TextAreaField";
 
 Vue.component('field-wrapper', FieldWrapper);
 Vue.component('text-field', TextField);
