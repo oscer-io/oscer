@@ -3,7 +3,6 @@ import ShowPage from '../../views/Pages/Show';
 import EditPage from '../../views/Pages/Edit';
 import PostsIndex from '../../views/Posts/Index';
 
-import OptionsIndex from '../../views/Options/Index';
 import UsersIndex from '../../views/Users/Index';
 import ShowUser from '../../views/Users/Show';
 import EditUser from '../../views/Users/Edit';
@@ -14,6 +13,7 @@ const NotFound = {template: '<div>not found</div>'};
 const Admin = {template: '<div>Admin index</div>'};
 
 import menuRoutes from '../../modules/menus/routes';
+import optionRoutes from '../../modules/options/routes';
 
 export default [
     {
@@ -42,11 +42,6 @@ export default [
         path: '/admin/posts',
         name: 'posts.index',
         component: PostsIndex
-    },
-    {
-        path: '/admin/options',
-        name: 'options.index',
-        component: OptionsIndex
     },
     {
         path: '/admin/users',
@@ -80,5 +75,6 @@ export default [
         name: 'catch-all',
         component: NotFound
     },
-    ...menuRoutes
+    ...menuRoutes,
+    ...optionRoutes,
 ];

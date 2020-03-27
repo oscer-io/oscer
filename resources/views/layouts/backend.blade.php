@@ -140,8 +140,8 @@
             </main>
         </div>
     </div>
-    <modals-container/>
     <Flash/>
+    <modals-container/>
 </div>
 <script>
 

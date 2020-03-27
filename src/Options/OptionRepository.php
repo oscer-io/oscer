@@ -74,7 +74,7 @@ class OptionRepository
         return $this->options;
     }
 
-    public function store(string $key, string $value)
+    public function store(string $key, ?string $value)
     {
         return Option::query()->updateOrCreate(
             ['key' => $key],
