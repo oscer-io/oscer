@@ -3,34 +3,30 @@
 namespace Bambamboole\LaravelCms\Options\Http\Controllers;
 
 use Bambamboole\LaravelCms\Options\Http\Requests\CreateOrUpdateOptionRequest;
-use Bambamboole\LaravelCms\Options\Models\Option;
+use Bambamboole\LaravelCms\Options\Http\Resources\OptionResource;
 use Bambamboole\LaravelCms\Options\OptionRepository;
-use Illuminate\Support\Facades\Redirect;
-use Inertia\Inertia;
 
 class OptionsController
 {
-    protected OptionRepository $resolver;
+    protected OptionRepository $repository;
 
     public function __construct(OptionRepository $resolver)
     {
-        $this->resolver = $resolver;
+        $this->repository = $resolver;
     }
 
     public function index()
     {
-        return Inertia::render('Options/Index', ['options' => $this->resolver->getOptionFields()]);
+        return ['data' => $this->repository->getOptionFields()];
     }
 
     public function store(CreateOrUpdateOptionRequest $request)
     {
-        $option = Option::query()->updateOrCreate(
-            ['key' => $request->input('key')],
-            ['value' => $request->input('value')]
-        );
+        $option = $this->repository
+            ->store($request->input('key'), $request->input('value'));
 
-        session()->flash('message', ['type' => 'success', 'text' => "Option {$option->key} updated"]);
-
-        return Redirect::route('cms.backend.options.index');
+        return (new OptionResource($option))
+            ->response()
+            ->setStatusCode(201);
     }
 }

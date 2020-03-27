@@ -14,7 +14,11 @@ let tailwindcss = require('tailwindcss');
 mix.options({processCssUrls: false})
     .setPublicPath('dist')
     .js('resources/js/app.js', 'dist')
-    .js('resources/js/swagger-ui.js', 'dist')
     .sass('resources/sass/app.scss', 'dist', {}, [tailwindcss('./tailwind.config.js')])
+    .version();
+
+mix.options({processCssUrls: false})
+    .setPublicPath('dist')
+    .js('resources/js/swagger-ui.js', 'dist')
     .sass('resources/sass/swagger-ui.scss', 'dist')
     .version();

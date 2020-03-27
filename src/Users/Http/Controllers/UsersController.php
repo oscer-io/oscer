@@ -6,59 +6,45 @@ use Bambamboole\LaravelCms\Auth\Mails\NewUserCreatedMail;
 use Bambamboole\LaravelCms\Auth\Models\User;
 use Bambamboole\LaravelCms\Users\Http\Requests\CreateUserRequest;
 use Bambamboole\LaravelCms\Users\Http\Requests\UpdateUserRequest;
+use Bambamboole\LaravelCms\Users\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
-use Inertia\Inertia;
 
 class UsersController
 {
     public function index()
     {
-        return Inertia::render('Users/Index', ['users' => User::all()]);
+        return UserResource::collection(User::query()->paginate());
     }
 
     public function show(User $user)
     {
-        return Inertia::render('Users/Show', ['user' => $user]);
-    }
-
-    public function edit(User $user)
-    {
-        return Inertia::render('Users/Edit', ['user' => $user]);
+        return new UserResource($user);
     }
 
     public function update(UpdateUserRequest $request, User $user)
     {
         $user->update($request->validated());
 
-        session()->flash('message', [
-            'type' => 'success',
-            'text' => __('cms::users.toast.updated', ['user' => $user->name]),
-        ]);
-
-        return Redirect::route('cms.backend.users.show', ['user' => $user]);
-    }
-
-    public function create()
-    {
-        return Inertia::render('Users/Create', ['user' => new User()]);
+        return new UserResource($user);
     }
 
     public function store(CreateUserRequest $request)
     {
-        $user = User::create(array_merge([
+        $user = User::query()->create(array_merge([
             'password' => $password = Str::random(), ],
             $request->validated()
         ));
 
         Mail::to($user->email)->send(new NewUserCreatedMail($password));
 
-        session()->flash('message', [
-            'type' => 'success',
-            'text' => __('cms::users.toast.created', ['user' => $user->name]),
-        ]);
+        return new UserResource($user);
+    }
 
-        return Redirect::route('cms.backend.users.show', ['user' => $user]);
+    public function delete(User $user)
+    {
+        $user->delete();
+
+        return ['success' => true];
     }
 }

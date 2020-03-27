@@ -6,13 +6,13 @@ use Bambamboole\LaravelCms\Auth\Http\Controllers\Api\IssueTokenController;
 use Bambamboole\LaravelCms\Auth\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Core\Http\Controllers\OpenApiController;
 use Bambamboole\LaravelCms\Core\Http\Controllers\SwaggerUiController;
-use Bambamboole\LaravelCms\Menus\Http\Controllers\Api\MenuOrderController;
-use Bambamboole\LaravelCms\Menus\Http\Controllers\Api\MenusController;
-use Bambamboole\LaravelCms\Options\Http\Controllers\Api\OptionsController;
+use Bambamboole\LaravelCms\Menus\Http\Controllers\MenuOrderController;
+use Bambamboole\LaravelCms\Menus\Http\Controllers\MenusController;
+use Bambamboole\LaravelCms\Options\Http\Controllers\OptionsController;
 use Bambamboole\LaravelCms\Publishing\Http\Controllers\Api\PagesController;
-use Bambamboole\LaravelCms\Users\Http\Controllers\Api\ProfileAvatarController;
-use Bambamboole\LaravelCms\Users\Http\Controllers\Api\ProfileController;
-use Bambamboole\LaravelCms\Users\Http\Controllers\Api\UsersController;
+use Bambamboole\LaravelCms\Users\Http\Controllers\ProfileAvatarController;
+use Bambamboole\LaravelCms\Users\Http\Controllers\ProfileController;
+use Bambamboole\LaravelCms\Users\Http\Controllers\UsersController;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Routing\Router;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
@@ -76,6 +76,7 @@ class ApiRouter
                 $router->post('/options', [OptionsController::class, 'store'])->name('options.store');
 
                 $router->get('/menus', [MenusController::class, 'index'])->name('menus.index');
+                $router->get('/menus/{name}', [MenusController::class, 'show'])->name('menus.show');
                 $router->post('/menus/{name}/items', [MenusController::class, 'store'])->name('menus.store');
                 $router->put('/menus/{name}/items/{id}', [MenusController::class, 'update'])->name('menus.update');
                 $router->delete('/menus/{name}/items/{id}', [MenusController::class, 'delete'])->name('menus.delete');

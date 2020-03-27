@@ -1,12 +1,16 @@
-import LaravelCms from './lib/LaravelCms.js';
+import Cms from './lib/cms';
 
-LaravelCms
-    .loadGlobalMixins()
-    .loadBaseComponents()
-    .loadGlobalPlugins()
-    .registerFlash()
-    .setContainer('#app')
-    .activateInternationalization()
-    .activateInertia()
-    .activateVueTailwind()
-    .start();
+/**
+ * Register all global components and fields
+ */
+import './lib/components';
+import './lib/fields';
+
+/**
+ * We create a factory on the window which can create a new LaravelCms instance
+ */
+(function () {
+    this.CreateCms = function (config) {
+        return new Cms(config)
+    }
+}).call(window);
