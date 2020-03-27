@@ -66,7 +66,7 @@
                 </span>
             </div>
         </div>
-        <modal :visible="modal" @close="modal = !modal">
+        <modal name="hello-world">
             <form @submit.prevent="createOrSave">
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="sm:col-span-3">
@@ -113,15 +113,13 @@
     import _ from 'lodash';
     import axios from 'axios';
     import Draggable from 'vuedraggable';
-    import Modal from "../../components/Modal";
 
     export default {
         props: {
             name: String,
         },
         components: {
-            Draggable,
-            Modal
+            Draggable
         },
         data() {
             return {

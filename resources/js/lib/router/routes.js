@@ -2,8 +2,7 @@ import PagesIndex from '../../views/Pages/Index';
 import ShowPage from '../../views/Pages/Show';
 import EditPage from '../../views/Pages/Edit';
 import PostsIndex from '../../views/Posts/Index';
-import MenusIndex from '../../views/Menus/Index';
-import ShowMenu from '../../views/Menus/Show';
+
 import OptionsIndex from '../../views/Options/Index';
 import UsersIndex from '../../views/Users/Index';
 import ShowUser from '../../views/Users/Show';
@@ -13,6 +12,8 @@ import ProfileEdit from '../../views/Profile/Edit';
 
 const NotFound = {template: '<div>not found</div>'};
 const Admin = {template: '<div>Admin index</div>'};
+
+import menuRoutes from '../../modules/menus/routes';
 
 export default [
     {
@@ -41,17 +42,6 @@ export default [
         path: '/admin/posts',
         name: 'posts.index',
         component: PostsIndex
-    },
-    {
-        path: '/admin/menus',
-        name: 'menus.index',
-        component: MenusIndex
-    },
-    {
-        path: '/admin/menus/:name',
-        name: 'menus.show',
-        component: ShowMenu,
-        props: true
     },
     {
         path: '/admin/options',
@@ -89,5 +79,6 @@ export default [
         path: '*',
         name: 'catch-all',
         component: NotFound
-    }
+    },
+    ...menuRoutes
 ];
