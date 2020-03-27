@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import VueJSModal from "vue-js-modal";
 import router from "./router";
 import i18n from './i18n';
 import Loading from '../components/Loading';
@@ -36,6 +37,7 @@ export default class Cms {
     start() {
         this.boot();
 
+        Vue.use(VueJSModal, {dynamic: true});
         Vue.mixin(titleMixin);
 
         this.app = new Vue({

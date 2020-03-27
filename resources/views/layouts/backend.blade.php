@@ -140,6 +140,7 @@
             </main>
         </div>
     </div>
+    <modals-container/>
     <Flash/>
 </div>
 <script>
