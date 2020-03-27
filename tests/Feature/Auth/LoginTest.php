@@ -22,6 +22,6 @@ class LoginTest extends TestCase
             'password' => 'secret',
         ]);
 
-        $response->assertRedirect('/admin/posts');
+        $response->assertRedirect('/admin');
     }
 }

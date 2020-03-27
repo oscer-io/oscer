@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Users\Http\Controllers\Api;
+namespace Bambamboole\LaravelCms\Users\Http\Controllers;
 
 use Bambamboole\LaravelCms\Users\Http\Requests\UpdateProfileAvatarRequest;
 
