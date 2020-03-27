@@ -5,6 +5,7 @@ import Loading from '../components/Loading';
 import Dropdown from '../components/Dropdown';
 import NavbarLink from '../components/NavbarLink';
 import Flash from "../components/Flash";
+import {titleMixin} from './mixins';
 
 export default class Cms {
 
@@ -34,6 +35,8 @@ export default class Cms {
      */
     start() {
         this.boot();
+
+        Vue.mixin(titleMixin);
 
         this.app = new Vue({
             el: '#cms',

@@ -2,6 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Publishing\Http\Resources;
 
+use Bambamboole\LaravelCms\Users\Http\Resources\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PageResource extends JsonResource
@@ -20,6 +21,7 @@ class PageResource extends JsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'body' => $this->body,
+            'author' => new UserResource($this->whenLoaded('author')),
             'author_id' => $this->author_id,
             'published_at' => $this->published_at,
             'created_at' => $this->created_at,

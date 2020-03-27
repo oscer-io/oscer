@@ -16,7 +16,7 @@ class PagesController
 
     public function show(int $id)
     {
-        return new PageResource(Page::query()->findOrFail($id));
+        return new PageResource(Page::query()->with('author')->findOrFail($id));
     }
 
     public function store(CreatePageRequest $request)

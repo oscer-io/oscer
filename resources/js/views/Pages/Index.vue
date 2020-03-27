@@ -77,10 +77,10 @@
                             <div class="flex items-center">
                                 <div class="text-sm leading-5">
                                     <div>
-                                        <a href="#"
+                                        <router-link :to="{name: 'pages.show',params: {id: page.id}}"
                                            class="text-indigo-600 hover:text-indigo-900 focus:outline-none hover:underline">
                                             {{ page.name }}
-                                        </a>
+                                        </router-link>
                                     </div>
                                     <div class="text-xs leading-5 text-gray-500">
                                         {{ page.slug }}
@@ -126,10 +126,10 @@
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
-                            <a href="#"
+                            <router-link :to="{name: 'pages.show',params: {id: page.id}}"
                                class="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline">
                                 {{ $t('pages.button_show') }}
-                            </a>
+                            </router-link>
                         </td>
                     </tr>
                     </tbody>

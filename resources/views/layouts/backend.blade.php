@@ -103,6 +103,7 @@
                         </div>
                     </div>
                     <div class="ml-4 flex items-center md:ml-6">
+                        <a class="mr-4" target="_blank" href="/">Show Website</a>
                         <button
                             class="p-1 text-gray-400 rounded-full hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:shadow-outline focus:text-gray-500">
                             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
