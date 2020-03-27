@@ -19,6 +19,8 @@
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
         created() {
             console.log(this.key)
@@ -32,11 +34,16 @@
             }
         },
         methods: {
-            save() {
-                this.$inertia.post(this.route('cms.backend.options.store'), {
-                    key: this.option.key,
-                    value: this.currentValue,
-                })
+            async save() {
+                try {
+                    await axios.post('/api/cms/options', {
+                        key: this.option.key,
+                        value: this.currentValue,
+                    });
+                    Cms.flash('success', 'Option successfully saved')
+                } catch (e) {
+                    Cms.flash('error', 'Something went wrong')
+                }
             }
         }
     }

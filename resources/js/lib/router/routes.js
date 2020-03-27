@@ -6,14 +6,13 @@ import PostsIndex from '../../views/Posts/Index';
 import UsersIndex from '../../views/Users/Index';
 import ShowUser from '../../views/Users/Show';
 import EditUser from '../../views/Users/Edit';
-import ProfileShow from '../../views/Profile/Show';
-import ProfileEdit from '../../views/Profile/Edit';
 
 const NotFound = {template: '<div>not found</div>'};
 const Admin = {template: '<div>Admin index</div>'};
 
 import menuRoutes from '../../modules/menus/routes';
 import optionRoutes from '../../modules/options/routes';
+import profileRoutes from '../../modules/profile/routes';
 
 export default [
     {
@@ -61,20 +60,11 @@ export default [
         props: true
     },
     {
-        path: '/admin/profile',
-        name: 'profile.show',
-        component: ProfileShow
-    },
-    {
-        path: '/admin/profile/edit',
-        name: 'profile.edit',
-        component: ProfileEdit
-    },
-    {
         path: '*',
         name: 'catch-all',
         component: NotFound
     },
     ...menuRoutes,
     ...optionRoutes,
+    ...profileRoutes,
 ];

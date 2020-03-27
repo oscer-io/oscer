@@ -15,10 +15,9 @@
 </template>
 
 <script>
-    import Tab from "../../components/Tab";
-    import Tabs from "../../components/Tabs";
-    import Layout from '../Layout';
-    import OptionField from "./OptionField";
+    import Tab from "../../../components/Tab";
+    import Tabs from "../../../components/Tabs";
+    import OptionField from "./../components/OptionField";
     import axios from "axios";
 
     export default {
@@ -34,7 +33,6 @@
         },
         components: {
             OptionField,
-            Layout,
             Tab,
             Tabs,
         },
