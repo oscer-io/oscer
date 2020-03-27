@@ -1,4 +1,4 @@
-@extends('cms::layouts.default', ['title' => $post->name])
+@extends('cms::themes.default.layout', ['title' => $post->name])
 
 @section('content')
     <article>

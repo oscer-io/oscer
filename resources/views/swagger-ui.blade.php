@@ -10,6 +10,6 @@
 </head>
 <body>
 <div id="swagger-ui"></div>
-<script src="{{asset('vendor/cms/swagger-ui.js')}}" defer></script>
+<script src="{{mix('swagger-ui.js', 'vendor/cms')}}" defer></script>
 </body>
 </html>

@@ -10,10 +10,10 @@ class DefaultTheme implements Theme
     {
         return [
             'main' => [
-                'template' => 'cms::menus.main',
+                'template' => 'cms::themes.default.menus.main',
             ],
             'footer' => [
-                'template' => 'cms::menus.footer',
+                'template' => 'cms::themes.default.menus.footer',
             ],
         ];
     }
@@ -25,17 +25,17 @@ class DefaultTheme implements Theme
 
     public function getPageTemplate(): string
     {
-        return 'cms::pages.show';
+        return 'cms::themes.default.pages.show';
     }
 
     public function getPostIndexTemplate(): string
     {
-        return 'cms::posts.index';
+        return 'cms::themes.default.posts.index';
     }
 
     public function getPostShowTemplate(): string
     {
-        return 'cms::posts.show';
+        return 'cms::themes.default.posts.show';
     }
 
     public function getOptions(): array

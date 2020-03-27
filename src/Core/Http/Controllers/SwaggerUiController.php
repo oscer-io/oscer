@@ -6,6 +6,6 @@ class SwaggerUiController
 {
     public function __invoke()
     {
-        return view('cms::layouts.swagger-ui');
+        return view('cms::swagger-ui');
     }
 }

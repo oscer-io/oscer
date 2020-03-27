@@ -1,4 +1,4 @@
-@extends('cms::layouts.default', ['title' => 'Posts overview'])
+@extends('cms::themes.default.layout', ['title' => 'Posts overview'])
 
 @section('content')
     @forelse($posts as $post)
