@@ -1,5 +1,5 @@
 <template>
-    <layout :title="$t('menus.show_page_title', {name: menu.name, id: menu.id} )">
+    <div v-if="menu">
         <div class="flex justify-between mb-3">
             <h1 class="mb-4 text-lg leading-6 font-medium text-gray-900">
                 {{ $t('menus.show_title', {name: menu.name}) }}
@@ -77,7 +77,7 @@
                             <input id="name" type="test" v-model="newItem.name"
                                    class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                         </div>
-                        <p v-if="$page.errors.name" class="mt-2 text-sm text-red-600">{{ $page.errors.name[0] }}</p>
+<!--                        <p v-if="$page.errors.name" class="mt-2 text-sm text-red-600">{{ $page.errors.name[0] }}</p>-->
                     </div>
                     <div class="sm:col-span-3">
                         <label for="url" class="block text-sm font-medium leading-5 text-gray-700">
@@ -87,7 +87,7 @@
                             <input id="url" type="text" v-model="newItem.url"
                                    class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                         </div>
-                        <p v-if="$page.errors.url" class="mt-2 text-sm text-red-600">{{ $page.errors.url[0] }}</p>
+<!--                        <p v-if="$page.errors.url" class="mt-2 text-sm text-red-600">{{ $page.errors.url[0] }}</p>-->
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
@@ -106,35 +106,37 @@
                 </div>
             </form>
         </modal>
-    </layout>
+    </div>
 </template>
 
 <script>
     import _ from 'lodash';
+    import axios from 'axios';
     import Draggable from 'vuedraggable';
-    import Layout from '../Layout';
     import Modal from "../../components/Modal";
 
     export default {
         props: {
-            menu: Object,
-            errors: Object
+            name: String,
         },
         components: {
             Draggable,
-            Layout,
             Modal
         },
         data() {
             return {
+                menu: null,
                 modal: false,
-                items: this.menu.items,
                 update: false,
                 newItem: {
                     name: '',
                     url: '',
                 }
             }
+        },
+        async mounted() {
+            const response = await axios.get('/api/cms/menus/' + this.name);
+            this.menu = response.data.data
         },
         computed: {
             reordered() {
@@ -151,14 +153,14 @@
         },
         methods: {
             saveOrder() {
-                this.$inertia.post(this.route('cms.backend.menus.save_order', {name: this.menu.name}), {
-                    order: this.items.map((value, index) => {
-                        return {
-                            id: value.id,
-                            order: index
-                        }
-                    })
-                })
+                // axios.post(this.route('cms.backend.menus.save_order', {name: this.menu.name}), {
+                //     order: this.items.map((value, index) => {
+                //         return {
+                //             id: value.id,
+                //             order: index
+                //         }
+                //     })
+                // })
             },
             openCreateModal() {
                 this.update = false;
@@ -177,13 +179,13 @@
                 }
             },
             saveItem() {
-                this.$inertia.put(this.route('cms.backend.menus.update', {item: this.newItem.id}), this.newItem);
+                // axios.put(this.route('cms.backend.menus.update', {item: this.newItem.id}), this.newItem);
             },
             createItem() {
-                this.$inertia.post(this.route('cms.backend.menus.store', {name: this.menu.name}), this.newItem);
+                // axios.post(this.route('cms.backend.menus.store', {name: this.menu.name}), this.newItem);
             },
             deleteItem(item) {
-                this.$inertia.delete(this.route('cms.backend.menus.delete', {item: item.id}));
+                // axios.delete(this.route('cms.backend.menus.delete', {item: item.id}));
             }
         }
     }

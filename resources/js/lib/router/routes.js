@@ -1,6 +1,7 @@
 import PagesIndex from '../../views/Pages/Index';
 import PostsIndex from '../../views/Posts/Index';
 import MenusIndex from '../../views/Menus/Index';
+import ShowMenu from '../../views/Menus/Show';
 import OptionsIndex from '../../views/Options/Index';
 import UsersIndex from '../../views/Users/Index';
 import ShowUser from '../../views/Users/Show';
@@ -30,6 +31,12 @@ export default [
         path: '/admin/menus',
         name: 'menus.index',
         component: MenusIndex
+    },
+    {
+        path: '/admin/menus/:name',
+        name: 'menus.show',
+        component: ShowMenu,
+        props: true
     },
     {
         path: '/admin/options',

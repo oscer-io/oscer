@@ -76,6 +76,7 @@ class ApiRouter
                 $router->post('/options', [OptionsController::class, 'store'])->name('options.store');
 
                 $router->get('/menus', [MenusController::class, 'index'])->name('menus.index');
+                $router->get('/menus/{name}', [MenusController::class, 'show'])->name('menus.show');
                 $router->post('/menus/{name}/items', [MenusController::class, 'store'])->name('menus.store');
                 $router->put('/menus/{name}/items/{id}', [MenusController::class, 'update'])->name('menus.update');
                 $router->delete('/menus/{name}/items/{id}', [MenusController::class, 'delete'])->name('menus.delete');

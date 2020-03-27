@@ -14,6 +14,11 @@ class MenusController
         return ['data' => Menu::all()];
     }
 
+    public function show(string $name)
+    {
+        return ['data' => Menu::resolve($name)];
+    }
+
     public function store(CreateMenuItemRequest $request, string $name)
     {
         MenuItem::query()->create(
