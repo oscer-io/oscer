@@ -2,10 +2,7 @@ import Vue from 'vue';
 import VueJSModal from "vue-js-modal";
 import router from "./router";
 import i18n from './i18n';
-import Loading from '../components/Loading';
-import Dropdown from '../components/Dropdown';
-import NavbarLink from '../components/NavbarLink';
-import Flash from "../components/Flash";
+
 import {titleMixin} from './mixins';
 
 export default class Cms {
@@ -44,12 +41,6 @@ export default class Cms {
             el: '#cms',
             router,
             i18n,
-            components: {
-                Dropdown,
-                Loading,
-                NavbarLink,
-                Flash
-            },
             data() {
                 return {
                     transitionName: 'fade'
