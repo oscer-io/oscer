@@ -53,8 +53,7 @@
 </template>
 
 <script>
-    import axios from 'axios';
-
+    import api from "../../../lib/api";
     export default {
         data(){
             return {
@@ -63,7 +62,7 @@
         },
         async mounted() {
             // posts endpoint not implemented because of the thoughts to only use one model with different types
-            const response = await axios.get('/api/cms/menus');
+            const response = await api(this.route('cms.api.menus.index'));
             this.menus = response.data.data
         }
     }

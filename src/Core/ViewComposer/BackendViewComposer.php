@@ -31,7 +31,7 @@ class BackendViewComposer
             })->map(function (Route $value, $key) {
                 return [
                     'method' => strtolower($value->methods()[0]),
-                    'uri' => "/{$value->uri()}",
+                    'url' => "/{$value->uri()}",
                 ];
             })->toArray();
     }

@@ -11,7 +11,7 @@
         <div class="mt-8 border-t border-gray-200 pt-5">
             <div class="flex justify-end">
                         <span class="inline-flex rounded-md shadow-sm">
-                            <button type="button" @click="$emit('cancel')"
+                            <button type="button" @click="cancelMethod ? cancelMethod() : $emit('cancel')"
                                     class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
                                 {{ $t('users.button_cancel') }}
                             </button>
@@ -34,7 +34,7 @@
         props: {
             fields: {
                 type: Array,
-                default: []
+                default: () => []
             },
             apiRoute: {
                 type: Object,
@@ -43,6 +43,17 @@
             removeNullValues: {
                 type: Boolean,
                 default: false
+            },
+            append: {
+                type: Object,
+                default: () => {
+                }
+            },
+            cancelMethod: {
+                type: Function
+            },
+            successMethod: {
+                type: Function
             }
         },
         data() {
@@ -57,17 +68,23 @@
                     this.payload[field.name] = field.getValue()
                 });
 
-                if(this.removeNullValues === true){
+                Object.assign(this.payload, this.append);
+
+                if (this.removeNullValues === true) {
                     this.payload = _.pickBy(this.payload)
                 }
 
                 try {
                     const response = await api({
                         method: this.apiRoute.method,
-                        url: this.apiRoute.uri,
+                        url: this.apiRoute.url,
                         data: this.payload
                     });
-                    this.$emit('success', response.data.data);
+
+                    this.successMethod
+                        ? this.successMethod(response.data.data)
+                        : this.$emit('success', response.data.data);
+
                 } catch (error) {
                     if (error.response.status === 422) {
                         this.validationErrors = error.response.data.errors;

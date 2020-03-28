@@ -6,7 +6,7 @@
             </h1>
             <div>
                 <span class="ml-3 inline-flex rounded-md shadow-sm">
-                    <button type="button" @click="openCreateModal"
+                    <button type="button" @click="$modal.show('new-item')"
                             class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500  focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
                         {{ $t('menus.button_create_item') }}
                     </button>
@@ -14,10 +14,11 @@
             </div>
         </div>
         <div>
-            <draggable class="border rounded" v-model="items" v-bind="{ghostClass: 'ghost'}" @start="drag=true" @end="drag=false">
+            <draggable class="border rounded" v-model="items" v-bind="{ghostClass: 'ghost'}" @start="drag=true"
+                       @end="drag=false">
                 <transition-group type="transition" name="flip-list">
                     <div class="flex justify-between border-b cursor-move last:border-b-0 py-2 px-3"
-                         v-for="item in items" :key="item.id">
+                         v-for="(item, index) in items" :key="item.id">
                         <div class="flex">
                             <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"
                                  class="text-gray-600 mt-1 w-4 h-4 mr-2">
@@ -66,75 +67,54 @@
                 </span>
             </div>
         </div>
-        <modal name="hello-world">
-            <form @submit.prevent="createOrSave">
-                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                    <div class="sm:col-span-3">
-                        <label for="name" class="block text-sm font-medium leading-5 text-gray-700">
-                            {{ $t('menus.name') }}
-                        </label>
-                        <div class="mt-1 rounded-md shadow-sm">
-                            <input id="name" type="test" v-model="newItem.name"
-                                   class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                        </div>
-<!--                        <p v-if="$page.errors.name" class="mt-2 text-sm text-red-600">{{ $page.errors.name[0] }}</p>-->
-                    </div>
-                    <div class="sm:col-span-3">
-                        <label for="url" class="block text-sm font-medium leading-5 text-gray-700">
-                            {{ $t('menus.url') }}
-                        </label>
-                        <div class="mt-1 rounded-md shadow-sm">
-                            <input id="url" type="text" v-model="newItem.url"
-                                   class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                        </div>
-<!--                        <p v-if="$page.errors.url" class="mt-2 text-sm text-red-600">{{ $page.errors.url[0] }}</p>-->
-                    </div>
-                </div>
-                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                    <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-                        <button type="submit"
-                                class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                            {{ $t('menus.button_create') }}
-                        </button>
-                    </span>
-                    <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-                        <button type="button" @click="modal = !modal"
-                            class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                            {{ $t('menus.button_cancel') }}
-                        </button>
-                    </span>
-                </div>
-            </form>
+        <modal name="new-item" height="auto">
+            <p class="pt-6 text-lg leading-6 font-medium text-gray-900 text-center">New item</p>
+            <BaseForm
+                class="p-6"
+                :fields="createFields"
+                :api-route="route('cms.api.menus.store',{name:this.name})"
+                :append="{menu: name}"
+                @cancel="$modal.hide('new-item')"
+                @success="handleNewItemSuccess()"
+            />
         </modal>
     </div>
 </template>
 
 <script>
     import _ from 'lodash';
-    import axios from 'axios';
+    import api from "../../../lib/api";
     import Draggable from 'vuedraggable';
+    import BaseForm from "../../../components/BaseForm";
 
     export default {
         props: {
             name: String,
         },
         components: {
+            BaseForm,
             Draggable
         },
         data() {
             return {
+                createFields: [
+                    {
+                        type: 'text',
+                        name: 'name',
+                        label: this.$t('menus.name'),
+                    },
+                    {
+                        type: 'text',
+                        name: 'url',
+                        label: this.$t('menus.url'),
+                    },
+                ],
                 menu: null,
-                modal: false,
-                update: false,
-                newItem: {
-                    name: '',
-                    url: '',
-                }
+                items: []
             }
         },
         async mounted() {
-            const response = await axios.get('/api/cms/menus/' + this.name);
-            this.menu = response.data.data
+            this.fetchItems();
         },
         computed: {
             reordered() {
@@ -142,48 +122,66 @@
             }
         },
         watch: {
-            errors(errors) {
-                this.modal = !_.isEmpty(errors)
-            },
             menu() {
                 this.items = this.menu.items;
             }
         },
         methods: {
+            async fetchItems() {
+                const response = await api(this.route('cms.api.menus.show', {name: this.name}));
+                this.menu = response.data.data
+            },
+            handleNewItemSuccess() {
+                this.$modal.hide('new-item');
+                Cms.flash('success', 'new Item created');
+                this.fetchItems();
+            },
+            handleUpdateItemSuccess(item) {
+                this.$modal.hide('edit-item-modal-' + item.id);
+                Cms.flash('success', 'Item updated');
+                this.fetchItems();
+            },
             saveOrder() {
-                // axios.post(this.route('cms.backend.menus.save_order', {name: this.menu.name}), {
-                //     order: this.items.map((value, index) => {
-                //         return {
-                //             id: value.id,
-                //             order: index
-                //         }
-                //     })
-                // })
+                api({
+                    ...this.route('cms.backend.menus.save_order', {name: this.name}),
+                    data: {
+                        order: this.items.map((value, index) => {
+                            return {
+                                id: value.id,
+                                order: index
+                            }
+                        })
+                    }
+                })
             },
-            openCreateModal() {
-                this.update = false;
-                this.modal = true;
-            },
+
             updateItem(item) {
-                this.update = true;
-                this.newItem = item;
-                this.modal = true;
+                this.$modal.show(
+                    BaseForm,
+                    {
+                        fields: _.map(this.createFields, field => {
+                            if (item.hasOwnProperty(field.name)) {
+                                field.value = item[field.name]
+                            }
+                            console.log(field)
+                            return field;
+                        }),
+                        apiRoute: this.route('cms.api.menus.update', {name: this.name, id: item.id}),
+                        append: {menu: this.name},
+                        cancelMethod: () => {
+                            this.$modal.hide('edit-item-modal-' + item.id)
+                        },
+                        successMethod: this.handleUpdateItemSuccess
+                    },
+                    {
+                        name: 'edit-item-modal-' + item.id,
+                        height: 'auto',
+                    }
+                );
             },
-            createOrSave() {
-                if (!this.update) {
-                    this.createItem();
-                } else {
-                    this.saveItem();
-                }
-            },
-            saveItem() {
-                // axios.put(this.route('cms.backend.menus.update', {item: this.newItem.id}), this.newItem);
-            },
-            createItem() {
-                // axios.post(this.route('cms.backend.menus.store', {name: this.menu.name}), this.newItem);
-            },
+
             deleteItem(item) {
-                // axios.delete(this.route('cms.backend.menus.delete', {item: item.id}));
+                api(this.route('cms.backend.menus.delete', {item: item.id}));
             }
         }
     }
@@ -193,9 +191,11 @@
     .flip-list-move {
         transition: transform 0.5s;
     }
+
     .no-move {
         transition: transform 0s;
     }
+
     .ghost {
         opacity: 0.5;
         background: #c8ebfb;

@@ -2,7 +2,9 @@
 
 namespace Bambamboole\LaravelCms\Menus\Http\Requests;
 
+use Bambamboole\LaravelCms\Theming\Contracts\Theme;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateMenuItemRequest extends FormRequest
 {
@@ -14,6 +16,7 @@ class CreateMenuItemRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'menu' => [Rule::in(collect(app(Theme::class)->getMenus())->keys())],
             'name' => ['required', 'string'],
             'url' => ['required', 'string'],
         ];
