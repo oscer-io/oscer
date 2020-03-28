@@ -3,9 +3,9 @@
 namespace Bambamboole\LaravelCms;
 
 use Bambamboole\LaravelCms\Auth\Models\User;
-use Bambamboole\LaravelCms\Core\ViewComposer\BackendViewComposer;
 use Bambamboole\LaravelCms\Core\Commands\Development\SeedCommand;
 use Bambamboole\LaravelCms\Core\Commands\PublishCommand;
+use Bambamboole\LaravelCms\Core\ViewComposer\BackendViewComposer;
 use Bambamboole\LaravelCms\Routing\ApiRouter;
 use Bambamboole\LaravelCms\Routing\BackendRouter;
 use Bambamboole\LaravelCms\Theming\BladeComponents\MenuBladeComponent;
@@ -26,11 +26,10 @@ class LaravelCmsServiceProvider extends ServiceProvider
         Factory $view,
         Repository $config,
         Theme $theme
-    )
-    {
-        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'cms');
-        $this->loadMigrationsFrom(__DIR__ . '/../migrations');
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'cms');
+    ) {
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'cms');
+        $this->loadMigrationsFrom(__DIR__.'/../migrations');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'cms');
         $this->registerGuard($config);
         $this->registerPublishes();
 
@@ -74,11 +73,11 @@ class LaravelCmsServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../dist' => public_path('vendor/cms'),
+                __DIR__.'/../dist' => public_path('vendor/cms'),
             ], 'cms-assets');
 
             $this->publishes([
-                __DIR__ . '/../config/config.php' => config_path('cms.php'),
+                __DIR__.'/../config/config.php' => config_path('cms.php'),
             ], 'cms-config');
         }
     }
@@ -88,7 +87,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'cms');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'cms');
 
         $this->commands([
             PublishCommand::class,

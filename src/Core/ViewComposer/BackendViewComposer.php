@@ -19,10 +19,9 @@ class BackendViewComposer
     {
         $view->with('json', [
             'user' => auth()->user(),
-            'routes' => $this->getRoutes()
+            'routes' => $this->getRoutes(),
         ]);
     }
-
 
     protected function getRoutes()
     {
