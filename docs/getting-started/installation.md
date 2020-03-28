@@ -36,6 +36,6 @@ Do not forget to register it in the `providers` key inside your `config/app.php`
 
 ```bash
 php artisan cms:publish
-php artisan cms:migrate
+php artisan migrate
 ```  
 If you migrate the first time, it will also create a user and show the credentials in the console.
