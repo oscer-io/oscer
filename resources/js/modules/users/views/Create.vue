@@ -7,20 +7,20 @@
                 </h1>
             </div>
         </div>
-        <CreateForm
+        <BaseForm
             :fields="fields"
+            :api-route="route('cms.api.users.store')"
             @cancel="handleCancel"
-            :api-endpoint="route('cms.api.users.store')"
             @success="handleSuccess"
         />
     </div>
 </template>
 
 <script>
-    import CreateForm from "../../../components/CreateForm";
+    import BaseForm from "../../../components/BaseForm";
 
     export default {
-        components: {CreateForm},
+        components: {BaseForm},
         data() {
             return {
                 fields: [

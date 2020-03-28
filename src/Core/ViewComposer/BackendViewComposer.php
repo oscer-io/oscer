@@ -29,8 +29,11 @@ class BackendViewComposer
         return collect($this->router->getRoutes()->getRoutesByName())
             ->filter(function ($value, $key) {
                 return strpos($key, 'cms.') !== false;
-            })->map(function (Route $value) {
-                return "/{$value->uri()}";
+            })->map(function (Route $value, $key) {
+                return [
+                    'method' => strtolower($value->methods()[0]),
+                    'uri' => "/{$value->uri()}"
+                ];
             })->toArray();
     }
 }

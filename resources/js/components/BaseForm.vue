@@ -12,7 +12,7 @@
             <div class="flex justify-end">
                         <span class="inline-flex rounded-md shadow-sm">
                             <button type="button" @click="$emit('cancel')"
-                                         class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
+                                    class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
                                 {{ $t('users.button_cancel') }}
                             </button>
                         </span>
@@ -31,10 +31,10 @@
     import axios from "axios";
 
     export default {
-        props: ['fields', 'cancelRoute', 'apiEndpoint'],
-        data(){
+        props: ['fields', 'cancelRoute', 'apiRoute'],
+        data() {
             return {
-                payload:{},
+                payload: {},
                 validationErrors: {}
             }
         },
@@ -45,9 +45,13 @@
                 });
 
                 try {
-                    const response = await axios.post(this.apiEndpoint, this.payload);
+                    const response = await axios({
+                        method: this.apiRoute.method,
+                        url: this.apiRoute.uri,
+                        data: this.payload
+                    });
                     console.log(response.data.data)
-                    this.$emit('success',response.data.data);
+                    this.$emit('success', response.data.data);
                 } catch (error) {
                     if (error.response.status === 422) {
                         this.validationErrors = error.response.data.errors;

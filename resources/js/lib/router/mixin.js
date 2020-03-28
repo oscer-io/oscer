@@ -3,11 +3,11 @@ export default {
         route(name, params = {}) {
             let route = Cms.config.routes[name];
 
-            let matches = route.match(/[^{]+(?=\})/g);
+            let matches = route.uri.match(/[^{]+(?=\})/g);
 
-            if (Object.entries(params).length >= 1) {
+            if (Object.entries(params).length >= 1 && matches.length >= 1) {
                 matches.forEach(match => {
-                    route = route.replace('{' + match + '}', params[match])
+                    route.uri = route.uri.replace('{' + match + '}', params[match])
                 });
             }
 
