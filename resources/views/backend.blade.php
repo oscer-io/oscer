@@ -131,7 +131,7 @@
 <script src="{{ mix('app.js', 'vendor/cms') }}"></script>
 <script>
 
-    window.Cms = new CreateCms({user: @json(auth()->user())})
+    window.Cms = new CreateCms(@json($json))
 </script>
 <script>
     Cms.start()

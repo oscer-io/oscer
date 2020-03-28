@@ -4,10 +4,11 @@
         <div class="mt-1 rounded-md shadow-sm">
             <slot/>
         </div>
+        <p v-if="errors" class="mt-2 text-sm text-red-600">{{ errors[0] }}</p>
     </div>
 </template>
 <script>
     export default {
-        props: ['name', 'label']
+        props: ['name', 'label', 'errors']
     }
 </script>

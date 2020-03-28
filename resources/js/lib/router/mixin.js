@@ -1,10 +1,17 @@
-import Router from "./router";
 export default {
     methods: {
         route(name, params = {}) {
-            const router = this.$page.routes;
+            let route = Cms.config.routes[name];
 
-            return router.make(name, params);
-        },
+            let matches = route.match(/[^{]+(?=\})/g);
+
+            if (Object.entries(params).length >= 1) {
+                matches.forEach(match => {
+                    route = route.replace('{' + match + '}', params[match])
+                });
+            }
+
+            return route;
+        }
     }
 }

@@ -7,7 +7,12 @@
                 </h1>
             </div>
         </div>
-        <CreateForm :fields="fields" cancel-route="users.index"/>
+        <CreateForm
+            :fields="fields"
+            @cancel="handleCancel"
+            :api-endpoint="route('cms.api.users.store')"
+            @success="handleSuccess"
+        />
     </div>
 </template>
 
@@ -35,6 +40,15 @@
                         type: 'textarea'
                     }
                 ]
+            }
+        },
+        methods: {
+            handleCancel() {
+                this.$router.push({name: 'users.index'})
+            },
+            handleSuccess(user) {
+                Cms.flash('success', 'Nice one!');
+                this.$router.push({name: 'users.show', params: {id: user.id}})
             }
         }
     }
