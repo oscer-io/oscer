@@ -9,6 +9,7 @@ use Laravel\Sanctum\SanctumServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use PHPUnit\Framework\AssertionFailedError;
 use sixlive\JsonSchemaAssertions\SchemaAssertion;
+use Spatie\Permission\PermissionServiceProvider;
 
 class ApiTestCase extends BaseTestCase
 {
@@ -40,6 +41,7 @@ class ApiTestCase extends BaseTestCase
     {
         return [
             SanctumServiceProvider::class,
+            PermissionServiceProvider::class,
             LaravelCmsServiceProvider::class,
         ];
     }
