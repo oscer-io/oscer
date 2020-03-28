@@ -12,6 +12,8 @@ use Bambamboole\LaravelCms\Theming\BladeComponents\MenuBladeComponent;
 use Bambamboole\LaravelCms\Theming\Contracts\Theme;
 use Bambamboole\LaravelCms\Theming\DefaultTheme;
 use Bambamboole\LaravelCms\Theming\ViewComposers\ThemeViewComposer;
+use Bambamboole\LaravelCmsSpatie\Permission\Models\Permission;
+use Bambamboole\LaravelCmsSpatie\Permission\Models\Role;
 use Illuminate\Config\Repository;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
@@ -27,9 +29,9 @@ class LaravelCmsServiceProvider extends ServiceProvider
         Repository $config,
         Theme $theme
     ) {
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'cms');
-        $this->loadMigrationsFrom(__DIR__.'/../migrations');
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'cms');
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'cms');
+        $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'cms');
         $this->registerGuard($config);
         $this->registerPublishes();
 
@@ -53,13 +55,19 @@ class LaravelCmsServiceProvider extends ServiceProvider
      */
     protected function registerGuard(Repository $config): void
     {
+
+        $config->set('permission.models', [
+            'permission' => Permission::class,
+            'role'       => Role::class,
+        ]);
+
         $config->set('auth.providers.cms_users', [
             'driver' => 'eloquent',
-            'model' => User::class,
+            'model'  => User::class,
         ]);
 
         $config->set('auth.guards.web', [
-            'driver' => 'session',
+            'driver'   => 'session',
             'provider' => 'cms_users',
         ]);
         $statefulHosts = $config->get('sanctum.stateful');
@@ -73,11 +81,11 @@ class LaravelCmsServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../dist' => public_path('vendor/cms'),
+                __DIR__ . '/../dist' => public_path('vendor/cms'),
             ], 'cms-assets');
 
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('cms.php'),
+                __DIR__ . '/../config/config.php' => config_path('cms.php'),
             ], 'cms-config');
         }
     }
@@ -87,7 +95,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'cms');
+        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'cms');
 
         $this->commands([
             PublishCommand::class,
