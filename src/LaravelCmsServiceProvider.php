@@ -2,39 +2,48 @@
 
 namespace Bambamboole\LaravelCms;
 
-use Bambamboole\LaravelCms\Commands\Development\SeedCommand;
-use Bambamboole\LaravelCms\Commands\MigrateCommand;
-use Bambamboole\LaravelCms\Commands\PublishCommand;
-use Bambamboole\LaravelCms\Models\User;
-use Bambamboole\LaravelCms\Services\CmsRouter;
-use Bambamboole\LaravelCms\Themes\DefaultTheme;
-use Bambamboole\LaravelCms\Themes\Theme;
-use Bambamboole\LaravelCms\View\BladeComponents\MenuBladeComponent;
-use Bambamboole\LaravelCms\View\Composers\ThemeViewComposer;
+use Bambamboole\LaravelCms\Auth\Models\User;
+use Bambamboole\LaravelCms\Core\Commands\Development\SeedCommand;
+use Bambamboole\LaravelCms\Core\Commands\PublishCommand;
+use Bambamboole\LaravelCms\Core\ViewComposer\BackendViewComposer;
+use Bambamboole\LaravelCms\Routing\ApiRouter;
+use Bambamboole\LaravelCms\Routing\BackendRouter;
+use Bambamboole\LaravelCms\Theming\BladeComponents\MenuBladeComponent;
+use Bambamboole\LaravelCms\Theming\Contracts\Theme;
+use Bambamboole\LaravelCms\Theming\DefaultTheme;
+use Bambamboole\LaravelCms\Theming\ViewComposers\ThemeViewComposer;
+use Illuminate\Config\Repository;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Factory;
 
 class LaravelCmsServiceProvider extends ServiceProvider
 {
-    public function boot(CmsRouter $router, Factory $view, Theme $theme, BladeCompiler $blade)
-    {
-        /*
-         * Optional methods to load your package assets
-         */
+    public function boot(
+        ApiRouter $apiRouter,
+        BackendRouter $backendRouter,
+        BladeCompiler $blade,
+        Factory $view,
+        Repository $config,
+        Theme $theme
+    ) {
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'cms');
+        $this->loadMigrationsFrom(__DIR__.'/../migrations');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'cms');
-        $this->registerGuard();
+        $this->registerGuard($config);
         $this->registerPublishes();
 
-        $router->registerAuthRoutes();
-        $router->registerBackendRoutes();
+        $apiRouter->registerApiRoutes();
+
+        $backendRouter->registerAuthRoutes();
+        $backendRouter->registerBackendRoutes();
 
         $view->composer([
             $theme->getPostShowTemplate(),
             $theme->getPageTemplate(),
             $theme->getPostIndexTemplate(),
         ], ThemeViewComposer::class);
+        $view->composer('cms::backend', BackendViewComposer::class);
 
         $blade->component(MenuBladeComponent::class, 'menu');
     }
@@ -42,17 +51,22 @@ class LaravelCmsServiceProvider extends ServiceProvider
     /**
      * Register the package's guard.
      */
-    protected function registerGuard(): void
+    protected function registerGuard(Repository $config): void
     {
-        $this->app['config']->set('auth.providers.cms_users', [
+        $config->set('auth.providers.cms_users', [
             'driver' => 'eloquent',
             'model' => User::class,
         ]);
 
-        $this->app['config']->set('auth.guards.cms', [
+        $config->set('auth.guards.web', [
             'driver' => 'session',
             'provider' => 'cms_users',
         ]);
+        $statefulHosts = $config->get('sanctum.stateful');
+        $statefulHosts[] = $config->get('cms.backend.domain');
+
+        $config->set('sanctum.stateful', $statefulHosts);
+        $config->set('sanctum.middleware.verify_csrf_token', \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class);
     }
 
     protected function registerPublishes(): void
@@ -77,7 +91,6 @@ class LaravelCmsServiceProvider extends ServiceProvider
 
         $this->commands([
             PublishCommand::class,
-            MigrateCommand::class,
             SeedCommand::class,
         ]);
 

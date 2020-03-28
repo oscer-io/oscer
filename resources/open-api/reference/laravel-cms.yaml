@@ -1,0 +1,460 @@
+openapi: 3.0.0
+info:
+  title: Laravel CMS
+  version: '1.0'
+  description: useful description needed
+servers:
+  - url: 'http://web.cms.test/api/cms'
+paths:
+  /auth/token:
+    post:
+      summary: Issuing an API token
+      operationId: post-auth-token
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/issue-token.json
+        '422':
+          description: Unprocessable Entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - password
+            examples:
+              Example:
+                value:
+                  email: admin@admin.com
+                  password: password
+      parameters: []
+      tags:
+        - Auth
+      description: useful description needed
+  /pages:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Publishing
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/page-collection.json
+              examples: {}
+      operationId: get-pages
+      security:
+        - Token: []
+      description: useful description needed
+    post:
+      summary: ''
+      operationId: post-pages
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/page.json
+      security:
+        - Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                slug:
+                  type: string
+                body:
+                  type: string
+              required:
+                - name
+      tags:
+        - Publishing
+      description: useful description needed
+  '/pages/{page_id}':
+    parameters:
+      - schema:
+          type: string
+        name: page_id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Publishing
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/page.json
+      operationId: get-pages-page_id
+      security:
+        - Token: []
+      description: useful description needed
+    patch:
+      summary: ''
+      operationId: patch-pages-page_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/page.json
+      security:
+        - Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                slug:
+                  type: string
+                body:
+                  type: string
+      tags:
+        - Publishing
+      description: useful description needed
+    delete:
+      summary: ''
+      operationId: delete-pages-page_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+      tags:
+        - Publishing
+      security:
+        - Token: []
+      description: useful description needed
+  /users:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/user-collection.json
+      operationId: get-users
+      description: filll with useful description
+      security:
+        - Token: []
+    post:
+      summary: ''
+      operationId: post-users
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/user.json
+      security:
+        - Token: []
+      description: needs description
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                bio:
+                  type: string
+              required:
+                - name
+                - email
+      tags:
+        - Users
+  '/users/{user_id}':
+    parameters:
+      - schema:
+          type: string
+        name: user_id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/user.json
+      operationId: get-users-user_id
+      description: fetch a single user resource
+      security:
+        - Token: []
+    patch:
+      summary: ''
+      operationId: patch-users-user_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/user.json
+      description: updates a single user resource
+      security:
+        - Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                bio:
+                  type: string
+      tags:
+        - Users
+    delete:
+      summary: ''
+      operationId: delete-users-user_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+      description: deletes a single user resource
+      tags:
+        - Users
+      security:
+        - Token: []
+  /options:
+    get:
+      summary: Create or update a single option
+      tags:
+        - Options
+      responses:
+        '200':
+          description: OK
+      operationId: get-options
+      description: get all available options wrapped by their tabs
+      security:
+        - Token: []
+    post:
+      summary: ''
+      operationId: post-options
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/option.json
+      description: create or update a single option
+      security:
+        - Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                value:
+                  type: string
+              required:
+                - key
+                - value
+      tags:
+        - Options
+  /profile:
+    patch:
+      summary: Update profile
+      operationId: patch-profile
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../responses/user.json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                bio:
+                  type: string
+                password:
+                  type: string
+                password_confirmation:
+                  type: string
+      tags:
+        - Profile
+      description: update your own profile. No values required.
+      security:
+        - Token: []
+  /profile/avatar:
+    post:
+      summary: Update profile avatar
+      operationId: post-profile-avatar
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  avatar:
+                    type: string
+      description: Update your avatar with a new image
+      security:
+        - Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                avatar:
+                  type: string
+                  format: binary
+              required:
+                - avatar
+      tags:
+        - Profile
+  /menus:
+    get:
+      summary: get all menus with item
+      tags:
+        - Menus
+      responses:
+        '200':
+          description: OK
+      operationId: get-menus
+      description: get all menus with ordered items
+      security:
+        - Token: []
+  '/menus/{menu_name}':
+    parameters:
+      - schema:
+          type: string
+        name: menu_name
+        in: path
+        required: true
+    post:
+      summary: ''
+      operationId: post-menus-menu_name
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      security:
+        - Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                url:
+                  type: string
+              required:
+                - name
+                - url
+      description: ''
+    patch:
+      summary: ''
+      operationId: put-menus-menu_name
+      responses:
+        '200':
+          description: OK
+      description: update a menu item
+      security:
+        - Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                url:
+                  type: string
+              required:
+                - name
+                - url
+    delete:
+      summary: ''
+      operationId: delete-menus-menu_name
+      responses:
+        '200':
+          description: OK
+      description: delete a single menu item
+components:
+  schemas: {}
+  securitySchemes:
+    Token:
+      name: Authorization
+      type: apiKey
+      in: header
+tags:
+  - name: Auth
+  - name: Publishing
+  - name: Users
+  - name: Profile
+  - name: Options
+  - name: Menus

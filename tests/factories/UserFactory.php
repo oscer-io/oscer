@@ -2,7 +2,7 @@
 
 /** @var Factory $factory */
 
-use Bambamboole\LaravelCms\Models\User;
+use Bambamboole\LaravelCms\Auth\Models\User;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
 
@@ -23,5 +23,6 @@ $factory->define(User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => 'password', // password
         'bio' => $faker->paragraphs(rand(1, 3), true),
+        'avatar' => null,
     ];
 });

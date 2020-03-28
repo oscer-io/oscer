@@ -1,0 +1,9 @@
+{
+  "title": "option",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "../models/option.json"
+    }
+  }
+}
