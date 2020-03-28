@@ -28,10 +28,23 @@
 </template>
 <script>
     import _ from 'lodash';
-    import axios from "axios";
+    import api from "../lib/api";
 
     export default {
-        props: ['fields', 'cancelRoute', 'apiRoute'],
+        props: {
+            fields: {
+                type: Array,
+                default: []
+            },
+            apiRoute: {
+                type: Object,
+                required: true
+            },
+            removeNullValues: {
+                type: Boolean,
+                default: false
+            }
+        },
         data() {
             return {
                 payload: {},
@@ -44,18 +57,21 @@
                     this.payload[field.name] = field.getValue()
                 });
 
+                if(this.removeNullValues === true){
+                    this.payload = _.pickBy(this.payload)
+                }
+
                 try {
-                    const response = await axios({
+                    const response = await api({
                         method: this.apiRoute.method,
                         url: this.apiRoute.uri,
                         data: this.payload
                     });
-                    console.log(response.data.data)
                     this.$emit('success', response.data.data);
                 } catch (error) {
                     if (error.response.status === 422) {
                         this.validationErrors = error.response.data.errors;
-                        Cms.flash('error', 'There was a problem submitting the form.')
+                        Cms.flash('error', 'There are validation errors in the form.')
                     }
                 }
             }

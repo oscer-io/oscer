@@ -15,7 +15,6 @@
     import FormField from "../lib/mixins/FormField";
 
     export default {
-        mixins: [FormField],
-        props: ['field']
+        mixins: [FormField]
     }
 </script>

@@ -1,5 +1,5 @@
 export default {
-    props:['validationErrors'],
+    props:['field','validationErrors'],
 
     data() {
         return {
