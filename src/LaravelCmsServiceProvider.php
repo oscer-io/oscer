@@ -6,15 +6,16 @@ use Bambamboole\LaravelCms\Auth\Models\User;
 use Bambamboole\LaravelCms\Core\Commands\Development\SeedCommand;
 use Bambamboole\LaravelCms\Core\Commands\PublishCommand;
 use Bambamboole\LaravelCms\Core\ViewComposer\BackendViewComposer;
+use Bambamboole\LaravelCms\Permission\Models\Permission;
+use Bambamboole\LaravelCms\Permission\Models\Role;
 use Bambamboole\LaravelCms\Routing\ApiRouter;
 use Bambamboole\LaravelCms\Routing\BackendRouter;
 use Bambamboole\LaravelCms\Theming\BladeComponents\MenuBladeComponent;
 use Bambamboole\LaravelCms\Theming\Contracts\Theme;
 use Bambamboole\LaravelCms\Theming\DefaultTheme;
 use Bambamboole\LaravelCms\Theming\ViewComposers\ThemeViewComposer;
-use Bambamboole\LaravelCms\Permission\Models\Permission;
-use Bambamboole\LaravelCms\Permission\Models\Role;
 use Illuminate\Config\Repository;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Factory;
@@ -40,6 +41,10 @@ class LaravelCmsServiceProvider extends ServiceProvider
         $backendRouter->registerAuthRoutes();
         $backendRouter->registerBackendRoutes();
 
+        Gate::before(function ($user, $ability) {
+            return $user->hasRole('super-admin') ? true : null;
+        });
+
         $view->composer([
             $theme->getPostShowTemplate(),
             $theme->getPageTemplate(),
@@ -60,6 +65,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
             'permission' => Permission::class,
             'role'       => Role::class,
         ]);
+        $config->set('permission.enable_wildcard_permission', true);
 
         $config->set('auth.providers.cms_users', [
             'driver' => 'eloquent',
