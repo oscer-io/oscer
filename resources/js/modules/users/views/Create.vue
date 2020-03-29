@@ -27,17 +27,17 @@
                     {
                         label: 'Name',
                         name: 'name',
-                        type: 'text'
+                        type: 'text',
                     },
                     {
                         label: 'E-Mail',
                         name: 'email',
-                        type: 'text'
+                        type: 'text',
                     },
                     {
                         label: 'Biography',
                         name: 'bio',
-                        type: 'textarea'
+                        type: 'textarea',
                     }
                 ]
             }

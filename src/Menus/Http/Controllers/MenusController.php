@@ -31,7 +31,7 @@ class MenusController
             )
         );
 
-        return Menu::resolve($name);
+        return ['data' => Menu::resolve($name)];
     }
 
     public function update(UpdateMenuItemRequest $request, string $name, int $itemId)

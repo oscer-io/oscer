@@ -1,4 +1,5 @@
 <template>
+    <loading :loading="isLoading">
     <div>
         <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
             <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
@@ -50,21 +51,24 @@
             </ul>
         </div>
     </div>
+    </loading>
+
 </template>
 
 <script>
-    import axios from 'axios';
-
+    import api from "../../../lib/api";
     export default {
         data(){
             return {
+                isLoading: true,
                 menus: []
             }
         },
         async mounted() {
             // posts endpoint not implemented because of the thoughts to only use one model with different types
-            const response = await axios.get('/api/cms/menus');
-            this.menus = response.data.data
+            const response = await api(this.route('cms.api.menus.index'));
+            this.menus = response.data.data;
+            this.isLoading = false;
         }
     }
 </script>

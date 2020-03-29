@@ -6,6 +6,7 @@
             :id="field.name"
             :name="field.name"
             v-model="value"
+            :type="inputType"
         />
     </field-wrapper>
 </template>
@@ -14,6 +15,12 @@
 
     export default {
         mixins: [FormField],
-        props: ['field']
+        computed: {
+            inputType() {
+                return this.field.attributes && this.field.attributes.type
+                    ? this.field.attributes.type
+                    : 'text';
+            }
+        }
     }
 </script>

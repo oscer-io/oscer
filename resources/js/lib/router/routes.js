@@ -17,7 +17,11 @@ export default [
     ...optionRoutes,
     ...profileRoutes,
     ...userRoutes,
-
+    {
+        path: '/admin/404',
+        name: 'not-found',
+        component: NotFound
+    },
     {
         path: '*',
         name: 'catch-all',
