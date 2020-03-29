@@ -3,9 +3,12 @@
 namespace Bambamboole\LaravelCms\Auth\Models;
 
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
+use Illuminate\Contracts\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Foundation\Auth\Access\Authorizable as AuthorizableTrait;
 use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @property int id
@@ -16,9 +19,11 @@ use Laravel\Sanctum\HasApiTokens;
  * @property Carbon updated_at
  * @property Carbon created_at
  */
-class User extends BaseModel implements Authenticatable
+class User extends BaseModel implements Authenticatable, Authorizable
 {
     use HasApiTokens;
+    use HasRoles;
+    use AuthorizableTrait;
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -35,16 +40,6 @@ class User extends BaseModel implements Authenticatable
     protected $rememberTokenName = 'remember_token';
 
     /**
-     * Get the name of the unique identifier for the user.
-     *
-     * @return string
-     */
-    public function getAuthIdentifierName()
-    {
-        return $this->getKeyName();
-    }
-
-    /**
      * Get the unique identifier for the user.
      *
      * @return mixed
@@ -52,6 +47,16 @@ class User extends BaseModel implements Authenticatable
     public function getAuthIdentifier()
     {
         return $this->{$this->getAuthIdentifierName()};
+    }
+
+    /**
+     * Get the name of the unique identifier for the user.
+     *
+     * @return string
+     */
+    public function getAuthIdentifierName()
+    {
+        return $this->getKeyName();
     }
 
     /**
@@ -71,21 +76,8 @@ class User extends BaseModel implements Authenticatable
      */
     public function getRememberToken()
     {
-        if (! empty($this->getRememberTokenName())) {
-            return (string) $this->{$this->getRememberTokenName()};
-        }
-    }
-
-    /**
-     * Set the token value for the "remember me" session.
-     *
-     * @param  string  $value
-     * @return void
-     */
-    public function setRememberToken($value)
-    {
-        if (! empty($this->getRememberTokenName())) {
-            $this->{$this->getRememberTokenName()} = $value;
+        if (!empty($this->getRememberTokenName())) {
+            return (string)$this->{$this->getRememberTokenName()};
         }
     }
 
@@ -100,14 +92,27 @@ class User extends BaseModel implements Authenticatable
     }
 
     /**
+     * Set the token value for the "remember me" session.
+     *
+     * @param string $value
+     * @return void
+     */
+    public function setRememberToken($value)
+    {
+        if (!empty($this->getRememberTokenName())) {
+            $this->{$this->getRememberTokenName()} = $value;
+        }
+    }
+
+    /**
      * Get the author's avatar.
      *
-     * @param  string  $value
+     * @param string $value
      * @return string
      */
     public function getAvatarAttribute($value)
     {
-        return $value ?: 'https://secure.gravatar.com/avatar/'.md5(strtolower(trim($this->email))).'?s=80';
+        return $value ?: 'https://secure.gravatar.com/avatar/' . md5(strtolower(trim($this->email))) . '?s=80';
     }
 
     public function setPasswordAttribute($value)
