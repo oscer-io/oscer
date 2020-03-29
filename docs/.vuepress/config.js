@@ -3,6 +3,9 @@ module.exports = {
     description: 'A simple CMS and blogging platform made for developers.',
 
     themeConfig: {
+        nav: [
+            { text: 'Discord', link: 'https://discord.gg/EwpuT3z', target:'_blank' }
+        ],
         repo: 'bambamboole/laravel-cms',
         editLinks: true,
         docsDir: 'docs',

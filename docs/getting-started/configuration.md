@@ -14,6 +14,10 @@ If you have followed the installation instructions you are good to go with this 
 ### `backend`
 This key is for all Admin UI related things.
 
+#### `domain`
+This variable lets the authentication system know on which domain Laravel CMS will run.
+I can be set via the environment variable `CMS_BACKEND_DOMAIN`.
+
 #### `url`
 This is the url prefix of the admin routes. You can change it if these routes clash with your 
 current route configuration.

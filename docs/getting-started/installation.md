@@ -9,7 +9,9 @@ composer require bambamboole/laravel-cms
 ### Run migrations
 Laravel CMS adds its migrations to the default Laravel database connection. 
 We prefix all tables with `cms_` to ensure they are not clashing with your migrations.
-
+```bash
+php artisan migrate
+```
 
 ### Enabling pages and posts routes
 Create a new `CmsServiceProvider` with the following `boot()` call:
@@ -32,10 +34,17 @@ class CmsServiceProvider extends ServiceProvider
 ```  
 Do not forget to register it in the `providers` key inside your `config/app.php`.
 
-### Publish config and migrate database
+### Publish config
 
 ```bash
 php artisan cms:publish
-php artisan migrate
 ```  
-If you migrate the first time, it will also create a user and show the credentials in the console.
+
+### Add environment variable
+
+Let the authentication system know on which domain Laravel CMS will run:
+```bash
+# ...
+CMS_BACKEND_DOMAIN=web.cms.test
+```  
+
