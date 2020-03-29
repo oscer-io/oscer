@@ -1,8 +1,8 @@
 export default {
     methods: {
         route(name, params = {}) {
-           console.log('start');
-           console.log(name,params);
+            // console.log('router log start');
+            // console.log(name,params);
             let route = Cms.config.routes[name];
 
             let matches = route.url.match(/[^{]+(?=\})/g);
@@ -12,8 +12,8 @@ export default {
                     route.url = route.url.replace('{' + match + '}', params[match])
                 });
             }
-           console.log(route)
-           console.log('end');
+            // console.log(route);
+            // console.log('router log end');
 
             return route;
         }

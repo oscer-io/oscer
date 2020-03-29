@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <loading :loading="isLoading">
         <h1>{{$t('options.index_page_title')}}</h1>
         <Tabs :options="{ useUrlFragment: false }">
             <Tab v-if="options" v-for="(fields,tab) in options" :key="tab" :name="tab" :active="tab === 'pages'">
@@ -9,9 +9,8 @@
                              :option="option"/>
 
             </Tab>
-
         </Tabs>
-    </div>
+    </loading>
 </template>
 
 <script>
@@ -21,21 +20,22 @@
     import axios from "axios";
 
     export default {
-        data(){
-          return {
-              options: null
-          }
-        },
-        async mounted() {
-            // posts endpoint not implemented because of the thoughts to only use one model with different types
-            const response = await axios.get('/api/cms/options');
-            this.options = response.data.data
-        },
         components: {
             OptionField,
             Tab,
             Tabs,
         },
+        data(){
+          return {
+              isLoading: true,
+              options: false
+          }
+        },
+        async mounted() {
+            const response = await axios.get('/api/cms/options');
+            this.options = response.data.data;
+            this.isLoading = false;
+        }
     }
 </script>
 

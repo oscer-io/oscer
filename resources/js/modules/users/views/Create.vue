@@ -28,21 +28,16 @@
                         label: 'Name',
                         name: 'name',
                         type: 'text',
-                        row:1,
-                        position:2
                     },
                     {
                         label: 'E-Mail',
                         name: 'email',
                         type: 'text',
-                        row: 2
                     },
                     {
                         label: 'Biography',
                         name: 'bio',
                         type: 'textarea',
-                        row: 1,
-                        position:1
                     }
                 ]
             }

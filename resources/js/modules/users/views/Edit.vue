@@ -1,5 +1,5 @@
 <template>
-    <div v-if="user">
+    <loading :loading="isLoading">
         <div class="md:flex md:items-center md:justify-between">
             <div class="flex-1 min-w-0">
                 <h1 class="text-lg leading-6 font-medium text-gray-900">
@@ -8,12 +8,12 @@
             </div>
         </div>
         <BaseForm v-if="user"
-            :fields="fields"
-            :api-route="route('cms.api.users.update',{user: id})"
-            @cancel="handleCancel"
-            @success="handleSuccess"
+                  :fields="fields"
+                  :api-route="route('cms.api.users.update',{user: id})"
+                  @cancel="handleCancel"
+                  @success="handleSuccess"
         />
-    </div>
+    </loading>
 </template>
 
 <script>
@@ -25,7 +25,8 @@
         props: ['id'],
         data() {
             return {
-                user: null,
+                isLoading: true,
+                user: false,
                 fields: []
             }
         },
@@ -70,6 +71,7 @@
                     value: this.user.bio
                 }
             ];
+            this.isLoading = false;
         }
     }
 </script>
