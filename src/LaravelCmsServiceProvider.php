@@ -42,7 +42,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
         $backendRouter->registerBackendRoutes();
 
         Gate::before(function ($user, $ability) {
-            return $user->hasRole('super-admin') ? true : null;
+            return $user->hasRole(Role::SUPER_ADMIN_ROLE) ? true : null;
         });
 
         $view->composer([
