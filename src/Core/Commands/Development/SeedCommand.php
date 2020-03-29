@@ -58,14 +58,14 @@ class SeedCommand extends Command
     protected function seedRoles()
     {
         //todo: WIP!
-        /** @var $editPagePermission  \Bambamboole\LaravelCms\Permission\Models\Permission */
+        /** @var $editPagePermission \Bambamboole\LaravelCms\Permission\Models\Permission */
         Permission::create(['name' => 'posts.*']);
         Permission::create(['name' => 'posts.create']);
         Permission::create(['name' => 'posts.update']);
         Permission::create(['name' => 'posts.delete']);
         Permission::create(['name' => 'pages.delete']);
 
-        /** @var $superAdmin  \Bambamboole\LaravelCms\Permission\Models\Role */
+        /** @var $superAdmin \Bambamboole\LaravelCms\Permission\Models\Role */
         Role::create(['name' => Role::SUPER_ADMIN_ROLE]);
     }
 

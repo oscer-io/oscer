@@ -76,8 +76,8 @@ class User extends BaseModel implements Authenticatable, Authorizable
      */
     public function getRememberToken()
     {
-        if (!empty($this->getRememberTokenName())) {
-            return (string)$this->{$this->getRememberTokenName()};
+        if (! empty($this->getRememberTokenName())) {
+            return (string) $this->{$this->getRememberTokenName()};
         }
     }
 
@@ -99,7 +99,7 @@ class User extends BaseModel implements Authenticatable, Authorizable
      */
     public function setRememberToken($value)
     {
-        if (!empty($this->getRememberTokenName())) {
+        if (! empty($this->getRememberTokenName())) {
             $this->{$this->getRememberTokenName()} = $value;
         }
     }
@@ -112,7 +112,7 @@ class User extends BaseModel implements Authenticatable, Authorizable
      */
     public function getAvatarAttribute($value)
     {
-        return $value ?: 'https://secure.gravatar.com/avatar/' . md5(strtolower(trim($this->email))) . '?s=80';
+        return $value ?: 'https://secure.gravatar.com/avatar/'.md5(strtolower(trim($this->email))).'?s=80';
     }
 
     public function setPasswordAttribute($value)
