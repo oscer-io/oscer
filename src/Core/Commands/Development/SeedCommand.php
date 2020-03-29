@@ -5,6 +5,8 @@ namespace Bambamboole\LaravelCms\Core\Commands\Development;
 use Bambamboole\LaravelCms\Auth\Models\User;
 use Bambamboole\LaravelCms\Menus\Models\MenuItem;
 use Bambamboole\LaravelCms\Options\Models\Option;
+use Bambamboole\LaravelCms\Permission\Models\Permission;
+use Bambamboole\LaravelCms\Permission\Models\Role;
 use Bambamboole\LaravelCms\Publishing\Models\Page;
 use Bambamboole\LaravelCms\Publishing\Models\Post;
 use Bambamboole\LaravelCms\Publishing\Models\Tag;
@@ -32,12 +34,15 @@ class SeedCommand extends Command
             return Factory::construct($faker, base_path('vendor/bambamboole/laravel-cms/tests/factories'));
         });
 
+        $this->seedRoles();
+
         $user = User::query()->create([
-            'name' => 'First user',
-            'bio' => 'This is me.',
-            'email' => 'admin@admin.com',
+            'name'     => 'First user',
+            'bio'      => 'This is me.',
+            'email'    => 'admin@admin.com',
             'password' => 'password',
         ]);
+        $user->assignRole(Role::SUPER_ADMIN_ROLE);
 
         $this->line('User email: <info>admin@admin.com</info>');
         $this->line('Password: <info>password</info>');
@@ -48,6 +53,20 @@ class SeedCommand extends Command
         $this->seedOptions();
 
         $this->info('Laravel CMS was seeded with dummy data.');
+    }
+
+    protected function seedRoles()
+    {
+        //todo: WIP!
+        /** @var $editPagePermission  \Bambamboole\LaravelCms\Permission\Models\Permission */
+        Permission::create(['name' => 'posts.*']);
+        Permission::create(['name' => 'posts.create']);
+        Permission::create(['name' => 'posts.update']);
+        Permission::create(['name' => 'posts.delete']);
+        Permission::create(['name' => 'pages.delete']);
+
+        /** @var $superAdmin  \Bambamboole\LaravelCms\Permission\Models\Role */
+        Role::create(['name' => Role::SUPER_ADMIN_ROLE]);
     }
 
     protected function seedTagsAndPosts($user)
@@ -65,41 +84,6 @@ class SeedCommand extends Command
             $post->tags()->sync($tags->random(rand(1, 3))->pluck('id'));
         });
         $this->info("{$posts->count()} posts seeded and random tags assigned");
-    }
-
-    protected function seedMenuItems()
-    {
-        $this->comment('Seeding menu items');
-        $menuItems = collect([
-            [
-                'name' => 'About me',
-                'menu' => 'main',
-                'url' => '/about',
-                'order' => 1,
-            ],
-            [
-                'name' => 'Blog',
-                'menu' => 'main',
-                'url' => '/posts',
-                'order' => 2,
-            ],
-            [
-                'name' => 'Legal Notice',
-                'menu' => 'footer',
-                'url' => '/legal',
-                'order' => 1,
-            ],
-            [
-                'name' => 'Privacy',
-                'menu' => 'footer',
-                'url' => '/privacy',
-                'order' => 2,
-            ],
-        ])->map(function ($data) {
-            return factory(MenuItem::class)->create($data);
-        });
-
-        $this->info("{$menuItems->count()} menu items seeded.");
     }
 
     protected function seedPages($user)
@@ -131,6 +115,41 @@ class SeedCommand extends Command
         })->tap(function (Collection $pages) {
             $this->info("{$pages->count()} pages seeded");
         });
+    }
+
+    protected function seedMenuItems()
+    {
+        $this->comment('Seeding menu items');
+        $menuItems = collect([
+            [
+                'name'  => 'About me',
+                'menu'  => 'main',
+                'url'   => '/about',
+                'order' => 1,
+            ],
+            [
+                'name'  => 'Blog',
+                'menu'  => 'main',
+                'url'   => '/posts',
+                'order' => 2,
+            ],
+            [
+                'name'  => 'Legal Notice',
+                'menu'  => 'footer',
+                'url'   => '/legal',
+                'order' => 1,
+            ],
+            [
+                'name'  => 'Privacy',
+                'menu'  => 'footer',
+                'url'   => '/privacy',
+                'order' => 2,
+            ],
+        ])->map(function ($data) {
+            return factory(MenuItem::class)->create($data);
+        });
+
+        $this->info("{$menuItems->count()} menu items seeded.");
     }
 
     protected function seedOptions()
