@@ -18,6 +18,6 @@ class MenuOrderController
                 ->update(['order' => $item['order']]);
         }
 
-        return Menu::resolve($name);
+        return ['data' => Menu::resolve($name)];
     }
 }

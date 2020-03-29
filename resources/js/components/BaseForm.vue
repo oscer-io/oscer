@@ -62,6 +62,9 @@
                 validationErrors: {}
             }
         },
+        mounted() {
+            console.log('foo')
+        },
         methods: {
             async handleSubmit() {
                 _.each(this.fields, field => {
@@ -76,8 +79,7 @@
 
                 try {
                     const response = await api({
-                        method: this.apiRoute.method,
-                        url: this.apiRoute.url,
+                        ...this.route(this.apiRoute.name, this.apiRoute.params),
                         data: this.payload
                     });
 
