@@ -5,7 +5,6 @@ namespace Bambamboole\LaravelCms\Core\Commands\Development;
 use Bambamboole\LaravelCms\Auth\Models\User;
 use Bambamboole\LaravelCms\Menus\Models\MenuItem;
 use Bambamboole\LaravelCms\Options\Models\Option;
-use Bambamboole\LaravelCms\Permission\Models\Permission;
 use Bambamboole\LaravelCms\Permission\Models\Role;
 use Bambamboole\LaravelCms\Publishing\Models\Page;
 use Bambamboole\LaravelCms\Publishing\Models\Post;
@@ -34,8 +33,6 @@ class SeedCommand extends Command
             return Factory::construct($faker, base_path('vendor/bambamboole/laravel-cms/tests/factories'));
         });
 
-        $this->seedRoles();
-
         $user = User::query()->create([
             'name'     => 'First user',
             'bio'      => 'This is me.',
@@ -53,20 +50,6 @@ class SeedCommand extends Command
         $this->seedOptions();
 
         $this->info('Laravel CMS was seeded with dummy data.');
-    }
-
-    protected function seedRoles()
-    {
-        //todo: WIP!
-        /** @var $editPagePermission \Bambamboole\LaravelCms\Permission\Models\Permission */
-        Permission::create(['name' => 'posts.*']);
-        Permission::create(['name' => 'posts.create']);
-        Permission::create(['name' => 'posts.update']);
-        Permission::create(['name' => 'posts.delete']);
-        Permission::create(['name' => 'pages.delete']);
-
-        /** @var $superAdmin \Bambamboole\LaravelCms\Permission\Models\Role */
-        Role::create(['name' => Role::SUPER_ADMIN_ROLE]);
     }
 
     protected function seedTagsAndPosts($user)
