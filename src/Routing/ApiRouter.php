@@ -57,7 +57,7 @@ class ApiRouter
             ->as('cms.api.')
             ->prefix($this->prefix)
             ->group(function (Router $router) {
-                $router->get('/resources/{resource}/fields',CreationFieldsController::class)->name('resources.fields');
+                $router->get('/resources/{resource}/fields', CreationFieldsController::class)->name('resources.fields');
 
                 $router->get('/pages', [PagesController::class, 'index'])->name('pages.index');
                 $router->post('/pages', [PagesController::class, 'store'])->name('pages.store');

@@ -1,14 +1,12 @@
 <?php
 
-
 namespace Bambamboole\LaravelCms\Backend\Http\Resources;
-
 
 use Bambamboole\LaravelCms\Backend\Form\Fields\Field;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Collection;
 
-class BackendResource  extends JsonResource
+class BackendResource extends JsonResource
 {
     public function with($request)
     {
@@ -24,6 +22,7 @@ class BackendResource  extends JsonResource
         return $fields->map(function (Field $field) {
             $name = $field->name;
             $field->value = $this->$name ?? '';
+
             return $field;
         });
     }

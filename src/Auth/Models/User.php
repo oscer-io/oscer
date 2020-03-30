@@ -2,8 +2,6 @@
 
 namespace Bambamboole\LaravelCms\Auth\Models;
 
-use Bambamboole\LaravelCms\Backend\Form\Fields\TextareaField;
-use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Carbon;
@@ -73,8 +71,8 @@ class User extends BaseModel implements Authenticatable
      */
     public function getRememberToken()
     {
-        if (!empty($this->getRememberTokenName())) {
-            return (string)$this->{$this->getRememberTokenName()};
+        if (! empty($this->getRememberTokenName())) {
+            return (string) $this->{$this->getRememberTokenName()};
         }
     }
 
@@ -86,7 +84,7 @@ class User extends BaseModel implements Authenticatable
      */
     public function setRememberToken($value)
     {
-        if (!empty($this->getRememberTokenName())) {
+        if (! empty($this->getRememberTokenName())) {
             $this->{$this->getRememberTokenName()} = $value;
         }
     }
@@ -109,7 +107,7 @@ class User extends BaseModel implements Authenticatable
      */
     public function getAvatarAttribute($value)
     {
-        return $value ?: 'https://secure.gravatar.com/avatar/' . md5(strtolower(trim($this->email))) . '?s=80';
+        return $value ?: 'https://secure.gravatar.com/avatar/'.md5(strtolower(trim($this->email))).'?s=80';
     }
 
     public function setPasswordAttribute($value)
