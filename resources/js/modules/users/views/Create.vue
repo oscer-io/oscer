@@ -7,9 +7,9 @@
                 </h1>
             </div>
         </div>
-        <BaseForm
-            :fields="fields"
-            :api-route="route('cms.api.users.store')"
+        <CreateForm
+            resource="user"
+            :api-route="{name: 'cms.api.users.store'}"
             @cancel="handleCancel"
             @success="handleSuccess"
         />
@@ -17,30 +17,11 @@
 </template>
 
 <script>
-    import BaseForm from "../../../components/BaseForm";
+    import CreateForm from "../../../components/CreateForm";
 
     export default {
-        components: {BaseForm},
-        data() {
-            return {
-                fields: [
-                    {
-                        label: 'Name',
-                        name: 'name',
-                        type: 'text',
-                    },
-                    {
-                        label: 'E-Mail',
-                        name: 'email',
-                        type: 'text',
-                    },
-                    {
-                        label: 'Biography',
-                        name: 'bio',
-                        type: 'textarea',
-                    }
-                ]
-            }
+        components: {
+            CreateForm
         },
         methods: {
             handleCancel() {

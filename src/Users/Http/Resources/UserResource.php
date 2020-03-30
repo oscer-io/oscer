@@ -2,9 +2,11 @@
 
 namespace Bambamboole\LaravelCms\Users\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use Bambamboole\LaravelCms\Backend\Form\Fields\TextareaField;
+use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
+use Bambamboole\LaravelCms\Backend\Http\Resources\BackendResource;
 
-class UserResource extends JsonResource
+class UserResource extends BackendResource
 {
     /**
      * Transform the resource into an array.
@@ -23,5 +25,14 @@ class UserResource extends JsonResource
             'avatar' => $this->avatar,
             'language' => $this->language,
         ];
+    }
+
+    public function fields()
+    {
+        return collect([
+            TextField::make('name'),
+            TextField::make('email'),
+            TextareaField::make('bio', 'Biography'),
+        ]);
     }
 }

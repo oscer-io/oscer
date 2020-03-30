@@ -9,7 +9,7 @@
         </div>
         <BaseForm v-if="user"
                   :fields="fields"
-                  :api-route="route('cms.api.users.update',{user: id})"
+                  :api-route="{name:'cms.api.users.update',params:{user: id}}"
                   @cancel="handleCancel"
                   @success="handleSuccess"
         />
@@ -51,26 +51,7 @@
             // posts endpoint not implemented because of the thoughts to only use one model with different types
             const response = await axios.get('/api/cms/users/' + this.id);
             this.user = response.data.data;
-            this.fields = [
-                {
-                    label: 'Name',
-                    name: 'name',
-                    type: 'text',
-                    value: this.user.name
-                },
-                {
-                    label: 'E-Mail',
-                    name: 'email',
-                    type: 'text',
-                    value: this.user.email
-                },
-                {
-                    label: 'Biography',
-                    name: 'bio',
-                    type: 'textarea',
-                    value: this.user.bio
-                }
-            ];
+            this.fields = response.data.fields;
             this.isLoading = false;
         }
     }

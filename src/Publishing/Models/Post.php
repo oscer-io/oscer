@@ -49,9 +49,6 @@ class Post extends BaseModel
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * @return \Spatie\Sluggable\SlugOptions
-     */
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
