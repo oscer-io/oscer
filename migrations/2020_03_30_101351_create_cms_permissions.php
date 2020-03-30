@@ -5,18 +5,27 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateCmsPermissions extends Migration
 {
-
     const PERMISSIONS = [
-        'posts.create',
         'posts.create.*',
-        'posts.read.*',
+        'posts.view.*',
         'posts.update.*',
         'posts.delete.*',
-        'pages.create',
         'pages.create.*',
-        'pages.read.*',
+        'pages.view.*',
         'pages.update.*',
         'pages.delete.*',
+        'menus.create.*',
+        'menus.view.*',
+        'menus.update.*',
+        'menus.delete.*',
+        'options.create.*',
+        'options.view.*',
+        'options.update.*',
+        'options.delete.*',
+        'users.create.*',
+        'users.view.*',
+        'users.update.*',
+        'users.delete.*',
     ];
 
     /**
