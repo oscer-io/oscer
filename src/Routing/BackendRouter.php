@@ -10,6 +10,7 @@ use Bambamboole\LaravelCms\Core\Http\Middleware\SetInertiaConfiguration;
 use Bambamboole\LaravelCms\Core\Http\Middleware\SetLocale;
 use Illuminate\Config\Repository;
 use Illuminate\Routing\Router;
+use Spatie\Permission\Middlewares\PermissionMiddleware;
 
 class BackendRouter
 {
@@ -25,7 +26,8 @@ class BackendRouter
 
     public function registerAuthRoutes()
     {
-        $this->router->middleware([$this->config->get('cms.backend.middleware'), SetLocale::class])
+        $this->router
+            ->middleware([$this->config->get('cms.backend.middleware'), SetLocale::class])
             ->as('cms.')
             ->prefix($this->config->get('cms.backend.url'))
             ->group(function (Router $router) {
@@ -37,6 +39,7 @@ class BackendRouter
                 $router->post('/password/forgot', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
                 $router->get('/password/reset/{token}', [ForgotPasswordController::class, 'showNewPassword'])->name('password.reset');
             });
+        $this->router->aliasMiddleware('permission', PermissionMiddleware::class);
     }
 
     public function registerBackendRoutes(): void
@@ -55,5 +58,6 @@ class BackendRouter
                 $router->get('/{view}', [BackendController::class, 'show'])
                     ->where('view', '.*')->name('router');
             });
+        $this->router->aliasMiddleware('permission', PermissionMiddleware::class);
     }
 }

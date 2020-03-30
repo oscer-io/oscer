@@ -16,6 +16,7 @@ use Bambamboole\LaravelCms\Users\Http\Controllers\UsersController;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Routing\Router;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
+use Spatie\Permission\Middlewares\PermissionMiddleware;
 
 class ApiRouter
 {
@@ -45,6 +46,7 @@ class ApiRouter
                 $router->get('/open-api/reference/definition.yaml', [OpenApiController::class, 'reference'])->name('oas.reference');
                 $router->get('/open-api/{folder}/{file}', [OpenApiController::class, 'file'])->name('oas.file');
             });
+        $this->router->aliasMiddleware('permission', PermissionMiddleware::class);
 
         $this->registerProtectedApiRoutes();
     }
@@ -83,5 +85,6 @@ class ApiRouter
 
                 $router->post('/menus/{name}/save_order', [MenuOrderController::class, 'update'])->name('menus.save_order');
             });
+        $this->router->aliasMiddleware('permission', PermissionMiddleware::class);
     }
 }
