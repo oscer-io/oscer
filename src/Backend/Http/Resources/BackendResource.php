@@ -22,6 +22,7 @@ class BackendResource extends JsonResource
     public function resolveValues(Collection $fields, $request)
     {
         $values = $this->toArray($request);
+
         return $fields->map(function (Field $field) use ($values) {
             if ($field->fillValue == false) {
                 return $field;

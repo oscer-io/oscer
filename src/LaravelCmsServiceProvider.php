@@ -94,8 +94,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
             SeedCommand::class,
         ]);
 
-        $this->app->singleton('commonmark', function (){
-
+        $this->app->singleton('commonmark', function () {
         });
 
         $this->app->singleton(Theme::class, function () {

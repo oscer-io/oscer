@@ -74,7 +74,7 @@ class Post extends BaseModel
         if ($this->id !== null) {
             $this->tags()->sync($tags);
         } else {
-            self::created(function (Post $post) use ($tags) {
+            self::created(function (self $post) use ($tags) {
                 $post->tags()->sync($tags);
             });
         }
