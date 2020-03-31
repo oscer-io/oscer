@@ -34,7 +34,7 @@ export default {
          * This way the form component can gather the values.
          */
         getValue() {
-            return String(this.value)
+            return this.value
         }
     }
 }

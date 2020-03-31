@@ -1,14 +1,13 @@
 import axios from 'axios'
 import router from './router'
 
-const api = axios.create();
 
-api.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-api.defaults.headers.common['X-CSRF-TOKEN'] = document.head.querySelector(
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.headers.common['X-CMS-BACKEND'] = true;
+axios.defaults.headers.common['X-CSRF-TOKEN'] = document.head.querySelector(
     'meta[name="csrf-token"]'
-).content
-
-api.interceptors.response.use(
+).content;
+axios.interceptors.response.use(
     response => response,
     error => {
         const {status} = error.response
@@ -19,7 +18,7 @@ api.interceptors.response.use(
         }
 
         // Handle Session Timeouts
-        if (status === 401) {
+        if (status === 401 || status === 419) {
             window.location.href = '/admin'
         }
 
@@ -28,20 +27,10 @@ api.interceptors.response.use(
             router.push({name: 'not-found'})
         }
 
-        // Handle Token Timeouts
-        if (status === 419) {
-            refreshToken()
-        }
-
         return Promise.reject(error)
     }
 )
 
-async function refreshToken() {
-    await api({
-        method: 'get',
-        url: '/sanctum/csrf-cookie'
-    })
-}
+const api = axios.create();
 
 export default api

@@ -4,7 +4,7 @@ namespace Bambamboole\LaravelCms\Routing;
 
 use Bambamboole\LaravelCms\Auth\Http\Controllers\Api\IssueTokenController;
 use Bambamboole\LaravelCms\Auth\Http\Middleware\Authenticate;
-use Bambamboole\LaravelCms\Backend\Http\Controllers\CreationFieldsController;
+use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceFieldsController;
 use Bambamboole\LaravelCms\Core\Http\Controllers\OpenApiController;
 use Bambamboole\LaravelCms\Core\Http\Controllers\SwaggerUiController;
 use Bambamboole\LaravelCms\Menus\Http\Controllers\MenuOrderController;
@@ -57,7 +57,7 @@ class ApiRouter
             ->as('cms.api.')
             ->prefix($this->prefix)
             ->group(function (Router $router) {
-                $router->get('/resources/{resource}/fields', CreationFieldsController::class)->name('resources.fields');
+                $router->get('/resources/{resource}/fields', ResourceFieldsController::class)->name('resources.fields');
 
                 $router->get('/pages', [PagesController::class, 'index'])->name('pages.index');
                 $router->post('/pages', [PagesController::class, 'store'])->name('pages.store');

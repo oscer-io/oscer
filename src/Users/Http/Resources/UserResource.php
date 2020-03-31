@@ -5,13 +5,15 @@ namespace Bambamboole\LaravelCms\Users\Http\Resources;
 use Bambamboole\LaravelCms\Backend\Form\Fields\TextareaField;
 use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
 use Bambamboole\LaravelCms\Backend\Http\Resources\BackendResource;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class UserResource extends BackendResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      *
      * @return array
      */
@@ -27,7 +29,7 @@ class UserResource extends BackendResource
         ];
     }
 
-    public function fields()
+    public function fields(Request $request): Collection
     {
         return collect([
             TextField::make('name'),

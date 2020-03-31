@@ -29,7 +29,12 @@ export default {
     methods: {
         async handleSubmit() {
             _.each(this.fields, field => {
-                this.payload[field.name] = field.getValue()
+                const value = field.getValue();
+                if (typeof value === 'string') {
+                    this.payload[field.name] = value
+                } else if (typeof value === 'object') {
+                    Object.assign(this.payload, value);
+                }
             });
 
             Object.assign(this.payload, this.append);
