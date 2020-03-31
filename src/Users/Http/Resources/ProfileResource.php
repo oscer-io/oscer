@@ -11,7 +11,7 @@ class ProfileResource extends UserResource
     public function fields(Request $request): Collection
     {
         return parent::fields($request)->merge([
-            PasswordField::make('password','Password', false)
+            PasswordField::make('password', 'Password', false),
         ]);
     }
 }
