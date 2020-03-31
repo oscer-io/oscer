@@ -30,10 +30,12 @@ export default {
         async handleSubmit() {
             _.each(this.fields, field => {
                 const value = field.getValue();
-                if (typeof value === 'string') {
+                if (Array.isArray(value)) {
                     this.payload[field.name] = value
-                } else if (typeof value === 'object') {
+                }else if (typeof value === 'object') {
                     Object.assign(this.payload, value);
+                } else {
+                    this.payload[field.name] = value
                 }
             });
 
@@ -44,7 +46,6 @@ export default {
             }
 
             try {
-                console.log(this.apiRoute)
                 const response = await api({
                     ...this.route(this.apiRoute.name, this.apiRoute.params),
                     data: this.payload

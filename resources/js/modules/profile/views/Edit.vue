@@ -15,6 +15,7 @@
         <CreateForm
             resource="profile"
             :api-route="{name: 'cms.api.profile.update'}"
+            :remove-null-values="true"
             @cancel="handleCancel"
             @success="handleSuccess"
         />
