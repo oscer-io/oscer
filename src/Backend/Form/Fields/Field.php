@@ -44,7 +44,7 @@ abstract class Field implements \JsonSerializable
             'value' => $this->fillValue ? $this->value : null,
         ];
 
-        collect($this->with)->each(function (string $property) use (&$data){
+        collect($this->with)->each(function (string $property) use (&$data) {
             $data[$property] = $this->$property;
         });
 
