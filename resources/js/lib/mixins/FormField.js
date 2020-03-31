@@ -1,5 +1,13 @@
 export default {
-    props: ['field', 'validationErrors'],
+    props: {
+        field: {
+            type: Object,
+            required: true,
+        },
+        validationErrors: {
+            type: Array
+        }
+    },
 
     data() {
         return {
