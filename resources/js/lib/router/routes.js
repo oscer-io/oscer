@@ -5,6 +5,7 @@ import menuRoutes from '../../modules/menus/routes';
 import optionRoutes from '../../modules/options/routes';
 import profileRoutes from '../../modules/profile/routes';
 import userRoutes from '../../modules/users/routes';
+import postRoutes from '../../modules/posts/routes';
 
 export default [
     {
@@ -17,6 +18,8 @@ export default [
     ...optionRoutes,
     ...profileRoutes,
     ...userRoutes,
+    ...postRoutes,
+
     {
         path: '/admin/404',
         name: 'not-found',

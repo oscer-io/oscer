@@ -4,74 +4,40 @@ namespace Bambamboole\LaravelCms\Publishing\Http\Controllers;
 
 use Bambamboole\LaravelCms\Publishing\Http\Requests\CreatePostRequest;
 use Bambamboole\LaravelCms\Publishing\Http\Requests\UpdatePostRequest;
+use Bambamboole\LaravelCms\Publishing\Http\Resources\PostResource;
 use Bambamboole\LaravelCms\Publishing\Models\Post;
-use Bambamboole\LaravelCms\Publishing\Models\Tag;
-use Illuminate\Support\Facades\Redirect;
-use Inertia\Inertia;
 
 class PostsController
 {
     public function index()
     {
-        return Inertia::render('Posts/Index', ['posts' => Post::all()]);
+        return PostResource::collection(Post::query()->paginate());
     }
 
-    public function show(Post $post)
+    public function show(int $id)
     {
-        return Inertia::render('Posts/Show', ['post' => $post]);
+        return new PostResource(Post::query()->findOrFail($id));
     }
 
-    public function edit(Post $post)
+    public function update(UpdatePostRequest $request, int $id)
     {
-        return Inertia::render('Posts/Edit', ['post' => $post, 'tags' => Tag::all()->pluck('name')]);
-    }
-
-    public function create()
-    {
-        return Inertia::render('Posts/Create', ['tags' => Tag::all()->pluck('name')]);
-    }
-
-    public function update(UpdatePostRequest $request, Post $post)
-    {
+        $post = Post::query()->findOrFail($id);
         $post->update($request->validated());
 
-        session()->flash('message', [
-            'type' => 'success',
-            'text' => __('cms::posts.toast.updated', ['post' => $post->name]),
-        ]);
-
-        return Redirect::route('cms.backend.posts.show', ['post' => $post]);
+        return new PostResource($post);
     }
 
     public function store(CreatePostRequest $request)
     {
-        $data = $request->validated();
-        if (isset($data['tags'])) {
-            $tags = $data['tags'];
-            unset($data['tags']);
-        }
-        $post = Post::query()->create(array_merge(['author_id' => auth()->user()->id], $data));
+        $post = Post::query()->create(array_merge(['author_id' => auth()->user()->id], $request->validated()));
 
-        ! isset($tags) ?: $post->update(['tags' => $tags]);
-
-        session()->flash('message', [
-            'type' => 'success',
-            'text' => __('cms::posts.toast.created', ['post' => $post->name]),
-        ]);
-
-        return Redirect::route('cms.backend.posts.show', ['post' => $post]);
+        return new PostResource($post);
     }
 
     public function delete(int $postId)
     {
-        $post = Post::query()->find($postId);
-        $post->delete();
+        Post::query()->find($postId)->delete();
 
-        session()->flash('message', [
-            'type' => 'success',
-            'text' => __('cms::posts.toast.deleted', ['post' => $post->name]),
-        ]);
-
-        return Redirect::route('cms.backend.posts.index');
+        return  ['success' => true];
     }
 }

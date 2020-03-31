@@ -6,6 +6,7 @@ use Bambamboole\LaravelCms\Auth\Models\User;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use League\CommonMark\Block\Element\FencedCode;
 use League\CommonMark\Block\Element\IndentedCode;
 use League\CommonMark\CommonMarkConverter;
@@ -17,10 +18,11 @@ use Spatie\Sluggable\SlugOptions;
 
 /**
  * @property int id
- * @property string title
+ * @property string name
  * @property string slug
  * @property string body
  * @property User author
+ * @property int author_id
  * @property Collection tags
  * @property Carbon|null published_at
  * @property Carbon updated_at
@@ -30,16 +32,17 @@ class Post extends BaseModel
 {
     use HasSlug;
 
-    /**
-     * The model's default values for attributes.
-     *
-     * @var array
-     */
-    protected $attributes = [
-        'body' => '',
-    ];
+    protected $table = 'cms_posts';
 
     protected $with = ['tags', 'author'];
+
+    public static function create(array $attributes): self
+    {
+        return tap(parent::query()->newModelInstance($attributes), function ($instance) {
+            $instance->type = Str::snake(class_basename($instance));
+            $instance->save();
+        });
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -68,7 +71,13 @@ class Post extends BaseModel
             })
             ->pluck('id');
 
-        $this->tags()->sync($tags);
+        if ($this->id !== null) {
+            $this->tags()->sync($tags);
+        } else {
+            self::created(function (Post $post) use ($tags) {
+                $post->tags()->sync($tags);
+            });
+        }
     }
 
     /**
@@ -88,5 +97,10 @@ class Post extends BaseModel
         $converter = new CommonMarkConverter([], $env);
 
         return $converter->convertToHtml($this->body);
+    }
+
+    public function joiningTableSegment()
+    {
+        return 'post';
     }
 }

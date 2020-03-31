@@ -12,21 +12,21 @@ class BackendResource extends JsonResource
     {
         if ($request->header('x-cms-backend', false) && method_exists($this, 'fields')) {
             return [
-                'fields' => $this->resolveValues($this->fields($request)),
+                'fields' => $this->resolveValues($this->fields($request), $request),
             ];
         }
 
         return [];
     }
 
-    public function resolveValues(Collection $fields)
+    public function resolveValues(Collection $fields, $request)
     {
-        return $fields->map(function (Field $field) {
+        $values = $this->toArray($request);
+        return $fields->map(function (Field $field) use ($values) {
             if ($field->fillValue == false) {
                 return $field;
             }
-            $name = $field->name;
-            $field->value = $this->$name ?? '';
+            $field->value = $values[$field->name] ?? '';
 
             return $field;
         });

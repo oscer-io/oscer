@@ -10,7 +10,7 @@ abstract class Field implements \JsonSerializable
 
     public string $component;
 
-    public string $value;
+    public $value;
 
     public bool $fillValue;
 
