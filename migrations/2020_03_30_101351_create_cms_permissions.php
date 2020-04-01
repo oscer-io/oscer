@@ -1,6 +1,6 @@
 <?php
 
-use Bambamboole\LaravelCms\Permission\Models\Permission;
+use Bambamboole\LaravelCms\Permissions\Models\Permission;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateCmsPermissions extends Migration
@@ -36,7 +36,13 @@ class CreateCmsPermissions extends Migration
     public function up()
     {
         foreach (self::PERMISSIONS as $permission) {
-            Permission::create(['name' => $permission]);
+
+            $parts = explode('.', $permission);
+            $group = $parts[0];
+            $crud = $parts[1] ?? null;
+            $subGroup = $parts[2] ?? null;
+
+            Permission::create(['name' => $permission, 'group' => $group, 'crud' => $crud, 'sub_group' => $subGroup]);
         }
     }
 }
