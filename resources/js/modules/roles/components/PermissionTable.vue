@@ -36,11 +36,6 @@
             role: Object,
             permissions: Array,
             name: String,
-        },
-        data() {
-            return {
-                rolePermissions: this.role.permissions,
-            }
-        },
+        }
     }
 </script>

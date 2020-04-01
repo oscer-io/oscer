@@ -20,9 +20,6 @@
             role: Object,
             permissions: Array,
             name: String,
-        },
-        data() {
-            return {}
-        },
+        }
     }
 </script>
