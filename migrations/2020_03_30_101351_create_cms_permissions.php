@@ -40,7 +40,6 @@ class CreateCmsPermissions extends Migration
     public function up()
     {
         foreach (self::PERMISSIONS as $permission) {
-
             $parts = explode('.', $permission);
             $group = $parts[0];
             $crud = $parts[1] ?? null;
