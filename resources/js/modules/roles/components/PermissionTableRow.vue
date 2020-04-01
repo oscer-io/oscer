@@ -8,7 +8,6 @@
 </template>
 
 <script>
-    // import PermissionTableRow from './PermissionTableRow';
     import {some} from 'lodash';
 
     export default {
