@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateCmsPermissions extends Migration
 {
-    const PERMISSIONS = [
+    protected array $permissions = [
         'posts.create.*',
         'posts.view.*',
         'posts.update.*',
@@ -39,7 +39,7 @@ class CreateCmsPermissions extends Migration
      */
     public function up()
     {
-        foreach (self::PERMISSIONS as $permission) {
+        foreach ($this->permissions as $permission) {
             $parts = explode('.', $permission);
             $group = $parts[0];
             $crud = $parts[1] ?? null;
