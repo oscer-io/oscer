@@ -74,7 +74,7 @@ class ApiRouter
 
                 $router->get('/users', [UsersController::class, 'index'])->name('users.index');
                 $router->post('/users', [UsersController::class, 'store'])->name('users.store');
-                $router->get('/users/{user}', [UsersController::class, 'show'])->name('users.index');
+                $router->get('/users/{user}', [UsersController::class, 'show'])->name('users.show');
                 $router->patch('/users/{user}', [UsersController::class, 'update'])->name('users.update');
                 $router->delete('/users/{user}', [UsersController::class, 'delete'])->name('users.delete');
 
