@@ -5,7 +5,8 @@ namespace Bambamboole\LaravelCms\Core\Commands\Development;
 use Bambamboole\LaravelCms\Auth\Models\User;
 use Bambamboole\LaravelCms\Menus\Models\MenuItem;
 use Bambamboole\LaravelCms\Options\Models\Option;
-use Bambamboole\LaravelCms\Permission\Models\Role;
+use Bambamboole\LaravelCms\Permissions\Models\Permission;
+use Bambamboole\LaravelCms\Permissions\Models\Role;
 use Bambamboole\LaravelCms\Publishing\Models\Page;
 use Bambamboole\LaravelCms\Publishing\Models\Post;
 use Bambamboole\LaravelCms\Publishing\Models\Tag;
@@ -33,23 +34,58 @@ class SeedCommand extends Command
             return Factory::construct($faker, base_path('vendor/bambamboole/laravel-cms/tests/factories'));
         });
 
-        $user = User::query()->create([
-            'name'     => 'First user',
-            'bio'      => 'This is me.',
-            'email'    => 'admin@admin.com',
-            'password' => 'password',
-        ]);
-        $user->assignRole(Role::SUPER_ADMIN_ROLE);
-
-        $this->line('User email: <info>admin@admin.com</info>');
-        $this->line('Password: <info>password</info>');
-
-        $this->seedTagsAndPosts($user);
-        $this->seedPages($user);
+        // Super Admin
+        $superAdmin = $this->seedSuperAdmin();
+        $this->seedRolesAndPermissions();
+        $this->seedUsers();
+        $this->seedTagsAndPosts($superAdmin);
+        $this->seedPages($superAdmin);
         $this->seedMenuItems();
         $this->seedOptions();
 
         $this->info('Laravel CMS was seeded with dummy data.');
+    }
+
+    protected function seedSuperAdmin()
+    {
+        $user = User::query()->create([
+            'name' => 'First user',
+            'bio' => 'This is me.',
+            'email' => 'admin@admin.com',
+            'password' => 'password',
+        ]);
+        $user->assignRole(Role::SUPER_ADMIN_ROLE);
+        $this->comment('Super Admin created:');
+        $this->line('User email: <info>admin@admin.com</info>');
+        $this->line('Password: <info>password</info>');
+
+        return $user;
+    }
+
+    protected function seedRolesAndPermissions($roleAmount = 5)
+    {
+        $this->comment('Seeding roles with random permissions');
+
+        $roles = factory(Role::class, $roleAmount)->create();
+
+        $roles->each(function (Role $role) {
+            $role->givePermissionTo(Permission::all()->random(rand(1, Permission::all()->count())));
+        });
+        $this->info("{$roleAmount} roles seeded");
+
+        $this->comment('Assigning roles with random permissions');
+    }
+
+    protected function seedUsers($userAmount = 10)
+    {
+        $this->comment('Seeding users');
+        $users = factory(User::class, $userAmount)->create();
+
+        $users->each(function (User $user) {
+            $user->assignRole(Role::all()->random());
+        });
+
+        $this->info("{$userAmount} users seeded");
     }
 
     protected function seedTagsAndPosts($user)
@@ -62,7 +98,7 @@ class SeedCommand extends Command
         $this->info("{$tags->count()} tags seeded");
 
         $this->comment('Seeding posts');
-        $posts = factory(Post::class, 10)->create(['author_id' => $user->id]);
+        $posts = factory(Post::class, 10)->create();
         $posts->each(function (Post $post) use ($tags) {
             $post->tags()->sync($tags->random(rand(1, 3))->pluck('id'));
         });
@@ -93,8 +129,8 @@ class SeedCommand extends Command
                 'slug' => 'privacy',
                 'body' => $this->faker->paragraphs(rand(3, 5), true),
             ],
-        ])->map(function ($page) use ($user) {
-            return factory(Page::class)->create(array_merge($page, ['author_id' => $user->id]));
+        ])->map(function ($page) {
+            return factory(Page::class)->create(array_merge($page));
         })->tap(function (Collection $pages) {
             $this->info("{$pages->count()} pages seeded");
         });
@@ -105,27 +141,27 @@ class SeedCommand extends Command
         $this->comment('Seeding menu items');
         $menuItems = collect([
             [
-                'name'  => 'About me',
-                'menu'  => 'main',
-                'url'   => '/about',
+                'name' => 'About me',
+                'menu' => 'main',
+                'url' => '/about',
                 'order' => 1,
             ],
             [
-                'name'  => 'Blog',
-                'menu'  => 'main',
-                'url'   => '/posts',
+                'name' => 'Blog',
+                'menu' => 'main',
+                'url' => '/posts',
                 'order' => 2,
             ],
             [
-                'name'  => 'Legal Notice',
-                'menu'  => 'footer',
-                'url'   => '/legal',
+                'name' => 'Legal Notice',
+                'menu' => 'footer',
+                'url' => '/legal',
                 'order' => 1,
             ],
             [
-                'name'  => 'Privacy',
-                'menu'  => 'footer',
-                'url'   => '/privacy',
+                'name' => 'Privacy',
+                'menu' => 'footer',
+                'url' => '/privacy',
                 'order' => 2,
             ],
         ])->map(function ($data) {
