@@ -5,7 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateCmsRoles extends Migration
 {
-
     /**
      * Run the migrations.
      *

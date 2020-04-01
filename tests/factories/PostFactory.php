@@ -19,7 +19,6 @@ use Illuminate\Database\Eloquent\Factory;
 */
 
 $factory->define(Post::class, function (Faker $faker) {
-
     return [
         'name' => $faker->words(rand(2, 6), true),
         'body' => $faker->paragraphs(rand(3, 7), true),

@@ -3,12 +3,12 @@
 namespace Bambamboole\LaravelCms\Permissions\Http\Controllers;
 
 use Bambamboole\LaravelCms\Auth\Mails\NewUserCreatedMail;
-use Bambamboole\LaravelCms\Permissions\Http\Resources\PermissionResource;
-use Bambamboole\LaravelCms\Permissions\Models\Permission;
-use Bambamboole\LaravelCms\Permissions\Models\Role;
 use Bambamboole\LaravelCms\Permissions\Http\Requests\CreateRoleRequest;
 use Bambamboole\LaravelCms\Permissions\Http\Requests\UpdateRoleRequest;
+use Bambamboole\LaravelCms\Permissions\Http\Resources\PermissionResource;
 use Bambamboole\LaravelCms\Permissions\Http\Resources\RoleResource;
+use Bambamboole\LaravelCms\Permissions\Models\Permission;
+use Bambamboole\LaravelCms\Permissions\Models\Role;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -18,6 +18,7 @@ class PermissionsController
     {
         return PermissionResource::collection(Permission::all()->sortBy('group')->sortBy('crud'));
     }
+
 //
 //    public function show(Role $role)
 //    {
