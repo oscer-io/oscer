@@ -21,7 +21,7 @@ class FrontendRouter
 
     protected function isMigrated()
     {
-        return Schema::hasTable('cms_pages')
+        return Schema::hasTable('cms_posts')
             && Schema::hasTable('cms_options');
     }
 

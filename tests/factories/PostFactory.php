@@ -23,6 +23,7 @@ $factory->define(Post::class, function (Faker $faker) {
 
     return [
         'name' => $faker->words(rand(2, 6), true),
+        'type' => 'post',
         'body' => $faker->paragraphs(rand(3, 7), true),
         'author_id' => rand(0, 1) == 1 ? factory(User::class)->create(['avatar' => $randomImgUrl]) : User::all()->random()->id,
         'published_at' => rand(0, 1) == 1 ? null : now()->subMonths(rand(1, 8))->subDays(rand(1, 20)),

@@ -29,7 +29,7 @@ class PostsController
 
     public function store(CreatePostRequest $request)
     {
-        $post = Post::query()->create(array_merge(['author_id' => auth()->user()->id], $request->validated()));
+        $post = Post::create(array_merge(['author_id' => auth()->user()->id], $request->validated()));
 
         return new PostResource($post);
     }

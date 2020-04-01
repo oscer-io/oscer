@@ -23,6 +23,7 @@ $factory->define(Page::class, function (Faker $faker) {
 
     return [
         'author_id' => factory(User::class)->create(['avatar' => $randomImgUrl]),
+        'type' => 'page',
         'name' => $faker->name,
         'slug' => $faker->unique()->slug,
         'body' => $faker->paragraph,
