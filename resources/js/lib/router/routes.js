@@ -1,10 +1,11 @@
 const NotFound = {template: '<div>not found</div>'};
 const Admin = {template: '<div>Admin index</div>'};
 
-import menuRoutes from '../../modules/menus/routes';
-import optionRoutes from '../../modules/options/routes';
+import menusRoutes from '../../modules/menus/routes';
+import optionsRoutes from '../../modules/options/routes';
 import profileRoutes from '../../modules/profile/routes';
-import userRoutes from '../../modules/users/routes';
+import usersRoutes from '../../modules/users/routes';
+import rolesRoutes from '../../modules/roles/routes';
 
 export default [
     {
@@ -13,10 +14,12 @@ export default [
         component: Admin
     },
 
-    ...menuRoutes,
-    ...optionRoutes,
+    ...menusRoutes,
+    ...optionsRoutes,
     ...profileRoutes,
-    ...userRoutes,
+    ...usersRoutes,
+    ...rolesRoutes,
+
     {
         path: '/admin/404',
         name: 'not-found',
