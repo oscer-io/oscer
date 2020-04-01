@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Permission\Models;
+namespace Bambamboole\LaravelCms\Permissions\Models;
 
 class Permission extends \Spatie\Permission\Models\Permission
 {
