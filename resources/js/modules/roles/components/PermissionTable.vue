@@ -11,6 +11,7 @@
         </thead>
         <tbody>
         <PermissionTableRow v-for="(permissionGroup, permissionGroupName) in permissionGroups"
+                            :key="permissionGroupName"
                             :role="role"
                             :name="permissionGroupName"
                             :permissions="permissionGroup"/>
