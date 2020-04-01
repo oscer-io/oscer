@@ -22,6 +22,7 @@ class UserResource extends JsonResource
             'bio' => $this->bio,
             'avatar' => $this->avatar,
             'language' => $this->language,
+            'created_at' => $this->created_at
         ];
     }
 }
