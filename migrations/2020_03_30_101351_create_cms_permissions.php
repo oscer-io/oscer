@@ -26,6 +26,10 @@ class CreateCmsPermissions extends Migration
         'users.view.*',
         'users.update.*',
         'users.delete.*',
+        'roles.create.*',
+        'roles.view.*',
+        'roles.update.*',
+        'roles.delete.*',
     ];
 
     /**
