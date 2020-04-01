@@ -1,49 +1,23 @@
 <template>
-    <div>
-        <vue-tags-input
-            v-model="tag"
-            :tags="tags"
-            :autocomplete-items="filteredTags"
-            @tags-changed="tagsChanged"
+    <field-wrapper :name="field.name" :label="field.label" :errors="validationErrors">
+        <VueSelect taggable multiple
+            class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+            :class="{'border-red-600': !!validationErrors}"
+            :id="field.name"
+            v-model="value"
+            :options="field.suggestions"
         />
-    </div>
+    </field-wrapper>
 </template>
 
 <script>
-    import VueTagsInput from '@johmun/vue-tags-input';
+    import {VueSelect} from 'vue-select';
+    import FormField from "../lib/mixins/FormField";
 
     export default {
+        mixins: [FormField],
         components: {
-            VueTagsInput,
-        },
-        props: {
-            value: Array,
-            availableTags: Array
-        },
-        data() {
-            return {
-                tag: '',
-                tags: this.value.map(name => {return {text:name}}),
-            };
-        },
-        computed: {
-            filteredTags() {
-                return this.availableTags.filter(tag => {
-                    return tag.toLowerCase().indexOf(this.tag.toLowerCase()) !== -1
-                }).map(tag => {return {text: tag}})
-            }
-        },
-        methods: {
-            tagsChanged(newTags) {
-                this.tags = newTags;
-                this.$emit("input", this.tags.map(tag => tag.text));
-            }
+            VueSelect,
         }
     };
 </script>
-
-<style>
-    .ti-input{
-        border-radius: 0.25rem;
-    }
-</style>

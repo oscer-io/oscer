@@ -4,6 +4,7 @@ namespace Bambamboole\LaravelCms\Routing;
 
 use Bambamboole\LaravelCms\Auth\Http\Controllers\Api\IssueTokenController;
 use Bambamboole\LaravelCms\Auth\Http\Middleware\Authenticate;
+use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceFieldsController;
 use Bambamboole\LaravelCms\Core\Http\Controllers\OpenApiController;
 use Bambamboole\LaravelCms\Core\Http\Controllers\SwaggerUiController;
 use Bambamboole\LaravelCms\Menus\Http\Controllers\MenuOrderController;
@@ -11,6 +12,7 @@ use Bambamboole\LaravelCms\Menus\Http\Controllers\MenusController;
 use Bambamboole\LaravelCms\Options\Http\Controllers\OptionsController;
 use Bambamboole\LaravelCms\Permissions\Http\Controllers\PermissionsController;
 use Bambamboole\LaravelCms\Publishing\Http\Controllers\Api\PagesController;
+use Bambamboole\LaravelCms\Publishing\Http\Controllers\PostsController;
 use Bambamboole\LaravelCms\Users\Http\Controllers\ProfileAvatarController;
 use Bambamboole\LaravelCms\Users\Http\Controllers\ProfileController;
 use Bambamboole\LaravelCms\Permissions\Http\Controllers\RolesController;
@@ -60,12 +62,21 @@ class ApiRouter
             ->as('cms.api.')
             ->prefix($this->prefix)
             ->group(function (Router $router) {
+                $router->get('/resources/{resource}/fields', ResourceFieldsController::class)->name('resources.fields');
+
                 // Pages
                 $router->get('/pages', [PagesController::class, 'index'])->name('pages.index');
                 $router->post('/pages', [PagesController::class, 'store'])->name('pages.store');
-                $router->get('/pages/{id}', [PagesController::class, 'show'])->name('pages.index');
+                $router->get('/pages/{id}', [PagesController::class, 'show'])->name('pages.show');
                 $router->patch('/pages/{id}', [PagesController::class, 'update'])->name('pages.update');
                 $router->delete('/pages/{id}', [PagesController::class, 'delete'])->name('pages.delete');
+
+                // Posts
+                $router->get('/posts', [PostsController::class, 'index'])->name('posts.index');
+                $router->post('/posts', [PostsController::class, 'store'])->name('posts.store');
+                $router->get('/posts/{id}', [PostsController::class, 'show'])->name('posts.show');
+                $router->patch('/posts/{id}', [PostsController::class, 'update'])->name('posts.update');
+                $router->delete('/posts/{id}', [PostsController::class, 'delete'])->name('posts.delete');
 
                 // Users
                 $router->get('/users', [UsersController::class, 'index'])->name('users.index');

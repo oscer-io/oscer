@@ -30,7 +30,7 @@ class Tag extends BaseModel
 
     public function posts()
     {
-        return $this->belongsToMany(Post::class);
+        return $this->belongsToMany(Post::class)->where('type', 'post');
     }
 
     public function getSlugOptions(): SlugOptions

@@ -3,8 +3,9 @@ const Admin = {template: '<div>Admin index</div>'};
 
 import menusRoutes from '../../modules/menus/routes';
 import optionsRoutes from '../../modules/options/routes';
-import profileRoutes from '../../modules/profile/routes';
 import usersRoutes from '../../modules/users/routes';
+import profileRoutes from '../../modules/profile/routes';
+import postsRoutes from '../../modules/posts/routes';
 import rolesRoutes from '../../modules/roles/routes';
 
 export default [
@@ -16,8 +17,9 @@ export default [
 
     ...menusRoutes,
     ...optionsRoutes,
-    ...profileRoutes,
     ...usersRoutes,
+    ...profileRoutes,
+    ...postsRoutes,
     ...rolesRoutes,
 
     {

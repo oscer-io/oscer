@@ -1,9 +1,23 @@
 export default {
-    props:['field','validationErrors'],
+    props: {
+        field: {
+            type: Object,
+            required: true,
+        },
+        validationErrors: {
+            type: Array
+        }
+    },
 
     data() {
         return {
             value: ''
+        }
+    },
+
+    watch: {
+        value() {
+            this.$emit('input', this.value)
         }
     },
 
@@ -27,8 +41,8 @@ export default {
          * It will be bound to the shared field definition object.
          * This way the form component can gather the values.
          */
-        getValue(){
-            return String(this.value)
+        getValue() {
+            return this.value
         }
     }
 }

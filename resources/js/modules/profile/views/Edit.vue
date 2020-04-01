@@ -12,22 +12,22 @@
             </div>
         </div>
 
-        <BaseForm
-            :fields="fields"
-            :api-route="route('cms.api.profile.update')"
+        <CreateForm
+            resource="profile"
+            :api-route="{name: 'cms.api.profile.update'}"
             :remove-null-values="true"
             @cancel="handleCancel"
             @success="handleSuccess"
         />
-
     </div>
 </template>
 
 <script>
-    import BaseForm from "../../../components/BaseForm";
+    import CreateForm from "../../../components/CreateForm";
+
     export default {
-        components:{
-            BaseForm
+        components: {
+            CreateForm
         },
         data() {
             return {

@@ -1,13 +1,13 @@
 <template>
     <form @submit.prevent="handleSubmit">
-            <component
-                v-for="(field, index) in fields"
-                :key="index"
-                :ref="`${field.name}-field`"
-                :is="resolveComponentName(field)"
-                :field="field"
-                :validation-errors="getValidationErrors(field)"
-            />
+        <component
+            v-for="(field, index) in fields"
+            :key="index"
+            :ref="`${field.name}-field`"
+            :is="field.component"
+            :field="field"
+            :validation-errors="getValidationErrors(field)"
+        />
         <div class="mt-8 border-t border-gray-200 pt-5">
             <div class="flex justify-end">
                         <span class="inline-flex rounded-md shadow-sm">
@@ -27,14 +27,15 @@
     </form>
 </template>
 <script>
+    import api from "../lib/api";
     import Form from "../lib/mixins/Form";
 
     export default {
         mixins: [Form],
         props: {
-            fields: {
-                type: Array,
-                default: () => []
+            resource: {
+                type: String,
+                required: true
             },
             cancelText: {
                 type: String,
@@ -46,16 +47,18 @@
             },
             cancelMethod: {
                 type: Function
-            },
-        },
-
-        methods: {
-            resolveComponentName(field) {
-                if (field.hasOwnProperty('component')) {
-                    return field.component;
-                }
-                return `${field.type}-field`;
             }
+        },
+        data() {
+            return {
+                fields: []
+            }
+        },
+        async mounted() {
+            const response = await api(
+                this.route('cms.api.resources.fields', {resource: this.resource})
+            );
+            this.fields = response.data.fields
         }
     }
 </script>

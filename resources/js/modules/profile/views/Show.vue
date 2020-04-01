@@ -1,6 +1,5 @@
 <template>
         <div>
-
             <div class="md:flex md:items-center md:justify-between">
                 <div class="flex-1 min-w-0">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -12,8 +11,7 @@
                 </div>
                 <div class="mt-4 flex md:mt-0 md:ml-4">
                     <span class="ml-3 shadow-sm rounded-md">
-                        <router-link :to="{name:'profile.edit'}"
-                                     class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                        <router-link :to="{name:'profile.edit'}" class="btn">
                             {{$t('profile.edit')}}
                         </router-link>
                     </span>

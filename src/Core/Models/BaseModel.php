@@ -16,7 +16,7 @@ abstract class BaseModel extends Model
      */
     public function getTable()
     {
-        return 'cms_'.Str::snake(Str::pluralStudly(class_basename($this)));
+        return $this->table ?? 'cms_'.Str::snake(Str::pluralStudly(class_basename($this)));
     }
 
     /**

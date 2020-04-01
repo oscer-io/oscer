@@ -40,16 +40,6 @@ class User extends BaseModel implements Authenticatable, Authorizable
     protected $rememberTokenName = 'remember_token';
 
     /**
-     * Get the unique identifier for the user.
-     *
-     * @return mixed
-     */
-    public function getAuthIdentifier()
-    {
-        return $this->{$this->getAuthIdentifierName()};
-    }
-
-    /**
      * Get the name of the unique identifier for the user.
      *
      * @return string
@@ -57,6 +47,16 @@ class User extends BaseModel implements Authenticatable, Authorizable
     public function getAuthIdentifierName()
     {
         return $this->getKeyName();
+    }
+
+    /**
+     * Get the unique identifier for the user.
+     *
+     * @return mixed
+     */
+    public function getAuthIdentifier()
+    {
+        return $this->{$this->getAuthIdentifierName()};
     }
 
     /**
@@ -82,16 +82,6 @@ class User extends BaseModel implements Authenticatable, Authorizable
     }
 
     /**
-     * Get the column name for the "remember me" token.
-     *
-     * @return string
-     */
-    public function getRememberTokenName()
-    {
-        return $this->rememberTokenName;
-    }
-
-    /**
      * Set the token value for the "remember me" session.
      *
      * @param string $value
@@ -102,6 +92,16 @@ class User extends BaseModel implements Authenticatable, Authorizable
         if (! empty($this->getRememberTokenName())) {
             $this->{$this->getRememberTokenName()} = $value;
         }
+    }
+
+    /**
+     * Get the column name for the "remember me" token.
+     *
+     * @return string
+     */
+    public function getRememberTokenName()
+    {
+        return $this->rememberTokenName;
     }
 
     /**

@@ -34,6 +34,17 @@
                             </svg>
                             Dashboard
                         </navbar-link>
+                        @can('posts.view')
+                            <navbar-link :to="{name: 'posts.index'}">
+                                <svg
+                                    class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
+                                    stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                                </svg>
+                                Posts
+                            </navbar-link>
+                        @endcan
                         @can('menus.view')
                             <navbar-link :to="{name: 'menus.index'}">
                                 <svg
@@ -67,16 +78,16 @@
                                 Users
                             </navbar-link>
                         @endcan
-                        @can('users.view')
-                        <navbar-link :to="{name: 'roles.index'}">
-                            <svg
-                                class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
-                                stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                            </svg>
-                            Roles
-                        </navbar-link>
+                        @can('roles.view')
+                            <navbar-link :to="{name: 'roles.index'}">
+                                <svg
+                                    class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
+                                    stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                                Roles
+                            </navbar-link>
                         @endcan
                     </nav>
                 </div>

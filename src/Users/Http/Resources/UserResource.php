@@ -2,14 +2,18 @@
 
 namespace Bambamboole\LaravelCms\Users\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use Bambamboole\LaravelCms\Backend\Form\Fields\TextareaField;
+use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
+use Bambamboole\LaravelCms\Backend\Http\Resources\BackendResource;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
-class UserResource extends JsonResource
+class UserResource extends BackendResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      *
      * @return array
      */
@@ -24,5 +28,14 @@ class UserResource extends JsonResource
             'language' => $this->language,
             'created_at' => $this->created_at
         ];
+    }
+
+    public function fields(Request $request): Collection
+    {
+        return collect([
+            TextField::make('name'),
+            TextField::make('email'),
+            TextareaField::make('bio', 'Biography'),
+        ]);
     }
 }

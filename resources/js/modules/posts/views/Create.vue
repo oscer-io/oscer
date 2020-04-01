@@ -3,13 +3,13 @@
         <div class="md:flex md:items-center md:justify-between">
             <div class="flex-1 min-w-0">
                 <h1 class="text-lg leading-6 font-medium text-gray-900">
-                    {{ $t('users.create_title') }}
+                    {{ $t('posts.create_title') }}
                 </h1>
             </div>
         </div>
         <CreateForm
-            resource="user"
-            :api-route="{name: 'cms.api.users.store'}"
+            resource="post"
+            :api-route="{name: 'cms.api.posts.store'}"
             @cancel="handleCancel"
             @success="handleSuccess"
         />
@@ -25,11 +25,11 @@
         },
         methods: {
             handleCancel() {
-                this.$router.push({name: 'users.index'})
+                this.$router.push({name: 'posts.index'})
             },
-            handleSuccess(user) {
+            handleSuccess(post) {
                 Cms.flash('success', 'Nice one!');
-                this.$router.push({name: 'users.show', params: {id: user.id}})
+                this.$router.push({name: 'posts.show', params: {id: post.id}})
             }
         }
     }
