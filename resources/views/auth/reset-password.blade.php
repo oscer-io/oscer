@@ -5,14 +5,22 @@
         <div class="max-w-md w-full">
             <div>
                 <img class="mx-auto h-12 w-auto" src="/vendor/cms/workflow-mark-on-white.svg" alt="Workflow"/>
-                <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+                <h2 class="my-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
                     {{__('cms::auth.pages.new_password.title')}}
                 </h2>
 
             </div>
-            <div class="text-center mt-8">
 
-                <div class="py-6">
+            @if ($errors->any())
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded-md relative"
+                     role="alert">
+                    <ul class="list-disc">
+                        @foreach ($errors->all() as $error)
+                            <li class="ml-3">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
                     <span class="bg-gray-700 rounded text-sm py-2 px-6 text-white">{{$password}}</span>
                 </div>
