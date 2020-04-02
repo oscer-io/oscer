@@ -34,7 +34,7 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    import api from "../../../lib/api";
     import PermissionTable from '../components/PermissionTable';
 
     export default {
@@ -55,12 +55,10 @@
             },
         },
         async mounted() {
-            // posts endpoint not implemented because of the thoughts to only use one model with different types
-            const roleResponse = await axios.get('/api/cms/roles/' + this.id);
-            const permissionResponse = await axios.get('/api/cms/permissions/');
-            this.role = roleResponse.data.data;
-            this.permissions = permissionResponse.data.data;
-            console.log(this.permissions);
+            const responseRole = await api(this.route('cms.api.roles.index'));
+            const responsePermissions = await api(this.route('cms.api.permissions.index'));
+            this.role = responseRole.data.data;
+            this.permissions = responsePermissions.data.data;
 
             this.isLoading = false;
         },
