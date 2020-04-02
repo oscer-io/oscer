@@ -12,9 +12,9 @@ class RolesController
         return RoleResource::collection(Role::all());
     }
 
-    public function show(Role $role)
+    public function show(int $id)
     {
-        return new RoleResource($role);
+        return new RoleResource(Role::query()->findOrFail($id));
     }
 
 //    public function update(UpdateRoleRequest $request, Role $role)

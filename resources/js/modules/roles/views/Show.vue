@@ -55,7 +55,7 @@
             },
         },
         async mounted() {
-            const responseRole = await api(this.route('cms.api.roles.index'));
+            const responseRole = await api(this.route('cms.api.roles.show', {id: this.id}));
             const responsePermissions = await api(this.route('cms.api.permissions.index'));
             this.role = responseRole.data.data;
             this.permissions = responsePermissions.data.data;
