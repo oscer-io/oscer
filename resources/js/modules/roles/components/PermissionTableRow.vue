@@ -2,7 +2,7 @@
     <tr>
         <td class="w-1/5 px-4 py-2">{{name}}</td>
         <td v-for="permission in permissions" class="w-1/5 px-4 py-2 text-center">
-            <input type="checkbox" :id="permission.name" :checked="hasPermission(permission.name)">
+            <input type="checkbox" :id="permission.name" :checked="hasPermission(permission.name)" />
         </td>
     </tr>
 </template>
@@ -18,7 +18,7 @@
         },
         props: {
             role: {
-                type: Array,
+                type: Object,
                 required: true
             },
             permissions: {

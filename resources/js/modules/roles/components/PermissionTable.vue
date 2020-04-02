@@ -34,13 +34,13 @@
         },
         props: {
             role: {
-                type: Array,
+                type: Object,
                 required: true
             },
             permissions: {
                 type: Array,
                 required: true
             },
-        }
+        },
     }
 </script>
