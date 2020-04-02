@@ -21,7 +21,7 @@ class PagesController
 
     public function store(CreatePageRequest $request)
     {
-        $page = Page::query()->create(array_merge(
+        $page = Page::create(array_merge(
             [
                 'author_id' => auth()->user()->id,
             ], $request->validated()));
