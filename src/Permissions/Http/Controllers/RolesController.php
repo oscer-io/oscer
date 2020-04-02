@@ -2,19 +2,14 @@
 
 namespace Bambamboole\LaravelCms\Permissions\Http\Controllers;
 
-use Bambamboole\LaravelCms\Auth\Mails\NewUserCreatedMail;
-use Bambamboole\LaravelCms\Permissions\Http\Requests\CreateRoleRequest;
-use Bambamboole\LaravelCms\Permissions\Http\Requests\UpdateRoleRequest;
 use Bambamboole\LaravelCms\Permissions\Http\Resources\RoleResource;
 use Bambamboole\LaravelCms\Permissions\Models\Role;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
 
 class RolesController
 {
     public function index()
     {
-        return RoleResource::collection(Role::query()->paginate());
+        return RoleResource::collection(Role::all());
     }
 
     public function show(Role $role)
