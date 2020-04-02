@@ -4,6 +4,7 @@ namespace Bambamboole\LaravelCms\Routing;
 
 use Bambamboole\LaravelCms\Auth\Http\Controllers\ForgotPasswordController;
 use Bambamboole\LaravelCms\Auth\Http\Controllers\LoginController;
+use Bambamboole\LaravelCms\Auth\Http\Controllers\ResetPasswordController;
 use Bambamboole\LaravelCms\Auth\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Core\Http\Controllers\BackendController;
 use Bambamboole\LaravelCms\Core\Http\Middleware\SetInertiaConfiguration;
@@ -35,7 +36,8 @@ class BackendRouter
 
                 $router->get('/password/forgot', [ForgotPasswordController::class, 'showResetRequestForm'])->name('password.forgot');
                 $router->post('/password/forgot', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-                $router->get('/password/reset/{token}', [ForgotPasswordController::class, 'showNewPassword'])->name('password.reset');
+                $router->get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+                $router->post('/password/reset', [ResetPasswordController::class, 'update'])->name('password.update');
             });
     }
 
