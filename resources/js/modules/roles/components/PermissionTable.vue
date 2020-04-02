@@ -33,7 +33,7 @@
             },
         },
         props: {
-            role: Object,
+            role: Array,
             permissions: Array,
             name: String,
         }
