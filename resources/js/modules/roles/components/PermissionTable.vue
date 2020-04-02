@@ -33,9 +33,14 @@
             },
         },
         props: {
-            role: Array,
-            permissions: Array,
-            name: String,
+            role: {
+                type: Array,
+                required: true
+            },
+            permissions: {
+                type: Array,
+                required: true
+            },
         }
     }
 </script>

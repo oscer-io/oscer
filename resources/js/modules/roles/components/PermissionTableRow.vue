@@ -17,9 +17,18 @@
             }
         },
         props: {
-            role: Array,
-            permissions: Array,
-            name: String,
+            role: {
+                type: Array,
+                required: true
+            },
+            permissions: {
+                type: Array,
+                required: true
+            },
+            name: {
+                type: String,
+                required: true
+            },
         }
     }
 </script>
