@@ -69,5 +69,26 @@ export default class Cms {
     flash(type, text) {
         this.bus.$emit('flash', {'type': type, 'text': text});
     }
+
+    /**
+     * Generates an object which contains the method and the url needed for a request. The first
+     * parameter is the route name defined in the Laravel CMS router and the second one is
+     * for route params if needed. The object keys have to match the route parameters
+     */
+    route(name, params = {}) {
+        let route = this.config.routes[name];
+
+        let matches = route.url.match(/[^{]+(?=\})/g);
+
+        if (Object.entries(params).length >= 1
+            && Array.isArray(matches)
+            && matches.length >= 1) {
+            matches.forEach(match => {
+                route.url = route.url.replace('{' + match + '}', params[match])
+            });
+        }
+
+        return route;
+    }
 }
 

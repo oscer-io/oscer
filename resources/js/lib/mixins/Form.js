@@ -47,7 +47,7 @@ export default {
 
             try {
                 const response = await api({
-                    ...this.route(this.apiRoute.name, this.apiRoute.params),
+                    ...Cms.route(this.apiRoute.name, this.apiRoute.params),
                     data: this.payload
                 });
 

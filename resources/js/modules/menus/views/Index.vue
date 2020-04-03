@@ -66,7 +66,7 @@
         },
         async mounted() {
             // posts endpoint not implemented because of the thoughts to only use one model with different types
-            const response = await api(this.route('cms.api.menus.index'));
+            const response = await api(Cms.route('cms.api.menus.index'));
             this.menus = response.data.data;
             this.isLoading = false;
         }

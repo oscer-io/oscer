@@ -60,7 +60,7 @@
         methods: {
             async fetchResourceForm() {
                 const response = await api(
-                    this.route('cms.api.resources.fields', {resource: this.resource})
+                    Cms.route('cms.api.resources.fields', {resource: this.resource})
                 );
 
                 this.fields = response.data.fields;
