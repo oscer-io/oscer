@@ -15,6 +15,12 @@ export default {
         }
     },
 
+    computed: {
+        hasValidationErrors() {
+            return this.validationErrors.length >= 1;
+        }
+    },
+
     watch: {
         value() {
             this.$emit('input', this.value)

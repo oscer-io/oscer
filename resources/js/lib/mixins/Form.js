@@ -64,7 +64,7 @@ export default {
             }
         },
         getValidationErrors(field) {
-            return this.$data.validationErrors[field.name] || false;
+            return this.$data.validationErrors[field.name] || [];
         }
     }
 }

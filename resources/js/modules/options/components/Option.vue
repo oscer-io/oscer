@@ -6,7 +6,7 @@
                 :is="`${option.type}-field`"
                 :field="option"
                 v-model="currentValue"
-                :validation-errors="false"
+                :validation-errors="[]"
             />
             <button type="submit" class="btn">save</button>
         </form>
