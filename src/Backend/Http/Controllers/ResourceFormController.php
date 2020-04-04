@@ -43,14 +43,14 @@ class ResourceFormController
     {
         $resources = config('cms.resources');
 
-        if (!array_key_exists($resource, $resources)) {
+        if (! array_key_exists($resource, $resources)) {
             throw new NotFoundHttpException('resource not found');
         }
 
         $resourceClass = $resources[$resource];
         $instance = new $resourceClass();
 
-        if (!$instance instanceof HasForm) {
+        if (! $instance instanceof HasForm) {
             throw new NotFoundHttpException('Resource does not implement HasForm');
         }
 

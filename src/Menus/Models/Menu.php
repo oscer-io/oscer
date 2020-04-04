@@ -45,6 +45,7 @@ class Menu implements HasApiEndpoints, HasIndexEndpoint, HasShowEndpoint
             ->toArray();
 
         $menu = new self();
+
         return $menu
             ->setName($name)
             ->setItems($items);
@@ -57,11 +58,11 @@ class Menu implements HasApiEndpoints, HasIndexEndpoint, HasShowEndpoint
 
     public function executeIndex()
     {
-        return ['data' => Menu::all()];
+        return ['data' => self::all()];
     }
 
     public function executeShow($identifier)
     {
-        return ['data' => Menu::resolve($identifier)];
+        return ['data' => self::resolve($identifier)];
     }
 }
