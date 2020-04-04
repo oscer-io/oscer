@@ -17,13 +17,20 @@ class ResetPasswordController
         /** @var \Bambamboole\LaravelCms\Auth\Models\User $user */
         $user = $this->getUserFromEncryptedToken($encryptedToken);
 
-        return view('cms::auth.reset-password', compact('encryptedToken','user'));
+        if ($user === false) {
+            return redirect()->route('cms.password.forgot')->with('invalidResetToken', true);
+        }
+
+        return view('cms::auth.reset-password', compact('encryptedToken', 'user'));
     }
 
     public function update(ResetPasswordRequest $request)
     {
         /** @var \Bambamboole\LaravelCms\Auth\Models\User $user */
         $user = $this->getUserFromEncryptedToken($request->input('encrypted_token'));
+        if ($user === false) {
+            return redirect()->route('cms.password.forgot')->with('invalidResetToken', true);
+        }
         $user->update(['password' => $request->input('password')]);
 
         Auth::guard()->login($user);
@@ -40,10 +47,10 @@ class ResetPasswordController
             $user = User::query()->findOrFail($userId);
 
         } catch (Throwable $exception) {
-            return redirect()->route('cms.password.forgot')->with('invalidResetToken', true);
+            return false;
         }
         if (cache("password.reset.{$userId}") != $token) {
-            return redirect()->route('cms.password.forgot')->with('invalidResetToken', true);
+            return false;
         }
 
         return $user;
