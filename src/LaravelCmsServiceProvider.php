@@ -5,7 +5,7 @@ namespace Bambamboole\LaravelCms;
 use Bambamboole\LaravelCms\Auth\Models\User;
 use Bambamboole\LaravelCms\Core\Commands\Development\SeedCommand;
 use Bambamboole\LaravelCms\Core\Commands\PublishCommand;
-use Bambamboole\LaravelCms\Core\ViewComposer\BackendViewComposer;
+use Bambamboole\LaravelCms\Backend\ViewComposer\BackendViewComposer;
 use Bambamboole\LaravelCms\Routing\ApiRouter;
 use Bambamboole\LaravelCms\Routing\BackendRouter;
 use Bambamboole\LaravelCms\Theming\BladeComponents\MenuBladeComponent;
@@ -65,6 +65,8 @@ class LaravelCmsServiceProvider extends ServiceProvider
         $statefulHosts = $config->get('sanctum.stateful');
         $statefulHosts[] = $config->get('cms.backend.domain');
 
+        $config->set('ziggy.whitelist', ['cms.*']);
+        $config->set('ziggy.skip-route-function', true);
         $config->set('sanctum.stateful', $statefulHosts);
         $config->set('sanctum.middleware.verify_csrf_token', \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class);
     }

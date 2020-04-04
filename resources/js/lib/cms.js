@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueJSModal from "vue-js-modal";
 import router from "./router";
 import i18n from './i18n';
+import route from 'ziggy';
 
 export default class Cms {
 
@@ -75,20 +76,13 @@ export default class Cms {
      * parameter is the route name defined in the Laravel CMS router and the second one is
      * for route params if needed. The object keys have to match the route parameters
      */
-    route(name, params = {}) {
-        let route = this.config.routes[name];
+    route(name, params, absolute) {
+        const routeObject = route(name, params, absolute, this.config.routes);
 
-        let matches = route.url.match(/[^{]+(?=\})/g);
-
-        if (Object.entries(params).length >= 1
-            && Array.isArray(matches)
-            && matches.length >= 1) {
-            matches.forEach(match => {
-                route.url = route.url.replace('{' + match + '}', params[match])
-            });
+        return {
+            method: routeObject.urlBuilder.route.methods[0],
+            url: routeObject.toString()
         }
-
-        return route;
     }
 }
 
