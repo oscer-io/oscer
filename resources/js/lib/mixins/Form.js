@@ -2,11 +2,6 @@ import _ from "lodash";
 
 export default {
     props: {
-
-        removeNullValues: {
-            type: Boolean,
-            default: false
-        },
         append: {
             type: Object,
             default: () => {

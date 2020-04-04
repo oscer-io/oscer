@@ -18,12 +18,19 @@ abstract class Form implements \JsonSerializable
 
     protected array $missingValues = [];
 
+    protected array $additionalValidationRules = [];
+
     /**
      * @var Validator
      */
-    private $validator;
+    protected $validator;
 
     public function __construct(BaseModel $resource)
+    {
+        $this->setResource($resource);
+    }
+
+    public function setResource(BaseModel $resource)
     {
         $this->resource = $resource;
 
@@ -62,14 +69,21 @@ abstract class Form implements \JsonSerializable
         });
     }
 
-    public function getValidator(): Validator
+    protected function getValidationRules()
     {
-        if (!$this->validator) {
-            $rules = $this->fields()->reduce(function ($rules, Field $field) {
+        return array_merge($this->fields()
+            ->reduce(function ($rules, Field $field) {
                 $rules[$field->name] = $field->getRules($this->isCreateForm);
 
                 return $rules;
-            }, []);
+            }, []), $this->additionalValidationRules);
+    }
+
+    public function getValidator(): Validator
+    {
+        if (!$this->validator) {
+
+            $rules = $this->getValidationRules();
 
             $this->validator = ValidatorFactory::make($this->data, $rules);
         }
@@ -126,14 +140,34 @@ abstract class Form implements \JsonSerializable
         return $instances->map->getForm();
     }
 
+    protected function removeNullValues()
+    {
+        $rules = $this->filteredFields()->reduce(function ($result, Field $field) {
+            foreach ($field->getRules($this->isCreateForm) as $rule) {
+                $result[] = $rule;
+            }
+            return $result;
+        }, []);
+
+        return in_array('filled', $rules);
+    }
+
+    public function toArray()
+    {
+        return ['data' => array_merge(
+            [
+                'fields' => $this->resolveValues($this->filteredFields()),
+                'removeNullValues' => $this->removeNullValues(),
+            ],
+            !empty($this->missingValues) ? ['missing_values' => $this->missingValues] : []
+        )];
+    }
+
     /**
      * {@inheritdoc}
      */
     public function jsonSerialize()
     {
-        return ['data' => array_merge(
-            ['fields' => $this->resolveValues($this->filteredFields())],
-            !empty($this->missingValues) ? ['missing_values' => $this->missingValues] : []
-        )];
+        return $this->toArray();
     }
 }

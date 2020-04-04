@@ -26,6 +26,8 @@ abstract class Field implements \JsonSerializable
 
     protected array $with = [];
 
+    protected $resolveValueCallback = false;
+
     public function __construct(string $name, string $label, bool $fillValue)
     {
         $this->name = $name;
@@ -52,6 +54,13 @@ abstract class Field implements \JsonSerializable
         return $this;
     }
 
+    public function addResolveValueCallback(\Closure $callback)
+    {
+        $this->resolveValueCallback = $callback;
+
+        return $this;
+    }
+
     public function rules(array $rules)
     {
         $this->rules = $rules;
@@ -73,7 +82,7 @@ abstract class Field implements \JsonSerializable
         return $this;
     }
 
-    public function getRules(bool $forCreate)
+    public function getRules(bool $forCreate): array
     {
         if ($forCreate === true && !empty($this->rulesOnCreate)) {
             return $this->rulesOnCreate;
@@ -85,6 +94,15 @@ abstract class Field implements \JsonSerializable
         return $this->rules;
     }
 
+    protected function resolveValue()
+    {
+        if($this->resolveValueCallback && $this->resolveValueCallback instanceof \Closure){
+            return call_user_func($this->resolveValueCallback, $this->value);
+        }else{
+            return $this->value;
+        }
+    }
+
     public function jsonSerialize()
     {
         $data = [
@@ -93,8 +111,8 @@ abstract class Field implements \JsonSerializable
             'label' => $this->label,
             'rulesOnCreate' => $this->rulesOnCreate,
             'rulesOnUpdate' => $this->rulesOnUpdate,
-            'value' => $this->fillValue ? $this->value : null,
-            'hiddenOnCreate' => $this->hiddenOnCreate
+            'value' => $this->fillValue ? $this->resolveValue() : null,
+            'hiddenOnCreate' => $this->hiddenOnCreate,
         ];
 
         collect($this->with)->each(function (string $property) use (&$data) {

@@ -6,6 +6,7 @@
 
 use Bambamboole\LaravelCms\Auth\Models\User;
 use Bambamboole\LaravelCms\Menus\Models\MenuItem;
+use Bambamboole\LaravelCms\Publishing\Models\Post;
 
 return [
     'from_email' => env('CMS_FROM_EMAIL', 'cms@website.com'),
@@ -17,6 +18,7 @@ return [
     'resources' => [
         'user' => User::class,
         'menu-item' => MenuItem::class,
+        'post' => Post::class,
     ],
     'options' => [
         'pages' => [

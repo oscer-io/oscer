@@ -4,6 +4,7 @@ namespace Bambamboole\LaravelCms\Publishing\Models;
 
 use Bambamboole\LaravelCms\Auth\Models\User;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
+use Bambamboole\LaravelCms\Publishing\Forms\PostForm;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -110,5 +111,10 @@ class Post extends BaseModel
     public function joiningTableSegment()
     {
         return 'post';
+    }
+
+    public function getForm()
+    {
+        return new PostForm($this);
     }
 }

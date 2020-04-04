@@ -15,7 +15,6 @@
         <ResourceForm
             resource="user"
             :resource-id="currentUser.id"
-            :remove-null-values="true"
             @cancel="$router.push({name: 'profile.show'})"
             @success="handleSuccess"
         />

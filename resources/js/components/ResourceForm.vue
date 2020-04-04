@@ -56,7 +56,8 @@
         },
         data() {
             return {
-                fields: []
+                fields: [],
+                removeNullValues: false,
             }
         },
         watch:{
@@ -77,6 +78,7 @@
                 const response = await api(Cms.route('cms.api.forms.show', this.prepareParams()));
 
                 this.fields = response.data.data.fields;
+                this.removeNullValues = response.data.data.removeNullValues;
             },
             async submitResourceForm() {
                 // Submit the form. If we get validation errors, they will be passed to the fields.
