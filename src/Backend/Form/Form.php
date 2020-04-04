@@ -117,29 +117,6 @@ abstract class Form implements \JsonSerializable
         //
     }
 
-    public static function create(string $resource, $id = null): self
-    {
-        $resource = config("cms.resources.{$resource}");
-
-        if ($id === null) {
-            return (new $resource())->getForm();
-        }
-
-        $resourceInstance = $resource::findOrFail($id);
-
-        return $resourceInstance->getForm();
-    }
-
-    public static function createMultiple(string $resource, array $ids): Collection
-    {
-        $resource = config("cms.resources.{$resource}");
-
-        /** @var Collection $instances */
-        $instances = $resource::findMany($ids);
-
-        return $instances->map->getForm();
-    }
-
     protected function removeNullValues()
     {
         $rules = $this->filteredFields()->reduce(function ($result, Field $field) {

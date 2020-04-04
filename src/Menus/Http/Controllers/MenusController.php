@@ -9,16 +9,6 @@ use Bambamboole\LaravelCms\Menus\Models\MenuItem;
 
 class MenusController
 {
-    public function index()
-    {
-        return ['data' => Menu::all()];
-    }
-
-    public function show(string $name)
-    {
-        return ['data' => Menu::resolve($name)];
-    }
-
     public function store(CreateMenuItemRequest $request, string $name)
     {
         MenuItem::query()->create(
@@ -40,13 +30,5 @@ class MenusController
         $item->update($request->validated());
 
         return $item;
-    }
-
-    public function delete(string $name, int $itemId)
-    {
-        $item = MenuItem::query()->where('menu', $name)->findOrFail($itemId);
-        $item->delete();
-
-        return ['success' => true];
     }
 }

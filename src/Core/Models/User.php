@@ -3,6 +3,10 @@
 namespace Bambamboole\LaravelCms\Core\Models;
 
 use Bambamboole\LaravelCms\Api\Contracts\HasApiEndpoints;
+use Bambamboole\LaravelCms\Api\Contracts\HasDeleteEndpoint;
+use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
+use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
+use Bambamboole\LaravelCms\Backend\Contracts\HasForm;
 use Bambamboole\LaravelCms\Core\Forms\UserForm;
 use Bambamboole\LaravelCms\Users\Http\Resources\UserResource;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -18,7 +22,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property Carbon updated_at
  * @property Carbon created_at
  */
-class User extends BaseModel implements Authenticatable, HasApiEndpoints
+class User extends BaseModel implements Authenticatable, HasForm, HasApiEndpoints, HasIndexEndpoint, HasShowEndpoint, HasDeleteEndpoint
 {
     use HasApiTokens;
 
@@ -127,13 +131,20 @@ class User extends BaseModel implements Authenticatable, HasApiEndpoints
         return ['index', 'show', 'delete'];
     }
 
-    public function asResource($user)
+    public function executeIndex()
     {
-        return new UserResource($user);
+        return UserResource::collection($this->newQuery()->paginate());
     }
 
-    public function asResourceCollection($models)
+    public function executeShow($id)
     {
-        return UserResource::collection($models);
+        return new UserResource($this->newQuery()->findOrFail($id));
+    }
+
+    public function executeDelete($id)
+    {
+        $this->newQuery()->findOrFail($id)->delete();
+
+        return ['success' => true];
     }
 }

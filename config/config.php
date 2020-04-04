@@ -5,7 +5,9 @@
  */
 
 use Bambamboole\LaravelCms\Core\Models\User;
+use Bambamboole\LaravelCms\Menus\Models\Menu;
 use Bambamboole\LaravelCms\Menus\Models\MenuItem;
+use Bambamboole\LaravelCms\Options\Models\Option;
 use Bambamboole\LaravelCms\Publishing\Models\Post;
 
 return [
@@ -17,8 +19,10 @@ return [
     ],
     'resources' => [
         'user' => User::class,
+        'menu' => Menu::class,
         'menu-item' => MenuItem::class,
         'post' => Post::class,
+        'option' => Option::class,
     ],
     'options' => [
         'pages' => [

@@ -134,7 +134,7 @@
         },
         methods: {
             async fetchMenu() {
-                const response = await api(Cms.route('cms.api.menus.show', this.name));
+                const response = await api(Cms.route('cms.api.resources.show', ['menu', this.name]));
                 this.menu = response.data.data
             },
 
@@ -175,7 +175,7 @@
 
             async deleteItem(item) {
                 // delete item
-                await api(Cms.route('cms.api.menus.delete', [this.name, item.id]));
+                await api(Cms.route('cms.api.resources.delete', ['menu-item', item.id]));
                 // and fetch menu again
                 this.fetchMenu();
                 Cms.flash('success', 'Item deleted');
