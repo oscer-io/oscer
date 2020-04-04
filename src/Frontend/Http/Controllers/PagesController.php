@@ -2,9 +2,9 @@
 
 namespace Bambamboole\LaravelCms\Frontend\Http\Controllers;
 
+use Bambamboole\LaravelCms\Frontend\Theming\Contracts\Theme;
 use Bambamboole\LaravelCms\Options\Models\Option;
 use Bambamboole\LaravelCms\Publishing\Models\Page;
-use Bambamboole\LaravelCms\Frontend\Theming\Contracts\Theme;
 use Illuminate\Http\Request;
 
 class PagesController

@@ -3,11 +3,11 @@
 namespace Bambamboole\LaravelCms\Api\Routing;
 
 use Bambamboole\LaravelCms\Api\Http\Controllers\IssueTokenController;
-use Bambamboole\LaravelCms\Core\Http\Middleware\Authenticate;
-use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceFieldsController;
-use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceFormController;
 use Bambamboole\LaravelCms\Api\Http\Controllers\OpenApiController;
 use Bambamboole\LaravelCms\Api\Http\Controllers\SwaggerUiController;
+use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceFieldsController;
+use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceFormController;
+use Bambamboole\LaravelCms\Core\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Menus\Http\Controllers\MenuOrderController;
 use Bambamboole\LaravelCms\Menus\Http\Controllers\MenusController;
 use Bambamboole\LaravelCms\Options\Http\Controllers\OptionsController;

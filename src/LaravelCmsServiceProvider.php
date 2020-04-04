@@ -2,11 +2,11 @@
 
 namespace Bambamboole\LaravelCms;
 
+use Bambamboole\LaravelCms\Api\Routing\ApiRouter;
+use Bambamboole\LaravelCms\Backend\Routing\BackendRouter;
 use Bambamboole\LaravelCms\Backend\ViewComposer\BackendViewComposer;
 use Bambamboole\LaravelCms\Core\Commands\Development\SeedCommand;
 use Bambamboole\LaravelCms\Core\Commands\PublishCommand;
-use Bambamboole\LaravelCms\Api\Routing\ApiRouter;
-use Bambamboole\LaravelCms\Backend\Routing\BackendRouter;
 use Bambamboole\LaravelCms\Frontend\Theming\BladeComponents\MenuBladeComponent;
 use Bambamboole\LaravelCms\Frontend\Theming\Contracts\Theme;
 use Bambamboole\LaravelCms\Frontend\Theming\DefaultTheme;
