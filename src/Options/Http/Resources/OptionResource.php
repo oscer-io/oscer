@@ -16,8 +16,8 @@ class OptionResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'key' => $this->name,
-            'value' => $this->slug,
+            'key' => $this->key,
+            'value' => $this->value,
         ];
     }
 }

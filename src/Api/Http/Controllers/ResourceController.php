@@ -8,6 +8,8 @@ use Bambamboole\LaravelCms\Api\Contracts\HasApiEndpoints;
 use Bambamboole\LaravelCms\Api\Contracts\HasDeleteEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
+use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ResourceController
@@ -30,6 +32,16 @@ class ResourceController
         }
 
         return $instance->executeShow($id);
+    }
+
+    public function store(Request $request, string $resource)
+    {
+        $instance = $this->getResourceInstance($resource);
+        if (!$instance instanceof HasStoreEndpoint) {
+            throw new NotFoundHttpException('resource has no store endpoint');
+        }
+
+        return $instance->executeStore($request);
     }
 
     public function delete(string $resource, $id)

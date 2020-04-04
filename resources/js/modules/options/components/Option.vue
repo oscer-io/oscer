@@ -14,7 +14,7 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    import api from "../../../lib/api";
 
     export default {
         props: {
@@ -28,9 +28,12 @@
         methods: {
             async save() {
                 try {
-                    await axios.post('/api/cms/options', {
-                        key: this.option.key,
-                        value: this.currentValue,
+                    await api({
+                        ...Cms.route('cms.api.resources.store', 'option'),
+                        data: {
+                            key: this.option.key,
+                            value: this.currentValue,
+                        }
                     });
                     Cms.flash('success', 'Option successfully saved')
                 } catch (e) {

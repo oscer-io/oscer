@@ -77,14 +77,13 @@ class ApiRouter
 
                 $router->patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
-                $router->post('/options', [OptionsController::class, 'store'])->name('options.store');
-
                 $router->post('/menus/{name}/items', [MenusController::class, 'store'])->name('menus.store');
                 $router->put('/menus/{name}/items/{id}', [MenusController::class, 'update'])->name('menus.update');
 
                 $router->post('/menus/{name}/save_order', [MenuOrderController::class, 'update'])->name('menus.save_order');
 
                 $router->get('/{resource}', [ResourceController::class, 'index'])->name('resources.index');
+                $router->post('/{resource}', [ResourceController::class, 'store'])->name('resources.store');
                 $router->get('/{resource}/{id}', [ResourceController::class, 'show'])->name('resources.show');
                 $router->delete('/{resource}/{id}', [ResourceController::class, 'delete'])->name('resources.delete');
             });
