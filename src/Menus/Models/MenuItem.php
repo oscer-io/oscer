@@ -3,6 +3,7 @@
 namespace Bambamboole\LaravelCms\Menus\Models;
 
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
+use Bambamboole\LaravelCms\Menus\Forms\MenuItemForm;
 use Illuminate\Support\Carbon;
 
 /**
@@ -16,4 +17,8 @@ use Illuminate\Support\Carbon;
  */
 class MenuItem extends BaseModel
 {
+    public function getForm()
+    {
+        return new MenuItemForm($this);
+    }
 }

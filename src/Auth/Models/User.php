@@ -2,6 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Auth\Models;
 
+use Bambamboole\LaravelCms\Core\Forms\UserForm;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Carbon;
@@ -113,5 +114,10 @@ class User extends BaseModel implements Authenticatable
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function getForm()
+    {
+        return new UserForm($this);
     }
 }
