@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Tests\Feature\Api\Auth;
 
-use Bambamboole\LaravelCms\Auth\Models\User;
+use Bambamboole\LaravelCms\Core\Models\User;
 use Bambamboole\LaravelCms\Tests\ApiTestCase;
 
 class IssueTokenTest extends ApiTestCase

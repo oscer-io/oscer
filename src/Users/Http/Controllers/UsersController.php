@@ -3,7 +3,7 @@
 namespace Bambamboole\LaravelCms\Users\Http\Controllers;
 
 use Bambamboole\LaravelCms\Auth\Mails\NewUserCreatedMail;
-use Bambamboole\LaravelCms\Auth\Models\User;
+use Bambamboole\LaravelCms\Core\Models\User;
 use Bambamboole\LaravelCms\Users\Http\Requests\CreateUserRequest;
 use Bambamboole\LaravelCms\Users\Http\Requests\UpdateUserRequest;
 use Bambamboole\LaravelCms\Users\Http\Resources\UserResource;

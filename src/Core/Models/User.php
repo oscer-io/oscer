@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Auth\Models;
+namespace Bambamboole\LaravelCms\Core\Models;
 
 use Bambamboole\LaravelCms\Core\Forms\UserForm;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;

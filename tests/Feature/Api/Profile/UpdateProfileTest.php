@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Tests\Feature\Api\Pages;
 
-use Bambamboole\LaravelCms\Auth\Models\User;
+use Bambamboole\LaravelCms\Core\Models\User;
 use Bambamboole\LaravelCms\Tests\ApiTestCase;
 
 class UpdateProfileTest extends ApiTestCase

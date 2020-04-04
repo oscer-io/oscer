@@ -4,7 +4,7 @@
  * You can place your custom package configuration in here.
  */
 
-use Bambamboole\LaravelCms\Auth\Models\User;
+use Bambamboole\LaravelCms\Core\Models\User;
 use Bambamboole\LaravelCms\Menus\Models\MenuItem;
 use Bambamboole\LaravelCms\Publishing\Models\Post;
 

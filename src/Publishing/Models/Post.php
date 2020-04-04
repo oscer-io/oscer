@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Publishing\Models;
 
-use Bambamboole\LaravelCms\Auth\Models\User;
+use Bambamboole\LaravelCms\Core\Models\User;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Bambamboole\LaravelCms\Publishing\Forms\PostForm;
 use Illuminate\Support\Carbon;
@@ -22,7 +22,7 @@ use Spatie\Sluggable\SlugOptions;
  * @property string name
  * @property string slug
  * @property string body
- * @property User author
+ * @property \Bambamboole\LaravelCms\Core\Models\User author
  * @property int author_id
  * @property Collection tags
  * @property Carbon|null published_at
@@ -50,7 +50,7 @@ class Post extends BaseModel
      */
     public function author()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(\Bambamboole\LaravelCms\Core\Models\User::class);
     }
 
     public function getSlugOptions(): SlugOptions

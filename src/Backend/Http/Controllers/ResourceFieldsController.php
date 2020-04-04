@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Backend\Http\Controllers;
 
-use Bambamboole\LaravelCms\Auth\Models\User;
+use Bambamboole\LaravelCms\Core\Models\User;
 use Bambamboole\LaravelCms\Publishing\Http\Resources\PostResource;
 use Bambamboole\LaravelCms\Publishing\Models\Post;
 use Bambamboole\LaravelCms\Users\Http\Resources\ProfileResource;

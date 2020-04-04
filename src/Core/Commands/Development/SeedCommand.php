@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Core\Commands\Development;
 
-use Bambamboole\LaravelCms\Auth\Models\User;
+use Bambamboole\LaravelCms\Core\Models\User;
 use Bambamboole\LaravelCms\Menus\Models\MenuItem;
 use Bambamboole\LaravelCms\Options\Models\Option;
 use Bambamboole\LaravelCms\Publishing\Models\Page;
