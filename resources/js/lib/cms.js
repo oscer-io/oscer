@@ -72,9 +72,9 @@ export default class Cms {
     }
 
     /**
-     * Generates an object which contains the method and the url needed for a request. The first
-     * parameter is the route name defined in the Laravel CMS router and the second one is
-     * for route params if needed. The object keys have to match the route parameters
+     * Generates an object which contains the method and the url needed for a request.
+     * We use https://github.com/tightenco/ziggy for the generation. We only have
+     * to alter the output that we have a simple object with url and method.
      */
     route(name, params, absolute) {
         const routeObject = route(name, params, absolute, this.config.routes);

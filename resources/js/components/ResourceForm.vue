@@ -27,7 +27,6 @@
     </form>
 </template>
 <script>
-    import _ from 'lodash';
     import api from "../lib/api";
     import Form from "../lib/mixins/Form";
 
@@ -41,6 +40,10 @@
             resourceId: {
                 required: false,
                 default: null
+            },
+            resetOnSuccess: {
+                required: false,
+                default: false
             },
             cancelText: {
                 type: String,
@@ -61,26 +64,28 @@
         },
         methods: {
             prepareParams(){
+                // Filter null values. This way we can handle create and update
                 return [this.resource, this.resourceId].filter(el => el !== null)
             },
             async fetchResourceForm() {
+                // fetch the form definition from the backend.
                 const response = await api(Cms.route('cms.api.forms.show', this.prepareParams()));
 
                 this.fields = response.data.data.fields;
             },
-
             async submitResourceForm() {
-                const formData = this.getFormData();
-
+                // Submit the form. If we get validation errors, they will be passed to the fields.
                 try {
-                    const foo = {
+                    const response = await api({
                         ...Cms.route('cms.api.forms.store', this.prepareParams()),
-                        data: formData
-                    };
-                    const response = await api(foo);
+                        data: this.getFormData()
+                    });
 
+                    // Emit success event with the data from the successful response
                     this.$emit('success', response.data.data);
 
+                    // Reset form by fetching the fields again. Only if resetOnSuccess prop is true
+                    this.resetOnSuccess && this.fetchResourceForm();
                 } catch (error) {
                     if (error.response.status === 422) {
                         this.validationErrors = error.response.data.errors;
