@@ -3,7 +3,6 @@
 namespace Bambamboole\LaravelCms\Core\Models;
 
 use Bambamboole\LaravelCms\Core\Forms\UserForm;
-use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;

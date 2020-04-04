@@ -2,10 +2,10 @@
 
 namespace Bambamboole\LaravelCms;
 
-use Bambamboole\LaravelCms\Core\Models\User;
 use Bambamboole\LaravelCms\Backend\ViewComposer\BackendViewComposer;
 use Bambamboole\LaravelCms\Core\Commands\Development\SeedCommand;
 use Bambamboole\LaravelCms\Core\Commands\PublishCommand;
+use Bambamboole\LaravelCms\Core\Models\User;
 use Bambamboole\LaravelCms\Routing\ApiRouter;
 use Bambamboole\LaravelCms\Routing\BackendRouter;
 use Bambamboole\LaravelCms\Theming\BladeComponents\MenuBladeComponent;

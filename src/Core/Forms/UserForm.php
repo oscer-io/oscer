@@ -2,11 +2,11 @@
 
 namespace Bambamboole\LaravelCms\Core\Forms;
 
-use Bambamboole\LaravelCms\Core\Mails\NewUserCreatedMail;
 use Bambamboole\LaravelCms\Backend\Form\Fields\PasswordField;
 use Bambamboole\LaravelCms\Backend\Form\Fields\TextareaField;
 use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
 use Bambamboole\LaravelCms\Backend\Form\Form;
+use Bambamboole\LaravelCms\Core\Mails\NewUserCreatedMail;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
