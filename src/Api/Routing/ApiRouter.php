@@ -4,6 +4,7 @@ namespace Bambamboole\LaravelCms\Api\Routing;
 
 use Bambamboole\LaravelCms\Api\Http\Controllers\IssueTokenController;
 use Bambamboole\LaravelCms\Api\Http\Controllers\OpenApiController;
+use Bambamboole\LaravelCms\Api\Http\Controllers\ResourceController;
 use Bambamboole\LaravelCms\Api\Http\Controllers\SwaggerUiController;
 use Bambamboole\LaravelCms\Core\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Menus\Http\Controllers\MenuOrderController;
@@ -69,11 +70,8 @@ class ApiRouter
                 $router->patch('/posts/{id}', [PostsController::class, 'update'])->name('posts.update');
                 $router->delete('/posts/{id}', [PostsController::class, 'delete'])->name('posts.delete');
 
-                $router->get('/users', [UsersController::class, 'index'])->name('users.index');
                 $router->post('/users', [UsersController::class, 'store'])->name('users.store');
-                $router->get('/users/{user}', [UsersController::class, 'show'])->name('users.show');
                 $router->patch('/users/{user}', [UsersController::class, 'update'])->name('users.update');
-                $router->delete('/users/{user}', [UsersController::class, 'delete'])->name('users.delete');
 
                 $router->post('/profile/avatar', [ProfileAvatarController::class, 'update'])->name('profile.avatar');
 
@@ -89,6 +87,10 @@ class ApiRouter
                 $router->delete('/menus/{name}/items/{id}', [MenusController::class, 'delete'])->name('menus.delete');
 
                 $router->post('/menus/{name}/save_order', [MenuOrderController::class, 'update'])->name('menus.save_order');
+
+                $router->get('/{resource}', [ResourceController::class, 'index'])->name('resources.index');
+                $router->get('/{resource}/{id}', [ResourceController::class, 'show'])->name('resources.show');
+                $router->delete('/{resource}/{id}', [ResourceController::class, 'delete'])->name('resources.delete');
             });
     }
 }

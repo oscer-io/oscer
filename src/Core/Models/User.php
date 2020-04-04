@@ -2,7 +2,9 @@
 
 namespace Bambamboole\LaravelCms\Core\Models;
 
+use Bambamboole\LaravelCms\Api\Contracts\HasApiEndpoints;
 use Bambamboole\LaravelCms\Core\Forms\UserForm;
+use Bambamboole\LaravelCms\Users\Http\Resources\UserResource;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
@@ -16,7 +18,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property Carbon updated_at
  * @property Carbon created_at
  */
-class User extends BaseModel implements Authenticatable
+class User extends BaseModel implements Authenticatable, HasApiEndpoints
 {
     use HasApiTokens;
 
@@ -118,5 +120,20 @@ class User extends BaseModel implements Authenticatable
     public function getForm()
     {
         return new UserForm($this);
+    }
+
+    public function getEndpoints(): array
+    {
+        return ['index', 'show', 'delete'];
+    }
+
+    public function asResource($user)
+    {
+        return new UserResource($user);
+    }
+
+    public function asResourceCollection($models)
+    {
+        return UserResource::collection($models);
     }
 }

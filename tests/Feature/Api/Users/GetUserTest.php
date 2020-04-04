@@ -11,7 +11,7 @@ class GetUserTest extends ApiTestCase
     public function the_request_needs_to_be_authenticated()
     {
         factory(User::class)->create();
-        $response = $this->get('/api/cms/users/1');
+        $response = $this->get('/api/cms/user/1');
 
         $response->assertStatus(401);
     }
@@ -21,7 +21,7 @@ class GetUserTest extends ApiTestCase
     {
         $this->login();
 
-        $response = $this->get('/api/cms/users/1337');
+        $response = $this->get('/api/cms/user/1337');
 
         $response->assertStatus(404);
     }
@@ -32,7 +32,7 @@ class GetUserTest extends ApiTestCase
         $this->login();
         $user = factory(User::class)->create();
 
-        $response = $this->get("/api/cms/users/{$user->id}");
+        $response = $this->get("/api/cms/user/{$user->id}");
 
         $response->assertOk();
         $this->assertJsonSchema('responses/user', $response->getContent());

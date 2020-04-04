@@ -47,6 +47,7 @@
 
 <script>
     import axios from 'axios';
+    import api from "../../../lib/api";
 
     export default {
         props: ['id'],
@@ -64,8 +65,7 @@
             },
         },
         async mounted() {
-            // posts endpoint not implemented because of the thoughts to only use one model with different types
-            const response = await axios.get('/api/cms/users/' + this.id);
+            const response = await api(Cms.route('cms.api.resources.show', ['user', this.id]));
             this.user = response.data.data;
             this.isLoading = false;
         }
