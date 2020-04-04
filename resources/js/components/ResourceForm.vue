@@ -59,6 +59,11 @@
                 fields: []
             }
         },
+        watch:{
+            resourceId(){
+                this.fetchResourceForm();
+            }
+        },
         created() {
             this.fetchResourceForm();
         },
