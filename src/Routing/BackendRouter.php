@@ -6,7 +6,6 @@ use Bambamboole\LaravelCms\Auth\Http\Controllers\ForgotPasswordController;
 use Bambamboole\LaravelCms\Auth\Http\Controllers\LoginController;
 use Bambamboole\LaravelCms\Auth\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\BackendController;
-use Bambamboole\LaravelCms\Core\Http\Middleware\SetInertiaConfiguration;
 use Bambamboole\LaravelCms\Core\Http\Middleware\SetLocale;
 use Illuminate\Config\Repository;
 use Illuminate\Routing\Router;
@@ -45,7 +44,6 @@ class BackendRouter
             ->middleware([
                 $this->config->get('cms.backend.middleware'),
                 Authenticate::class,
-                SetInertiaConfiguration::class,
                 SetLocale::class,
             ])
             ->as('cms.backend.')
