@@ -17,6 +17,7 @@ class CreateCmsPermissions extends Migration
         'pages.update',
         'pages.delete',
         'menus.*', // all permissions in menus
+        'menus.change-order',
         'menus.view',
         'menus.view_items',
         'menus.create_items',

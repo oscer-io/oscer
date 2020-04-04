@@ -22,11 +22,11 @@ $factory->define(Page::class, function (Faker $faker) {
     $randomImgUrl = 'https://picsum.photos/300/300?random='.$faker->unique()->randomNumber(5, true);
 
     return [
-        'author_id' => factory(User::class)->create(['avatar' => $randomImgUrl]),
         'type' => 'page',
         'name' => $faker->name,
         'slug' => $faker->unique()->slug,
         'body' => $faker->paragraph,
+        'author_id' => rand(1, User::query()->count()),
         'published_at' => rand(0, 1) == 1 ? null : now()->subMonths(rand(1, 8))->subDays(rand(1, 20)),
     ];
 });

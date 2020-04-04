@@ -24,6 +24,8 @@ class SeedCommand extends Command
 
     protected Generator $faker;
 
+    protected User $admin;
+
     public function handle(Application $app, Generator $faker): void
     {
         $this->faker = $faker;
@@ -35,11 +37,11 @@ class SeedCommand extends Command
         });
 
         // Super Admin
-        $superAdmin = $this->seedSuperAdmin();
+        $this->admin = $this->seedSuperAdmin();
         $this->seedRolesAndPermissions();
         $this->seedUsers();
-        $this->seedTagsAndPosts($superAdmin);
-        $this->seedPages($superAdmin);
+        $this->seedTagsAndPosts();
+        $this->seedPages();
         $this->seedMenuItems();
         $this->seedOptions();
 
@@ -88,7 +90,7 @@ class SeedCommand extends Command
         $this->info("{$userAmount} users seeded");
     }
 
-    protected function seedTagsAndPosts($user)
+    protected function seedTagsAndPosts()
     {
         $this->comment('Seeding tags');
         $tags = collect(['General', 'Tech', 'PHP', 'Laravel', 'Vue.js', 'Travel'])
@@ -98,14 +100,14 @@ class SeedCommand extends Command
         $this->info("{$tags->count()} tags seeded");
 
         $this->comment('Seeding posts');
-        $posts = factory(Post::class, 10)->create();
+        $posts = factory(Post::class, 10)->create(['author_id' => $this->admin->id]);
         $posts->each(function (Post $post) use ($tags) {
             $post->tags()->sync($tags->random(rand(1, 3))->pluck('id'));
         });
         $this->info("{$posts->count()} posts seeded and random tags assigned");
     }
 
-    protected function seedPages($user)
+    protected function seedPages()
     {
         $this->comment('Seeding pages');
         collect([
@@ -130,7 +132,7 @@ class SeedCommand extends Command
                 'body' => $this->faker->paragraphs(rand(3, 5), true),
             ],
         ])->map(function ($page) {
-            return factory(Page::class)->create(array_merge($page));
+            return factory(Page::class)->create(array_merge($page, ['author_id' => $this->admin->id]));
         })->tap(function (Collection $pages) {
             $this->info("{$pages->count()} pages seeded");
         });
