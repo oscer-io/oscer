@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Menus\Http\Requests;
 
-use Bambamboole\LaravelCms\Theming\Contracts\Theme;
+use Bambamboole\LaravelCms\Frontend\Theming\Contracts\Theme;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 

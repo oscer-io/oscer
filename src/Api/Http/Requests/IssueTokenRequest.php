@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Auth\Http\Requests;
+namespace Bambamboole\LaravelCms\Api\Http\Requests;
 
 use Bambamboole\LaravelCms\Core\Http\Requests\BaseRequest;
 

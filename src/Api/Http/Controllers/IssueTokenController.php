@@ -1,8 +1,8 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Auth\Http\Controllers\Api;
+namespace Bambamboole\LaravelCms\Api\Http\Controllers;
 
-use Bambamboole\LaravelCms\Auth\Http\Requests\IssueTokenRequest;
+use Bambamboole\LaravelCms\Api\Http\Requests\IssueTokenRequest;
 use Bambamboole\LaravelCms\Core\Models\User;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;

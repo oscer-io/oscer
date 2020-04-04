@@ -1,8 +1,8 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Theming;
+namespace Bambamboole\LaravelCms\Frontend\Theming;
 
-use Bambamboole\LaravelCms\Theming\Contracts\Theme;
+use Bambamboole\LaravelCms\Frontend\Theming\Contracts\Theme;
 
 class DefaultTheme implements Theme
 {

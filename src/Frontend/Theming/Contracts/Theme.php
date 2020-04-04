@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Theming\Contracts;
+namespace Bambamboole\LaravelCms\Frontend\Theming\Contracts;
 
 interface Theme
 {

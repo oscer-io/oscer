@@ -3,7 +3,7 @@
 namespace Bambamboole\LaravelCms\Frontend\Http\Controllers;
 
 use Bambamboole\LaravelCms\Publishing\Models\Post;
-use Bambamboole\LaravelCms\Theming\Contracts\Theme;
+use Bambamboole\LaravelCms\Frontend\Theming\Contracts\Theme;
 
 class PostsController
 {
