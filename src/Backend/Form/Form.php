@@ -65,6 +65,7 @@ abstract class Form implements \JsonSerializable
             if ($this->isCreateForm === false && $field->hiddenOnUpdate === true) {
                 return false;
             }
+
             return true;
         });
     }
