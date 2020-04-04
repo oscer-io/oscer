@@ -65,12 +65,20 @@ class Post extends BaseModel
      */
     public function setTagsAttribute(array $value)
     {
+        /*
+         * First we retrieve or create all used tags and pluck the id's
+         */
         $tags = collect($value)
             ->map(function (string $name) {
                 return Tag::query()->firstOrCreate(['name' => $name]);
             })
             ->pluck('id');
 
+        /*
+         * If the post exists we can simply sync the tags with the post. But if
+         * we do not have the required id for the pivot table, we register a
+         * `created` callback which syncs the tags with the post.
+         */
         if ($this->id !== null) {
             $this->tags()->sync($tags);
         } else {

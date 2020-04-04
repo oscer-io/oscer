@@ -16,6 +16,7 @@ class CreateCmsPostsTable extends Migration
         Schema::create('cms_posts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('type');
             $table->string('slug')->unique();
             $table->text('body');
             $table->unsignedBigInteger('author_id');

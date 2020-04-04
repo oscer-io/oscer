@@ -7,7 +7,7 @@
                 </h1>
             </div>
         </div>
-        <CreateForm
+        <ResourceForm
             resource="user"
             :api-route="{name: 'cms.api.users.store'}"
             @cancel="handleCancel"
@@ -17,11 +17,11 @@
 </template>
 
 <script>
-    import CreateForm from "../../../components/CreateForm";
+    import ResourceForm from "../../../components/ResourceForm";
 
     export default {
         components: {
-            CreateForm
+            ResourceForm
         },
         methods: {
             handleCancel() {

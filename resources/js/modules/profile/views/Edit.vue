@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <CreateForm
+        <ResourceForm
             resource="profile"
             :api-route="{name: 'cms.api.profile.update'}"
             :remove-null-values="true"
@@ -23,11 +23,11 @@
 </template>
 
 <script>
-    import CreateForm from "../../../components/CreateForm";
+    import ResourceForm from "../../../components/ResourceForm";
 
     export default {
         components: {
-            CreateForm
+            ResourceForm
         },
         data() {
             return {

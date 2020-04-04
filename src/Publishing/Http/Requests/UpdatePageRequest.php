@@ -28,7 +28,7 @@ class UpdatePageRequest extends BaseRequest
             'slug' => [
                 'string',
                 'regex:/^[a-zA-Z0-9-]+$/', // like alpha_num but with dashes
-                Rule::unique('cms_pages', 'slug')->ignore($this->route('page')),
+                Rule::unique('cms_posts', 'slug')->ignore($this->route('page')),
             ],
             'body' => ['string'],
         ];

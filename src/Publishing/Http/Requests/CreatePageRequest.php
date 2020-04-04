@@ -30,7 +30,7 @@ class CreatePageRequest extends BaseRequest
             'slug' => [
                 'string',
                 'regex:/^[a-zA-Z0-9-]+$/', // like alpha_num but with dashes
-                'unique:cms_pages,slug',
+                'unique:cms_posts,slug',
             ],
             'body' => ['string'],
         ];

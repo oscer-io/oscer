@@ -42,7 +42,7 @@
         },
         async mounted() {
             // posts endpoint not implemented because of the thoughts to only use one model with different types
-            const response = await api(this.route('cms.api.posts.show', {id: this.id}));
+            const response = await api(Cms.route('cms.api.posts.show', {id: this.id}));
             this.post = response.data.data;
             this.fields = response.data.fields;
             this.isLoading = false;

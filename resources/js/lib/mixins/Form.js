@@ -47,7 +47,7 @@ export default {
 
             try {
                 const response = await api({
-                    ...this.route(this.apiRoute.name, this.apiRoute.params),
+                    ...Cms.route(this.apiRoute.name, this.apiRoute.params),
                     data: this.payload
                 });
 
@@ -64,7 +64,7 @@ export default {
             }
         },
         getValidationErrors(field) {
-            return this.$data.validationErrors[field.name] || false;
+            return this.$data.validationErrors[field.name] || [];
         }
     }
 }

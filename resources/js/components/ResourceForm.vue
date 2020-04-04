@@ -54,11 +54,17 @@
                 fields: []
             }
         },
-        async mounted() {
-            const response = await api(
-                this.route('cms.api.resources.fields', {resource: this.resource})
-            );
-            this.fields = response.data.fields
+        mounted() {
+            this.fetchResourceForm();
+        },
+        methods: {
+            async fetchResourceForm() {
+                const response = await api(
+                    Cms.route('cms.api.resources.fields', {resource: this.resource})
+                );
+
+                this.fields = response.data.fields;
+            }
         }
     }
 </script>

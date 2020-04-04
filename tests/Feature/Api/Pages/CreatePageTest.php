@@ -16,8 +16,9 @@ class CreatePageTest extends ApiTestCase
     }
 
     /** @test */
-    public function a_post_can_be_created()
+    public function a_page_can_be_created()
     {
+        $this->withoutExceptionHandling();
         $this->login();
 
         $response = $this->post('/api/cms/pages', factory(Page::class)->raw());

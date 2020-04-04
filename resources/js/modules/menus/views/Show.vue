@@ -141,7 +141,7 @@
         },
         methods: {
             async fetchItems() {
-                const response = await api(this.route('cms.api.menus.show', {name: this.name}));
+                const response = await api(Cms.route('cms.api.menus.show', {name: this.name}));
                 this.menu = response.data.data
             },
 
@@ -189,7 +189,7 @@
 
             async saveOrder() {
                 await api({
-                    ...this.route('cms.api.menus.save_order', {name: this.name}),
+                    ...Cms.route('cms.api.menus.save_order', {name: this.name}),
                     data: {
                         order: this.items.map((value, index) => {
                             return {
@@ -204,7 +204,7 @@
 
             deleteItem(item) {
                 this.items = this.items.filter(e => e.id !== item.id);
-                api(this.route('cms.api.menus.delete', {name: this.name, id: item.id}));
+                api(Cms.route('cms.api.menus.delete', {name: this.name, id: item.id}));
                 Cms.flash('success', 'Item deleted');
             }
         }

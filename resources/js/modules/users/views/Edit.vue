@@ -17,12 +17,14 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    import api from "../../../lib/api";
     import BaseForm from "../../../components/BaseForm";
 
     export default {
         components: {BaseForm},
+
         props: ['id'],
+
         data() {
             return {
                 isLoading: true,
@@ -30,12 +32,21 @@
                 fields: []
             }
         },
+
         computed: {
             title() {
                 return this.user
                     ? this.$t('users.edit_title', {name: this.user.name, id: this.user.id})
                     : 'Loading'
             },
+        },
+
+        async mounted() {
+            // posts endpoint not implemented because of the thoughts to only use one model with different types
+            const response = await api(Cms.route('cms.api.users.show', {user: this.id,foo:'bar'}));
+            this.user = response.data.data;
+            this.fields = response.data.fields;
+            this.isLoading = false;
         },
 
         methods: {
@@ -46,13 +57,6 @@
                 Cms.flash('success', 'Nice one!');
                 this.$router.push({name: 'users.show', params: {id: user.id}})
             }
-        },
-        async mounted() {
-            // posts endpoint not implemented because of the thoughts to only use one model with different types
-            const response = await axios.get('/api/cms/users/' + this.id);
-            this.user = response.data.data;
-            this.fields = response.data.fields;
-            this.isLoading = false;
         }
     }
 </script>
