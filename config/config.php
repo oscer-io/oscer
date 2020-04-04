@@ -15,8 +15,8 @@ return [
         'middleware' => 'web',
     ],
     'resources' => [
-      'user' => User::class,
-      'menu-item' => MenuItem::class,
+        'user' => User::class,
+        'menu-item' => MenuItem::class,
     ],
     'options' => [
         'pages' => [

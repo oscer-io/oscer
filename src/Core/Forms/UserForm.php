@@ -37,6 +37,7 @@ class UserForm extends Form
     {
         if ($this->isCreateForm) {
             $this->password = Str::random();
+
             return array_merge(['password' => $this->password], $data);
         }
 

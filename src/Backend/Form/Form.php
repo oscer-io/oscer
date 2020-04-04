@@ -49,12 +49,12 @@ abstract class Form implements \JsonSerializable
 
     abstract public function fields(): Collection;
 
-
     public function getValidator(): Validator
     {
-        if (!$this->validator) {
+        if (! $this->validator) {
             $rules = $this->fields()->reduce(function ($rules, Field $field) {
                 $rules[$field->name] = $field->getRules($this->isCreateForm);
+
                 return $rules;
             }, []);
 
@@ -90,7 +90,7 @@ abstract class Form implements \JsonSerializable
         //
     }
 
-    public static function create(string $resource, $id = null): Form
+    public static function create(string $resource, $id = null): self
     {
         $resource = config("cms.resources.{$resource}");
 
@@ -109,17 +109,18 @@ abstract class Form implements \JsonSerializable
 
         /** @var Collection $instances */
         $instances = $resource::findMany($ids);
+
         return $instances->map->getForm();
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function jsonSerialize()
     {
         return ['data' => array_merge(
             ['fields' => $this->resolveValues($this->fields())],
-            !empty($this->missingValues) ? ['missing_values' => $this->missingValues] : []
+            ! empty($this->missingValues) ? ['missing_values' => $this->missingValues] : []
         )];
     }
 }

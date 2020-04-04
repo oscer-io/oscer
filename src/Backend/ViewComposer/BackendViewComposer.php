@@ -3,7 +3,6 @@
 namespace Bambamboole\LaravelCms\Backend\ViewComposer;
 
 use Bambamboole\LaravelCms\Routing\RouteGenerator;
-use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use Illuminate\View\View;
 

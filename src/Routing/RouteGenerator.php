@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Bambamboole\LaravelCms\Routing;
-
 
 use Tightenco\Ziggy\BladeRouteGenerator;
 
@@ -15,7 +13,7 @@ class RouteGenerator extends BladeRouteGenerator
 
         return [
             'namedRoutes' => $this->getRoutePayload($group),
-            'baseUrl' => $url . '/',
+            'baseUrl' => $url.'/',
             'baseProtocol' => array_key_exists('scheme', $parsedUrl) ? $parsedUrl['scheme'] : 'http',
             'baseDomain' => array_key_exists('host', $parsedUrl) ? $parsedUrl['host'] : '',
             'basePort' => array_key_exists('port', $parsedUrl) ? $parsedUrl['port'] : 'false',
