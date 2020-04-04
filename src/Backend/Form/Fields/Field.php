@@ -14,6 +14,12 @@ abstract class Field implements \JsonSerializable
 
     public bool $fillValue;
 
+    public array $rules = [];
+
+    public array $rulesOnCreate = [];
+
+    public array $rulesOnUpdate = [];
+
     protected array $with = [];
 
     public function __construct(string $name, string $label, bool $fillValue)
@@ -28,11 +34,37 @@ abstract class Field implements \JsonSerializable
         return new static($name, $label ?? ucfirst($name), $fillValue);
     }
 
-    public function doNotFillValue()
+    public function rules(array $rules)
     {
-        $this->fillValue = false;
+        $this->rules = $rules;
 
         return $this;
+    }
+
+    public function rulesOnCreate(array $rules)
+    {
+        $this->rulesOnCreate = $rules;
+
+        return $this;
+    }
+
+    public function rulesOnUpdate(array $rules)
+    {
+        $this->rulesOnUpdate = $rules;
+
+        return $this;
+    }
+
+    public function getRules(bool $forCreate)
+    {
+        if ($forCreate === true && !empty($this->rulesOnCreate)) {
+            return $this->rulesOnCreate;
+        }
+        if ($forCreate === false && !empty($this->rulesOnUpdate)) {
+            return $this->rulesOnUpdate;
+        }
+
+        return $this->rules;
     }
 
     public function jsonSerialize()
@@ -41,6 +73,7 @@ abstract class Field implements \JsonSerializable
             'component' => $this->component,
             'name' => $this->name,
             'label' => $this->label,
+            'rules' => $this->getRules() ?? [],
             'value' => $this->fillValue ? $this->value : null,
         ];
 

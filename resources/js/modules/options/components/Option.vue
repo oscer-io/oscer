@@ -17,9 +17,6 @@
     import axios from 'axios';
 
     export default {
-        created() {
-            console.log(this.key)
-        },
         props: {
             option: Object,
         },
