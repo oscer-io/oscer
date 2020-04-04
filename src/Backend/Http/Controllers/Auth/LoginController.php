@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Backend\Http\Controllers\Auth;
 
-use Bambamboole\LaravelCms\Auth\Http\Requests\LoginRequest;
+use Bambamboole\LaravelCms\Backend\Http\Requests\LoginRequest;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
