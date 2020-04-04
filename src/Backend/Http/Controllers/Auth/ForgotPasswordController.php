@@ -1,19 +1,18 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Auth\Http\Controllers;
+namespace Bambamboole\LaravelCms\Backend\Http\Controllers\Auth;
 
 use Bambamboole\LaravelCms\Auth\Http\Requests\SendPasswordResetLinkRequest;
 use Bambamboole\LaravelCms\Core\Mails\ResetPasswordMail;
 use Bambamboole\LaravelCms\Core\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Throwable;
 
-class ForgotPasswordController extends Controller
+class ForgotPasswordController
 {
     /**
      * Show the reset-password form.

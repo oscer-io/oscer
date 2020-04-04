@@ -2,8 +2,8 @@
 
 namespace Bambamboole\LaravelCms\Routing;
 
-use Bambamboole\LaravelCms\Auth\Http\Controllers\ForgotPasswordController;
-use Bambamboole\LaravelCms\Auth\Http\Controllers\LoginController;
+use Bambamboole\LaravelCms\Backend\Http\Controllers\Auth\ForgotPasswordController;
+use Bambamboole\LaravelCms\Backend\Http\Controllers\Auth\LoginController;
 use Bambamboole\LaravelCms\Core\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\BackendController;
 use Bambamboole\LaravelCms\Core\Http\Middleware\SetLocale;

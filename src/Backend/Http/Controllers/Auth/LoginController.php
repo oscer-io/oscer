@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Auth\Http\Controllers;
+namespace Bambamboole\LaravelCms\Backend\Http\Controllers\Auth;
 
 use Bambamboole\LaravelCms\Auth\Http\Requests\LoginRequest;
 use Illuminate\Contracts\Auth\StatefulGuard;
