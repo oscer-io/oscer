@@ -2,7 +2,6 @@
 
 namespace Bambamboole\LaravelCms\Publishing\Models;
 
-use Bambamboole\LaravelCms\Core\Models\User;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Bambamboole\LaravelCms\Publishing\Forms\PostForm;
 use Illuminate\Support\Carbon;

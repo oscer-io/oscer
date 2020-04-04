@@ -2,7 +2,6 @@
 
 namespace Bambamboole\LaravelCms;
 
-use Bambamboole\LaravelCms\Core\Models\User;
 use Bambamboole\LaravelCms\Backend\ViewComposer\BackendViewComposer;
 use Bambamboole\LaravelCms\Core\Commands\Development\SeedCommand;
 use Bambamboole\LaravelCms\Core\Commands\PublishCommand;
