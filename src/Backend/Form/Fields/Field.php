@@ -96,9 +96,9 @@ abstract class Field implements \JsonSerializable
 
     protected function resolveValue()
     {
-        if($this->resolveValueCallback && $this->resolveValueCallback instanceof \Closure){
+        if ($this->resolveValueCallback && $this->resolveValueCallback instanceof \Closure) {
             return call_user_func($this->resolveValueCallback, $this->value);
-        }else{
+        } else {
             return $this->value;
         }
     }

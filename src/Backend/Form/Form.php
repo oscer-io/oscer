@@ -82,8 +82,7 @@ abstract class Form implements \JsonSerializable
 
     public function getValidator(): Validator
     {
-        if (!$this->validator) {
-
+        if (! $this->validator) {
             $rules = $this->getValidationRules();
 
             $this->validator = ValidatorFactory::make($this->data, $rules);
@@ -147,6 +146,7 @@ abstract class Form implements \JsonSerializable
             foreach ($field->getRules($this->isCreateForm) as $rule) {
                 $result[] = $rule;
             }
+
             return $result;
         }, []);
 
@@ -160,7 +160,7 @@ abstract class Form implements \JsonSerializable
                 'fields' => $this->resolveValues($this->filteredFields()),
                 'removeNullValues' => $this->removeNullValues(),
             ],
-            !empty($this->missingValues) ? ['missing_values' => $this->missingValues] : []
+            ! empty($this->missingValues) ? ['missing_values' => $this->missingValues] : []
         )];
     }
 

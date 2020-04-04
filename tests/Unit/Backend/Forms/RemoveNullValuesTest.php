@@ -16,7 +16,7 @@ class RemoveNullValuesTest extends TestCase
     {
         $form = new TestTrueForm(new TestModel());
 
-        $this->assertTrue(Arr::get($form->toArray(),'data.removeNullValues'));
+        $this->assertTrue(Arr::get($form->toArray(), 'data.removeNullValues'));
     }
 
     /** @test */
@@ -24,27 +24,29 @@ class RemoveNullValuesTest extends TestCase
     {
         $form = new TestFalseForm(new TestModel());
 
-        $this->assertFalse(Arr::get($form->toArray(),'data.removeNullValues'));
+        $this->assertFalse(Arr::get($form->toArray(), 'data.removeNullValues'));
     }
 }
 
-class TestModel extends BaseModel{}
+class TestModel extends BaseModel
+{
+}
 
-class TestTrueForm extends Form{
-
+class TestTrueForm extends Form
+{
     public function fields(): Collection
     {
         return collect([
-            TextField::make('test')->rules(['filled'])
+            TextField::make('test')->rules(['filled']),
         ]);
     }
 }
-class TestFalseForm extends Form{
-
+class TestFalseForm extends Form
+{
     public function fields(): Collection
     {
         return collect([
-            TextField::make('test')->rules(['required'])
+            TextField::make('test')->rules(['required']),
         ]);
     }
 }
