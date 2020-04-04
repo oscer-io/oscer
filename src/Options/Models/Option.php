@@ -51,7 +51,7 @@ class Option extends BaseModel implements HasApiEndpoints, HasIndexEndpoint, Has
             'value' => ['string', 'nullable'],
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             throw new ValidationException($validator);
         }
 

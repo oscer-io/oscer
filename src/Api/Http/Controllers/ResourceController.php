@@ -35,7 +35,7 @@ class ResourceController
     public function store(Request $request, string $resource)
     {
         $instance = $this->getResourceInstance($resource);
-        if (!$instance instanceof HasStoreEndpoint) {
+        if (! $instance instanceof HasStoreEndpoint) {
             throw new NotFoundHttpException('resource has no store endpoint');
         }
 

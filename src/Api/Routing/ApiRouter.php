@@ -9,7 +9,6 @@ use Bambamboole\LaravelCms\Api\Http\Controllers\SwaggerUiController;
 use Bambamboole\LaravelCms\Core\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Menus\Http\Controllers\MenuOrderController;
 use Bambamboole\LaravelCms\Menus\Http\Controllers\MenusController;
-use Bambamboole\LaravelCms\Options\Http\Controllers\OptionsController;
 use Bambamboole\LaravelCms\Publishing\Http\Controllers\Api\PagesController;
 use Bambamboole\LaravelCms\Publishing\Http\Controllers\PostsController;
 use Bambamboole\LaravelCms\Users\Http\Controllers\ProfileAvatarController;
