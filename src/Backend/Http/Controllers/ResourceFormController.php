@@ -7,13 +7,11 @@ use Illuminate\Http\Request;
 
 class ResourceFormController
 {
-    public function new($resource)
-    {
-        return Form::create($resource);
-    }
-
     public function show($resource, $id = null)
     {
+        if ($id === null) {
+            return Form::create($resource);
+        }
         if (strpos($id, ',')) {
             return Form::createMultiple($resource, explode(',', $id));
         }
@@ -21,22 +19,7 @@ class ResourceFormController
         return Form::create($resource, $id);
     }
 
-    public function store(Request $request, $resource)
-    {
-        $form = Form::create($resource);
-        $form->setData($request->all());
-        $validator = $form->getValidator();
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
-
-        $resource = $form->save();
-
-        return response()->json($resource)->setStatusCode($resource->wasRecentlyCreated ? 201 : 200);
-    }
-
-    public function update(Request $request, $resource, $id)
+    public function store(Request $request, $resource, $id = null)
     {
         $form = Form::create($resource, $id);
         $form->setData($request->all());
@@ -48,6 +31,6 @@ class ResourceFormController
 
         $resource = $form->save();
 
-        return response()->json($resource)->setStatusCode($resource->wasRecentlyCreated ? 201 : 200);
+        return response()->json(['data' => $resource])->setStatusCode($resource->wasRecentlyCreated ? 201 : 200);
     }
 }

@@ -73,7 +73,8 @@ abstract class Field implements \JsonSerializable
             'component' => $this->component,
             'name' => $this->name,
             'label' => $this->label,
-            'rules' => $this->getRules() ?? [],
+            'rulesOnCreate' => $this->rulesOnCreate,
+            'rulesOnUpdate' => $this->rulesOnUpdate,
             'value' => $this->fillValue ? $this->value : null,
         ];
 

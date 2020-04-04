@@ -57,23 +57,15 @@
             }
         },
         created() {
-            console.log('resource-form', this.resourceId);
             this.fetchResourceForm();
         },
         methods: {
+            prepareParams(){
+                return [this.resource, this.resourceId].filter(el => el !== null)
+            },
             async fetchResourceForm() {
-                this.fields = [];
-                let route;
-                if (this.resourceId !== null) {
-                    route = Cms.route('cms.api.forms.show', {
-                        resource: this.resource,
-                        id: this.resourceId
-                    });
-                } else {
-                    route = Cms.route('cms.api.forms.new', {resource: this.resource});
-                }
+                const response = await api(Cms.route('cms.api.forms.show', this.prepareParams()));
 
-                const response = await api(route);
                 this.fields = response.data.data.fields;
             },
 
@@ -82,10 +74,7 @@
 
                 try {
                     const foo = {
-                        ...Cms.route('cms.api.forms.store', _.pickBy({
-                            resource: this.resource,
-                            id: this.resourceId
-                        })),
+                        ...Cms.route('cms.api.forms.store', this.prepareParams()),
                         data: formData
                     };
                     const response = await api(foo);

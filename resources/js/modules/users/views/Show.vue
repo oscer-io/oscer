@@ -56,9 +56,6 @@
                 user: null
             }
         },
-        created() {
-            console.log(this.id)
-        },
         computed: {
             title() {
                 return this.user

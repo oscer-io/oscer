@@ -23,9 +23,7 @@
         components: {ResourceForm},
 
         props: ['id'],
-        created() {
-            console.log('edit',this.id)
-        },
+
         methods: {
             handleSuccess(user) {
                 Cms.flash('success', 'Nice one!');
