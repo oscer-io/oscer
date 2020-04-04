@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Menus\Models;
 
-use Bambamboole\LaravelCms\Frontend\Theming\Contracts\Theme;
+use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
 
 class Menu
 {
