@@ -49,9 +49,22 @@ abstract class Form implements \JsonSerializable
 
     abstract public function fields(): Collection;
 
+    protected function filteredFields(): Collection
+    {
+        return $this->fields()->filter(function (Field $field) {
+            if ($this->isCreateForm === true && $field->hiddenOnCreate === true) {
+                return false;
+            }
+            if ($this->isCreateForm === false && $field->hiddenOnUpdate === true) {
+                return false;
+            }
+            return true;
+        });
+    }
+
     public function getValidator(): Validator
     {
-        if (! $this->validator) {
+        if (!$this->validator) {
             $rules = $this->fields()->reduce(function ($rules, Field $field) {
                 $rules[$field->name] = $field->getRules($this->isCreateForm);
 
@@ -119,8 +132,8 @@ abstract class Form implements \JsonSerializable
     public function jsonSerialize()
     {
         return ['data' => array_merge(
-            ['fields' => $this->resolveValues($this->fields())],
-            ! empty($this->missingValues) ? ['missing_values' => $this->missingValues] : []
+            ['fields' => $this->resolveValues($this->filteredFields())],
+            !empty($this->missingValues) ? ['missing_values' => $this->missingValues] : []
         )];
     }
 }

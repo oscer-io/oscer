@@ -10,6 +10,7 @@
         <ResourceForm
             resource="user"
             :resource-id="id"
+            :remove-null-values="true"
             @cancel="$router.push({name: 'users.index'})"
             @success="handleSuccess"
         />

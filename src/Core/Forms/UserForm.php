@@ -3,6 +3,7 @@
 namespace Bambamboole\LaravelCms\Core\Forms;
 
 use Bambamboole\LaravelCms\Auth\Mails\NewUserCreatedMail;
+use Bambamboole\LaravelCms\Backend\Form\Fields\PasswordField;
 use Bambamboole\LaravelCms\Backend\Form\Fields\TextareaField;
 use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
 use Bambamboole\LaravelCms\Backend\Form\Form;
@@ -30,6 +31,7 @@ class UserForm extends Form
                         ->ignore($this->resource ? $this->resource->id : null),
                 ]),
             TextareaField::make('bio', 'Biography'),
+            PasswordField::make('password')->rules(['filled', 'confirmed'])->doNotShowOnCreate(),
         ]);
     }
 
