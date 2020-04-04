@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Routing;
+namespace Bambamboole\LaravelCms\Backend\Routing;
 
 use Bambamboole\LaravelCms\Backend\Http\Controllers\Auth\ForgotPasswordController;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\Auth\LoginController;

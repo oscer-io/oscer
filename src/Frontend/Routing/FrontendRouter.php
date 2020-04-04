@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Routing;
+namespace Bambamboole\LaravelCms\Frontend\Routing;
 
 use Bambamboole\LaravelCms\Core\Http\Middleware\SetLocale;
 use Bambamboole\LaravelCms\Frontend\Http\Controllers\PagesController;

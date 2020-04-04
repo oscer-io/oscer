@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Backend\ViewComposer;
 
-use Bambamboole\LaravelCms\Routing\RouteGenerator;
+use Bambamboole\LaravelCms\Backend\Routing\RouteGenerator;
 use Illuminate\Routing\Router;
 use Illuminate\View\View;
 
