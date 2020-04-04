@@ -3,7 +3,7 @@
 namespace Bambamboole\LaravelCms\Routing;
 
 use Bambamboole\LaravelCms\Auth\Http\Controllers\Api\IssueTokenController;
-use Bambamboole\LaravelCms\Auth\Http\Middleware\Authenticate;
+use Bambamboole\LaravelCms\Core\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceFieldsController;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceFormController;
 use Bambamboole\LaravelCms\Core\Http\Controllers\OpenApiController;
