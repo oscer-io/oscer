@@ -54,9 +54,26 @@
                     : 'Loading'
             },
         },
+        methods: {
+            //permission.id as param
+            // async save(permissionName) {
+            //     await api({
+            //         ...Cms.route('cms.api.roles.save_permissions', {id: this.role.id}),
+            //         data: {
+            //             // order: this.items.map((value, index) => {
+            //             //     return {
+            //             //         id: value.id,
+            //             //         order: index
+            //             //     }
+            //             // })
+            //         }
+            //     })
+            //     Cms.flash('success', 'Items reordered');
+            // },
+        },
         async mounted() {
-            const responseRole = await api(this.route('cms.api.roles.show', {id: this.id}));
-            const responsePermissions = await api(this.route('cms.api.permissions.index'));
+            const responseRole = await api(Cms.route('cms.api.roles.show', {id: this.id}));
+            const responsePermissions = await api(Cms.route('cms.api.permissions.index'));
             this.role = responseRole.data.data;
             this.permissions = responsePermissions.data.data;
 
