@@ -16,7 +16,7 @@ class PermissionsController
 {
     public function index()
     {
-        return PermissionResource::collection(Permission::all()->sortBy('group')->sortBy('crud'));
+        return PermissionResource::collection(Permission::all());
     }
 
 //
