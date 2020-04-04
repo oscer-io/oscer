@@ -17,12 +17,12 @@ class RolesController
         return new RoleResource(Role::query()->findOrFail($id));
     }
 
-//    public function update(UpdateRoleRequest $request, Role $role)
-//    {
-//        $role->update($request->validated());
-//
-//        return new RoleResource($role);
-//    }
+    public function update(UpdateRoleRequest $request, Role $role)
+    {
+        $role->update($request->validated());
+
+        return new RoleResource($role);
+    }
 //
 //    public function store(CreateRoleRequest $request)
 //    {

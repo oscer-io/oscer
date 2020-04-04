@@ -88,6 +88,7 @@ class ApiRouter
                 // Roles
                 $router->get('/roles', [RolesController::class, 'index'])->name('roles.index');
                 $router->get('/roles/{id}', [RolesController::class, 'show'])->name('roles.show');
+                $router->post('/roles/{id}/save_permissions', [RolesController::class, 'update'])->name('roles.save_order');
 //                $router->post('/roles', [RolesController::class, 'store'])->name('roles.store');
 //                $router->patch('/roles/{role}', [RolesController::class, 'update'])->name('roles.update');
 //                $router->delete('/roles/{role}', [RolesController::class, 'delete'])->name('roles.delete');
