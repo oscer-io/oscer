@@ -5,8 +5,6 @@ namespace Bambamboole\LaravelCms\Api\Routing;
 use Bambamboole\LaravelCms\Api\Http\Controllers\IssueTokenController;
 use Bambamboole\LaravelCms\Api\Http\Controllers\OpenApiController;
 use Bambamboole\LaravelCms\Api\Http\Controllers\SwaggerUiController;
-use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceFieldsController;
-use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceFormController;
 use Bambamboole\LaravelCms\Core\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Menus\Http\Controllers\MenuOrderController;
 use Bambamboole\LaravelCms\Menus\Http\Controllers\MenusController;
@@ -59,10 +57,6 @@ class ApiRouter
             ->as('cms.api.')
             ->prefix($this->prefix)
             ->group(function (Router $router) {
-                $router->get('/resources/{resource}/fields', ResourceFieldsController::class)->name('resources.fields');
-                $router->get('/forms/{resource}/{id?}', [ResourceFormController::class, 'show'])->name('forms.show');
-                $router->post('/forms/{resource}/{id?}', [ResourceFormController::class, 'store'])->name('forms.store');
-
                 $router->get('/pages', [PagesController::class, 'index'])->name('pages.index');
                 $router->post('/pages', [PagesController::class, 'store'])->name('pages.store');
                 $router->get('/pages/{id}', [PagesController::class, 'show'])->name('pages.show');

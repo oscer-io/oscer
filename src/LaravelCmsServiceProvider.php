@@ -7,6 +7,7 @@ use Bambamboole\LaravelCms\Backend\Routing\BackendRouter;
 use Bambamboole\LaravelCms\Backend\ViewComposer\BackendViewComposer;
 use Bambamboole\LaravelCms\Core\Commands\Development\SeedCommand;
 use Bambamboole\LaravelCms\Core\Commands\PublishCommand;
+use Bambamboole\LaravelCms\Core\Models\User;
 use Bambamboole\LaravelCms\Frontend\BladeComponents\MenuBladeComponent;
 use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
 use Bambamboole\LaravelCms\Frontend\DefaultTheme;

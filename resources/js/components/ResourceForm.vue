@@ -75,7 +75,7 @@
             },
             async fetchResourceForm() {
                 // fetch the form definition from the backend.
-                const response = await api(Cms.route('cms.api.forms.show', this.prepareParams()));
+                const response = await api(Cms.route('cms.backend.forms.show', this.prepareParams()));
 
                 this.fields = response.data.data.fields;
                 this.removeNullValues = response.data.data.removeNullValues;
@@ -84,7 +84,7 @@
                 // Submit the form. If we get validation errors, they will be passed to the fields.
                 try {
                     const response = await api({
-                        ...Cms.route('cms.api.forms.store', this.prepareParams()),
+                        ...Cms.route('cms.backend.forms.store', this.prepareParams()),
                         data: this.getFormData()
                     });
 
