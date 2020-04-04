@@ -6,29 +6,35 @@ use Illuminate\Database\Migrations\Migration;
 class CreateCmsPermissions extends Migration
 {
     protected array $permissions = [
-        'posts.create.*',
-        'posts.view.*',
-        'posts.update.*',
-        'posts.delete.*',
-        'pages.create.*',
-        'pages.view.*',
-        'pages.update.*',
-        'pages.delete.*',
-        'menus.view.*',
-        'menus.items.create.*',
-        'menus.items.view.*',
-        'menus.items.update.*',
-        'menus.items.delete.*',
-        'options.view.*',
-        'options.update.*',
-        'users.create.*',
-        'users.view.*',
-        'users.update.*',
-        'users.delete.*',
-        'roles.create.*',
-        'roles.view.*',
-        'roles.update.*',
-        'roles.delete.*',
+        'posts.*', // all permissions in posts
+        'posts.view',
+        'posts.create',
+        'posts.update',
+        'posts.delete',
+        'pages.*', // all permissions in pages
+        'pages.view',
+        'pages.create',
+        'pages.update',
+        'pages.delete',
+        'menus.*', // all permissions in menus
+        'menus.view',
+        'menus.view_items',
+        'menus.create_items',
+        'menus.update_items',
+        'menus.delete_items',
+        'options.*', // all permissions in options
+        'options.view',
+        'options.update',
+        'users.*',  // all permissions in users
+        'users.view',
+        'users.create',
+        'users.update',
+        'users.delete',
+        'roles.*', // all permissions in roles
+        'roles.view',
+        'roles.create',
+        'roles.update',
+        'roles.delete',
     ];
 
     /**
@@ -39,12 +45,7 @@ class CreateCmsPermissions extends Migration
     public function up()
     {
         foreach ($this->permissions as $permission) {
-            $parts = explode('.', $permission);
-            $group = $parts[0];
-            $crud = $parts[1] ?? null;
-            $subGroup = $parts[2] ?? null;
-
-            Permission::create(['name' => $permission, 'group' => $group, 'crud' => $crud, 'sub_group' => $subGroup]);
+            Permission::create(['name' => $permission]);
         }
     }
 }
