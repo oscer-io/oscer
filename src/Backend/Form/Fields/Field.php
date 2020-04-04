@@ -75,10 +75,10 @@ abstract class Field implements \JsonSerializable
 
     public function getRules(bool $forCreate)
     {
-        if ($forCreate === true && !empty($this->rulesOnCreate)) {
+        if ($forCreate === true && ! empty($this->rulesOnCreate)) {
             return $this->rulesOnCreate;
         }
-        if ($forCreate === false && !empty($this->rulesOnUpdate)) {
+        if ($forCreate === false && ! empty($this->rulesOnUpdate)) {
             return $this->rulesOnUpdate;
         }
 
@@ -94,7 +94,7 @@ abstract class Field implements \JsonSerializable
             'rulesOnCreate' => $this->rulesOnCreate,
             'rulesOnUpdate' => $this->rulesOnUpdate,
             'value' => $this->fillValue ? $this->value : null,
-            'hiddenOnCreate' => $this->hiddenOnCreate
+            'hiddenOnCreate' => $this->hiddenOnCreate,
         ];
 
         collect($this->with)->each(function (string $property) use (&$data) {

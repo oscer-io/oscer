@@ -58,13 +58,14 @@ abstract class Form implements \JsonSerializable
             if ($this->isCreateForm === false && $field->hiddenOnUpdate === true) {
                 return false;
             }
+
             return true;
         });
     }
 
     public function getValidator(): Validator
     {
-        if (!$this->validator) {
+        if (! $this->validator) {
             $rules = $this->fields()->reduce(function ($rules, Field $field) {
                 $rules[$field->name] = $field->getRules($this->isCreateForm);
 
@@ -133,7 +134,7 @@ abstract class Form implements \JsonSerializable
     {
         return ['data' => array_merge(
             ['fields' => $this->resolveValues($this->filteredFields())],
-            !empty($this->missingValues) ? ['missing_values' => $this->missingValues] : []
+            ! empty($this->missingValues) ? ['missing_values' => $this->missingValues] : []
         )];
     }
 }
