@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Core\Forms;
 
-use Bambamboole\LaravelCms\Auth\Mails\NewUserCreatedMail;
+use Bambamboole\LaravelCms\Core\Mails\NewUserCreatedMail;
 use Bambamboole\LaravelCms\Backend\Form\Fields\PasswordField;
 use Bambamboole\LaravelCms\Backend\Form\Fields\TextareaField;
 use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
