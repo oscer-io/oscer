@@ -3,10 +3,8 @@
 namespace Bambamboole\LaravelCms\Publishing\Forms;
 
 use Bambamboole\LaravelCms\Backend\Form\Fields\MarkdownField;
-use Bambamboole\LaravelCms\Backend\Form\Fields\TagsField;
 use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
 use Bambamboole\LaravelCms\Backend\Form\Form;
-use Bambamboole\LaravelCms\Publishing\Models\Tag;
 use Illuminate\Support\Collection;
 
 class PageForm extends Form
