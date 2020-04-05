@@ -80,7 +80,7 @@
                     resource="menu-item"
                     :resource-id="selectedItem.id"
                     :append="{menu: name, order: menu.items.length + 1}"
-                    @cancel=""
+                    @cancel="mode = 'new'"
                     @success="handleUpdateItemSuccess"
                 />
             </div>

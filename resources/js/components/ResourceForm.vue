@@ -1,30 +1,32 @@
 <template>
-    <form @submit.prevent="submitResourceForm">
-        <component
-            v-for="(field, index) in fields"
-            :key="field.name + index"
-            :ref="`${field.name}-field`"
-            :is="field.component"
-            :field="field"
-            :validation-errors="getValidationErrors(field)"
-        />
-        <div class="mt-8 border-t border-gray-200 pt-5">
-            <div class="flex justify-end">
+    <Loading :loading="isLoading">
+        <form @submit.prevent="submitResourceForm">
+            <component
+                v-for="(field, index) in fields"
+                :key="field.name + index"
+                :ref="`${field.name}-field`"
+                :is="field.component"
+                :field="field"
+                :validation-errors="getValidationErrors(field)"
+            />
+            <div class="mt-8 border-t border-gray-200 pt-5">
+                <div class="flex justify-end">
                         <span class="inline-flex rounded-md shadow-sm">
                             <button type="button" @click="$emit('cancel')"
                                     class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
                                 {{this.cancelText}}
                             </button>
                         </span>
-                <span class="ml-3 inline-flex rounded-md shadow-sm">
+                    <span class="ml-3 inline-flex rounded-md shadow-sm">
                             <button type="submit"
                                     class="btn">
                                 {{this.submitText}}
                             </button>
                         </span>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </Loading>
 </template>
 <script>
     import api from "../lib/api";
@@ -56,12 +58,13 @@
         },
         data() {
             return {
+                isLoading: true,
                 fields: [],
                 removeNullValues: false,
             }
         },
-        watch:{
-            resourceId(){
+        watch: {
+            resourceId() {
                 this.fetchResourceForm();
             }
         },
@@ -69,16 +72,18 @@
             this.fetchResourceForm();
         },
         methods: {
-            prepareParams(){
+            prepareParams() {
                 // Filter null values. This way we can handle create and update
                 return [this.resource, this.resourceId].filter(el => el !== null)
             },
             async fetchResourceForm() {
+                this.isLoading = true;
                 // fetch the form definition from the backend.
                 const response = await api(Cms.route('cms.backend.forms.show', this.prepareParams()));
 
                 this.fields = response.data.data.fields;
                 this.removeNullValues = response.data.data.removeNullValues;
+                this.isLoading = false;
             },
             async submitResourceForm() {
                 // Submit the form. If we get validation errors, they will be passed to the fields.
