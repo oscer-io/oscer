@@ -31,7 +31,7 @@ class UserForm extends Form
                         ->ignore($this->resource ? $this->resource->id : null),
                 ]),
             TextareaField::make('bio', 'Biography'),
-            PasswordField::make('password')->rules(['filled', 'confirmed'])->doNotShowOnCreate(),
+            PasswordField::make('password')->rulesOnUpdate(['filled', 'confirmed'])->doNotShowOnCreate(),
         ]);
     }
 
@@ -41,6 +41,11 @@ class UserForm extends Form
             $this->password = Str::random();
 
             return array_merge(['password' => $this->password], $data);
+        }
+
+        // when using FormData instead of Json we have to clear the password_confirmation key...
+        if(isset($data['password_confirmation'])){
+            unset($data['password_confirmation']);
         }
 
         return $data;

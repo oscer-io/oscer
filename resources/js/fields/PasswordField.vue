@@ -35,15 +35,11 @@
         },
 
         methods: {
-            getValue() {
+            fill(formData) {
+                formData.append(this.field.name, this.value);
                 if (this.field.confirm === true) {
-                    let value = {};
-                    value[this.field.name] = this.value;
-                    value[this.field.confirmAttributes.name] = this.confirmedValue;
-
-                    return value;
+                    formData.append(this.field.confirmAttributes.name, this.confirmedValue);
                 }
-                return this.value;
             }
         }
     }

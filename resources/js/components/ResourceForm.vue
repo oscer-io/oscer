@@ -30,10 +30,9 @@
 </template>
 <script>
     import api from "../lib/api";
-    import Form from "../lib/mixins/Form";
+    import _ from "lodash";
 
     export default {
-        mixins: [Form],
         props: {
             resource: {
                 type: String,
@@ -55,12 +54,16 @@
                 type: String,
                 default: 'Submit'
             },
+            append: {
+                default: false
+            }
         },
         data() {
             return {
                 isLoading: true,
                 fields: [],
                 removeNullValues: false,
+                validationErrors: {}
             }
         },
         watch: {
@@ -72,10 +75,12 @@
             this.fetchResourceForm();
         },
         methods: {
+
             prepareParams() {
                 // Filter null values. This way we can handle create and update
                 return [this.resource, this.resourceId].filter(el => el !== null)
             },
+
             async fetchResourceForm() {
                 this.isLoading = true;
                 // fetch the form definition from the backend.
@@ -85,8 +90,10 @@
                 this.removeNullValues = response.data.data.removeNullValues;
                 this.isLoading = false;
             },
+
             async submitResourceForm() {
                 // Submit the form. If we get validation errors, they will be passed to the fields.
+                console.log(this.getFormData());
                 try {
                     const response = await api({
                         ...Cms.route('cms.backend.forms.store', this.prepareParams()),
@@ -104,6 +111,39 @@
                         Cms.flash('error', 'There are validation errors in the form.')
                     }
                 }
+            },
+
+            getFormData() {
+                let formData = new FormData();
+
+                // Fill the FormData object with executing the fill method of all fields
+                _.each(this.fields, field => {
+                    field.fill(formData);
+                });
+
+                // If a form has removeNullValues set, this block will remove all keys
+                // which have null or an empty string as their value.
+                if (this.removeNullValues === true) {
+                    for (const key of formData.keys()) {
+                        const value = formData.get(key);
+                        if (value === null || value === '') {
+                            formData.delete(key);
+                        }
+                    }
+                }
+
+                // If there are values to append, do it.
+                if (this.append !== false) {
+                    for (let [key, value] of Object.entries(this.append)) {
+                        formData.append(key, value);
+                    }
+                }
+
+                return formData;
+            },
+
+            getValidationErrors(field) {
+                return this.$data.validationErrors[field.name] || [];
             }
         }
     }
