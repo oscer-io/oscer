@@ -69,7 +69,7 @@
             }
         },
         async mounted() {
-            const response = await api(Cms.route('cms.api.roles.index'));
+            const response = await api(Cms.route('cms.api.resources.index', 'role'));
             this.roles = response.data.data;
             this.isLoading = false;
         }

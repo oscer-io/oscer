@@ -19,12 +19,11 @@
 </template>
 
 <script>
-    import PermissionTableRow from './PermissionTableRow';
+    // import PermissionTableRow from './PermissionTableRow';
     import {some} from 'lodash';
 
     export default {
         components: {
-            PermissionTableRow
         },
         methods: {
             hasPermission(name) {

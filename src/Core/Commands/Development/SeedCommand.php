@@ -5,11 +5,11 @@ namespace Bambamboole\LaravelCms\Core\Commands\Development;
 use Bambamboole\LaravelCms\Core\Menus\Models\MenuItem;
 use Bambamboole\LaravelCms\Core\Options\Models\Option;
 use Bambamboole\LaravelCms\Core\Pages\Models\Page;
+use Bambamboole\LaravelCms\Core\Permissions\Models\Permission;
+use Bambamboole\LaravelCms\Core\Permissions\Models\Role;
 use Bambamboole\LaravelCms\Core\Posts\Models\Post;
 use Bambamboole\LaravelCms\Core\Posts\Models\Tag;
 use Bambamboole\LaravelCms\Core\Users\Models\User;
-use Bambamboole\LaravelCms\Permissions\Models\Permission;
-use Bambamboole\LaravelCms\Permissions\Models\Role;
 use Faker\Generator;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Foundation\Application;
@@ -74,8 +74,6 @@ class SeedCommand extends Command
             $role->givePermissionTo(Permission::all()->random(rand(1, Permission::all()->count())));
         });
         $this->info("{$roleAmount} roles seeded");
-
-        $this->comment('Assigning roles with random permissions');
     }
 
     protected function seedUsers($userAmount = 10)
@@ -90,7 +88,7 @@ class SeedCommand extends Command
         $this->info("{$userAmount} users seeded");
     }
 
-    protected function seedTagsAndPosts($user)
+    protected function seedTagsAndPosts()
     {
         $this->comment('Seeding tags');
         $tags = collect(['General', 'Tech', 'PHP', 'Laravel', 'Vue.js', 'Travel'])
@@ -100,7 +98,7 @@ class SeedCommand extends Command
         $this->info("{$tags->count()} tags seeded");
 
         $this->comment('Seeding posts');
-        $posts = factory(Post::class, 10)->create(['author_id' => $this->admin->id]);
+        $posts = factory(Post::class, 10)->create();
         $posts->each(function (Post $post) use ($tags) {
             $post->tags()->sync($tags->random(rand(1, 3))->pluck('id'));
         });
