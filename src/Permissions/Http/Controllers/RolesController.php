@@ -23,6 +23,7 @@ class RolesController
 
         return new RoleResource($role);
     }
+
 //
 //    public function store(CreateRoleRequest $request)
 //    {
