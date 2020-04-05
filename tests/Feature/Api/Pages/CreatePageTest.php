@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Tests\Feature\Api\Pages;
 
-use Bambamboole\LaravelCms\Publishing\Models\Page;
+use Bambamboole\LaravelCms\Core\Pages\Models\Page;
 use Bambamboole\LaravelCms\Tests\ApiTestCase;
 
 class CreatePageTest extends ApiTestCase

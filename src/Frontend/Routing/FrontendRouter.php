@@ -5,8 +5,8 @@ namespace Bambamboole\LaravelCms\Frontend\Routing;
 use Bambamboole\LaravelCms\Core\Http\Middleware\SetLocale;
 use Bambamboole\LaravelCms\Frontend\Http\Controllers\PagesController;
 use Bambamboole\LaravelCms\Frontend\Http\Controllers\PostsController;
-use Bambamboole\LaravelCms\Options\Models\Option;
-use Bambamboole\LaravelCms\Publishing\Models\Page;
+use Bambamboole\LaravelCms\Core\Options\Models\Option;
+use Bambamboole\LaravelCms\Core\Pages\Models\Page;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Schema;
 

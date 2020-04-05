@@ -2,12 +2,12 @@
 
 namespace Bambamboole\LaravelCms\Core\Commands\Development;
 
-use Bambamboole\LaravelCms\Core\Models\User;
-use Bambamboole\LaravelCms\Menus\Models\MenuItem;
-use Bambamboole\LaravelCms\Options\Models\Option;
-use Bambamboole\LaravelCms\Publishing\Models\Page;
-use Bambamboole\LaravelCms\Publishing\Models\Post;
-use Bambamboole\LaravelCms\Publishing\Models\Tag;
+use Bambamboole\LaravelCms\Core\Users\Models\User;
+use Bambamboole\LaravelCms\Core\Menus\Models\MenuItem;
+use Bambamboole\LaravelCms\Core\Options\Models\Option;
+use Bambamboole\LaravelCms\Core\Pages\Models\Page;
+use Bambamboole\LaravelCms\Core\Posts\Models\Post;
+use Bambamboole\LaravelCms\Core\Posts\Models\Tag;
 use Faker\Generator;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Foundation\Application;

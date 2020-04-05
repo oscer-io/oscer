@@ -2,8 +2,8 @@
 
 /** @var Factory $factory */
 
-use Bambamboole\LaravelCms\Core\Models\User;
-use Bambamboole\LaravelCms\Publishing\Models\Post;
+use Bambamboole\LaravelCms\Core\Users\Models\User;
+use Bambamboole\LaravelCms\Core\Posts\Models\Post;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
 

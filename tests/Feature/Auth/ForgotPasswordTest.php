@@ -3,7 +3,7 @@
 namespace Bambamboole\LaravelCms\Tests\Feature\Auth;
 
 use Bambamboole\LaravelCms\Core\Mails\ResetPasswordMail;
-use Bambamboole\LaravelCms\Core\Models\User;
+use Bambamboole\LaravelCms\Core\Users\Models\User;
 use Bambamboole\LaravelCms\Tests\TestCase;
 use Illuminate\Support\Facades\Mail;
 

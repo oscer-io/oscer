@@ -3,8 +3,8 @@
 namespace Bambamboole\LaravelCms\Api\Http\Controllers;
 
 use Bambamboole\LaravelCms\Api\Http\Requests\SaveMenuOrderRequest;
-use Bambamboole\LaravelCms\Menus\Models\Menu;
-use Bambamboole\LaravelCms\Menus\Models\MenuItem;
+use Bambamboole\LaravelCms\Core\Menus\Models\Menu;
+use Bambamboole\LaravelCms\Core\Menus\Models\MenuItem;
 
 class MenuOrderController
 {

@@ -2,8 +2,8 @@
 
 namespace Bambamboole\LaravelCms\Tests\Unit\Options;
 
-use Bambamboole\LaravelCms\Options\Models\Option;
-use Bambamboole\LaravelCms\Options\OptionRepository;
+use Bambamboole\LaravelCms\Core\Options\Models\Option;
+use Bambamboole\LaravelCms\Core\Options\Repositories\OptionRepository;
 use Bambamboole\LaravelCms\Tests\TestCase;
 use Illuminate\Support\Arr;
 

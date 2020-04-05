@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Tests;
 
-use Bambamboole\LaravelCms\Core\Models\User;
+use Bambamboole\LaravelCms\Core\Users\Models\User;
 use Bambamboole\LaravelCms\LaravelCmsServiceProvider;
 use Laravel\Sanctum\Sanctum;
 use Laravel\Sanctum\SanctumServiceProvider;

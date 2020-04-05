@@ -3,7 +3,7 @@
 namespace Bambamboole\LaravelCms\Tests\Feature\Api\Users;
 
 use Bambamboole\LaravelCms\Core\Mails\NewUserCreatedMail;
-use Bambamboole\LaravelCms\Core\Models\User;
+use Bambamboole\LaravelCms\Core\Users\Models\User;
 use Bambamboole\LaravelCms\Tests\ApiTestCase;
 use Illuminate\Support\Facades\Mail;
 
