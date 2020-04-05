@@ -4,13 +4,13 @@
             <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
                 <div class="ml-4 mt-2">
                     <h1 class="text-lg leading-6 font-medium text-gray-900">
-                        {{ $t('posts.index_title') }}
+                        {{ $t('pages.index_title') }}
                     </h1>
                 </div>
                 <div class="ml-4 mt-2 flex-shrink-0">
                     <span class="inline-flex rounded-md shadow-sm">
-                        <router-link :to="{name:'posts.create'}" class="btn">
-                            {{ $t('posts.button_create') }}
+                        <router-link :to="{name:'pages.create'}" class="btn">
+                            {{ $t('pages.button_create') }}
                         </router-link>
                     </span>
                 </div>
@@ -18,8 +18,8 @@
         </div>
         <div class="bg-white shadow overflow-hidden sm:rounded-md">
             <ul>
-                <li v-for="post in posts">
-                    <router-link :to="{name: 'posts.show', params:{id: post.id}}"
+                <li v-for="page in pages">
+                    <router-link :to="{name: 'pages.show', params:{id: page.id}}"
                                  class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out"
                     >
                         <div class="flex items-center px-4 py-4 sm:px-6">
@@ -27,7 +27,7 @@
                                 <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                                     <div>
                                         <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
-                                            {{post.name}}
+                                            {{page.name}}
                                         </div>
                                         <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">
                                             <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor"
@@ -37,20 +37,15 @@
                                                       clip-rule="evenodd"/>
                                             </svg>
                                             <span class="truncate">
-                                                {{post.slug}}
+                                                {{page.slug}}
                                             </span>
                                         </div>
                                     </div>
                                     <div class="hidden md:block">
                                         <div>
                                             <div class="text-sm leading-5 text-gray-900">
-                                                {{ $t('posts.created_at') }}
-                                                <time :datetime="post.created_at">{{post.created_at}}</time>
-                                            </div>
-                                            <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">
-                                                {{ $t('posts.tags') }}
-                                                <span class="bg-indigo-600 py-1 px-2 ml-1 text-white rounded"
-                                                      v-for="tag in post.tags" v-text="tag"></span>
+                                                {{ $t('pages.created_at') }}
+                                                <time :datetime="page.created_at">{{page.created_at}}</time>
                                             </div>
                                         </div>
                                     </div>
@@ -78,12 +73,12 @@
         data() {
             return {
                 isLoading: true,
-                posts: []
+                pages: []
             }
         },
         async mounted() {
-            const response = await api(Cms.route('cms.api.resources.index', 'post'));
-            this.posts = response.data.data;
+            const response = await api(Cms.route('cms.api.resources.index', 'page'));
+            this.pages = response.data.data;
             this.isLoading = false;
         }
     }

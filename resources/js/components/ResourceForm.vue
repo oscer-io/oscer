@@ -1,5 +1,5 @@
 <template>
-    <Loading :loading="isLoading">
+    <loading :loading="isLoading">
         <form @submit.prevent="submitResourceForm">
             <component
                 v-for="(field, index) in fields"
@@ -26,7 +26,7 @@
                 </div>
             </div>
         </form>
-    </Loading>
+    </loading>
 </template>
 <script>
     import api from "../lib/api";
