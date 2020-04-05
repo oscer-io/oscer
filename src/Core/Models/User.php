@@ -138,11 +138,6 @@ class User extends BaseModel implements
         return new UserForm($this);
     }
 
-    public function getEndpoints(): array
-    {
-        return ['index', 'show', 'delete', 'store'];
-    }
-
     public function executeIndex()
     {
         return UserResource::collection($this->newQuery()->paginate());

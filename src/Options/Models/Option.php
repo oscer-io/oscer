@@ -29,11 +29,6 @@ class Option extends BaseModel implements HasApiEndpoints, HasIndexEndpoint, Has
         return $option ? $option->value : null;
     }
 
-    public function getEndpoints(): array
-    {
-        return ['index', 'store'];
-    }
-
     public function executeIndex()
     {
         return ['data' => $this->getRepository()->getOptionFields()];

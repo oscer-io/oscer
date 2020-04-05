@@ -35,11 +35,6 @@ class MenuItem extends BaseModel implements HasForm, HasApiEndpoints, HasIndexEn
         return new MenuItemForm($this);
     }
 
-    public function getEndpoints(): array
-    {
-        return ['index', 'show', 'delete'];
-    }
-
     public function executeIndex()
     {
         return MenuItemResource::collection($this->newQuery()->paginate());

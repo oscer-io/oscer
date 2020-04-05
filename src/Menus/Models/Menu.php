@@ -51,11 +51,6 @@ class Menu implements HasApiEndpoints, HasIndexEndpoint, HasShowEndpoint
             ->setItems($items);
     }
 
-    public function getEndpoints(): array
-    {
-        return ['index', 'show'];
-    }
-
     public function executeIndex()
     {
         return ['data' => self::all()];

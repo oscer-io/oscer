@@ -135,11 +135,6 @@ class Post extends BaseModel implements
         return new PostForm($this);
     }
 
-    public function getEndpoints(): array
-    {
-        return ['index', 'show', 'store', 'delete'];
-    }
-
     public function executeIndex()
     {
         return $this->asResourceCollection($this->newQuery()->paginate());
