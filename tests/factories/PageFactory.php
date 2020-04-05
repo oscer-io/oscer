@@ -19,7 +19,6 @@ use Illuminate\Database\Eloquent\Factory;
 */
 
 $factory->define(Page::class, function (Faker $faker) {
-
     return [
         'type' => 'page',
         'name' => $faker->name,
