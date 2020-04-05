@@ -3,6 +3,7 @@
 namespace Bambamboole\LaravelCms\Backend\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 
 class BackendController
@@ -27,7 +28,7 @@ class BackendController
         return collect($this->router->getRoutes()->getRoutesByName())
             ->filter(function ($value, $key) {
                 return strpos($key, 'cms.') !== false;
-            })->map(function (\Illuminate\Routing\Route $value, $key) {
+            })->map(function (Route $value, $key) {
                 return "/{$value->uri()}";
             })->toArray();
     }

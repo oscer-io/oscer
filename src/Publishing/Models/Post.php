@@ -170,6 +170,7 @@ class Post extends BaseModel implements
     public function executeUpdate(Request $request, $identifier)
     {
         $model = $this->newQuery()->findOrFail($identifier);
+        /** @var PostForm $form */
         $form = $model->getForm();
         $form->setData($request->all());
         $validator = $form->getValidator();
@@ -190,11 +191,19 @@ class Post extends BaseModel implements
         return ['success' => true];
     }
 
+    /**
+     * We use this method to abstract the resource instantiation.
+     * This way we rely on the api implementation of the Post
+     * but override the returned resources as we need.
+     */
     protected function asResource($model)
     {
         return new PostResource($model);
     }
 
+    /**
+     * Same as the method above but with the collection
+     */
     protected function asResourceCollection($models)
     {
         return PostResource::collection($models);

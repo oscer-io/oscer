@@ -2,7 +2,10 @@
 
 namespace Bambamboole\LaravelCms\Backend\Form\Fields;
 
-abstract class Field implements \JsonSerializable
+use Closure;
+use JsonSerializable;
+
+abstract class Field implements JsonSerializable
 {
     public string $name;
 
@@ -54,7 +57,7 @@ abstract class Field implements \JsonSerializable
         return $this;
     }
 
-    public function addResolveValueCallback(\Closure $callback)
+    public function addResolveValueCallback(Closure $callback)
     {
         $this->resolveValueCallback = $callback;
 
@@ -96,7 +99,7 @@ abstract class Field implements \JsonSerializable
 
     protected function resolveValue()
     {
-        if ($this->resolveValueCallback && $this->resolveValueCallback instanceof \Closure) {
+        if ($this->resolveValueCallback && $this->resolveValueCallback instanceof Closure) {
             return call_user_func($this->resolveValueCallback, $this->value);
         } else {
             return $this->value;

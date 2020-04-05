@@ -20,8 +20,6 @@ class OpenApiController
 
     public function file(string $folder, string $file)
     {
-        $content = File::get(__DIR__."/../../../../resources/open-api/{$folder}/{$file}");
-
-        return $content;
+        return File::get(__DIR__."/../../../../resources/open-api/{$folder}/{$file}");
     }
 }
