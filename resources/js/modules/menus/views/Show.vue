@@ -79,7 +79,7 @@
                 <ResourceForm
                     resource="menu-item"
                     :resource-id="selectedItem.id"
-                    :append="{menu: name, order: menu.items.length + 1}"
+                    :append="{menu: name}"
                     @cancel="mode = 'new'"
                     @success="handleUpdateItemSuccess"
                 />
