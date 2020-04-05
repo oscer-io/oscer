@@ -69,12 +69,7 @@ class ApiRouter
                 $router->patch('/posts/{id}', [PostsController::class, 'update'])->name('posts.update');
                 $router->delete('/posts/{id}', [PostsController::class, 'delete'])->name('posts.delete');
 
-                $router->post('/users', [UsersController::class, 'store'])->name('users.store');
                 $router->patch('/users/{user}', [UsersController::class, 'update'])->name('users.update');
-
-                $router->post('/profile/avatar', [ProfileAvatarController::class, 'update'])->name('profile.avatar');
-
-                $router->patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
                 $router->post('/menus/{name}/items', [MenusController::class, 'store'])->name('menus.store');
                 $router->put('/menus/{name}/items/{id}', [MenusController::class, 'update'])->name('menus.update');

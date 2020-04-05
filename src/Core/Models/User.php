@@ -6,11 +6,14 @@ use Bambamboole\LaravelCms\Api\Contracts\HasApiEndpoints;
 use Bambamboole\LaravelCms\Api\Contracts\HasDeleteEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
+use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
 use Bambamboole\LaravelCms\Backend\Contracts\HasForm;
 use Bambamboole\LaravelCms\Core\Forms\UserForm;
 use Bambamboole\LaravelCms\Users\Http\Resources\UserResource;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Validation\ValidationException;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
@@ -22,7 +25,13 @@ use Laravel\Sanctum\HasApiTokens;
  * @property Carbon updated_at
  * @property Carbon created_at
  */
-class User extends BaseModel implements Authenticatable, HasForm, HasApiEndpoints, HasIndexEndpoint, HasShowEndpoint, HasDeleteEndpoint
+class User extends BaseModel implements Authenticatable,
+    HasForm,
+    HasApiEndpoints,
+    HasIndexEndpoint,
+    HasShowEndpoint,
+    HasStoreEndpoint,
+    HasDeleteEndpoint
 {
     use HasApiTokens;
 
@@ -128,7 +137,7 @@ class User extends BaseModel implements Authenticatable, HasForm, HasApiEndpoint
 
     public function getEndpoints(): array
     {
-        return ['index', 'show', 'delete'];
+        return ['index', 'show', 'delete', 'store'];
     }
 
     public function executeIndex()
@@ -139,6 +148,21 @@ class User extends BaseModel implements Authenticatable, HasForm, HasApiEndpoint
     public function executeShow($id)
     {
         return new UserResource($this->newQuery()->findOrFail($id));
+    }
+
+    public function executeStore(Request $request)
+    {
+        $form = $this->getForm();
+        $form->setData($request->all());
+        $validator = $form->getValidator();
+
+        if ($validator->fails()) {
+            throw new ValidationException($validator);
+        }
+
+        $model = $form->save();
+
+        return new UserResource($model);
     }
 
     public function executeDelete($id)

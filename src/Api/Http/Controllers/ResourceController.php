@@ -8,6 +8,7 @@ use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ResourceController
@@ -15,7 +16,7 @@ class ResourceController
     public function index(string $resource)
     {
         $instance = $this->getResourceInstance($resource);
-        if (! $instance instanceof HasIndexEndpoint) {
+        if (!$instance instanceof HasIndexEndpoint) {
             throw new NotFoundHttpException('resource has no index endpoint');
         }
 
@@ -25,7 +26,7 @@ class ResourceController
     public function show(string $resource, $id)
     {
         $instance = $this->getResourceInstance($resource);
-        if (! $instance instanceof HasShowEndpoint) {
+        if (!$instance instanceof HasShowEndpoint) {
             throw new NotFoundHttpException('resource has no show endpoint');
         }
 
@@ -35,17 +36,21 @@ class ResourceController
     public function store(Request $request, string $resource)
     {
         $instance = $this->getResourceInstance($resource);
-        if (! $instance instanceof HasStoreEndpoint) {
+        if (!$instance instanceof HasStoreEndpoint) {
             throw new NotFoundHttpException('resource has no store endpoint');
         }
 
-        return $instance->executeStore($request);
+        try {
+            return $instance->executeStore($request);
+        }catch (ValidationException $exception){
+            return response()->json(['errors' => $exception->validator->errors()], 422);
+        }
     }
 
     public function delete(string $resource, $id)
     {
         $instance = $this->getResourceInstance($resource);
-        if (! $instance instanceof HasDeleteEndpoint) {
+        if (!$instance instanceof HasDeleteEndpoint) {
             throw new NotFoundHttpException('resource has no delete endpoint');
         }
 
@@ -56,14 +61,14 @@ class ResourceController
     {
         $resources = config('cms.resources');
 
-        if (! array_key_exists($resource, $resources)) {
+        if (!array_key_exists($resource, $resources)) {
             throw new NotFoundHttpException('resource not found');
         }
 
         $resourceClass = $resources[$resource];
         $instance = new $resourceClass();
 
-        if (! $instance instanceof HasApiEndpoints) {
+        if (!$instance instanceof HasApiEndpoints) {
             throw new NotFoundHttpException('Resource does not implement HasApiEndpoints');
         }
 
