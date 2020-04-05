@@ -26,7 +26,8 @@ use Laravel\Sanctum\HasApiTokens;
  * @property Carbon updated_at
  * @property Carbon created_at
  */
-class User extends BaseModel implements Authenticatable,
+class User extends BaseModel implements
+    Authenticatable,
     HasForm,
     HasApiEndpoints,
     HasIndexEndpoint,

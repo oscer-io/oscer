@@ -64,7 +64,7 @@ class MenuItem extends BaseModel implements HasForm, HasApiEndpoints, HasIndexEn
 
         $model = $this->newQuery()->create(array_merge(
             $validator->valid(),
-            ['order' => MenuItem::query()->where('menu', $request->input('menu'))->count() + 1]
+            ['order' => self::query()->where('menu', $request->input('menu'))->count() + 1]
         ));
 
         return new MenuItemResource($model);
