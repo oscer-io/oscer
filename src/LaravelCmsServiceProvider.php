@@ -65,7 +65,6 @@ class LaravelCmsServiceProvider extends ServiceProvider
             'permission' => Permission::class,
             'role'       => Role::class,
         ]);
-        $config->set('permission.enable_wildcard_permission', true);
 
         $config->set('auth.providers.cms_users', [
             'driver' => 'eloquent',
