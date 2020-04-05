@@ -2,8 +2,8 @@
 
 namespace Bambamboole\LaravelCms\Frontend\Http\Controllers;
 
-use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
 use Bambamboole\LaravelCms\Core\Posts\Models\Post;
+use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
 
 class PostsController
 {

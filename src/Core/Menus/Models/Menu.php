@@ -6,7 +6,6 @@ use Bambamboole\LaravelCms\Api\Contracts\HasApiEndpoints;
 use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
 use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
-use Bambamboole\LaravelCms\Core\Menus\Models\MenuItem;
 
 class Menu implements HasApiEndpoints, HasIndexEndpoint, HasShowEndpoint
 {

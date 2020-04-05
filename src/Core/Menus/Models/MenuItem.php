@@ -9,10 +9,10 @@ use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasUpdateEndpoint;
 use Bambamboole\LaravelCms\Backend\Contracts\HasForm;
-use Bambamboole\LaravelCms\Core\Models\BaseModel;
-use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
 use Bambamboole\LaravelCms\Core\Menus\Forms\MenuItemForm;
 use Bambamboole\LaravelCms\Core\Menus\Resources\MenuItemResource;
+use Bambamboole\LaravelCms\Core\Models\BaseModel;
+use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +28,8 @@ use Illuminate\Validation\ValidationException;
  * @property Carbon updated_at
  * @property Carbon created_at
  */
-class MenuItem extends BaseModel implements HasForm,
+class MenuItem extends BaseModel implements
+    HasForm,
     HasApiEndpoints,
     HasIndexEndpoint,
     HasShowEndpoint,

@@ -11,7 +11,6 @@ use Bambamboole\LaravelCms\Api\Contracts\HasUpdateEndpoint;
 use Bambamboole\LaravelCms\Backend\Contracts\HasForm;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Bambamboole\LaravelCms\Core\Posts\Forms\PostForm;
-use Bambamboole\LaravelCms\Core\Posts\Models\Tag;
 use Bambamboole\LaravelCms\Core\Posts\Resources\PostResource;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -203,7 +202,7 @@ class Post extends BaseModel implements
     }
 
     /**
-     * Same as the method above but with the collection
+     * Same as the method above but with the collection.
      */
     protected function asResourceCollection($models)
     {

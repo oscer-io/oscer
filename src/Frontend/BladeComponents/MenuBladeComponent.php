@@ -2,8 +2,8 @@
 
 namespace Bambamboole\LaravelCms\Frontend\BladeComponents;
 
-use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
 use Bambamboole\LaravelCms\Core\Menus\Models\Menu;
+use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
 use Illuminate\View\Component;
 
 class MenuBladeComponent extends Component

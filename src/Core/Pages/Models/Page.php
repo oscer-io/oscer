@@ -3,8 +3,8 @@
 namespace Bambamboole\LaravelCms\Core\Pages\Models;
 
 use Bambamboole\LaravelCms\Core\Pages\Forms\PageForm;
-use Bambamboole\LaravelCms\Core\Posts\Models\Post;
 use Bambamboole\LaravelCms\Core\Pages\Resources\PageResource;
+use Bambamboole\LaravelCms\Core\Posts\Models\Post;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 

@@ -2,9 +2,9 @@
 
 namespace Bambamboole\LaravelCms\Core\Options\Repositories;
 
-use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
 use Bambamboole\LaravelCms\Core\Options\Models\Option;
 use Bambamboole\LaravelCms\Core\Options\Resources\OptionResource;
+use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
 use Illuminate\Config\Repository;
 use Illuminate\Support\Collection;
 

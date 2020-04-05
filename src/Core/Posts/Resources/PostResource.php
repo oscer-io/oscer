@@ -2,7 +2,6 @@
 
 namespace Bambamboole\LaravelCms\Core\Posts\Resources;
 
-use Bambamboole\LaravelCms\Core\Users\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\MissingValue;
