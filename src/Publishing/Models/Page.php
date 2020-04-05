@@ -3,7 +3,7 @@
 namespace Bambamboole\LaravelCms\Publishing\Models;
 
 use Bambamboole\LaravelCms\Publishing\Forms\PageForm;
-use Bambamboole\LaravelCms\Publishing\Http\Resources\PageResource;
+use Bambamboole\LaravelCms\Publishing\Resources\PageResource;
 
 class Page extends Post
 {

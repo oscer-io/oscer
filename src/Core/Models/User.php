@@ -10,7 +10,7 @@ use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasUpdateEndpoint;
 use Bambamboole\LaravelCms\Backend\Contracts\HasForm;
 use Bambamboole\LaravelCms\Core\Forms\UserForm;
-use Bambamboole\LaravelCms\Core\Http\Resources\UserResource;
+use Bambamboole\LaravelCms\Core\Resources\UserResource;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;

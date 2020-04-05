@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Backend\Http\Controllers\Auth;
 
-use Bambamboole\LaravelCms\Backend\Http\Requests\SendPasswordResetLinkRequest;
+use Bambamboole\LaravelCms\Backend\Http\Requests\Auth\SendPasswordResetLinkRequest;
 use Bambamboole\LaravelCms\Core\Mails\ResetPasswordMail;
 use Bambamboole\LaravelCms\Core\Models\User;
 use Illuminate\Http\RedirectResponse;

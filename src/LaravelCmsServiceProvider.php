@@ -13,6 +13,7 @@ use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
 use Bambamboole\LaravelCms\Frontend\DefaultTheme;
 use Bambamboole\LaravelCms\Frontend\ViewComposers\ThemeViewComposer;
 use Illuminate\Config\Repository;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Factory;
@@ -68,7 +69,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
         $config->set('ziggy.whitelist', ['cms.*']);
         $config->set('ziggy.skip-route-function', true);
         $config->set('sanctum.stateful', $statefulHosts);
-        $config->set('sanctum.middleware.verify_csrf_token', \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class);
+        $config->set('sanctum.middleware.verify_csrf_token', VerifyCsrfToken::class);
     }
 
     protected function registerPublishes(): void

@@ -11,7 +11,8 @@ use Bambamboole\LaravelCms\Api\Contracts\HasUpdateEndpoint;
 use Bambamboole\LaravelCms\Backend\Contracts\HasForm;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Bambamboole\LaravelCms\Publishing\Forms\PostForm;
-use Bambamboole\LaravelCms\Publishing\Http\Resources\PostResource;
+use Bambamboole\LaravelCms\Publishing\Resources\PostResource;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
@@ -52,6 +53,13 @@ class Post extends BaseModel implements
     protected $table = 'cms_posts';
 
     protected $with = ['tags', 'author'];
+
+    protected static function booted()
+    {
+        static::addGlobalScope('type', function (Builder $builder) {
+            $builder->where('type', '=', Str::snake(class_basename(self::class)));
+        });
+    }
 
     public static function create(array $attributes): self
     {

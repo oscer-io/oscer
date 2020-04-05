@@ -12,7 +12,7 @@ use Bambamboole\LaravelCms\Backend\Contracts\HasForm;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
 use Bambamboole\LaravelCms\Menus\Forms\MenuItemForm;
-use Bambamboole\LaravelCms\Menus\Http\Resources\MenuItemResource;
+use Bambamboole\LaravelCms\Menus\Resources\MenuItemResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;

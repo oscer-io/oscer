@@ -1,18 +1,16 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Publishing\Http\Resources;
+namespace Bambamboole\LaravelCms\Publishing\Resources;
 
-use Bambamboole\LaravelCms\Core\Http\Resources\UserResource;
-use Illuminate\Http\Request;
+use Bambamboole\LaravelCms\Core\Resources\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Resources\MissingValue;
 
-class PostResource extends JsonResource
+class PageResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param Request $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return array
      */
@@ -24,9 +22,7 @@ class PostResource extends JsonResource
             'slug' => $this->slug,
             'body' => $this->body,
             'author' => new UserResource($this->whenLoaded('author')),
-            'tags' => $this->whenLoaded('tags') instanceof MissingValue
-                ? []
-                : $this->whenLoaded('tags')->pluck('name'),
+            'author_id' => $this->author_id,
             'published_at' => $this->published_at,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

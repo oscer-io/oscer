@@ -18,7 +18,6 @@
     "require": {
         "php": "^7.4",
         "ext-json": "*",
-        "inertiajs/inertia-laravel": "^0.2.5",
         "laravel/framework": "^7.0",
         "laravel/sanctum": "^2.0",
         "spatie/commonmark-highlighter": "^2.1",
