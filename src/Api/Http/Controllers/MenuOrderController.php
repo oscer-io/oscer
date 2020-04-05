@@ -1,8 +1,8 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Menus\Http\Controllers;
+namespace Bambamboole\LaravelCms\Api\Http\Controllers;
 
-use Bambamboole\LaravelCms\Menus\Http\Requests\SaveMenuOrderRequest;
+use Bambamboole\LaravelCms\Api\Http\Requests\SaveMenuOrderRequest;
 use Bambamboole\LaravelCms\Menus\Models\Menu;
 use Bambamboole\LaravelCms\Menus\Models\MenuItem;
 

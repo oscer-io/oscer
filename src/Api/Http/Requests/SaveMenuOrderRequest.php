@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Menus\Http\Requests;
+namespace Bambamboole\LaravelCms\Api\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

@@ -2,9 +2,9 @@
 
 namespace Bambamboole\LaravelCms\Menus\Http\Resources;
 
-use Bambamboole\LaravelCms\Backend\Http\Resources\BackendResource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class MenuItemResource extends BackendResource
+class MenuItemResource extends JsonResource
 {
     public function toArray($request)
     {

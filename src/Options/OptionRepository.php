@@ -3,7 +3,7 @@
 namespace Bambamboole\LaravelCms\Options;
 
 use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
-use Bambamboole\LaravelCms\Options\Http\Resources\OptionResource;
+use Bambamboole\LaravelCms\Options\Resources\OptionResource;
 use Bambamboole\LaravelCms\Options\Models\Option;
 use Illuminate\Config\Repository;
 use Illuminate\Support\Collection;

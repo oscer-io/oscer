@@ -6,7 +6,7 @@ use Bambamboole\LaravelCms\Api\Contracts\HasApiEndpoints;
 use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
-use Bambamboole\LaravelCms\Options\Http\Resources\OptionResource;
+use Bambamboole\LaravelCms\Options\Resources\OptionResource;
 use Bambamboole\LaravelCms\Options\OptionRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;

@@ -7,7 +7,7 @@ use Bambamboole\LaravelCms\Api\Http\Controllers\OpenApiController;
 use Bambamboole\LaravelCms\Api\Http\Controllers\ResourceController;
 use Bambamboole\LaravelCms\Api\Http\Controllers\SwaggerUiController;
 use Bambamboole\LaravelCms\Core\Http\Middleware\Authenticate;
-use Bambamboole\LaravelCms\Menus\Http\Controllers\MenuOrderController;
+use Bambamboole\LaravelCms\Api\Http\Controllers\MenuOrderController;
 use Bambamboole\LaravelCms\Menus\Http\Controllers\MenusController;
 use Bambamboole\LaravelCms\Publishing\Http\Controllers\Api\PagesController;
 use Bambamboole\LaravelCms\Publishing\Http\Controllers\PostsController;
@@ -64,9 +64,6 @@ class ApiRouter
                 $router->delete('/pages/{id}', [PagesController::class, 'delete'])->name('pages.delete');
 
                 $router->patch('/posts/{id}', [PostsController::class, 'update'])->name('posts.update');
-
-                $router->post('/menus/{name}/items', [MenusController::class, 'store'])->name('menus.store');
-                $router->put('/menus/{name}/items/{id}', [MenusController::class, 'update'])->name('menus.update');
 
                 $router->post('/menus/{name}/save_order', [MenuOrderController::class, 'update'])->name('menus.save_order');
 
