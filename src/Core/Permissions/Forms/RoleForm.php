@@ -17,8 +17,9 @@ class RoleForm extends Form
             $value = $role->hasPermissionTo($permission);
             $field = CheckboxField::make($permission->name, $permission->name, true)->rules(['required', 'boolean']);
             $field->addResolveValueCallback(function ($field) use ($value) {
-                return $value;//$rolePermissions->contains($permission);
+                return $value; //$rolePermissions->contains($permission);
             });
+
             return $field;
         });
     }
