@@ -7,7 +7,9 @@ use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
 use Bambamboole\LaravelCms\Core\Permissions\Resources\PermissionResource;
 
-class Permission extends \Spatie\Permission\Models\Permission implements HasApiEndpoints, HasIndexEndpoint,
+class Permission extends \Spatie\Permission\Models\Permission implements
+    HasApiEndpoints,
+    HasIndexEndpoint,
     HasShowEndpoint
 {
     public function getGroup()
@@ -25,4 +27,3 @@ class Permission extends \Spatie\Permission\Models\Permission implements HasApiE
         // TODO: Implement executeShow() method.
     }
 }
-

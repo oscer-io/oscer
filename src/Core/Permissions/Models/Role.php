@@ -22,6 +22,6 @@ class Role extends \Spatie\Permission\Models\Role implements
 
     public function executeShow($identifier)
     {
-        return new RoleResource(Role::query()->findOrFail($identifier));
+        return new RoleResource(self::query()->findOrFail($identifier));
     }
 }
