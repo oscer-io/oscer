@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Tests\Feature\Api\Pages;
 
-use Bambamboole\LaravelCms\Publishing\Models\Page;
+use Bambamboole\LaravelCms\Core\Pages\Models\Page;
 use Bambamboole\LaravelCms\Tests\ApiTestCase;
 
 class ListPagesTest extends ApiTestCase
@@ -10,7 +10,7 @@ class ListPagesTest extends ApiTestCase
     /** @test */
     public function the_request_needs_to_be_authenticated()
     {
-        $response = $this->get('/api/cms/pages');
+        $response = $this->get('/api/cms/page');
 
         $response->assertStatus(401);
     }
@@ -22,7 +22,7 @@ class ListPagesTest extends ApiTestCase
 
         $this->login();
 
-        $response = $this->get('/api/cms/pages');
+        $response = $this->get('/api/cms/page');
 
         $response->assertOk();
         $this->assertJsonSchema('responses/page-collection', $response->getContent());

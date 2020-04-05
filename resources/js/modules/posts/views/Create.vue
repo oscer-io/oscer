@@ -9,8 +9,7 @@
         </div>
         <ResourceForm
             resource="post"
-            :api-route="{name: 'cms.api.posts.store'}"
-            @cancel="handleCancel"
+            @cancel="$router.push({name: 'posts.index'})"
             @success="handleSuccess"
         />
     </div>

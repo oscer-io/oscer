@@ -2,8 +2,8 @@
 
 namespace Bambamboole\LaravelCms\Tests\Feature\Api\Users;
 
-use Bambamboole\LaravelCms\Auth\Mails\NewUserCreatedMail;
-use Bambamboole\LaravelCms\Auth\Models\User;
+use Bambamboole\LaravelCms\Core\Mails\NewUserCreatedMail;
+use Bambamboole\LaravelCms\Core\Users\Models\User;
 use Bambamboole\LaravelCms\Tests\ApiTestCase;
 use Illuminate\Support\Facades\Mail;
 
@@ -12,7 +12,7 @@ class CreateUserTest extends ApiTestCase
     /** @test */
     public function the_request_needs_to_be_authenticated()
     {
-        $response = $this->post('/api/cms/users');
+        $response = $this->post('/api/cms/user');
 
         $response->assertStatus(401);
     }
@@ -20,12 +20,11 @@ class CreateUserTest extends ApiTestCase
     /** @test */
     public function a_user_can_be_created()
     {
-        $this->withoutExceptionHandling();
         Mail::fake();
 
         $this->login();
 
-        $response = $this->post('/api/cms/users', [
+        $response = $this->post('/api/cms/user', [
             'name' => 'test',
             'email' => 'test@test.com',
         ]);
@@ -41,9 +40,10 @@ class CreateUserTest extends ApiTestCase
      */
     public function data_needs_to_be_valid(string $errorKey, array $data)
     {
+        $this->withoutExceptionHandling();
         $this->login();
 
-        $response = $this->post('/api/cms/users', factory(User::class)->raw($data));
+        $response = $this->post('/api/cms/user', factory(User::class)->raw($data));
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors($errorKey);
@@ -64,7 +64,7 @@ class CreateUserTest extends ApiTestCase
         factory(User::class)->create(['email' => 'test@test.com']);
         $this->login();
 
-        $response = $this->post('/api/cms/users', [
+        $response = $this->post('/api/cms/user', [
             'name' => 'test',
             'email' => 'test@test.com',
         ]);

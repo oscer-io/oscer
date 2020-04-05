@@ -10,7 +10,7 @@ If you want to implement a `Theme` by you own, feel free to implement described 
 
 ## Theme interface
 
-A Theme is a  PHP class which implements `Bambamboole\LaravelCms\Theming\Contracts\Theme`. All template strings which are returned
+A Theme is a  PHP class which implements `Bambamboole\LaravelCms\Frontend\Contracts\Theme`. All template strings which are returned
 by the Theme class are read by Laravel's `view()` method.
 The contract tells us to implement the following methods:
 

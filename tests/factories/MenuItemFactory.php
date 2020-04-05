@@ -2,7 +2,7 @@
 
 /** @var Factory $factory */
 
-use Bambamboole\LaravelCms\Menus\Models\MenuItem;
+use Bambamboole\LaravelCms\Core\Menus\Models\MenuItem;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
 

@@ -9,8 +9,7 @@
         </div>
         <ResourceForm
             resource="user"
-            :api-route="{name: 'cms.api.users.store'}"
-            @cancel="handleCancel"
+            @cancel="$router.push({name: 'users.index'})"
             @success="handleSuccess"
         />
     </div>
@@ -24,9 +23,6 @@
             ResourceForm
         },
         methods: {
-            handleCancel() {
-                this.$router.push({name: 'users.index'})
-            },
             handleSuccess(user) {
                 Cms.flash('success', 'Nice one!');
                 this.$router.push({name: 'users.show', params: {id: user.id}})

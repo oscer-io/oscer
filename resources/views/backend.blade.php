@@ -34,6 +34,15 @@
                             </svg>
                             Dashboard
                         </navbar-link>
+                        <navbar-link :to="{name: 'pages.index'}">
+                            <svg
+                                class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
+                                stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                            </svg>
+                            Pages
+                        </navbar-link>
                         <navbar-link :to="{name: 'posts.index'}">
                             <svg
                                 class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
@@ -127,7 +136,7 @@
             <main class="flex-1 relative z-0 overflow-y-auto py-6 focus:outline-none" tabindex="0">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                     <transition :name="transitionName" mode="out-in">
-                        <router-view/>
+                        <router-view :key="$route.fullPath"></router-view>
                     </transition>
                     <modals-container></modals-container>
                 </div>
@@ -136,9 +145,7 @@
     </div>
     <Flash/>
 </div>
-<script>
 
-</script>
 <script src="{{ mix('app.js', 'vendor/cms') }}"></script>
 <script>
 
