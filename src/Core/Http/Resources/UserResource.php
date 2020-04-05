@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Users\Http\Resources;
+namespace Bambamboole\LaravelCms\Core\Http\Resources;
 
 use Bambamboole\LaravelCms\Backend\Form\Fields\TextareaField;
 use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;

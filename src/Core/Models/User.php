@@ -7,9 +7,10 @@ use Bambamboole\LaravelCms\Api\Contracts\HasDeleteEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
+use Bambamboole\LaravelCms\Api\Contracts\HasUpdateEndpoint;
 use Bambamboole\LaravelCms\Backend\Contracts\HasForm;
 use Bambamboole\LaravelCms\Core\Forms\UserForm;
-use Bambamboole\LaravelCms\Users\Http\Resources\UserResource;
+use Bambamboole\LaravelCms\Core\Http\Resources\UserResource;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -31,6 +32,7 @@ class User extends BaseModel implements Authenticatable,
     HasIndexEndpoint,
     HasShowEndpoint,
     HasStoreEndpoint,
+    HasUpdateEndpoint,
     HasDeleteEndpoint
 {
     use HasApiTokens;
@@ -163,6 +165,22 @@ class User extends BaseModel implements Authenticatable,
         $model = $form->save();
 
         return new UserResource($model);
+    }
+
+    public function executeUpdate(Request $request, $identifier)
+    {
+        $model = $this->newQuery()->findOrFail($identifier);
+        $form = $model->getForm();
+        $form->setData($request->all());
+        $validator = $form->getValidator();
+
+        if ($validator->fails()) {
+            throw new ValidationException($validator);
+        }
+
+        $updatedModel = $form->save();
+
+        return new UserResource($updatedModel);
     }
 
     public function executeDelete($id)

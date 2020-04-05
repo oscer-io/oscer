@@ -2,11 +2,22 @@
 
 namespace Bambamboole\LaravelCms\Publishing\Models;
 
+use Bambamboole\LaravelCms\Api\Contracts\HasApiEndpoints;
+use Bambamboole\LaravelCms\Api\Contracts\HasDeleteEndpoint;
+use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
+use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
+use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
+use Bambamboole\LaravelCms\Api\Contracts\HasUpdateEndpoint;
+use Bambamboole\LaravelCms\Backend\Contracts\HasForm;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Bambamboole\LaravelCms\Publishing\Forms\PostForm;
+use Bambamboole\LaravelCms\Publishing\Http\Resources\PostResource;
+use Bambamboole\LaravelCms\Core\Http\Resources\UserResource;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use League\CommonMark\Block\Element\FencedCode;
 use League\CommonMark\Block\Element\IndentedCode;
 use League\CommonMark\CommonMarkConverter;
@@ -28,7 +39,13 @@ use Spatie\Sluggable\SlugOptions;
  * @property Carbon updated_at
  * @property Carbon created_at
  */
-class Post extends BaseModel
+class Post extends BaseModel implements HasForm,
+    HasApiEndpoints,
+    HasIndexEndpoint,
+    HasShowEndpoint,
+    HasStoreEndpoint,
+    HasUpdateEndpoint,
+    HasDeleteEndpoint
 {
     use HasSlug;
 
@@ -115,5 +132,58 @@ class Post extends BaseModel
     public function getForm()
     {
         return new PostForm($this);
+    }
+
+    public function getEndpoints(): array
+    {
+        return ['index', 'show', 'store', 'delete'];
+    }
+
+    public function executeIndex()
+    {
+        return PostResource::collection($this->newQuery()->paginate());
+    }
+
+    public function executeShow($id)
+    {
+        return new PostResource($this->newQuery()->findOrFail($id));
+    }
+
+    public function executeStore(Request $request)
+    {
+        $form = $this->getForm();
+        $form->setData($request->all());
+        $validator = $form->getValidator();
+
+        if ($validator->fails()) {
+            throw new ValidationException($validator);
+        }
+
+        $model = $form->save();
+
+        return new UserResource($model);
+    }
+
+    public function executeUpdate(Request $request, $identifier)
+    {
+        $model = $this->newQuery()->findOrFail($identifier);
+        $form = $model->getForm();
+        $form->setData($request->all());
+        $validator = $form->getValidator();
+
+        if ($validator->fails()) {
+            throw new ValidationException($validator);
+        }
+
+        $updatedModel = $form->save();
+
+        return new UserResource($updatedModel);
+    }
+
+    public function executeDelete($id)
+    {
+        $this->newQuery()->findOrFail($id)->delete();
+
+        return ['success' => true];
     }
 }

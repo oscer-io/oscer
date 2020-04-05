@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Publishing\Http\Resources;
 
-use Bambamboole\LaravelCms\Users\Http\Resources\UserResource;
+use Bambamboole\LaravelCms\Core\Http\Resources\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PageResource extends JsonResource

@@ -57,7 +57,7 @@
             }
         },
         async mounted() {
-            const response = await api(Cms.route('cms.api.posts.show', {id: this.id}));
+            const response = await api(Cms.route('cms.api.resources.show', ['post', this.id]));
             this.post = response.data.data;
             this.isLoading = false;
         }

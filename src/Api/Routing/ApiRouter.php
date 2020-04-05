@@ -63,13 +63,7 @@ class ApiRouter
                 $router->patch('/pages/{id}', [PagesController::class, 'update'])->name('pages.update');
                 $router->delete('/pages/{id}', [PagesController::class, 'delete'])->name('pages.delete');
 
-                $router->get('/posts', [PostsController::class, 'index'])->name('posts.index');
-                $router->post('/posts', [PostsController::class, 'store'])->name('posts.store');
-                $router->get('/posts/{id}', [PostsController::class, 'show'])->name('posts.show');
                 $router->patch('/posts/{id}', [PostsController::class, 'update'])->name('posts.update');
-                $router->delete('/posts/{id}', [PostsController::class, 'delete'])->name('posts.delete');
-
-                $router->patch('/users/{user}', [UsersController::class, 'update'])->name('users.update');
 
                 $router->post('/menus/{name}/items', [MenusController::class, 'store'])->name('menus.store');
                 $router->put('/menus/{name}/items/{id}', [MenusController::class, 'update'])->name('menus.update');
@@ -79,6 +73,7 @@ class ApiRouter
                 $router->get('/{resource}', [ResourceController::class, 'index'])->name('resources.index');
                 $router->post('/{resource}', [ResourceController::class, 'store'])->name('resources.store');
                 $router->get('/{resource}/{id}', [ResourceController::class, 'show'])->name('resources.show');
+                $router->patch('/{resource}/{id}', [ResourceController::class, 'update'])->name('resources.update');
                 $router->delete('/{resource}/{id}', [ResourceController::class, 'delete'])->name('resources.delete');
             });
     }

@@ -7,6 +7,7 @@ use Bambamboole\LaravelCms\Api\Contracts\HasDeleteEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
+use Bambamboole\LaravelCms\Api\Contracts\HasUpdateEndpoint;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -42,7 +43,21 @@ class ResourceController
 
         try {
             return $instance->executeStore($request);
-        }catch (ValidationException $exception){
+        } catch (ValidationException $exception) {
+            return response()->json(['errors' => $exception->validator->errors()], 422);
+        }
+    }
+
+    public function update(Request $request, string $resource, $identifier)
+    {
+        $instance = $this->getResourceInstance($resource);
+        if (!$instance instanceof HasUpdateEndpoint) {
+            throw new NotFoundHttpException('resource has no update endpoint');
+        }
+
+        try {
+            return $instance->executeUpdate($request, $identifier);
+        } catch (ValidationException $exception) {
             return response()->json(['errors' => $exception->validator->errors()], 422);
         }
     }

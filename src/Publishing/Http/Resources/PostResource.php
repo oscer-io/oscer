@@ -7,7 +7,7 @@ use Bambamboole\LaravelCms\Backend\Form\Fields\TagsField;
 use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
 use Bambamboole\LaravelCms\Backend\Http\Resources\BackendResource;
 use Bambamboole\LaravelCms\Publishing\Models\Tag;
-use Bambamboole\LaravelCms\Users\Http\Resources\UserResource;
+use Bambamboole\LaravelCms\Core\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\MissingValue;
 use Illuminate\Support\Collection;
@@ -28,7 +28,7 @@ class PostResource extends BackendResource
             'name' => $this->name,
             'slug' => $this->slug,
             'body' => $this->body,
-            'author' => new UserResource($this->whenLoaded('author')),
+            'author' => new \Bambamboole\LaravelCms\Core\Http\Resources\UserResource($this->whenLoaded('author')),
             'tags' => $this->whenLoaded('tags') instanceof MissingValue
                 ? []
                 : $this->whenLoaded('tags')->pluck('name'),

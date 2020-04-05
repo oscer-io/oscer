@@ -6,7 +6,7 @@ use Bambamboole\LaravelCms\Core\Models\User;
 use Bambamboole\LaravelCms\Publishing\Http\Resources\PostResource;
 use Bambamboole\LaravelCms\Publishing\Models\Post;
 use Bambamboole\LaravelCms\Users\Http\Resources\ProfileResource;
-use Bambamboole\LaravelCms\Users\Http\Resources\UserResource;
+use Bambamboole\LaravelCms\Core\Http\Resources\UserResource;
 
 class ResourceFieldsController
 {
