@@ -19,7 +19,7 @@
         <div class="bg-white shadow overflow-hidden sm:rounded-md">
             <ul>
                 <li v-for="post in posts">
-                    <router-link :to="{name: 'posts.index', params:{id: post.id}}"
+                    <router-link :to="{name: 'posts.show', params:{id: post.id}}"
                                  class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out"
                     >
                         <div class="flex items-center px-4 py-4 sm:px-6">
@@ -82,8 +82,7 @@
             }
         },
         async mounted() {
-            // posts endpoint not implemented because of the thoughts to only use one model with different types
-            const response = await api(Cms.route('cms.api.posts.index'));
+            const response = await api(Cms.route('cms.api.resources.index', 'post'));
             this.posts = response.data.data;
             this.isLoading = false;
         }

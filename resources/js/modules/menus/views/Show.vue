@@ -66,61 +66,52 @@
             </div>
             <div v-show="isNewMode" class="w-1/3 p-6">
                 <p class="pt-6 text-lg leading-6 font-medium text-gray-900 text-center">New item</p>
-                <BaseForm
-                    :fields="createFields"
-                    :api-route="{name: 'cms.api.menus.store',params: {name:this.name}}"
-                    :append="{menu: name}"
+                <ResourceForm
+                    resource="menu-item"
+                    :append="{menu: name, order: menu.items.length + 1}"
+                    :clear-on-success="true"
                     @cancel=""
-                    @success="handleNewItemSuccess()"
+                    @success="handleNewItemSuccess"
                 />
             </div>
-            <div v-show="isUpdateMode" class="w-1/3 p-6">
+            <div v-if="isUpdateMode && selectedItem" class="w-1/3 p-6">
                 <p class="pt-6 text-lg leading-6 font-medium text-gray-900 text-center">Update item</p>
-                <div ref="container">
-                </div>
+                <ResourceForm
+                    resource="menu-item"
+                    :resource-id="selectedItem.id"
+                    :append="{menu: name}"
+                    @cancel="mode = 'new'"
+                    @success="handleUpdateItemSuccess"
+                />
             </div>
         </div>
     </loading>
 </template>
 
 <script>
-    import Vue from 'vue';
-    import _ from 'lodash';
     import api from "../../../lib/api";
     import Draggable from 'vuedraggable';
-    import BaseForm from "../../../components/BaseForm";
+    import ResourceForm from "../../../components/ResourceForm";
 
     export default {
         props: {
             name: String,
         },
         components: {
-            BaseForm,
-            Draggable
+            Draggable,
+            ResourceForm
         },
         data() {
             return {
                 isLoading: true,
                 mode: 'new',
-                createFields: [
-                    {
-                        type: 'text',
-                        name: 'name',
-                        label: this.$t('menus.name'),
-                    },
-                    {
-                        type: 'text',
-                        name: 'url',
-                        label: this.$t('menus.url'),
-                    },
-                ],
-                updateInstance: false,
                 menu: null,
-                items: []
+                items: [],
+                selectedItem: false,
             }
         },
         mounted() {
-            this.fetchItems();
+            this.fetchMenu();
             this.isLoading = false;
         },
         computed: {
@@ -140,56 +131,32 @@
             }
         },
         methods: {
-            async fetchItems() {
-                const response = await api(Cms.route('cms.api.menus.show', {name: this.name}));
+            async fetchMenu() {
+                const response = await api(Cms.route('cms.api.resources.show', ['menu', this.name]));
                 this.menu = response.data.data
             },
 
             updateItem(item) {
-                this.resetUpdateInstance();
+                this.selectedItem = item;
                 this.mode = 'update';
-                let BaseFormClass = Vue.extend(BaseForm);
-                this.updateInstance = new BaseFormClass({
-                    propsData: {
-                        fields: _.map(this.createFields, field => {
-                            if (item.hasOwnProperty(field.name)) {
-                                field.value = item[field.name]
-                            }
-                            return field;
-                        }),
-                        append: {menu: this.name},
-                        apiRoute: {
-                            name: 'cms.api.menus.update',
-                            params: {name: this.name, id: item.id}
-                        },
-                        handleSuccess: (item) => {
-                            Cms.flash('success', 'Item updated');
-                        },
-                        handleCancel: () => {
-                            this.mode = 'new'
-                        },
-                    }
-                });
-                this.updateInstance.$mount();
-                this.$refs.container.appendChild(this.updateInstance.$el)
             },
 
-            resetUpdateInstance() {
-                if (this.updateInstance !== false) {
-                    this.updateInstance.$el.parentNode.removeChild(this.updateInstance.$el);
-                    this.updateInstance.$destroy();
-                    this.updateInstance = false;
-                }
-            },
 
             handleNewItemSuccess() {
                 Cms.flash('success', 'new Item created');
-                this.fetchItems();
+                this.fetchMenu();
+            },
+
+            handleUpdateItemSuccess() {
+                this.fetchMenu();
+                this.mode = 'new';
+                Cms.flash('success', 'new Item created');
             },
 
             async saveOrder() {
+                // update order
                 await api({
-                    ...Cms.route('cms.api.menus.save_order', {name: this.name}),
+                    ...Cms.route('cms.api.menus.save_order', this.name),
                     data: {
                         order: this.items.map((value, index) => {
                             return {
@@ -198,13 +165,17 @@
                             }
                         })
                     }
-                })
+                });
+                // and fetch menu again
+                this.fetchMenu();
                 Cms.flash('success', 'Items reordered');
             },
 
-            deleteItem(item) {
-                this.items = this.items.filter(e => e.id !== item.id);
-                api(Cms.route('cms.api.menus.delete', {name: this.name, id: item.id}));
+            async deleteItem(item) {
+                // delete item
+                await api(Cms.route('cms.api.resources.delete', ['menu-item', item.id]));
+                // and fetch menu again
+                this.fetchMenu();
                 Cms.flash('success', 'Item deleted');
             }
         }

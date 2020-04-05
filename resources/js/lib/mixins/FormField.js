@@ -22,6 +22,10 @@ export default {
     },
 
     watch: {
+        field(){
+            this.setInitialValue();
+            this.field.getValue = this.getValue
+        },
         value() {
             this.$emit('input', this.value)
         }

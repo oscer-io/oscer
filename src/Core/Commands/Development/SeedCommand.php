@@ -2,14 +2,14 @@
 
 namespace Bambamboole\LaravelCms\Core\Commands\Development;
 
-use Bambamboole\LaravelCms\Auth\Models\User;
-use Bambamboole\LaravelCms\Menus\Models\MenuItem;
-use Bambamboole\LaravelCms\Options\Models\Option;
+use Bambamboole\LaravelCms\Core\Menus\Models\MenuItem;
+use Bambamboole\LaravelCms\Core\Options\Models\Option;
+use Bambamboole\LaravelCms\Core\Pages\Models\Page;
+use Bambamboole\LaravelCms\Core\Posts\Models\Post;
+use Bambamboole\LaravelCms\Core\Posts\Models\Tag;
+use Bambamboole\LaravelCms\Core\Users\Models\User;
 use Bambamboole\LaravelCms\Permissions\Models\Permission;
 use Bambamboole\LaravelCms\Permissions\Models\Role;
-use Bambamboole\LaravelCms\Publishing\Models\Page;
-use Bambamboole\LaravelCms\Publishing\Models\Post;
-use Bambamboole\LaravelCms\Publishing\Models\Tag;
 use Faker\Generator;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Foundation\Application;
@@ -90,7 +90,7 @@ class SeedCommand extends Command
         $this->info("{$userAmount} users seeded");
     }
 
-    protected function seedTagsAndPosts()
+    protected function seedTagsAndPosts($user)
     {
         $this->comment('Seeding tags');
         $tags = collect(['General', 'Tech', 'PHP', 'Laravel', 'Vue.js', 'Travel'])

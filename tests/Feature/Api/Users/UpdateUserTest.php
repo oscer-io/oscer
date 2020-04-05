@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Tests\Feature\Api\Users;
 
-use Bambamboole\LaravelCms\Auth\Models\User;
+use Bambamboole\LaravelCms\Core\Users\Models\User;
 use Bambamboole\LaravelCms\Tests\ApiTestCase;
 
 class UpdateUserTest extends ApiTestCase
@@ -11,7 +11,7 @@ class UpdateUserTest extends ApiTestCase
     public function the_request_needs_to_be_authenticated()
     {
         factory(User::class)->create();
-        $response = $this->patch('/api/cms/users/1');
+        $response = $this->patch('/api/cms/user/1');
 
         $response->assertStatus(401);
     }
@@ -21,7 +21,7 @@ class UpdateUserTest extends ApiTestCase
     {
         $this->login();
 
-        $response = $this->patch('/api/cms/users/1337', ['name' => 'updated_name']);
+        $response = $this->patch('/api/cms/user/1337', ['name' => 'updated_name']);
 
         $response->assertStatus(404);
     }
@@ -32,7 +32,7 @@ class UpdateUserTest extends ApiTestCase
         $user = factory(User::class)->create();
         $this->login();
 
-        $response = $this->patch("/api/cms/users/{$user->id}", ['name' => 'updated_name']);
+        $response = $this->patch("/api/cms/user/{$user->id}", ['name' => 'updated_name']);
 
         $response->assertOk();
         $this->assertEquals('updated_name', $user->fresh()->name);
@@ -48,7 +48,7 @@ class UpdateUserTest extends ApiTestCase
         $user = factory(User::class)->create();
         $this->login();
 
-        $response = $this->patch("/api/cms/users/{$user->id}", factory(User::class)->raw($overrides));
+        $response = $this->patch("/api/cms/user/{$user->id}", factory(User::class)->raw($overrides));
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors($errorKey);
@@ -60,7 +60,6 @@ class UpdateUserTest extends ApiTestCase
             ['name', ['name' => '']],
             ['email', ['email' => '']],
             ['email', ['email' => 'invalid_email']],
-            ['bio', ['bio' => '']],
         ];
     }
 
@@ -70,7 +69,7 @@ class UpdateUserTest extends ApiTestCase
         $user = factory(User::class)->create();
         $this->login(['email' => 'test@test.com']);
 
-        $response = $this->patch("/api/cms/users/{$user->id}", [
+        $response = $this->patch("/api/cms/user/{$user->id}", [
             'name' => 'test',
             'email' => 'test@test.com',
         ]);

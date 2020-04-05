@@ -14,4 +14,9 @@ class PasswordField extends Field
     ];
 
     protected array $with = ['confirm', 'confirmAttributes'];
+
+    public static function make(string $name, ?string $label = null, ?bool $fillValue = false)
+    {
+        return new static($name, $label ?? ucfirst($name), $fillValue);
+    }
 }

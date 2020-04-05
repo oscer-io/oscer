@@ -2,8 +2,8 @@
 
 /** @var Factory $factory */
 
-use Bambamboole\LaravelCms\Auth\Models\User;
-use Bambamboole\LaravelCms\Publishing\Models\Page;
+use Bambamboole\LaravelCms\Core\Pages\Models\Page;
+use Bambamboole\LaravelCms\Core\Users\Models\User;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
 
@@ -19,7 +19,6 @@ use Illuminate\Database\Eloquent\Factory;
 */
 
 $factory->define(Page::class, function (Faker $faker) {
-    $randomImgUrl = 'https://picsum.photos/300/300?random='.$faker->unique()->randomNumber(5, true);
 
     return [
         'type' => 'page',

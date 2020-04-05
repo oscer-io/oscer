@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Tests\Feature\Api\Pages;
 
-use Bambamboole\LaravelCms\Publishing\Models\Page;
+use Bambamboole\LaravelCms\Core\Pages\Models\Page;
 use Bambamboole\LaravelCms\Tests\ApiTestCase;
 
 class DeletePageTest extends ApiTestCase
@@ -10,7 +10,7 @@ class DeletePageTest extends ApiTestCase
     /** @test */
     public function the_request_needs_to_be_authenticated()
     {
-        $response = $this->delete('/api/cms/pages/1');
+        $response = $this->delete('/api/cms/page/1');
 
         $response->assertStatus(401);
     }
@@ -21,7 +21,7 @@ class DeletePageTest extends ApiTestCase
         $page = factory(Page::class)->create();
         $this->login();
 
-        $response = $this->delete("/api/cms/pages/{$page->id}");
+        $response = $this->delete("/api/cms/page/{$page->id}");
 
         $response->assertOk();
         $this->assertEquals(0, Page::query()->count());
@@ -32,7 +32,7 @@ class DeletePageTest extends ApiTestCase
     {
         $this->login();
 
-        $response = $this->delete('/api/cms/pages/1337');
+        $response = $this->delete('/api/cms/page/1337');
 
         $response->assertStatus(404);
     }
