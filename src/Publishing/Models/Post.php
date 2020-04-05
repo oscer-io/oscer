@@ -141,12 +141,12 @@ class Post extends BaseModel implements HasForm,
 
     public function executeIndex()
     {
-        return PostResource::collection($this->newQuery()->paginate());
+        return $this->asResourceCollection($this->newQuery()->paginate());
     }
 
     public function executeShow($id)
     {
-        return new PostResource($this->newQuery()->findOrFail($id));
+        return $this->asResource($this->newQuery()->findOrFail($id));
     }
 
     public function executeStore(Request $request)
@@ -161,7 +161,7 @@ class Post extends BaseModel implements HasForm,
 
         $model = $form->save();
 
-        return new UserResource($model);
+        return $this->asResource($model);
     }
 
     public function executeUpdate(Request $request, $identifier)
@@ -177,7 +177,7 @@ class Post extends BaseModel implements HasForm,
 
         $updatedModel = $form->save();
 
-        return new UserResource($updatedModel);
+        return $this->asResource($updatedModel);
     }
 
     public function executeDelete($id)
@@ -185,5 +185,15 @@ class Post extends BaseModel implements HasForm,
         $this->newQuery()->findOrFail($id)->delete();
 
         return ['success' => true];
+    }
+
+    protected function asResource($model)
+    {
+        return new PostResource($model);
+    }
+
+    protected function asResourceCollection($models)
+    {
+        return PostResource::collection($models);
     }
 }

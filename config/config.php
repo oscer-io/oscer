@@ -8,6 +8,7 @@ use Bambamboole\LaravelCms\Core\Models\User;
 use Bambamboole\LaravelCms\Menus\Models\Menu;
 use Bambamboole\LaravelCms\Menus\Models\MenuItem;
 use Bambamboole\LaravelCms\Options\Models\Option;
+use Bambamboole\LaravelCms\Publishing\Models\Page;
 use Bambamboole\LaravelCms\Publishing\Models\Post;
 
 return [
@@ -22,6 +23,7 @@ return [
         'menu' => Menu::class,
         'menu-item' => MenuItem::class,
         'post' => Post::class,
+        'page' => Page::class,
         'option' => Option::class,
     ],
     'options' => [

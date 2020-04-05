@@ -10,7 +10,7 @@ class CreatePageTest extends ApiTestCase
     /** @test */
     public function the_request_needs_to_be_authenticated()
     {
-        $response = $this->post('/api/cms/pages');
+        $response = $this->post('/api/cms/page');
 
         $response->assertStatus(401);
     }
@@ -21,7 +21,7 @@ class CreatePageTest extends ApiTestCase
         $this->withoutExceptionHandling();
         $this->login();
 
-        $response = $this->post('/api/cms/pages', factory(Page::class)->raw());
+        $response = $this->post('/api/cms/page', factory(Page::class)->raw());
 
         $response->assertStatus(201);
         $this->assertJsonSchema('responses/page', $response->getContent());
@@ -36,7 +36,7 @@ class CreatePageTest extends ApiTestCase
     {
         $this->login();
 
-        $response = $this->post('/api/cms/pages', factory(Page::class)->raw($overrides));
+        $response = $this->post('/api/cms/page', factory(Page::class)->raw($overrides));
 
         $response->assertStatus(422);
         $response->assertJsonValidationErrors($errorKey);

@@ -8,12 +8,6 @@ use Bambamboole\LaravelCms\Api\Http\Controllers\ResourceController;
 use Bambamboole\LaravelCms\Api\Http\Controllers\SwaggerUiController;
 use Bambamboole\LaravelCms\Core\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Api\Http\Controllers\MenuOrderController;
-use Bambamboole\LaravelCms\Menus\Http\Controllers\MenusController;
-use Bambamboole\LaravelCms\Publishing\Http\Controllers\Api\PagesController;
-use Bambamboole\LaravelCms\Publishing\Http\Controllers\PostsController;
-use Bambamboole\LaravelCms\Users\Http\Controllers\ProfileAvatarController;
-use Bambamboole\LaravelCms\Users\Http\Controllers\ProfileController;
-use Bambamboole\LaravelCms\Users\Http\Controllers\UsersController;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Routing\Router;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
@@ -57,14 +51,6 @@ class ApiRouter
             ->as('cms.api.')
             ->prefix($this->prefix)
             ->group(function (Router $router) {
-                $router->get('/pages', [PagesController::class, 'index'])->name('pages.index');
-                $router->post('/pages', [PagesController::class, 'store'])->name('pages.store');
-                $router->get('/pages/{id}', [PagesController::class, 'show'])->name('pages.show');
-                $router->patch('/pages/{id}', [PagesController::class, 'update'])->name('pages.update');
-                $router->delete('/pages/{id}', [PagesController::class, 'delete'])->name('pages.delete');
-
-                $router->patch('/posts/{id}', [PostsController::class, 'update'])->name('posts.update');
-
                 $router->post('/menus/{name}/save_order', [MenuOrderController::class, 'update'])->name('menus.save_order');
 
                 $router->get('/{resource}', [ResourceController::class, 'index'])->name('resources.index');
