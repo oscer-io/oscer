@@ -91,7 +91,6 @@
 <script>
     import api from "../../../lib/api";
     import Draggable from 'vuedraggable';
-    import BaseForm from "../../../components/BaseForm";
     import ResourceForm from "../../../components/ResourceForm";
 
     export default {
@@ -99,7 +98,6 @@
             name: String,
         },
         components: {
-            BaseForm,
             Draggable,
             ResourceForm
         },
