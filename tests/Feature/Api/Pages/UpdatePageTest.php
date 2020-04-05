@@ -4,6 +4,7 @@ namespace Bambamboole\LaravelCms\Tests\Feature\Api\Pages;
 
 use Bambamboole\LaravelCms\Publishing\Models\Page;
 use Bambamboole\LaravelCms\Tests\ApiTestCase;
+use Illuminate\Support\Facades\DB;
 
 class UpdatePageTest extends ApiTestCase
 {
@@ -44,11 +45,10 @@ class UpdatePageTest extends ApiTestCase
      */
     public function data_needs_to_be_valid(string $errorKey, array $overrides)
     {
+        $this->withoutExceptionHandling();
         $page = factory(Page::class)->create();
         $this->login();
-
         $response = $this->patch("/api/cms/page/{$page->id}", factory(Page::class)->raw($overrides));
-
         $response->assertStatus(422);
         $response->assertJsonValidationErrors($errorKey);
     }
