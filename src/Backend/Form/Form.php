@@ -3,7 +3,7 @@
 namespace Bambamboole\LaravelCms\Backend\Form;
 
 use Bambamboole\LaravelCms\Backend\Form\Fields\Field;
-use Bambamboole\LaravelCms\Core\Models\BaseModel;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator as ValidatorFactory;
 use Illuminate\Validation\Validator;
@@ -12,7 +12,7 @@ abstract class Form implements \JsonSerializable
 {
     protected array $data;
 
-    protected BaseModel $resource;
+    protected Model $resource;
 
     protected bool $isCreateForm;
 
@@ -25,12 +25,12 @@ abstract class Form implements \JsonSerializable
      */
     protected $validator;
 
-    public function __construct(BaseModel $resource)
+    public function __construct(Model $resource)
     {
         $this->setResource($resource);
     }
 
-    public function setResource(BaseModel $resource)
+    public function setResource(Model $resource)
     {
         $this->resource = $resource;
 
@@ -42,32 +42,15 @@ abstract class Form implements \JsonSerializable
         $this->data = $data;
     }
 
-    public function resolveValues(Collection $fields)
+    public function getValidator(): Validator
     {
-        return $fields->map(function (Field $field) {
-            if ($field->fillValue == false) {
-                return $field;
-            }
-            $field->value = $this->resource[$field->name] ?? '';
+        if (!$this->validator) {
+            $rules = $this->getValidationRules();
 
-            return $field;
-        });
-    }
+            $this->validator = ValidatorFactory::make($this->data, $rules);
+        }
 
-    abstract public function fields(): Collection;
-
-    protected function filteredFields(): Collection
-    {
-        return $this->fields()->filter(function (Field $field) {
-            if ($this->isCreateForm === true && $field->hiddenOnCreate === true) {
-                return false;
-            }
-            if ($this->isCreateForm === false && $field->hiddenOnUpdate === true) {
-                return false;
-            }
-
-            return true;
-        });
+        return $this->validator;
     }
 
     protected function getValidationRules()
@@ -80,16 +63,7 @@ abstract class Form implements \JsonSerializable
             }, []), $this->additionalValidationRules);
     }
 
-    public function getValidator(): Validator
-    {
-        if (! $this->validator) {
-            $rules = $this->getValidationRules();
-
-            $this->validator = ValidatorFactory::make($this->data, $rules);
-        }
-
-        return $this->validator;
-    }
+    abstract public function fields(): Collection;
 
     public function save()
     {
@@ -117,6 +91,51 @@ abstract class Form implements \JsonSerializable
         //
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        return $this->toArray();
+    }
+
+    public function toArray()
+    {
+        return ['data' => array_merge(
+            [
+                'fields' => $this->resolveValues($this->filteredFields()),
+                'removeNullValues' => $this->removeNullValues(),
+            ],
+            !empty($this->missingValues) ? ['missing_values' => $this->missingValues] : []
+        )];
+    }
+
+    public function resolveValues(Collection $fields)
+    {
+        return $fields->map(function (Field $field) {
+            if ($field->fillValue == false) {
+                return $field;
+            }
+            $field->value = $this->resource[$field->name] ?? '';
+
+            return $field;
+        });
+    }
+
+    protected function filteredFields(): Collection
+    {
+        return $this->fields()->filter(function (Field $field) {
+            if ($this->isCreateForm === true && $field->hiddenOnCreate === true) {
+                return false;
+            }
+            if ($this->isCreateForm === false && $field->hiddenOnUpdate === true) {
+                return false;
+            }
+
+            return true;
+        });
+    }
+
     protected function removeNullValues()
     {
         $rules = $this->filteredFields()->reduce(function ($result, Field $field) {
@@ -128,24 +147,5 @@ abstract class Form implements \JsonSerializable
         }, []);
 
         return in_array('filled', $rules);
-    }
-
-    public function toArray()
-    {
-        return ['data' => array_merge(
-            [
-                'fields' => $this->resolveValues($this->filteredFields()),
-                'removeNullValues' => $this->removeNullValues(),
-            ],
-            ! empty($this->missingValues) ? ['missing_values' => $this->missingValues] : []
-        )];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function jsonSerialize()
-    {
-        return $this->toArray();
     }
 }
