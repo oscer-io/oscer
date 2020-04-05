@@ -101,9 +101,10 @@ abstract class Field implements JsonSerializable
     {
         if ($this->resolveValueCallback && $this->resolveValueCallback instanceof Closure) {
             return call_user_func($this->resolveValueCallback, $this->value);
-        } else {
-            return $this->value;
         }
+
+        return $this->value;
+
     }
 
     public function jsonSerialize()
