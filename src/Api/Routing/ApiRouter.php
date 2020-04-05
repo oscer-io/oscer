@@ -3,17 +3,13 @@
 namespace Bambamboole\LaravelCms\Api\Routing;
 
 use Bambamboole\LaravelCms\Api\Http\Controllers\IssueTokenController;
+use Bambamboole\LaravelCms\Api\Http\Controllers\MenuOrderController;
 use Bambamboole\LaravelCms\Api\Http\Controllers\OpenApiController;
 use Bambamboole\LaravelCms\Api\Http\Controllers\ResourceController;
 use Bambamboole\LaravelCms\Api\Http\Controllers\SwaggerUiController;
 use Bambamboole\LaravelCms\Core\Http\Middleware\Authenticate;
-use Bambamboole\LaravelCms\Api\Http\Controllers\MenuOrderController;
-use Bambamboole\LaravelCms\Menus\Http\Controllers\MenusController;
 use Bambamboole\LaravelCms\Publishing\Http\Controllers\Api\PagesController;
 use Bambamboole\LaravelCms\Publishing\Http\Controllers\PostsController;
-use Bambamboole\LaravelCms\Users\Http\Controllers\ProfileAvatarController;
-use Bambamboole\LaravelCms\Users\Http\Controllers\ProfileController;
-use Bambamboole\LaravelCms\Users\Http\Controllers\UsersController;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Routing\Router;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;

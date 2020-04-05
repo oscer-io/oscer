@@ -9,10 +9,10 @@ use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasUpdateEndpoint;
 use Bambamboole\LaravelCms\Backend\Contracts\HasForm;
+use Bambamboole\LaravelCms\Core\Http\Resources\UserResource;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Bambamboole\LaravelCms\Publishing\Forms\PostForm;
 use Bambamboole\LaravelCms\Publishing\Http\Resources\PostResource;
-use Bambamboole\LaravelCms\Core\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
@@ -39,7 +39,8 @@ use Spatie\Sluggable\SlugOptions;
  * @property Carbon updated_at
  * @property Carbon created_at
  */
-class Post extends BaseModel implements HasForm,
+class Post extends BaseModel implements
+    HasForm,
     HasApiEndpoints,
     HasIndexEndpoint,
     HasShowEndpoint,
