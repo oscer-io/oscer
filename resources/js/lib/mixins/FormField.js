@@ -51,8 +51,10 @@ export default {
          * of the field. It will be bound to the shared field definition object.
          * This way the form component can gather the values.
          */
-        fill(formData) {
-            formData.append(this.field.name, this.value)
+        fill(data) {
+            data[this.field.name] = this.value;
+
+            return data;
         }
     }
 }

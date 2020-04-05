@@ -31,6 +31,7 @@
 <script>
     import api from "../lib/api";
     import _ from "lodash";
+    import {objectToFormData} from 'object-to-formdata';
 
     export default {
         props: {
@@ -114,32 +115,25 @@
             },
 
             getFormData() {
-                let formData = new FormData();
+                let data = {};
 
                 // Fill the FormData object with executing the fill method of all fields
                 _.each(this.fields, field => {
-                    field.fill(formData);
+                    data = field.fill(data);
                 });
-
                 // If a form has removeNullValues set, this block will remove all keys
                 // which have null or an empty string as their value.
                 if (this.removeNullValues === true) {
-                    for (const key of formData.keys()) {
-                        const value = formData.get(key);
-                        if (value === null || value === '') {
-                            formData.delete(key);
-                        }
-                    }
+                    data = _.pickBy(data);
                 }
-
                 // If there are values to append, do it.
                 if (this.append !== false) {
-                    for (let [key, value] of Object.entries(this.append)) {
-                        formData.append(key, value);
-                    }
+                    Object.assign(data, this.append)
                 }
 
-                return formData;
+                console.log(data);
+
+                return objectToFormData(data);
             },
 
             getValidationErrors(field) {

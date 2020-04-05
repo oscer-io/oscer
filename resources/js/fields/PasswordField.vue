@@ -35,11 +35,15 @@
         },
 
         methods: {
-            fill(formData) {
-                formData.append(this.field.name, this.value);
+            fill(data) {
+                data[this.field.name] = this.value;
+
+                // Append the confirmation field if this.confirm is true
                 if (this.field.confirm === true) {
-                    formData.append(this.field.confirmAttributes.name, this.confirmedValue);
+                    data[this.field.confirmAttributes.name] = this.confirmedValue;
                 }
+
+                return data;
             }
         }
     }

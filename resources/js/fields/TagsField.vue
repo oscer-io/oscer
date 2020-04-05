@@ -20,12 +20,12 @@
             VueSelect,
         },
         methods: {
-            // We have to override the fill method because this.value is an array.
-            fill(formData) {
-                this.value.forEach(tag => {
-                    formData.append(`${this.field.name}[]`, tag)
-                })
-            }
+            // // We have to override the fill method because this.value is an array.
+            // fill(formData) {
+            //     this.value.forEach(tag => {
+            //         formData.append(`${this.field.name}[]`, tag)
+            //     })
+            // }
         }
     };
 </script>

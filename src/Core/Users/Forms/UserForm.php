@@ -2,11 +2,13 @@
 
 namespace Bambamboole\LaravelCms\Core\Users\Forms;
 
+use Bambamboole\LaravelCms\Backend\Form\Fields\ImageField;
 use Bambamboole\LaravelCms\Backend\Form\Fields\PasswordField;
 use Bambamboole\LaravelCms\Backend\Form\Fields\TextareaField;
 use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
 use Bambamboole\LaravelCms\Backend\Form\Form;
 use Bambamboole\LaravelCms\Core\Mails\NewUserCreatedMail;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -19,6 +21,7 @@ class UserForm extends Form
     public function fields(): Collection
     {
         return collect([
+            ImageField::make('avatar')->rules(['image'])->doNotShowOnCreate(),
             TextField::make('name')
                 ->rulesOnCreate(['required', 'string'])
                 ->rulesOnUpdate(['filled', 'string']),
@@ -46,6 +49,10 @@ class UserForm extends Form
         // when using FormData instead of Json we have to clear the password_confirmation key...
         if(isset($data['password_confirmation'])){
             unset($data['password_confirmation']);
+        }
+
+        if(isset($data['avatar'])){
+            $data['avatar'] = $data['avatar']->store('avatars');
         }
 
         return $data;
