@@ -29,6 +29,12 @@
             <PermissionTable
                 :role="role"
                 :permissions="permissions"/>
+            <ResourceForm
+                resource="role"
+                :resource-id="1"
+                @cancel=""
+                @success=""
+            />
         </div>
     </loading>
 </template>
@@ -36,9 +42,10 @@
 <script>
     import api from "../../../lib/api";
     import PermissionTable from '../components/PermissionTable';
+    import ResourceForm from "../../../components/ResourceForm";
 
     export default {
-        components: {PermissionTable},
+        components: {PermissionTable, ResourceForm},
         props: ['id'],
         data() {
             return {
