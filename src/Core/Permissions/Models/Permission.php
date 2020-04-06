@@ -8,5 +8,4 @@ class Permission extends \Spatie\Permission\Models\Permission
     {
         return strtok($this->name, '.');
     }
-
 }

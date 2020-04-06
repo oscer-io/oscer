@@ -12,7 +12,6 @@ use Bambamboole\LaravelCms\Core\Permissions\Resources\RoleResource;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
-
 class Role extends \Spatie\Permission\Models\Role implements
     HasForm,
     HasApiEndpoints,
