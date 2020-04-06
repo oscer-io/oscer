@@ -72,10 +72,9 @@ abstract class Form implements \JsonSerializable
         $data = $this->afterValidation($this->validator->valid());
 
         if ($this->isCreateForm) {
-            $this->resource = $this->resource->newQuery()->create($data);
-            $this->afterCreate($this->resource);
+            $this->createResource($data);
         } else {
-            $this->resource->update($data);
+            $this->updateResource($data);
         }
 
         return $this->resource;
@@ -86,9 +85,19 @@ abstract class Form implements \JsonSerializable
         return $data;
     }
 
-    public function afterCreate($resource)
+    protected function createResource($data)
     {
-        //
+        $this->resource = $this->resource->newQuery()->create($data);
+        $this->afterCreateResource($this->resource);
+    }
+
+    public function afterCreateResource($resource)
+    {
+    }
+
+    protected function updateResource($data)
+    {
+        $this->resource->update($data);
     }
 
     /**
