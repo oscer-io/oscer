@@ -17,6 +17,9 @@
             </div>
             <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
                 <div class="sm:col-span-6">
+                    <img class="h-40 w-40 rounded-full" alt :src="user.avatar"/>
+                </div>
+                <div class="sm:col-span-6">
                     <span class="block text-sm font-medium leading-5 text-gray-700">
                         {{ $t('users.name') }}
                     </span>

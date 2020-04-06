@@ -10,6 +10,7 @@ use Bambamboole\LaravelCms\Backend\Form\Form;
 use Bambamboole\LaravelCms\Core\Mails\NewUserCreatedMail;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
@@ -51,7 +52,7 @@ class UserForm extends Form
         }
 
         if (isset($data['avatar'])) {
-            $data['avatar'] = $data['avatar']->store('avatars');
+            $data['avatar'] = Storage::disk('public')->put('avatars', $data['avatar']);
         }
 
         return $data;
