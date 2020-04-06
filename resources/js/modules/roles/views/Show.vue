@@ -53,8 +53,7 @@
         },
         methods: {
             handleSuccess(role) {
-                Cms.flash('success', 'Nice one!');
-                // this.$router.push({name: 'role.show', params: {id: post.id}})
+                Cms.flash('success', 'Role updated.');
             }
         },
         computed: {
