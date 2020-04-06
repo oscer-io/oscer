@@ -26,14 +26,11 @@
                     </div>
                 </div>
             </div>
-            <PermissionTable
-                :role="role"
-                :permissions="permissions"/>
             <ResourceForm
                 resource="role"
-                :resource-id="1"
+                :resource-id="role.id"
                 @cancel=""
-                @success=""
+                @success="handleSuccess"
             />
         </div>
     </loading>
@@ -41,11 +38,10 @@
 
 <script>
     import api from "../../../lib/api";
-    import PermissionTable from '../components/PermissionTable';
     import ResourceForm from "../../../components/ResourceForm";
 
     export default {
-        components: {PermissionTable, ResourceForm},
+        components: {ResourceForm},
         props: ['id'],
         data() {
             return {
@@ -54,35 +50,17 @@
                 permissions: null
             }
         },
-        computed: {
-            title() {
-                return this.role
-                    ? this.$t('pages.show_role_title', {name: this.role.name, id: this.role.id})
-                    : 'Loading'
-            },
-        },
         methods: {
-            //permission.id as param
-            // async save(permissionName) {
-            //     await api({
-            //         ...Cms.route('cms.api.roles.save_permissions', {id: this.role.id}),
-            //         data: {
-            //             // order: this.items.map((value, index) => {
-            //             //     return {
-            //             //         id: value.id,
-            //             //         order: index
-            //             //     }
-            //             // })
-            //         }
-            //     })
-            //     Cms.flash('success', 'Items reordered');
-            // },
+            handleSuccess(role) {
+                Cms.flash('success', 'Nice one!');
+                // this.$router.push({name: 'role.show', params: {id: post.id}})
+            }
+        },
+        computed: {
         },
         async mounted() {
             const responseRole = await api(Cms.route('cms.api.resources.show', ['role', this.id]));
-            const responsePermissions = await api(Cms.route('cms.api.resources.index', 'permission'));
             this.role = responseRole.data.data;
-            this.permissions = responsePermissions.data.data;
 
             this.isLoading = false;
         },
