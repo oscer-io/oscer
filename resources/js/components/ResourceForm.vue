@@ -1,7 +1,7 @@
 <template>
     <loading :loading="isLoading">
         <form @submit.prevent="submitResourceForm">
-            <div v-if="inSubmitPositions('top')" class="mt-8 border-t border-gray-200 pt-5">
+            <div v-if="inSubmitPositions('top')" class="mb-8 border-b border-gray-200 pb-5">
                 <div class="flex justify-end">
                     <span class="inline-flex rounded-md shadow-sm">
                         <button type="button" @click="$emit('cancel')"
@@ -17,14 +17,16 @@
                     </span>
                 </div>
             </div>
-            <component
-                v-for="(field, index) in fields"
-                :key="field.name + index"
-                :ref="`${field.name}-field`"
-                :is="field.component"
-                :field="field"
-                :validation-errors="getValidationErrors(field)"
-            />
+            <loading :loading="isSubmitting">
+                <component
+                    v-for="(field, index) in fields"
+                    :key="field.name + index"
+                    :ref="`${field.name}-field`"
+                    :is="field.component"
+                    :field="field"
+                    :validation-errors="getValidationErrors(field)"
+                />
+            </loading>
             <div v-if="inSubmitPositions('bottom')" class="mt-8 border-t border-gray-200 pt-5">
                 <div class="flex justify-end">
                     <span class="inline-flex rounded-md shadow-sm">
@@ -87,6 +89,7 @@
         data() {
             return {
                 isLoading: true,
+                isSubmitting: false,
                 fields: [],
                 removeNullValues: false,
             }
@@ -122,10 +125,17 @@
             async submitResourceForm() {
                 // Submit the form. If we get validation errors, they will be passed to the fields.
                 try {
+                    this.isSubmitting = true;
+                    const data = this.getFormData(); // get current form values
+
                     const response = await api({
                         ...Cms.route('cms.backend.forms.store', this.prepareParams()),
-                        data: this.getFormData()
+                        data: data
                     });
+
+                    // this.fields = data;
+                    this.setFormData(data); // set form values that have been send (we do not have to fetch again then)
+                    this.isSubmitting = false;
 
                     // Emit success event with the data from the successful response
                     this.$emit('success', response.data.data);
