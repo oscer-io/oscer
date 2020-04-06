@@ -10,7 +10,6 @@ use Illuminate\Support\Collection;
 
 class RoleForm extends Form
 {
-
     /**
      * @var Model | \Bambamboole\LaravelCms\Core\Permissions\Models\Role
      */
@@ -22,7 +21,6 @@ class RoleForm extends Form
             return CheckboxField::make($permission->name, $permission->name)
                 ->rules(['boolean'])
                 ->addResolveValueCallback(function ($value) use ($permission) {
-
                     return $this->resource->hasPermissionTo($permission);
                 });
         });
