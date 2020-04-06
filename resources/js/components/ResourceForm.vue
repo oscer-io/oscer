@@ -94,16 +94,13 @@
 
             async submitResourceForm() {
                 // Submit the form. If we get validation errors, they will be passed to the fields.
-                console.log(this.getFormData());
                 try {
                     const response = await api({
                         ...Cms.route('cms.backend.forms.store', this.prepareParams()),
                         data: this.getFormData()
                     });
-
                     // Emit success event with the data from the successful response
                     this.$emit('success', response.data.data);
-
                     // Reset form by fetching the fields again. Only if resetOnSuccess prop is true
                     this.resetOnSuccess && this.fetchResourceForm();
                 } catch (error) {
@@ -116,7 +113,6 @@
 
             getFormData() {
                 let data = {};
-
                 // Fill the FormData object with executing the fill method of all fields
                 _.each(this.fields, field => {
                     data = field.fill(data);
@@ -130,8 +126,6 @@
                 if (this.append !== false) {
                     Object.assign(data, this.append)
                 }
-
-                console.log(data);
 
                 return objectToFormData(data);
             },
