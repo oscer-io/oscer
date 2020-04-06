@@ -74,7 +74,7 @@
             },
             submitPositions: {
                 type: Array,
-                validator: function (value) {
+                validator: (value) => {
                     const valid = ['top', 'bottom'];
 
                     return value === undefined || difference(value, valid).length === 0;
