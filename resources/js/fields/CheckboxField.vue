@@ -21,9 +21,6 @@
                     ? this.field.attributes.type
                     : 'checkbox';
             }
-        },
-        created() {
-            console.log(this.field)
         }
     }
 </script>
