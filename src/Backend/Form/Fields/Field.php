@@ -104,7 +104,6 @@ abstract class Field implements JsonSerializable
         }
 
         return $this->value;
-
     }
 
     public function jsonSerialize()
