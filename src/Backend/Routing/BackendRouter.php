@@ -39,7 +39,6 @@ class BackendRouter
                 $router->post('/password/forgot', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
                 $router->get('/password/reset/{token}', [ForgotPasswordController::class, 'showNewPassword'])->name('password.reset');
             });
-        $this->router->aliasMiddleware('permission', PermissionMiddleware::class);
     }
 
     public function registerBackendRoutes(): void
