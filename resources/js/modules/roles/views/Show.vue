@@ -29,6 +29,7 @@
             <ResourceForm
                 resource="role"
                 :resource-id="role.id"
+                :submitPositions="['bottom', 'top']"
                 @cancel=""
                 @success="handleSuccess"
             />
