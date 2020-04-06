@@ -60,8 +60,8 @@
         computed: {
         },
         async mounted() {
-            const responseRole = await api(Cms.route('cms.api.resources.show', ['role', this.id]));
-            this.role = responseRole.data.data;
+            const response = await api(Cms.route('cms.api.resources.show', ['role', this.id]));
+            this.role = response.data.data;
 
             this.isLoading = false;
         },
