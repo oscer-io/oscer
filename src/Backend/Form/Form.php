@@ -91,7 +91,7 @@ abstract class Form implements \JsonSerializable
         $this->afterCreateResource($this->resource);
     }
 
-    public function afterCreateResource($resource)
+    protected function afterCreateResource($resource)
     {
     }
 
