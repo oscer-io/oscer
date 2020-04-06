@@ -79,7 +79,7 @@
 
                     return value === undefined || difference(value, valid).length === 0;
                 },
-                default: function () {
+                default: () => {
                     return ['bottom']
                 }
             }
