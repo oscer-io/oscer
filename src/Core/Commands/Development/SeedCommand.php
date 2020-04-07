@@ -72,8 +72,8 @@ class SeedCommand extends Command
             [
                 'name' => 'admin',
                 'permissions' => [
-                    Permission::all()
-                ]
+                    Permission::all(),
+                ],
             ],
             [
                 'name' => 'editor',
@@ -82,7 +82,7 @@ class SeedCommand extends Command
                     'pages.*', // all permissions in pages
                     'menus.*', // all permissions in menus
                     'options.*', // all permissions in options
-                ]
+                ],
             ],
             [
                 'name' => 'publisher',
@@ -90,7 +90,7 @@ class SeedCommand extends Command
                     'posts.*', // all permissions in posts
                     'pages.*', // all permissions in pages
                     'menus.*', // all permissions in menus
-                ]
+                ],
             ],
             [
                 'name' => 'author',
@@ -101,20 +101,20 @@ class SeedCommand extends Command
                     'pages.view',
                     'pages.create',
                     'pages.update',
-                ]
+                ],
             ],
             [
                 'name' => 'subscriber',
                 'permissions' => [
                     'posts.view',
                     'pages.view',
-                ]
+                ],
             ],
         ])->map(function ($role) {
             return factory(Role::class)->create(['name' => $role['name']])->givePermissionTo($role['permissions']);
         });
 
-        $this->info("Roles seeded");
+        $this->info('Roles seeded');
     }
 
     protected function seedUsers($userAmount = 10)
