@@ -64,16 +64,57 @@ class SeedCommand extends Command
         return $user;
     }
 
-    protected function seedRolesAndPermissions($roleAmount = 5)
+    protected function seedRolesAndPermissions()
     {
-        $this->comment('Seeding roles with random permissions');
+        $this->comment('Seeding roles & permissions');
 
-        $roles = factory(Role::class, $roleAmount)->create();
-
-        $roles->each(function (Role $role) {
-            $role->givePermissionTo(Permission::all()->random(rand(1, Permission::all()->count())));
+        collect([
+            [
+                'name' => 'admin',
+                'permissions' => [
+                    Permission::all()
+                ]
+            ],
+            [
+                'name' => 'editor',
+                'permissions' => [
+                    'posts.*', // all permissions in posts
+                    'pages.*', // all permissions in pages
+                    'menus.*', // all permissions in menus
+                    'options.*', // all permissions in options
+                ]
+            ],
+            [
+                'name' => 'publisher',
+                'permissions' => [
+                    'posts.*', // all permissions in posts
+                    'pages.*', // all permissions in pages
+                    'menus.*', // all permissions in menus
+                ]
+            ],
+            [
+                'name' => 'author',
+                'permissions' => [
+                    'posts.view',
+                    'posts.create',
+                    'posts.update',
+                    'pages.view',
+                    'pages.create',
+                    'pages.update',
+                ]
+            ],
+            [
+                'name' => 'subscriber',
+                'permissions' => [
+                    'posts.view',
+                    'pages.view',
+                ]
+            ],
+        ])->map(function ($role) {
+            return factory(Role::class)->create(['name' => $role['name']])->givePermissionTo($role['permissions']);
         });
-        $this->info("{$roleAmount} roles seeded");
+
+        $this->info("Roles seeded");
     }
 
     protected function seedUsers($userAmount = 10)
