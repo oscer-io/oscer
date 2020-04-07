@@ -2,6 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Tests;
 
+use Bambamboole\LaravelCms\Core\Permissions\Models\Role;
 use Bambamboole\LaravelCms\Core\Users\Models\User;
 use Bambamboole\LaravelCms\LaravelCmsServiceProvider;
 use Laravel\Sanctum\Sanctum;
@@ -48,7 +49,7 @@ class ApiTestCase extends BaseTestCase
 
     protected function login(array $overrides = []): User
     {
-        $user = factory(User::class)->create($overrides);
+        $user = factory(User::class)->create($overrides)->assignRole(Role::SUPER_ADMIN_ROLE);
         Sanctum::actingAs($user);
 
         return $user;
