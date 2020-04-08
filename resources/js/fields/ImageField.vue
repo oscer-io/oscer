@@ -50,10 +50,14 @@
             this.imageInput = this.$refs.imageInput;
         },
         methods: {
+            // This method gets triggered when we click the "crop" button
             createCropper() {
+                // If a cropper exists, destroy it
                 if (this.cropper) {
                     this.cropper.destroy()
                 }
+                // We create a new Cropper instance. The first parameter is the image element
+                // and the second parameter is an object with options for cropper.
                 this.cropper = new Cropper(this.$refs.img, {
                     aspectRatio: 1,
                     autoCropArea: 1,
@@ -62,7 +66,10 @@
                     zoomable: false
                 })
             },
+            // This method gets triggered when we pick a new image
             imageChanged(e) {
+                // We convert the image blob to a data url. Now we
+                // can preview the image without uploading.
                 if (e.target.files != null && e.target.files[0] != null) {
                     this.reader.onload = event => {
                         this.dataUrl = event.target.result;
@@ -75,6 +82,8 @@
                     this.updated = true;
                 }
             },
+            // This method gets triggered by the save button and populates
+            // the imageBlob variable with the cropped image.
             async save() {
                 this.imageBlob = await new Promise(resolve => {
                     this.cropper.getCroppedCanvas(this.outputOptions).toBlob(blob => {
@@ -83,6 +92,8 @@
                 });
                 this.reader.readAsDataURL(this.imageBlob)
             },
+            // This method is called by the Form to grab the value of the image field.
+            // If it is updated, we provide the new value.
             fill(data) {
                 if (this.updated && this.imageBlob) {
                     data[this.field.name] = this.imageBlob;
