@@ -24,12 +24,14 @@ module.exports = {
 
             },
             {
-                title: 'Usage',
+                title: 'Resources',
                 collapsable: false,
                 children: [
-                    ['usage/user-management', 'Users'],
-                    ['usage/pages', 'Pages'],
-                    ['usage/posts-tags', 'Posts & Tags'],
+                    ['resources/posts-tags', 'Posts & Tags'],
+                    ['resources/pages', 'Pages'],
+                    ['resources/menus', 'Menus & Menu Items'],
+                    ['resources/users', 'Users'],
+                    ['resources/roles', 'Roles & Permissions'],
                 ],
 
             },
