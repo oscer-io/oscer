@@ -2,17 +2,18 @@
 
 namespace Bambamboole\LaravelCms;
 
-use Bambamboole\LaravelCms\Auth\Models\User;
+use Bambamboole\LaravelCms\Api\Routing\ApiRouter;
+use Bambamboole\LaravelCms\Backend\Routing\BackendRouter;
+use Bambamboole\LaravelCms\Backend\ViewComposer\BackendViewComposer;
 use Bambamboole\LaravelCms\Core\Commands\Development\SeedCommand;
 use Bambamboole\LaravelCms\Core\Commands\PublishCommand;
-use Bambamboole\LaravelCms\Core\ViewComposer\BackendViewComposer;
-use Bambamboole\LaravelCms\Routing\ApiRouter;
-use Bambamboole\LaravelCms\Routing\BackendRouter;
-use Bambamboole\LaravelCms\Theming\BladeComponents\MenuBladeComponent;
-use Bambamboole\LaravelCms\Theming\Contracts\Theme;
-use Bambamboole\LaravelCms\Theming\DefaultTheme;
-use Bambamboole\LaravelCms\Theming\ViewComposers\ThemeViewComposer;
+use Bambamboole\LaravelCms\Core\Users\Models\User;
+use Bambamboole\LaravelCms\Frontend\BladeComponents\MenuBladeComponent;
+use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
+use Bambamboole\LaravelCms\Frontend\DefaultTheme;
+use Bambamboole\LaravelCms\Frontend\ViewComposers\ThemeViewComposer;
 use Illuminate\Config\Repository;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Factory;
@@ -65,8 +66,10 @@ class LaravelCmsServiceProvider extends ServiceProvider
         $statefulHosts = $config->get('sanctum.stateful');
         $statefulHosts[] = $config->get('cms.backend.domain');
 
+        $config->set('ziggy.whitelist', ['cms.*']);
+        $config->set('ziggy.skip-route-function', true);
         $config->set('sanctum.stateful', $statefulHosts);
-        $config->set('sanctum.middleware.verify_csrf_token', \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class);
+        $config->set('sanctum.middleware.verify_csrf_token', VerifyCsrfToken::class);
     }
 
     protected function registerPublishes(): void

@@ -7,21 +7,20 @@
                 </h1>
             </div>
         </div>
-        <CreateForm
+        <ResourceForm
             resource="post"
-            :api-route="{name: 'cms.api.posts.store'}"
-            @cancel="handleCancel"
+            @cancel="$router.push({name: 'posts.index'})"
             @success="handleSuccess"
         />
     </div>
 </template>
 
 <script>
-    import CreateForm from "../../../components/CreateForm";
+    import ResourceForm from "../../../components/ResourceForm";
 
     export default {
         components: {
-            CreateForm
+            ResourceForm
         },
         methods: {
             handleCancel() {

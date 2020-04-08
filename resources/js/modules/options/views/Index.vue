@@ -13,7 +13,7 @@
     import Tab from "../../../components/Tab";
     import Tabs from "../../../components/Tabs";
     import Option from "./../components/Option";
-    import axios from "axios";
+    import api from "../../../lib/api";
 
     export default {
         components: {
@@ -28,7 +28,7 @@
           }
         },
         async mounted() {
-            const response = await axios.get('/api/cms/options');
+            const response = await api(Cms.route('cms.api.resources.index', 'option'));
             this.options = response.data.data;
             this.isLoading = false;
         }
