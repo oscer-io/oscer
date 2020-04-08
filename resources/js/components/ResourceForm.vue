@@ -30,10 +30,10 @@
 </template>
 <script>
     import api from "../lib/api";
-    import Form from "../lib/mixins/Form";
+    import _ from "lodash";
+    import {objectToFormData} from 'object-to-formdata';
 
     export default {
-        mixins: [Form],
         props: {
             resource: {
                 type: String,
@@ -55,12 +55,16 @@
                 type: String,
                 default: 'Submit'
             },
+            append: {
+                default: false
+            }
         },
         data() {
             return {
                 isLoading: true,
                 fields: [],
                 removeNullValues: false,
+                validationErrors: {}
             }
         },
         watch: {
@@ -72,10 +76,12 @@
             this.fetchResourceForm();
         },
         methods: {
+
             prepareParams() {
                 // Filter null values. This way we can handle create and update
                 return [this.resource, this.resourceId].filter(el => el !== null)
             },
+
             async fetchResourceForm() {
                 this.isLoading = true;
                 // fetch the form definition from the backend.
@@ -85,6 +91,7 @@
                 this.removeNullValues = response.data.data.removeNullValues;
                 this.isLoading = false;
             },
+
             async submitResourceForm() {
                 // Submit the form. If we get validation errors, they will be passed to the fields.
                 try {
@@ -92,10 +99,8 @@
                         ...Cms.route('cms.backend.forms.store', this.prepareParams()),
                         data: this.getFormData()
                     });
-
                     // Emit success event with the data from the successful response
                     this.$emit('success', response.data.data);
-
                     // Reset form by fetching the fields again. Only if resetOnSuccess prop is true
                     this.resetOnSuccess && this.fetchResourceForm();
                 } catch (error) {
@@ -104,6 +109,29 @@
                         Cms.flash('error', 'There are validation errors in the form.')
                     }
                 }
+            },
+
+            getFormData() {
+                let data = {};
+                // Fill the FormData object with executing the fill method of all fields
+                _.each(this.fields, field => {
+                    data = field.fill(data);
+                });
+                // If a form has removeNullValues set, this block will remove all keys
+                // which have null or an empty string as their value.
+                if (this.removeNullValues === true) {
+                    data = _.pickBy(data);
+                }
+                // If there are values to append, do it.
+                if (this.append !== false) {
+                    Object.assign(data, this.append)
+                }
+
+                return objectToFormData(data);
+            },
+
+            getValidationErrors(field) {
+                return this.$data.validationErrors[field.name] || [];
             }
         }
     }

@@ -20,11 +20,11 @@ use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(Page::class, function (Faker $faker) {
     return [
-        'author_id' => factory(User::class)->create(),
         'type' => 'page',
         'name' => $faker->name,
         'slug' => $faker->unique()->slug,
         'body' => $faker->paragraph,
+        'author_id' => factory(User::class)->create(),
         'published_at' => rand(0, 1) == 1 ? null : now()->subMonths(rand(1, 8))->subDays(rand(1, 20)),
     ];
 });
