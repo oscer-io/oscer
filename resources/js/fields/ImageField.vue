@@ -1,17 +1,17 @@
 <template>
-    <field-wrapper :name="field.name" :label="field.label || field.name" :errors="validationErrors">
-        <div v-if="dataUrl">
-            <div class="h-40 flex justify-center rounded border border-2 border-dashed">
-                <img :src="dataUrl"
+    <field-wrapper :name="field.name" :label="field.label || field.name" :errors="validationErrors" :with-shadow="false">
+        <div v-if="value || dataUrl">
+            <div class="py-4 flex justify-center">
+                <img :src="imageUrl"
                      alt
                      class="rounded-full w-40 h-40"
                      ref="img"
                 >
             </div>
             <div class="flex justify-around py-6">
-                <button class="btn" @click="save" type="button">save</button>
-                <button class="btn" @click="createCropper" type="button">crop</button>
-                <button class="btn" @click="$refs.imageInput.click()" type="button">Change Image</button>
+                <button v-if="isCropping" class="btn" @click="save" type="button">Save cropped area</button>
+                <button v-if="!isCropping" class="btn" @click="startCrop" type="button">Crop image</button>
+                <button v-if="!isCropping" class="btn" @click="$refs.imageInput.click()" type="button">Change image</button>
             </div>
         </div>
         <div v-else @click="$refs.imageInput.click()"
@@ -43,19 +43,29 @@
                 updated: false,
                 reader: new FileReader(),
                 dataUrl: false,
-                imageBlob: false
+                imageBlob: false,
+                isCropping: false
             }
         },
-        mounted() {
-            this.imageInput = this.$refs.imageInput;
+        computed:{
+          imageUrl(){
+              if(this.dataUrl){
+                  return this.dataUrl
+              }
+              return this.value;
+          }
         },
-        methods: {
-            // This method gets triggered when we click the "crop" button
-            createCropper() {
-                // If a cropper exists, destroy it
+        mounted() {
+            this.reader.onload = event => {
+                this.dataUrl = event.target.result;
                 if (this.cropper) {
                     this.cropper.destroy()
                 }
+            };
+        },
+        methods: {
+            // This method gets triggered when we click the "crop" button
+            startCrop() {
                 // We create a new Cropper instance. The first parameter is the image element
                 // and the second parameter is an object with options for cropper.
                 this.cropper = new Cropper(this.$refs.img, {
@@ -64,19 +74,14 @@
                     viewMode: 1,
                     movable: false,
                     zoomable: false
-                })
+                });
+                this.isCropping = true;
             },
             // This method gets triggered when we pick a new image
             imageChanged(e) {
                 // We convert the image blob to a data url. Now we
                 // can preview the image without uploading.
                 if (e.target.files != null && e.target.files[0] != null) {
-                    this.reader.onload = event => {
-                        this.dataUrl = event.target.result;
-                        if (this.cropper) {
-                            this.cropper.destroy()
-                        }
-                    };
                     this.reader.readAsDataURL(e.target.files[0]);
                     this.imageBlob = e.target.files[0];
                     this.updated = true;
@@ -90,7 +95,8 @@
                         return resolve(blob);
                     })
                 });
-                this.reader.readAsDataURL(this.imageBlob)
+                this.reader.readAsDataURL(this.imageBlob);
+                this.isCropping = false;
             },
             // This method is called by the Form to grab the value of the image field.
             // If it is updated, we provide the new value.
