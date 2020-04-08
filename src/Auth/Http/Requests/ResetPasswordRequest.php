@@ -1,12 +1,8 @@
 <?php
 
-
 namespace Bambamboole\LaravelCms\Auth\Http\Requests;
 
-
-use Bambamboole\LaravelCms\Auth\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
 
 class ResetPasswordRequest extends FormRequest
 {

@@ -4,7 +4,9 @@ namespace Bambamboole\LaravelCms\Tests\Feature\Auth;
 
 use Bambamboole\LaravelCms\Auth\Models\User;
 use Bambamboole\LaravelCms\Tests\TestCase;
+use Faker\Factory;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class ResetPasswordTest extends TestCase
@@ -31,12 +33,35 @@ class ResetPasswordTest extends TestCase
     /** @test */
     public function password_must_be_confirmed()
     {
-        // hint: assert session has errors
+        $response = $this->post(
+            route('cms.password.update', 'token'),
+            [
+                'password' => 'secret_pw',
+                'password_confirmation' => 'none_secret_pw',
+            ]
+        );
+
+        $response->assertSessionHasErrors('password');
     }
 
     /** @test */
     public function password_can_be_updated()
     {
-        // attention: assert with user credentials, attention pw is hashed
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+        Cache::shouldReceive('get')->once()->with("password.reset.{$user->id}")->andReturn('token');
+
+        $response = $this->post(
+            route('cms.password.update', encrypt("{$user->id}|token")),
+            [
+                'password' => 'secret_pw',
+                'password_confirmation' => 'secret_pw',
+            ]
+        );
+        dd($response->status());
+
+        $this->assertEquals($user->password, $user->fresh()->password);
+//        $this->assertTrue(Hash::check('secret_pw',$user->fresh()->password));
     }
 }

@@ -7,6 +7,7 @@ use Bambamboole\LaravelCms\Auth\Http\Requests\ResetPasswordRequest;
 use Bambamboole\LaravelCms\Auth\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Throwable;
 
 class ResetPasswordController
@@ -49,7 +50,7 @@ class ResetPasswordController
         } catch (Throwable $exception) {
             return false;
         }
-        if (cache("password.reset.{$userId}") != $token) {
+        if (Cache::get("password.reset.{$userId}") != $token) {
             return false;
         }
 
