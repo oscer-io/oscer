@@ -35,15 +35,15 @@
         },
 
         methods: {
-            getValue() {
-                if (this.field.confirm === true) {
-                    let value = {};
-                    value[this.field.name] = this.value;
-                    value[this.field.confirmAttributes.name] = this.confirmedValue;
+            fill(data) {
+                data[this.field.name] = this.value;
 
-                    return value;
+                // Append the confirmation field if this.confirm is true
+                if (this.field.confirm === true) {
+                    data[this.field.confirmAttributes.name] = this.confirmedValue;
                 }
-                return this.value;
+
+                return data;
             }
         }
     }

@@ -17,6 +17,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Auth\Access\Authorizable as AuthorizableTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
@@ -132,7 +133,7 @@ class User extends BaseModel implements
      */
     public function getAvatarAttribute($value)
     {
-        return $value ?: 'https://secure.gravatar.com/avatar/'.md5(strtolower(trim($this->email))).'?s=80';
+        return $value ? Storage::url($value) : 'https://secure.gravatar.com/avatar/'.md5(strtolower(trim($this->email))).'?s=80';
     }
 
     public function setPasswordAttribute($value)
