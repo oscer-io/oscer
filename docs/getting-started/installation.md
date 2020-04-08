@@ -20,7 +20,7 @@ Create a new `CmsServiceProvider` with the following `boot()` call:
 
 namespace App\Providers;
 
-use Bambamboole\LaravelCms\Routing\FrontendRouter;
+use Bambamboole\LaravelCms\Frontend\Routing\FrontendRouter;
 use Illuminate\Support\ServiceProvider;
 
 class CmsServiceProvider extends ServiceProvider

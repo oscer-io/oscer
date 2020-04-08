@@ -10,7 +10,7 @@ axios.defaults.headers.common['X-CSRF-TOKEN'] = document.head.querySelector(
 axios.interceptors.response.use(
     response => response,
     error => {
-        const {status} = error.response
+        const {status} = error.response;
 
         // Show the user a 500 error
         if (status >= 500) {

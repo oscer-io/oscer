@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Tests\Feature\Api\Pages;
 
-use Bambamboole\LaravelCms\Publishing\Models\Page;
+use Bambamboole\LaravelCms\Core\Pages\Models\Page;
 use Bambamboole\LaravelCms\Tests\ApiTestCase;
 
 class UpdatePageTest extends ApiTestCase
@@ -10,7 +10,7 @@ class UpdatePageTest extends ApiTestCase
     /** @test */
     public function the_request_needs_to_be_authenticated()
     {
-        $response = $this->patch('/api/cms/pages/1');
+        $response = $this->patch('/api/cms/page/1');
 
         $response->assertStatus(401);
     }
@@ -20,7 +20,7 @@ class UpdatePageTest extends ApiTestCase
     {
         $this->login();
 
-        $response = $this->patch('/api/cms/pages/1337', ['name' => 'updated_name']);
+        $response = $this->patch('/api/cms/page/1337', ['name' => 'updated_name']);
 
         $response->assertStatus(404);
     }
@@ -31,7 +31,7 @@ class UpdatePageTest extends ApiTestCase
         $page = factory(Page::class)->create();
         $this->login();
 
-        $response = $this->patch("/api/cms/pages/{$page->id}", ['name' => 'updated_name']);
+        $response = $this->patch("/api/cms/page/{$page->id}", factory(Page::class)->raw(['name' => 'updated_name']));
 
         $response->assertOk();
         $this->assertEquals('updated_name', $page->fresh()->name);
@@ -44,11 +44,10 @@ class UpdatePageTest extends ApiTestCase
      */
     public function data_needs_to_be_valid(string $errorKey, array $overrides)
     {
+        $this->withoutExceptionHandling();
         $page = factory(Page::class)->create();
         $this->login();
-
-        $response = $this->patch("/api/cms/pages/{$page->id}", factory(Page::class)->raw($overrides));
-
+        $response = $this->patch("/api/cms/page/{$page->id}", factory(Page::class)->raw($overrides));
         $response->assertStatus(422);
         $response->assertJsonValidationErrors($errorKey);
     }

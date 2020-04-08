@@ -12,72 +12,30 @@
             </div>
         </div>
 
-        <CreateForm
-            resource="profile"
-            :api-route="{name: 'cms.api.profile.update'}"
-            :remove-null-values="true"
-            @cancel="handleCancel"
+        <ResourceForm
+            resource="user"
+            :resource-id="currentUser.id"
+            @cancel="$router.push({name: 'profile.show'})"
             @success="handleSuccess"
         />
     </div>
 </template>
 
 <script>
-    import CreateForm from "../../../components/CreateForm";
+    import ResourceForm from "../../../components/ResourceForm";
 
     export default {
         components: {
-            CreateForm
+            ResourceForm
         },
-        data() {
-            return {
-                fields: [
-                    {
-                        type: 'text',
-                        name: 'name',
-                        label: this.$t('profile.name'),
-                        value: Cms.config.user.name
-                    },
-                    {
-                        type: 'text',
-                        attributes:{
-                            type: 'email'
-                        },
-                        name: 'email',
-                        label: this.$t('profile.email'),
-                        value: Cms.config.user.email
-                    },
-                    {
-                        type: 'textarea',
-                        name: 'bio',
-                        label: this.$t('profile.bio'),
-                        value: Cms.config.user.bio
-                    },
-                    {
-                        type: 'text',
-                        attributes:{
-                            type: 'password'
-                        },
-                        name: 'password',
-                        label: this.$t('profile.password')
-                    },
-                    {
-                        type: 'text',
-                        attributes:{
-                            type: 'password'
-                        },
-                        name: 'password_confirmation',
-                        label: this.$t('profile.password_confirmation')
-                    }
-                ]
-            }
+        computed:{
+          currentUser(){
+              return Cms.config.user;
+          }
         },
         methods: {
-            handleCancel() {
-                this.$router.push({name: 'profile.show'})
-            },
             handleSuccess(user) {
-                Cms.config.user = user
+                Cms.config.user = user;
                 Cms.flash('success', 'Nice one!');
                 this.$router.push({name: 'profile.show'})
             }

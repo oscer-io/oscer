@@ -6,7 +6,7 @@
                 :is="`${option.type}-field`"
                 :field="option"
                 v-model="currentValue"
-                :validation-errors="false"
+                :validation-errors="[]"
             />
             <button type="submit" class="btn">save</button>
         </form>
@@ -14,12 +14,9 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    import api from "../../../lib/api";
 
     export default {
-        created() {
-            console.log(this.key)
-        },
         props: {
             option: Object,
         },
@@ -31,9 +28,12 @@
         methods: {
             async save() {
                 try {
-                    await axios.post('/api/cms/options', {
-                        key: this.option.key,
-                        value: this.currentValue,
+                    await api({
+                        ...Cms.route('cms.api.resources.store', 'option'),
+                        data: {
+                            key: this.option.key,
+                            value: this.currentValue,
+                        }
                     });
                     Cms.flash('success', 'Option successfully saved')
                 } catch (e) {
