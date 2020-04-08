@@ -174,6 +174,14 @@
                 return objectToFormData(data);
             },
 
+            setFormData(data) {
+                _.each(this.fields, (field, id) => {
+                    if (field.name in data) {
+                        this.fields[id].value = data[field.name];
+                    }
+                });
+            },
+
             getValidationErrors(field) {
                 return this.$data.validationErrors[field.name] || [];
             }
