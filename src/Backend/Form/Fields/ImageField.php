@@ -20,8 +20,7 @@ class ImageField extends Field
         string $label,
         ?Closure $resolveValueCallback = null,
         ?Closure $fillResourceCallback = null
-    )
-    {
+    ) {
         if ($fillResourceCallback === null) {
             $fillResourceCallback = function (FormResource $resource, Request $request) {
                 $property = $this->name;
@@ -53,6 +52,7 @@ class ImageField extends Field
         ) {
             return true;
         }
+
         return false;
     }
 }

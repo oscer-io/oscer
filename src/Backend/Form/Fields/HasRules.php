@@ -33,10 +33,10 @@ trait HasRules
 
     public function getRules(bool $forCreate): array
     {
-        if ($forCreate === true && !empty($this->rulesOnCreate)) {
+        if ($forCreate === true && ! empty($this->rulesOnCreate)) {
             return $this->rulesOnCreate;
         }
-        if ($forCreate === false && !empty($this->rulesOnUpdate)) {
+        if ($forCreate === false && ! empty($this->rulesOnUpdate)) {
             return $this->rulesOnUpdate;
         }
 
