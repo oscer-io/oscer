@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Bambamboole\LaravelCms\Backend\Http\Controllers\Auth;
 
 use Bambamboole\LaravelCms\Backend\Http\Requests\Auth\ResetPasswordRequest;
@@ -12,7 +11,6 @@ use Throwable;
 
 class ResetPasswordController
 {
-
     public function showResetForm(Request $request, $encryptedToken)
     {
         $user = $this->getUserFromEncryptedToken($encryptedToken);
@@ -43,9 +41,7 @@ class ResetPasswordController
             $token = decrypt($encryptedToken);
             [$userId, $token] = explode('|', $token);
             $user = User::query()->findOrFail($userId);
-
         } catch (Throwable $exception) {
-
             return false;
         }
         if (Cache::get("password.reset.{$userId}") != $token) {
@@ -54,5 +50,4 @@ class ResetPasswordController
 
         return $user;
     }
-
 }

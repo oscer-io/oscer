@@ -18,7 +18,7 @@ class PostForm extends Form
     public function fields(): Collection
     {
         return collect([
-            ImageField::make('featured_image','Featured Image')->disk('public')->folder('images'),
+            ImageField::make('featured_image', 'Featured Image')->disk('public')->folder('images'),
             TextField::make('name')->rules(['required', 'string']),
             TextField::make('slug')->rules(['filled', 'string']),
             MarkdownField::make('body')->rules(['required']),

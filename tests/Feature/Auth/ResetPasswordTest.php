@@ -22,7 +22,6 @@ class ResetPasswordTest extends TestCase
     /** @test */
     public function password_reset_form_is_not_accessible_without_valid_token()
     {
-
         $response = $this->get(route('cms.password.reset', 'invalid_token'));
 
         $response->assertRedirect(route('cms.password.forgot'));
@@ -85,7 +84,7 @@ class ResetPasswordTest extends TestCase
             ]
         );
 
-        $this->assertTrue(Hash::check('secret',$user->fresh()->password));
+        $this->assertTrue(Hash::check('secret', $user->fresh()->password));
         $this->assertAuthenticatedAs($user);
     }
 
