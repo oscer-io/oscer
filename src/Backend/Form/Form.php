@@ -27,6 +27,10 @@ abstract class Form implements \JsonSerializable
         $this->fields = $this->resolve();
     }
 
+    /**
+     * This method resolves all the fields values from the single fields
+     * depending on the current resource.
+     */
     protected function resolve()
     {
         return $this->fields()->map(function (Field $field) {
@@ -36,8 +40,16 @@ abstract class Form implements \JsonSerializable
         });
     }
 
+    /**
+     * This method needs to be implemented by the extending Form.
+     * It has to return a Collection of Field instances.
+     */
     abstract public function fields(): Collection;
 
+    /**
+     * This method returns all validation rules form the fields and merges them
+     * with the "additionalValidationRules" for validation beyond fields
+     */
     protected function getValidationRules()
     {
         return array_merge(
@@ -60,6 +72,11 @@ abstract class Form implements \JsonSerializable
         return ValidatorFactory::make($data, $rules);
     }
 
+    /**
+     * The "save" method is executed when a form will be submitted.
+     * It executes the validator and fills the resource with
+     * the updated values from the request.
+     */
     public function save(Request $request): FormResource
     {
         $validator = $this->createValidator($request->all());
@@ -116,9 +133,6 @@ abstract class Form implements \JsonSerializable
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize()
     {
         return $this->toArray();
