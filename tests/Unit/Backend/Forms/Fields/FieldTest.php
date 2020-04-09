@@ -10,6 +10,14 @@ use PHPUnit\Framework\TestCase;
 class FieldTest extends TestCase
 {
     /** @test */
+    public function it_has_a_static_make_method_to_chain_the_methods()
+    {
+        $field = TestField::make('name');
+
+        $this->assertInstanceOf(TestField::class, $field);
+    }
+
+    /** @test */
     public function the_name_can_be_set()
     {
         $field = new TestField('name');
@@ -88,6 +96,48 @@ class FieldTest extends TestCase
         $field->fill($resourceMock, $requestMock);
 
         $this->assertEquals('filled', $resourceMock->testAttribute);
+    }
+
+    /** @test */
+    public function rules_can_be_set()
+    {
+        $field = TestField::make('name')->rules(['required', 'string']);
+
+        $this->assertEquals(['required', 'string'], $field->getRules(true));
+    }
+
+    /** @test */
+    public function rules_can_be_set_only_for_update()
+    {
+        $field = TestField::make('name')->rulesForUpdate(['required', 'string']);
+
+        $this->assertEquals([], $field->getRules(true));
+        $this->assertEquals(['required', 'string'], $field->getRules(false));
+    }
+
+    /** @test */
+    public function rules_can_be_set_only_for_create()
+    {
+        $field = TestField::make('name')->rulesForCreate(['required', 'string']);
+
+        $this->assertEquals([], $field->getRules(false));
+        $this->assertEquals(['required', 'string'], $field->getRules(true));
+    }
+
+    /** @test */
+    public function a_field_with_a_filled_rule_will_be_removed_if_request_has_no_value()
+    {
+        $field = TestField::make('name')->rules(['filled']);
+        $resourceMock = \Mockery::spy(FormResource::class);
+        $resourceMock->name = 'test';
+        $field->resolve($resourceMock, true);
+        $requestMock = \Mockery::mock(Request::class)
+            ->shouldReceive('input')
+            ->with('name')
+            ->andReturn(null)
+            ->getMock();
+
+        $this->assertTrue($field->shouldBeRemoved($requestMock));
     }
 }
 
