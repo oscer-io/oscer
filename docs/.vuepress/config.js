@@ -12,7 +12,7 @@ module.exports = {
         displayAllHeaders: true,
         sidebarDepth: 0,
         sidebar: [
-            ['introduction', 'Introduction'],
+            ['introduction', 'Introduction & Roadmap'],
             {
                 title: 'Getting Started',
                 collapsable: false,

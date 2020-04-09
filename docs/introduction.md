@@ -43,14 +43,13 @@ We have put together a roadmap. It is divided in a few milestones which are more
 * think about multi language :heavy_check_mark:
 
 ### Second milestone: Baby boots (0.2)
-* Add more drag & drop image upload to the markdown post/page editor
 * Add avatar upload :heavy_check_mark:
 * Implement options :heavy_check_mark:
-* Add optional featured image to the post
+* Add optional featured image to the post :heavy_check_mark:
 * Upgrade menu item to be able to select pages
 * Upgrade menu item to contain svg with preview
 * Update forgot password mechanism to set a chosen password
-* implement permissions
+* implement permissions :heavy_check_mark:
 * Add all strings as translations
 * Set up docs :heavy_check_mark:
 
@@ -58,7 +57,7 @@ We have put together a roadmap. It is divided in a few milestones which are more
 * Iterate over the design
    * backend
    * DefaultTheme
-* Implement a media library (based on spatie/medialibrary)
+* Implement a media library (probably based on spatie/medialibrary)
 * Update the featured image to use media library
 * Dashboard/Admin Frontpage
 * Add SEO features
