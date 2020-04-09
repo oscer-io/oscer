@@ -2,7 +2,7 @@
 
 /** @var Factory $factory */
 
-use Bambamboole\LaravelCms\Core\Users\Models\User;
+use Bambamboole\LaravelCms\Core\Permissions\Models\Role;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
 
@@ -17,14 +17,8 @@ use Illuminate\Database\Eloquent\Factory;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
-    $randomImgUrl = 'https://picsum.photos/300/300?random='.$faker->unique()->randomNumber(5, true);
-
+$factory->define(Role::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => 'password', // password
-        'bio' => $faker->paragraphs(rand(1, 3), true),
-        'avatar' => $randomImgUrl,
+        'name' => $faker->word,
     ];
 });

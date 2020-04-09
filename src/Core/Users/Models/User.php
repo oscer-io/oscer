@@ -14,13 +14,16 @@ use Bambamboole\LaravelCms\Core\Mails\NewUserCreatedMail;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Bambamboole\LaravelCms\Core\Users\Forms\UserForm;
 use Bambamboole\LaravelCms\Core\Users\Resources\UserResource;
+use Illuminate\Contracts\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Foundation\Auth\Access\Authorizable as AuthorizableTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @property int id
@@ -34,6 +37,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends BaseModel implements
     Authenticatable,
     FormResource,
+    Authorizable,
     HasApiEndpoints,
     HasIndexEndpoint,
     HasShowEndpoint,
@@ -42,6 +46,8 @@ class User extends BaseModel implements
     HasDeleteEndpoint
 {
     use HasApiTokens;
+    use HasRoles;
+    use AuthorizableTrait;
 
     /**
      * The attributes excluded from the model's JSON form.

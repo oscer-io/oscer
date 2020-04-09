@@ -7,6 +7,7 @@ import profileRoutes from '../../modules/profile/routes';
 import userRoutes from '../../modules/users/routes';
 import postRoutes from '../../modules/posts/routes';
 import pageRoutes from '../../modules/pages/routes';
+import roleRoutes from '../../modules/roles/routes';
 
 export default [
     {
@@ -21,6 +22,7 @@ export default [
     ...userRoutes,
     ...postRoutes,
     ...pageRoutes,
+    ...roleRoutes,
 
     {
         path: '/admin/404',

@@ -24,7 +24,7 @@ $factory->define(Page::class, function (Faker $faker) {
         'name' => $faker->name,
         'slug' => $faker->unique()->slug,
         'body' => $faker->paragraph,
-        'author_id' => factory(User::class)->create(),
+        'author_id' => rand(1, User::query()->count()),
         'published_at' => rand(0, 1) == 1 ? null : now()->subMonths(rand(1, 8))->subDays(rand(1, 20)),
     ];
 });

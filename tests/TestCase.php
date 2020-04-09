@@ -7,6 +7,7 @@ use Bambamboole\LaravelCms\LaravelCmsServiceProvider;
 use Laravel\Sanctum\Sanctum;
 use Laravel\Sanctum\SanctumServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use Spatie\Permission\PermissionServiceProvider;
 
 class TestCase extends BaseTestCase
 {
@@ -21,6 +22,7 @@ class TestCase extends BaseTestCase
     {
         return [
             SanctumServiceProvider::class,
+            PermissionServiceProvider::class,
             LaravelCmsServiceProvider::class,
         ];
     }
