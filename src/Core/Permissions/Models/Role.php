@@ -6,14 +6,16 @@ use Bambamboole\LaravelCms\Api\Contracts\HasApiEndpoints;
 use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
-use Bambamboole\LaravelCms\Backend\Contracts\HasForm;
+use Bambamboole\LaravelCms\Backend\Contracts\FormResource;
+use Bambamboole\LaravelCms\Backend\Form\Form;
 use Bambamboole\LaravelCms\Core\Permissions\Forms\RoleForm;
 use Bambamboole\LaravelCms\Core\Permissions\Resources\RoleResource;
+use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 class Role extends \Spatie\Permission\Models\Role implements
-    HasForm,
+    FormResource,
     HasApiEndpoints,
     HasIndexEndpoint,
     HasStoreEndpoint,
@@ -46,7 +48,7 @@ class Role extends \Spatie\Permission\Models\Role implements
         return $this->asResource($model);
     }
 
-    public function getForm()
+    public function getForm(): Form
     {
         return new RoleForm($this);
     }
@@ -57,5 +59,31 @@ class Role extends \Spatie\Permission\Models\Role implements
     public function updatePermissions($permissions)
     {
         $this->syncPermissions($permissions);
+    }
+
+    /**
+     * This method returns the FormResource for an update form.
+     */
+    public function findByIdentifier(string $identifier): FormResource
+    {
+        return $this->newQuery()->findOrFail($identifier);
+    }
+
+    /**
+     * This method returns the resource after the save.
+     *
+     * @return Responsable|array
+     */
+    public function asApiResource()
+    {
+        return new RoleResource($this);
+    }
+
+    /**
+     * This method determines is this will be a create or a update form.
+     */
+    public function isCreation(): bool
+    {
+        return $this->id === null;
     }
 }
