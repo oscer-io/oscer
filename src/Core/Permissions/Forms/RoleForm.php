@@ -43,12 +43,12 @@ class RoleForm extends Form
                                     return [
                                         'name' => $permission->name,
                                         'label' => $permission->name,
-                                        'value' => $this->resource->hasPermissionTo($permission)
+                                        'value' => $this->resource->hasPermissionTo($permission),
                                     ];
                                 }
                             )
                             ->toArray()
-                    )
+                    ),
             ]
         );
     }

@@ -31,5 +31,4 @@ class CheckboxGroupField extends Field
 
         call_user_func($this->fillResourceCallback, $resource, $request);
     }
-
 }
