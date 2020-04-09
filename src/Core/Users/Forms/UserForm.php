@@ -20,7 +20,8 @@ class UserForm extends Form
             ImageField::make('avatar')
                 ->rules(['filled', 'image'])
                 ->disk('public')
-                ->folder('avatars'),
+                ->folder('avatars')
+                ->rounded(),
             TextField::make('name')
                 ->rulesForCreate(['required', 'string'])
                 ->rulesForUpdate(['filled', 'string']),
