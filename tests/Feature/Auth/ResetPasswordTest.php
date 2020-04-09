@@ -2,12 +2,9 @@
 
 namespace Bambamboole\LaravelCms\Tests\Feature\Auth;
 
-use Bambamboole\LaravelCms\Auth\Models\User;
+use Bambamboole\LaravelCms\Core\Users\Models\User;
 use Bambamboole\LaravelCms\Tests\TestCase;
-use Faker\Factory;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class ResetPasswordTest extends TestCase
 {
@@ -36,8 +33,8 @@ class ResetPasswordTest extends TestCase
         $response = $this->post(
             route('cms.password.update', 'token'),
             [
-                'password' => 'secret_pw',
-                'password_confirmation' => 'none_secret_pw',
+                'password' => 'secret',
+                'password_confirmation' => 'not_secret',
             ]
         );
 
@@ -55,8 +52,8 @@ class ResetPasswordTest extends TestCase
         $response = $this->post(
             route('cms.password.update', encrypt("{$user->id}|token")),
             [
-                'password' => 'secret_pw',
-                'password_confirmation' => 'secret_pw',
+                'password' => 'secret',
+                'password_confirmation' => 'secret',
             ]
         );
         dd($response->status());

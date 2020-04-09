@@ -2,10 +2,15 @@
 
 namespace Bambamboole\LaravelCms\Backend\Http\Requests\Auth;
 
-use Bambamboole\LaravelCms\Core\Http\Requests\BaseRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends BaseRequest
+class LoginRequest extends FormRequest
 {
+    public function authorize(): bool
+    {
+        return true;
+    }
+
     public function rules()
     {
         return [

@@ -2,15 +2,15 @@
 
 namespace Bambamboole\LaravelCms\Api\Http\Requests;
 
-use Bambamboole\LaravelCms\Core\Http\Requests\BaseRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
-class IssueTokenRequest extends BaseRequest
+class IssueTokenRequest extends FormRequest
 {
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
     public function rules()
     {
         return [

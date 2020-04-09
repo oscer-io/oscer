@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Bambamboole\LaravelCms\Auth\Http\Controllers;
+namespace Bambamboole\LaravelCms\Backend\Http\Controllers\Auth;
 
 use Bambamboole\LaravelCms\Auth\Http\Requests\ResetPasswordRequest;
-use Bambamboole\LaravelCms\Auth\Models\User;
+use Bambamboole\LaravelCms\Core\Users\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -15,7 +15,6 @@ class ResetPasswordController
 
     public function showResetForm(Request $request, $encryptedToken)
     {
-        /** @var \Bambamboole\LaravelCms\Auth\Models\User $user */
         $user = $this->getUserFromEncryptedToken($encryptedToken);
 
         if ($user === false) {
@@ -27,7 +26,6 @@ class ResetPasswordController
 
     public function update(ResetPasswordRequest $request)
     {
-        /** @var \Bambamboole\LaravelCms\Auth\Models\User $user */
         $user = $this->getUserFromEncryptedToken($request->input('encrypted_token'));
         if ($user === false) {
             return redirect()->route('cms.password.forgot')->with('invalidResetToken', true);
@@ -44,7 +42,6 @@ class ResetPasswordController
         try {
             $token = decrypt($encryptedToken);
             [$userId, $token] = explode('|', $token);
-            /** @var \Bambamboole\LaravelCms\Auth\Models\User $user */
             $user = User::query()->findOrFail($userId);
 
         } catch (Throwable $exception) {

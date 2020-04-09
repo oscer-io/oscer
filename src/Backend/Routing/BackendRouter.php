@@ -2,9 +2,9 @@
 
 namespace Bambamboole\LaravelCms\Backend\Routing;
 
-use Bambamboole\LaravelCms\Auth\Http\Controllers\ResetPasswordController;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\Auth\ForgotPasswordController;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\Auth\LoginController;
+use Bambamboole\LaravelCms\Backend\Http\Controllers\Auth\ResetPasswordController;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\BackendController;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceFormController;
 use Bambamboole\LaravelCms\Core\Http\Middleware\Authenticate;
