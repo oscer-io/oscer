@@ -18,7 +18,7 @@ class UserForm extends Form
     {
         return collect([
             ImageField::make('avatar')
-                ->rules(['filled','image'])
+                ->rules(['filled', 'image'])
                 ->disk('public')
                 ->folder('avatars'),
             TextField::make('name')

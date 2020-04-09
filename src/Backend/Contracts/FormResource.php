@@ -6,25 +6,25 @@ use Bambamboole\LaravelCms\Backend\Form\Form;
 use Illuminate\Contracts\Support\Responsable;
 
 /**
- * This interface needs to implemented to use a resourse as a FormResource
+ * This interface needs to implemented to use a resourse as a FormResource.
  */
 interface FormResource
 {
     /**
-     * This method determines is this will be a create or a update form
+     * This method determines is this will be a create or a update form.
      */
     public function isCreation(): bool;
 
     /**
-     * This method returns the FormResource for an update form
+     * This method returns the FormResource for an update form.
      */
-    public function findByIdentifier(string $identifier): FormResource;
+    public function findByIdentifier(string $identifier): self;
 
     /**
      * This method saves the resource after the field values
-     * are assigned to public properties
+     * are assigned to public properties.
      */
-    public function save(): FormResource;
+    public function save(): self;
 
     /**
      * This method returns the resource after the save.
@@ -33,7 +33,7 @@ interface FormResource
     public function asApiResource();
 
     /**
-     * This method returns the actual Form which will be used for the resource
+     * This method returns the actual Form which will be used for the resource.
      */
     public function getForm(): Form;
 }

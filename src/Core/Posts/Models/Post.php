@@ -55,11 +55,10 @@ class Post extends BaseModel implements
 
     protected static function booted()
     {
-        static::creating(function (Post $post) {
+        static::creating(function (self $post) {
             $post->author_id = auth()->user()->id;
             $post->type = $post->getType();
         });
-
     }
 
     public static function create(array $attributes): self
@@ -150,7 +149,6 @@ class Post extends BaseModel implements
 
     public function executeIndex()
     {
-
         return $this->asResourceCollection($this->newQuery()->where('type', $this->getType())->paginate());
     }
 

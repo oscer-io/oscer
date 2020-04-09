@@ -87,7 +87,7 @@ abstract class Form implements \JsonSerializable
 
         $this->fields()
             ->filter(function (Field $field) use ($request) {
-                return !$field->shouldBeRemoved($request);
+                return ! $field->shouldBeRemoved($request);
             })
             ->each(function (Field $field) use ($request) {
                 $field->fill($this->resource, $request);
