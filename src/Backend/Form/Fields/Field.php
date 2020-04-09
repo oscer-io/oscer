@@ -60,11 +60,19 @@ abstract class Field implements JsonSerializable
         return new static($name, $label, $resolveValueCallback, $fillResourceCallback);
     }
 
+    /**
+     * This method fills the resource with the updated value from the Form
+     */
     public function fill(FormResource $resource, Request $request)
     {
         call_user_func($this->fillResourceCallback, $resource, $request);
     }
 
+    /**
+     * We use this to check if a field should be removed from the submit process
+     * based on the request. If a field has a "filled" rule and is not
+     * present In the request we determine is must be removed.
+     */
     public function shouldBeRemoved(Request $request)
     {
         if (in_array('filled', $this->getRules($this->isCreation))
@@ -75,6 +83,11 @@ abstract class Field implements JsonSerializable
         return false;
     }
 
+    /**
+     * This method is called when a form will be instantiated. It sets
+     * the resource on the field as well as the info if it is a
+     * create or update form.
+     */
     public function resolve(FormResource $resource, bool $isCreation)
     {
         $this->resource = $resource;
@@ -84,6 +97,9 @@ abstract class Field implements JsonSerializable
         return $this->value;
     }
 
+    /**
+     * This method resolves the fields value depending on the "resolveValueCallback"
+     */
     protected function resolveValue()
     {
         return call_user_func($this->resolveValueCallback, $this);
