@@ -90,4 +90,3 @@ class FieldTest extends TestCase
         $this->assertEquals('filled', $resourceMock->testAttribute);
     }
 }
-

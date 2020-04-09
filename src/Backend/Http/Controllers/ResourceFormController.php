@@ -43,7 +43,7 @@ class ResourceFormController
         $resources = config('cms.resources');
 
         // Return a 404 response if the resource is not found
-        if (!array_key_exists($resource, $resources)) {
+        if (! array_key_exists($resource, $resources)) {
             throw new NotFoundHttpException('resource not found');
         }
 
@@ -51,7 +51,7 @@ class ResourceFormController
         $instance = new $resourceClass();
 
         // Return a 404 response if the resource does not implement FormResource
-        if (!$instance instanceof FormResource) {
+        if (! $instance instanceof FormResource) {
             throw new NotFoundHttpException('Resource does not implement FormResource');
         }
 
