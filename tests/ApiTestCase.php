@@ -2,6 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Tests;
 
+use Bambamboole\LaravelCms\Core\Permissions\Models\Role;
 use Bambamboole\LaravelCms\Core\Users\Models\User;
 use Bambamboole\LaravelCms\LaravelCmsServiceProvider;
 use Laravel\Sanctum\Sanctum;
@@ -9,6 +10,7 @@ use Laravel\Sanctum\SanctumServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use PHPUnit\Framework\AssertionFailedError;
 use sixlive\JsonSchemaAssertions\SchemaAssertion;
+use Spatie\Permission\PermissionServiceProvider;
 
 class ApiTestCase extends BaseTestCase
 {
@@ -40,13 +42,14 @@ class ApiTestCase extends BaseTestCase
     {
         return [
             SanctumServiceProvider::class,
+            PermissionServiceProvider::class,
             LaravelCmsServiceProvider::class,
         ];
     }
 
     protected function login(array $overrides = []): User
     {
-        $user = factory(User::class)->create($overrides);
+        $user = factory(User::class)->create($overrides)->assignRole(Role::SUPER_ADMIN_ROLE);
         Sanctum::actingAs($user);
 
         return $user;

@@ -7,6 +7,8 @@ use Bambamboole\LaravelCms\Backend\Routing\BackendRouter;
 use Bambamboole\LaravelCms\Backend\ViewComposer\BackendViewComposer;
 use Bambamboole\LaravelCms\Core\Commands\Development\SeedCommand;
 use Bambamboole\LaravelCms\Core\Commands\PublishCommand;
+use Bambamboole\LaravelCms\Core\Permissions\Models\Permission;
+use Bambamboole\LaravelCms\Core\Permissions\Models\Role;
 use Bambamboole\LaravelCms\Core\Users\Models\User;
 use Bambamboole\LaravelCms\Frontend\BladeComponents\MenuBladeComponent;
 use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
@@ -14,6 +16,7 @@ use Bambamboole\LaravelCms\Frontend\DefaultTheme;
 use Bambamboole\LaravelCms\Frontend\ViewComposers\ThemeViewComposer;
 use Illuminate\Config\Repository;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Factory;
@@ -39,6 +42,10 @@ class LaravelCmsServiceProvider extends ServiceProvider
         $backendRouter->registerAuthRoutes();
         $backendRouter->registerBackendRoutes();
 
+        Gate::before(function ($user, $ability) {
+            return $user->hasRole(Role::SUPER_ADMIN_ROLE) ? true : null;
+        });
+
         $view->composer([
             $theme->getPostShowTemplate(),
             $theme->getPageTemplate(),
@@ -54,6 +61,11 @@ class LaravelCmsServiceProvider extends ServiceProvider
      */
     protected function registerGuard(Repository $config): void
     {
+        $config->set('permission.models', [
+            'permission' => Permission::class,
+            'role'       => Role::class,
+        ]);
+
         $config->set('auth.providers.cms_users', [
             'driver' => 'eloquent',
             'model' => User::class,

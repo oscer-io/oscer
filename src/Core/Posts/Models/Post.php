@@ -8,16 +8,15 @@ use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasUpdateEndpoint;
-use Bambamboole\LaravelCms\Backend\Contracts\HasForm;
+use Bambamboole\LaravelCms\Backend\Contracts\FormResource;
+use Bambamboole\LaravelCms\Backend\Form\Form;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Bambamboole\LaravelCms\Core\Posts\Forms\PostForm;
 use Bambamboole\LaravelCms\Core\Posts\Resources\PostResource;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Illuminate\Validation\ValidationException;
 use League\CommonMark\Block\Element\FencedCode;
 use League\CommonMark\Block\Element\IndentedCode;
 use League\CommonMark\CommonMarkConverter;
@@ -40,7 +39,7 @@ use Spatie\Sluggable\SlugOptions;
  * @property Carbon created_at
  */
 class Post extends BaseModel implements
-    HasForm,
+    FormResource,
     HasApiEndpoints,
     HasIndexEndpoint,
     HasShowEndpoint,
@@ -56,8 +55,11 @@ class Post extends BaseModel implements
 
     protected static function booted()
     {
-        static::addGlobalScope('type', function (Builder $builder) {
-            $builder->where('type', '=', Str::snake(class_basename(self::class)));
+        static::creating(function (self $post) {
+            if (! $post->author_id) {
+                $post->author_id = auth()->user()->id;
+            }
+            $post->type = $post->getType();
         });
     }
 
@@ -67,6 +69,11 @@ class Post extends BaseModel implements
             $instance->type = Str::snake(class_basename($instance));
             $instance->save();
         });
+    }
+
+    public function getType()
+    {
+        return 'post';
     }
 
     /**
@@ -137,51 +144,38 @@ class Post extends BaseModel implements
         return 'post';
     }
 
-    public function getForm()
+    public function getForm(): Form
     {
         return new PostForm($this);
     }
 
     public function executeIndex()
     {
-        return $this->asResourceCollection($this->newQuery()->paginate());
+        return $this->asResourceCollection($this->newQuery()->where('type', $this->getType())->paginate());
     }
 
     public function executeShow($id)
     {
-        return $this->asResource($this->newQuery()->findOrFail($id));
+        return $this->findByIdentifier($id)->asApiResource();
     }
 
     public function executeStore(Request $request)
     {
         $form = $this->getForm();
-        $form->setData($request->all());
-        $validator = $form->getValidator();
 
-        if ($validator->fails()) {
-            throw new ValidationException($validator);
-        }
+        $post = $form->save($request);
 
-        $model = $form->save();
-
-        return $this->asResource($model);
+        return $this->asResource($post);
     }
 
     public function executeUpdate(Request $request, $identifier)
     {
-        $model = $this->newQuery()->findOrFail($identifier);
-        /** @var \Bambamboole\LaravelCms\Core\Posts\Forms\PostForm $form */
-        $form = $model->getForm();
-        $form->setData($request->all());
-        $validator = $form->getValidator();
+        $post = $this->findByIdentifier($identifier);
+        $form = $post->getForm();
 
-        if ($validator->fails()) {
-            throw new ValidationException($validator);
-        }
+        $updatedPost = $form->save($request);
 
-        $updatedModel = $form->save();
-
-        return $this->asResource($updatedModel);
+        return $this->asResource($updatedPost);
     }
 
     public function executeDelete($id)
@@ -207,5 +201,20 @@ class Post extends BaseModel implements
     protected function asResourceCollection($models)
     {
         return PostResource::collection($models);
+    }
+
+    public function isCreation(): bool
+    {
+        return $this->id === null;
+    }
+
+    public function findByIdentifier(string $identifier): FormResource
+    {
+        return $this->newQuery()->findOrFail($identifier);
+    }
+
+    public function asApiResource()
+    {
+        return new PostResource($this);
     }
 }

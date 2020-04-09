@@ -6,11 +6,6 @@ You can publish it with `php artisan cms:publish` if the file does not exist.
 ### `from_email`
 This configuration value will be used for all E-Mails which are sent by Laravel CMS.
 
-### `database_connection`
-Laravel CMS uses its own database connection and migrations. This way we can ensure to not conflict with your tables.
-This configuration variable is to set the corresponding database_connection. 
-If you have followed the installation instructions you are good to go with this value.
-
 ### `backend`
 This key is for all Admin UI related things.
 
@@ -24,6 +19,12 @@ current route configuration.
 
 #### `middleware`
 Here you can change the middleware which is used for the admin ui.
+
+### `resources`
+These are currently active resources. 
+They hold the data for the CMS and are available via API and Forms.
+Not all resources have forms or all API endpoints. 
+You can read more about each resource in its section in the documentation.
 
 ### `options`
 These is the configuration of the Options in the Admin ui. The first level defines the tab 

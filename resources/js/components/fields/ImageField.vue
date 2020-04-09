@@ -4,7 +4,8 @@
             <div class="py-4 flex justify-center">
                 <img :src="imageUrl"
                      alt
-                     class="rounded-full w-40 h-40"
+                     class="rounded w-40 h-40"
+                     :class="{'rounded-full': field.rounded}"
                      ref="img"
                 >
             </div>
@@ -31,7 +32,7 @@
     </field-wrapper>
 </template>
 <script>
-    import FormField from "../lib/mixins/FormField";
+    import FormField from "../../lib/mixins/FormField";
     import 'cropperjs/dist/cropper.css'
     import Cropper from 'cropperjs';
 

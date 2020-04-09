@@ -5,6 +5,7 @@ namespace Bambamboole\LaravelCms\Core\Posts\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\MissingValue;
+use Illuminate\Support\Facades\Storage;
 
 class PostResource extends JsonResource
 {
@@ -19,6 +20,7 @@ class PostResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'featured_image' => $this->when($this->featured_image !== null, Storage::url($this->featured_image)),
             'name' => $this->name,
             'slug' => $this->slug,
             'body' => $this->body,

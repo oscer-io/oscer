@@ -45,7 +45,7 @@
     import 'codemirror/lib/codemirror.css'
     import 'codemirror/keymap/sublime'
     import marked from 'marked';
-    import FormField from '../lib/mixins/FormField'
+    import FormField from '../../lib/mixins/FormField'
 
     export default {
         mixins: [FormField],

@@ -2,35 +2,32 @@
 
 namespace Bambamboole\LaravelCms\Core\Pages\Models;
 
+use Bambamboole\LaravelCms\Backend\Form\Form;
 use Bambamboole\LaravelCms\Core\Pages\Forms\PageForm;
 use Bambamboole\LaravelCms\Core\Pages\Resources\PageResource;
 use Bambamboole\LaravelCms\Core\Posts\Models\Post;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Str;
 
 class Page extends Post
 {
     protected $with = ['author'];
 
-    protected static function booted()
-    {
-        static::addGlobalScope('type', function (Builder $builder) {
-            $builder->where('type', '=', Str::snake(class_basename(self::class)));
-        });
-    }
-
-    public function getForm()
+    public function getForm(): Form
     {
         return new PageForm($this);
     }
 
-    protected function asResource($model)
+    public function asApiResource()
     {
-        return new PageResource($model);
+        return new PageResource($this);
     }
 
     protected function asResourceCollection($models)
     {
         return PageResource::collection($models);
+    }
+
+    public function getType()
+    {
+        return 'page';
     }
 }

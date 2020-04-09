@@ -2,124 +2,119 @@
 
 namespace Bambamboole\LaravelCms\Backend\Form;
 
+use Bambamboole\LaravelCms\Backend\Contracts\FormResource;
 use Bambamboole\LaravelCms\Backend\Form\Fields\Field;
-use Bambamboole\LaravelCms\Core\Models\BaseModel;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator as ValidatorFactory;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
 
 abstract class Form implements \JsonSerializable
 {
-    protected array $data;
-
-    protected BaseModel $resource;
+    protected FormResource $resource;
 
     protected bool $isCreateForm;
 
-    protected array $missingValues = [];
-
     protected array $additionalValidationRules = [];
 
-    /**
-     * @var Validator
-     */
-    protected $validator;
+    protected Collection $fields;
 
-    public function __construct(BaseModel $resource)
-    {
-        $this->setResource($resource);
-    }
-
-    public function setResource(BaseModel $resource)
+    public function __construct(FormResource $resource)
     {
         $this->resource = $resource;
-
-        $this->isCreateForm = $resource->id === null;
+        $this->isCreateForm = $resource->isCreation();
+        $this->fields = $this->resolve();
     }
 
-    public function setData(array $data)
+    /**
+     * This method resolves all the fields values from the single fields
+     * depending on the current resource.
+     */
+    protected function resolve()
     {
-        $this->data = $data;
-    }
-
-    public function resolveValues(Collection $fields)
-    {
-        return $fields->map(function (Field $field) {
-            if ($field->fillValue == false) {
-                return $field;
-            }
-            $field->value = $this->resource[$field->name] ?? '';
+        return $this->fields()->map(function (Field $field) {
+            $field->value = $field->resolve($this->resource, $this->isCreateForm);
 
             return $field;
         });
     }
 
+    /**
+     * This method needs to be implemented by the extending Form.
+     * It has to return a Collection of Field instances.
+     */
     abstract public function fields(): Collection;
 
-    protected function filteredFields(): Collection
-    {
-        return $this->fields()->filter(function (Field $field) {
-            if ($this->isCreateForm === true && $field->hiddenOnCreate === true) {
-                return false;
-            }
-            if ($this->isCreateForm === false && $field->hiddenOnUpdate === true) {
-                return false;
-            }
-
-            return true;
-        });
-    }
-
+    /**
+     * This method returns all validation rules form the fields and merges them
+     * with the "additionalValidationRules" for validation beyond fields.
+     */
     protected function getValidationRules()
     {
-        return array_merge($this->fields()
-            ->reduce(function ($rules, Field $field) {
+        return array_merge(
+            $this->fields->reduce(function ($rules, Field $field) {
                 $rules[$field->name] = $field->getRules($this->isCreateForm);
 
                 return $rules;
-            }, []), $this->additionalValidationRules);
+            }, []),
+            $this->additionalValidationRules
+        );
     }
 
-    public function getValidator(): Validator
+    /**
+     * This method creates a validator with the rules form the relevant fields.
+     */
+    protected function createValidator(array $data): Validator
     {
-        if (! $this->validator) {
-            $rules = $this->getValidationRules();
+        $rules = $this->getValidationRules();
 
-            $this->validator = ValidatorFactory::make($this->data, $rules);
-        }
-
-        return $this->validator;
+        return ValidatorFactory::make($data, $rules);
     }
 
-    public function save()
+    /**
+     * The "save" method is executed when a form will be submitted.
+     * It executes the validator and fills the resource with
+     * the updated values from the request.
+     */
+    public function save(Request $request): FormResource
     {
-        throw_if($this->validator->fails(), \Exception::class, 'form not valid');
+        $validator = $this->createValidator($request->all());
 
-        $data = $this->afterValidation($this->validator->valid());
-
-        if ($this->isCreateForm) {
-            $this->resource = $this->resource->newQuery()->create($data);
-            $this->afterCreate($this->resource);
-        } else {
-            $this->resource->update($data);
+        if ($validator->fails()) {
+            throw new ValidationException($validator);
         }
+
+        $this->fields()
+            ->filter(function (Field $field) use ($request) {
+                return ! $field->shouldBeRemoved($request);
+            })
+            ->each(function (Field $field) use ($request) {
+                $field->fill($this->resource, $request);
+            });
+
+        $this->beforeSave($request);
+
+        $this->resource->save();
 
         return $this->resource;
     }
 
-    protected function afterValidation(array $data): array
-    {
-        return $data;
-    }
-
-    public function afterCreate($resource)
+    /**
+     * This method can be used to alter the resource before it will be saved.
+     */
+    public function beforeSave(Request $request)
     {
         //
     }
 
-    protected function removeNullValues()
+    /**
+     * If we have a field which has the "filled" validation rule we have to strip null values
+     * from the form. this happens on the client side. This method abstracts the logic.
+     */
+    protected function shouldRemoveNullValues(): bool
     {
-        $rules = $this->filteredFields()->reduce(function ($result, Field $field) {
+        $rules = $this->fields->reduce(function ($result, Field $field) {
             foreach ($field->getRules($this->isCreateForm) as $rule) {
                 $result[] = $rule;
             }
@@ -132,18 +127,12 @@ abstract class Form implements \JsonSerializable
 
     public function toArray()
     {
-        return ['data' => array_merge(
-            [
-                'fields' => $this->resolveValues($this->filteredFields()),
-                'removeNullValues' => $this->removeNullValues(),
-            ],
-            ! empty($this->missingValues) ? ['missing_values' => $this->missingValues] : []
-        )];
+        return [
+            'fields' => $this->fields,
+            'removeNullValues' => $this->shouldRemoveNullValues(),
+        ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize()
     {
         return $this->toArray();
