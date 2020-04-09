@@ -27,7 +27,6 @@ abstract class Field implements JsonSerializable
 
     protected Closure $fillResourceCallback;
 
-
     protected bool $isCreation = true;
 
     public function __construct(
@@ -38,8 +37,9 @@ abstract class Field implements JsonSerializable
     {
         $this->name = $name;
         $this->label = $label ?: ucfirst($name);
-        $this->resolveValueCallback = $resolveValueCallback ?: function (Field $field) {
+        $this->resolveValueCallback = $resolveValueCallback ?: function (self $field) {
             $property = $this->name;
+
             return $field->resource->$property;
         };
 
@@ -55,8 +55,7 @@ abstract class Field implements JsonSerializable
         ?string $label = null,
         ?Closure $resolveValueCallback = null,
         ?Closure $fillResourceCallback = null
-    )
-    {
+    ) {
         return new static($name, $label, $resolveValueCallback, $fillResourceCallback);
     }
 
@@ -71,11 +70,12 @@ abstract class Field implements JsonSerializable
         $this->isCreation = $isCreation;
 
         $this->value = $this->resolveValue();
+
         return $this->value;
     }
 
     /**
-     * This method resolves the fields value depending on the "resolveValueCallback"
+     * This method resolves the fields value depending on the "resolveValueCallback".
      */
     protected function resolveValue()
     {
@@ -83,7 +83,7 @@ abstract class Field implements JsonSerializable
     }
 
     /**
-     * This method fills the resource with the updated value from the Form
+     * This method fills the resource with the updated value from the Form.
      */
     public function fill(FormResource $resource, Request $request)
     {
@@ -102,6 +102,7 @@ abstract class Field implements JsonSerializable
         ) {
             return true;
         }
+
         return false;
     }
 
