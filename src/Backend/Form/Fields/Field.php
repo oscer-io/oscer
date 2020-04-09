@@ -7,6 +7,8 @@ use JsonSerializable;
 
 abstract class Field implements JsonSerializable
 {
+    use HasRules;
+
     public string $name;
 
     public string $label;
