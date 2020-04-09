@@ -5,6 +5,7 @@ namespace Bambamboole\LaravelCms\Tests\Feature\Auth;
 use Bambamboole\LaravelCms\Core\Users\Models\User;
 use Bambamboole\LaravelCms\Tests\TestCase;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Hash;
 
 class ResetPasswordTest extends TestCase
 {
@@ -42,23 +43,69 @@ class ResetPasswordTest extends TestCase
     }
 
     /** @test */
-    public function password_can_be_updated()
+    public function password_must_be_at_least_6_characters_long()
     {
-        $this->withoutExceptionHandling();
-
-        $user = factory(User::class)->create();
-        Cache::shouldReceive('get')->once()->with("password.reset.{$user->id}")->andReturn('token');
-
         $response = $this->post(
-            route('cms.password.update', encrypt("{$user->id}|token")),
+            route('cms.password.update'),
+            [
+                'password' => '123',
+                'password_confirmation' => '123',
+            ]
+        );
+
+        $response->assertSessionHasErrors('password');
+    }
+
+    /** @test */
+    public function encrypted_token_is_required()
+    {
+        $response = $this->post(
+            route('cms.password.update'),
             [
                 'password' => 'secret',
                 'password_confirmation' => 'secret',
             ]
         );
-        dd($response->status());
 
-        $this->assertEquals($user->password, $user->fresh()->password);
-//        $this->assertTrue(Hash::check('secret_pw',$user->fresh()->password));
+        $response->assertSessionHasErrors('encrypted_token');
+    }
+
+    /** @test */
+    public function password_can_be_updated()
+    {
+        $user = factory(User::class)->create();
+        Cache::shouldReceive('get')->once()->with("password.reset.{$user->id}")->andReturn('token');
+
+        $this->post(
+            route('cms.password.update'),
+            [
+                'encrypted_token' => encrypt("{$user->id}|token"),
+                'password' => 'secret',
+                'password_confirmation' => 'secret',
+            ]
+        );
+
+        $this->assertTrue(Hash::check('secret',$user->fresh()->password));
+        $this->assertAuthenticatedAs($user);
+    }
+
+    /** @test */
+    public function after_password_reset_the_user_will_be_logged_in()
+    {
+        $user = factory(User::class)->create();
+        Cache::shouldReceive('get')->once()->with("password.reset.{$user->id}")->andReturn('token');
+
+        $response = $this->post(
+            route('cms.password.update'),
+            [
+                'encrypted_token' => encrypt("{$user->id}|token"),
+                'password' => 'secret',
+                'password_confirmation' => 'secret',
+            ]
+        );
+
+        $this->assertAuthenticatedAs($user);
+
+        $response->assertRedirect(route('cms.backend.start'));
     }
 }

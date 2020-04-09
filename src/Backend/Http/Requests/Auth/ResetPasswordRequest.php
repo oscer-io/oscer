@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Auth\Http\Requests;
+namespace Bambamboole\LaravelCms\Backend\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -14,6 +14,7 @@ class ResetPasswordRequest extends FormRequest
     public function rules()
     {
         return [
+            'encrypted_token' => 'required',
             'password' => 'required|confirmed|min:6',
         ];
     }

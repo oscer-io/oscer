@@ -3,7 +3,7 @@
 
 namespace Bambamboole\LaravelCms\Backend\Http\Controllers\Auth;
 
-use Bambamboole\LaravelCms\Auth\Http\Requests\ResetPasswordRequest;
+use Bambamboole\LaravelCms\Backend\Http\Requests\Auth\ResetPasswordRequest;
 use Bambamboole\LaravelCms\Core\Users\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,6 +45,7 @@ class ResetPasswordController
             $user = User::query()->findOrFail($userId);
 
         } catch (Throwable $exception) {
+
             return false;
         }
         if (Cache::get("password.reset.{$userId}") != $token) {
