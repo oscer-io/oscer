@@ -32,12 +32,12 @@ abstract class Field implements JsonSerializable
 
     public function __construct(
         string $name,
-        string $label,
+        ?string $label = null,
         ?Closure $resolveValueCallback = null,
         ?Closure $fillResourceCallback = null)
     {
         $this->name = $name;
-        $this->label = $label;
+        $this->label = $label ?: ucfirst($name);
         $this->resolveValueCallback = $resolveValueCallback ?: function (Field $field) {
             $property = $this->name;
             return $field->resource->$property;
@@ -57,7 +57,7 @@ abstract class Field implements JsonSerializable
         ?Closure $fillResourceCallback = null
     )
     {
-        return new static($name, $label ?? ucfirst($name), $resolveValueCallback, $fillResourceCallback);
+        return new static($name, $label, $resolveValueCallback, $fillResourceCallback);
     }
 
     public function fill(FormResource $resource, Request $request)
