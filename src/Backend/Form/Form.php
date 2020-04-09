@@ -50,7 +50,10 @@ abstract class Form implements \JsonSerializable
         );
     }
 
-    protected function getValidator(array $data): Validator
+    /**
+     * This method creates a validator with the rules form the relevant fields.
+     */
+    protected function createValidator(array $data): Validator
     {
         $rules = $this->getValidationRules();
 
@@ -59,7 +62,7 @@ abstract class Form implements \JsonSerializable
 
     public function save(Request $request): FormResource
     {
-        $validator = $this->getValidator($request->all());
+        $validator = $this->createValidator($request->all());
 
         if ($validator->fails()) {
             throw new ValidationException($validator);
