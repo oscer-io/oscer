@@ -47,6 +47,9 @@ class User extends BaseModel implements
      */
     protected $hidden = ['password', 'remember_token'];
 
+    protected $attributes = [
+        'language' => 'en',
+    ];
     /**
      * The column name of the "remember me" token.
      *
