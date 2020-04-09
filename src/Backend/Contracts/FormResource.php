@@ -24,7 +24,7 @@ interface FormResource
      * This method saves the resource after the field values
      * are assigned to public properties.
      */
-    public function save(): self;
+    public function save();
 
     /**
      * This method returns the resource after the save.
