@@ -15,6 +15,10 @@ class ImageField extends Field
 
     protected string $folder;
 
+    protected bool $rounded = false;
+
+    protected array $with = ['rounded'];
+
     public function __construct(
         string $name,
         ?string $label = null,
@@ -41,6 +45,13 @@ class ImageField extends Field
     public function folder(string $folder): self
     {
         $this->folder = $folder;
+
+        return $this;
+    }
+
+    public function rounded()
+    {
+        $this->rounded = true;
 
         return $this;
     }
