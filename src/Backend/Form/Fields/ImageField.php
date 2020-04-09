@@ -17,7 +17,7 @@ class ImageField extends Field
 
     public function __construct(
         string $name,
-        string $label,
+        ?string $label = null,
         ?Closure $resolveValueCallback = null,
         ?Closure $fillResourceCallback = null
     ) {

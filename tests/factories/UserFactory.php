@@ -18,13 +18,12 @@ use Illuminate\Database\Eloquent\Factory;
 */
 
 $factory->define(User::class, function (Faker $faker) {
-    $randomImgUrl = 'https://picsum.photos/300/300?random='.$faker->unique()->randomNumber(5, true);
 
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => 'password', // password
         'bio' => $faker->paragraphs(rand(1, 3), true),
-        'avatar' => $randomImgUrl,
+        'avatar' => null,
     ];
 });

@@ -17,13 +17,13 @@
     </div>
 </template>
 <script>
-    import FormField from "../lib/mixins/FormField";
+    import FormField from "../../lib/mixins/FormField";
 
     export default {
         mixins: [FormField],
         methods: {
             fill(data) {
-                data[this.field.name] = JSON.stringify(this.field.fields)
+                data[this.field.name] = JSON.stringify(this.field.fields);
 
                 return data;
             }

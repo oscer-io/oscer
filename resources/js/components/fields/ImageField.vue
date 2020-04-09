@@ -31,7 +31,7 @@
     </field-wrapper>
 </template>
 <script>
-    import FormField from "../lib/mixins/FormField";
+    import FormField from "../../lib/mixins/FormField";
     import 'cropperjs/dist/cropper.css'
     import Cropper from 'cropperjs';
 
