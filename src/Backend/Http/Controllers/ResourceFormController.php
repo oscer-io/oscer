@@ -8,13 +8,23 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+/**
+ * This controller handles the form fetching and submitting.
+ */
 class ResourceFormController
 {
+    /**
+     * Return the form definition based on a resource.
+     * It will be a create form if "id" is null.
+     */
     public function show($resource, $id = null)
     {
         return ['data' => $this->getForm($resource, $id)];
     }
 
+    /**
+     * This method will be called on form submission.
+     */
     public function store(Request $request, $resource, $id = null)
     {
         $form = $this->getForm($resource, $id);
@@ -30,19 +40,9 @@ class ResourceFormController
 
     protected function getForm($resource, $id): Form
     {
-        $instance = $this->getResourceInstance($resource);
-
-        if ($id === null) {
-            return $instance->getForm();
-        } else {
-            return $instance->findByIdentifier($id)->getForm();
-        }
-    }
-
-    protected function getResourceInstance(string $resource): FormResource
-    {
         $resources = config('cms.resources');
 
+        // Return a 404 response if the resource is not found
         if (!array_key_exists($resource, $resources)) {
             throw new NotFoundHttpException('resource not found');
         }
@@ -50,10 +50,16 @@ class ResourceFormController
         $resourceClass = $resources[$resource];
         $instance = new $resourceClass();
 
+        // Return a 404 response if the resource does not implement FormResource
         if (!$instance instanceof FormResource) {
-            throw new NotFoundHttpException('Resource does not implement Resource');
+            throw new NotFoundHttpException('Resource does not implement FormResource');
         }
 
-        return $instance;
+        // Determine if this is a create or update form
+        if ($id === null) {
+            return $instance->getForm();
+        } else {
+            return $instance->findByIdentifier($id)->getForm();
+        }
     }
 }
