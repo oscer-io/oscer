@@ -61,6 +61,28 @@ abstract class Field implements JsonSerializable
     }
 
     /**
+     * This method is called when a form will be instantiated. It sets
+     * the resource on the field as well as the info if it is a
+     * create or update form.
+     */
+    public function resolve(FormResource $resource, bool $isCreation)
+    {
+        $this->resource = $resource;
+        $this->isCreation = $isCreation;
+
+        $this->value = $this->resolveValue();
+        return $this->value;
+    }
+
+    /**
+     * This method resolves the fields value depending on the "resolveValueCallback"
+     */
+    protected function resolveValue()
+    {
+        return call_user_func($this->resolveValueCallback, $this);
+    }
+
+    /**
      * This method fills the resource with the updated value from the Form
      */
     public function fill(FormResource $resource, Request $request)
@@ -81,28 +103,6 @@ abstract class Field implements JsonSerializable
             return true;
         }
         return false;
-    }
-
-    /**
-     * This method is called when a form will be instantiated. It sets
-     * the resource on the field as well as the info if it is a
-     * create or update form.
-     */
-    public function resolve(FormResource $resource, bool $isCreation)
-    {
-        $this->resource = $resource;
-        $this->isCreation = $isCreation;
-
-        $this->value = $this->resolveValue();
-        return $this->value;
-    }
-
-    /**
-     * This method resolves the fields value depending on the "resolveValueCallback"
-     */
-    protected function resolveValue()
-    {
-        return call_user_func($this->resolveValueCallback, $this);
     }
 
     public function jsonSerialize()
