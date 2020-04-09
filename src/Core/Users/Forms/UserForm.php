@@ -22,11 +22,11 @@ class UserForm extends Form
                 ->disk('public')
                 ->folder('avatars'),
             TextField::make('name')
-                ->rulesOnCreate(['required', 'string'])
-                ->rulesOnUpdate(['filled', 'string']),
+                ->rulesForCreate(['required', 'string'])
+                ->rulesForUpdate(['filled', 'string']),
             TextField::make('email')
-                ->rulesOnCreate(['required', 'email', 'unique:cms_users,email'])
-                ->rulesOnUpdate([
+                ->rulesForCreate(['required', 'email', 'unique:cms_users,email'])
+                ->rulesForUpdate([
                     'filled',
                     'email',
                     Rule::unique('cms_users', 'email')
@@ -34,7 +34,7 @@ class UserForm extends Form
                 ]),
             TextareaField::make('bio', 'Biography'),
             PasswordField::make('password')
-                ->rulesOnUpdate(['filled', 'confirmed']),
+                ->rulesForUpdate(['filled', 'confirmed']),
         ]);
     }
 }

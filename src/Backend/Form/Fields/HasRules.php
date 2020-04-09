@@ -17,14 +17,14 @@ trait HasRules
         return $this;
     }
 
-    public function rulesOnCreate(array $rules)
+    public function rulesForCreate(array $rules)
     {
         $this->rulesOnCreate = $rules;
 
         return $this;
     }
 
-    public function rulesOnUpdate(array $rules)
+    public function rulesForUpdate(array $rules)
     {
         $this->rulesOnUpdate = $rules;
 
