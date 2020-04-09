@@ -20,7 +20,7 @@ class CreateCmsUsersTable extends Migration
             $table->string('password');
             $table->text('bio')->nullable();
             $table->string('avatar')->nullable();
-            $table->string('language')->default('en');
+            $table->string('language')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

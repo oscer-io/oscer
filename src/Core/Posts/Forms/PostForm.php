@@ -2,6 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Core\Posts\Forms;
 
+use Bambamboole\LaravelCms\Backend\Form\Fields\Field;
 use Bambamboole\LaravelCms\Backend\Form\Fields\MarkdownField;
 use Bambamboole\LaravelCms\Backend\Form\Fields\TagsField;
 use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
@@ -19,19 +20,9 @@ class PostForm extends Form
             TextField::make('name')->rules(['required', 'string']),
             TextField::make('slug')->rules(['filled', 'string']),
             MarkdownField::make('body')->rules(['required']),
-            TagsField::make('tags')
-                ->addResolveValueCallback(function (Collection $tags) {
-                    return $tags->pluck('name');
-                })
-                ->suggestions(Tag::all()->pluck('name')->toArray())->rules(['array']),
+            TagsField::make('tags', 'Tags', function (Field $field) {
+                return $field->resource->tags->pluck('name');
+            })->suggestions(Tag::all()->pluck('name')->toArray())->rules(['array']),
         ]);
-    }
-
-    protected function afterValidation(array $data): array
-    {
-        return array_merge(
-            $data,
-            $this->isCreateForm ? ['author_id' => auth()->user()->id, 'type' => 'post'] : []
-        );
     }
 }

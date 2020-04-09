@@ -17,12 +17,4 @@ class PageForm extends Form
             MarkdownField::make('body')->rules(['required']),
         ]);
     }
-
-    protected function afterValidation(array $data): array
-    {
-        return array_merge(
-            $data,
-            $this->isCreateForm ? ['author_id' => auth()->user()->id, 'type' => 'page'] : []
-        );
-    }
 }
