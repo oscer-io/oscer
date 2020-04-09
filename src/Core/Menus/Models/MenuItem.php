@@ -8,7 +8,8 @@ use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasUpdateEndpoint;
-use Bambamboole\LaravelCms\Backend\Contracts\HasForm;
+use Bambamboole\LaravelCms\Backend\Contracts\FormResource;
+use Bambamboole\LaravelCms\Backend\Form\Form;
 use Bambamboole\LaravelCms\Core\Menus\Forms\MenuItemForm;
 use Bambamboole\LaravelCms\Core\Menus\Resources\MenuItemResource;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
@@ -29,7 +30,7 @@ use Illuminate\Validation\ValidationException;
  * @property Carbon created_at
  */
 class MenuItem extends BaseModel implements
-    HasForm,
+    FormResource,
     HasApiEndpoints,
     HasIndexEndpoint,
     HasShowEndpoint,
@@ -37,7 +38,7 @@ class MenuItem extends BaseModel implements
     HasUpdateEndpoint,
     HasDeleteEndpoint
 {
-    public function getForm()
+    public function getForm(): Form
     {
         return new MenuItemForm($this);
     }
@@ -49,7 +50,7 @@ class MenuItem extends BaseModel implements
 
     public function executeShow($identifier)
     {
-        return new MenuItemResource($this->newQuery()->findOrFail($identifier));
+        return $this->findByIdentifier($identifier)->asApiResource();
     }
 
     public function executeStore(Request $request)
@@ -69,7 +70,7 @@ class MenuItem extends BaseModel implements
             ['order' => self::query()->where('menu', $request->input('menu'))->count() + 1]
         ));
 
-        return new MenuItemResource($model);
+        return $model->asApiResource();
     }
 
     public function executeUpdate(Request $request, $identifier)
@@ -85,10 +86,10 @@ class MenuItem extends BaseModel implements
             throw new ValidationException($validator);
         }
 
-        $model = $this->newQuery()->findOrFail($identifier);
+        $model = $this->findByIdentifier($identifier);
         $model->update($validator->valid());
 
-        return new MenuItemResource($model);
+        return $model->asApiResource();
     }
 
     public function executeDelete($id)
@@ -96,5 +97,20 @@ class MenuItem extends BaseModel implements
         $this->newQuery()->findOrFail($id)->delete();
 
         return ['success' => true];
+    }
+
+    public function isCreation(): bool
+    {
+        return $this->id === null;
+    }
+
+    public function findByIdentifier(string $identifier): FormResource
+    {
+        return $this->newQuery()->findOrFail($identifier);
+    }
+
+    public function asApiResource()
+    {
+        return new MenuItemResource($this);
     }
 }
