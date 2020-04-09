@@ -4,9 +4,9 @@ namespace Bambamboole\LaravelCms\Backend\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends FormRequest
+class ResetPasswordRequest extends FormRequest
 {
-    public function authorize(): bool
+    public function authorize()
     {
         return true;
     }
@@ -14,8 +14,8 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'email'],
-            'password' => ['required', 'string'],
+            'encrypted_token' => 'required',
+            'password' => 'required|confirmed|min:6',
         ];
     }
 }

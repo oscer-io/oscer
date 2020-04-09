@@ -2,10 +2,15 @@
 
 namespace Bambamboole\LaravelCms\Backend\Http\Requests\Auth;
 
-use Bambamboole\LaravelCms\Core\Http\Requests\BaseRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
-class SendPasswordResetLinkRequest extends BaseRequest
+class SendPasswordResetLinkRequest extends FormRequest
 {
+    public function authorize()
+    {
+        return true;
+    }
+
     public function rules(): array
     {
         return [

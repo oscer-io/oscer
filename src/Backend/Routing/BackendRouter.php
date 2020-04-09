@@ -4,6 +4,7 @@ namespace Bambamboole\LaravelCms\Backend\Routing;
 
 use Bambamboole\LaravelCms\Backend\Http\Controllers\Auth\ForgotPasswordController;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\Auth\LoginController;
+use Bambamboole\LaravelCms\Backend\Http\Controllers\Auth\ResetPasswordController;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\BackendController;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceFormController;
 use Bambamboole\LaravelCms\Core\Http\Middleware\Authenticate;
@@ -37,7 +38,8 @@ class BackendRouter
 
                 $router->get('/password/forgot', [ForgotPasswordController::class, 'showResetRequestForm'])->name('password.forgot');
                 $router->post('/password/forgot', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-                $router->get('/password/reset/{token}', [ForgotPasswordController::class, 'showNewPassword'])->name('password.reset');
+                $router->get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+                $router->post('/password/reset', [ResetPasswordController::class, 'update'])->name('password.update');
             });
     }
 
