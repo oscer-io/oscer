@@ -48,7 +48,7 @@ abstract class Form implements \JsonSerializable
 
     /**
      * This method returns all validation rules form the fields and merges them
-     * with the "additionalValidationRules" for validation beyond fields
+     * with the "additionalValidationRules" for validation beyond fields.
      */
     protected function getValidationRules()
     {

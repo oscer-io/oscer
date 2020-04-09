@@ -140,4 +140,3 @@ class FieldTest extends TestCase
         $this->assertTrue($field->shouldBeRemoved($requestMock));
     }
 }
-
