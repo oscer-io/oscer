@@ -2,11 +2,15 @@
 
 namespace Bambamboole\LaravelCms\Backend\Form\Fields;
 
+use Bambamboole\LaravelCms\Backend\Contracts\FormResource;
 use Closure;
+use Illuminate\Http\Request;
 use JsonSerializable;
 
 abstract class Field implements JsonSerializable
 {
+    use HasRules;
+
     public string $name;
 
     public string $label;
@@ -15,95 +19,91 @@ abstract class Field implements JsonSerializable
 
     public $value;
 
-    public bool $fillValue;
-
-    public bool $hiddenOnCreate = false;
-
-    public bool $hiddenOnUpdate = false;
-
-    public array $rules = [];
-
-    public array $rulesOnCreate = [];
-
-    public array $rulesOnUpdate = [];
+    public FormResource $resource;
 
     protected array $with = [];
 
-    protected $resolveValueCallback = false;
+    protected Closure $resolveValueCallback;
 
-    public function __construct(string $name, string $label, bool $fillValue)
+    protected Closure $fillResourceCallback;
+
+    protected bool $isCreation = true;
+
+    public function __construct(
+        string $name,
+        ?string $label = null,
+        ?Closure $resolveValueCallback = null,
+        ?Closure $fillResourceCallback = null)
     {
         $this->name = $name;
-        $this->label = $label;
-        $this->fillValue = $fillValue;
+        $this->label = $label ?: ucfirst($name);
+        $this->resolveValueCallback = $resolveValueCallback ?: function (self $field) {
+            $property = $this->name;
+
+            return $field->resource->$property;
+        };
+
+        $this->fillResourceCallback = $fillResourceCallback ?: function (FormResource $resource, Request $request) {
+            $property = $this->name;
+            $value = $request->input($property);
+            $resource->$property = $value;
+        };
     }
 
-    public static function make(string $name, ?string $label = null, ?bool $fillValue = true)
-    {
-        return new static($name, $label ?? ucfirst($name), $fillValue);
+    public static function make(
+        string $name,
+        ?string $label = null,
+        ?Closure $resolveValueCallback = null,
+        ?Closure $fillResourceCallback = null
+    ) {
+        return new static($name, $label, $resolveValueCallback, $fillResourceCallback);
     }
 
-    public function doNotShowOnCreate()
+    /**
+     * This method is called when a form will be instantiated. It sets
+     * the resource on the field as well as the info if it is a
+     * create or update form.
+     */
+    public function resolve(FormResource $resource, bool $isCreation)
     {
-        $this->hiddenOnCreate = true;
+        $this->resource = $resource;
+        $this->isCreation = $isCreation;
 
-        return $this;
-    }
-
-    public function doNotShowOnUpdate()
-    {
-        $this->hiddenOnUpdate = true;
-
-        return $this;
-    }
-
-    public function addResolveValueCallback(Closure $callback)
-    {
-        $this->resolveValueCallback = $callback;
-
-        return $this;
-    }
-
-    public function rules(array $rules)
-    {
-        $this->rules = $rules;
-
-        return $this;
-    }
-
-    public function rulesOnCreate(array $rules)
-    {
-        $this->rulesOnCreate = $rules;
-
-        return $this;
-    }
-
-    public function rulesOnUpdate(array $rules)
-    {
-        $this->rulesOnUpdate = $rules;
-
-        return $this;
-    }
-
-    public function getRules(bool $forCreate): array
-    {
-        if ($forCreate === true && ! empty($this->rulesOnCreate)) {
-            return $this->rulesOnCreate;
-        }
-        if ($forCreate === false && ! empty($this->rulesOnUpdate)) {
-            return $this->rulesOnUpdate;
-        }
-
-        return $this->rules;
-    }
-
-    protected function resolveValue()
-    {
-        if ($this->resolveValueCallback && $this->resolveValueCallback instanceof Closure) {
-            return call_user_func($this->resolveValueCallback, $this->value);
-        }
+        $this->value = $this->resolveValue();
 
         return $this->value;
+    }
+
+    /**
+     * This method resolves the fields value depending on the "resolveValueCallback".
+     */
+    protected function resolveValue()
+    {
+        return call_user_func($this->resolveValueCallback, $this);
+    }
+
+    /**
+     * This method fills the resource with the updated value from the Form.
+     */
+    public function fill(FormResource $resource, Request $request)
+    {
+        call_user_func($this->fillResourceCallback, $resource, $request);
+    }
+
+    /**
+     * We use this to check if a field should be removed from the submit process
+     * based on the request. If a field has a "filled" rule and is not
+     * present In the request we determine is must be removed.
+     */
+    public function shouldBeRemoved(Request $request)
+    {
+        if (in_array('filled', $this->getRules($this->isCreation))
+            && $request->input($this->name) === null
+        ) {
+            return true;
+        }
+
+        return false;
     }
 
     public function jsonSerialize()
@@ -112,10 +112,8 @@ abstract class Field implements JsonSerializable
             'component' => $this->component,
             'name' => $this->name,
             'label' => $this->label,
-            'rulesOnCreate' => $this->rulesOnCreate,
-            'rulesOnUpdate' => $this->rulesOnUpdate,
-            'value' => $this->fillValue ? $this->resolveValue() : null,
-            'hiddenOnCreate' => $this->hiddenOnCreate,
+            'rules' => $this->getRules($this->isCreation),
+            'value' => $this->resolveValue(),
         ];
 
         collect($this->with)->each(function (string $property) use (&$data) {

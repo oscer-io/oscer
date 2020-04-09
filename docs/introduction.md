@@ -44,7 +44,7 @@ We have put together a roadmap. It is divided in a few milestones which are more
 
 ### Second milestone: Baby boots (0.2)
 * Add more drag & drop image upload to the markdown post/page editor
-* Add avatar upload
+* Add avatar upload :heavy_check_mark:
 * Implement options :heavy_check_mark:
 * Add optional featured image to the post
 * Upgrade menu item to be able to select pages
@@ -64,7 +64,6 @@ We have put together a roadmap. It is divided in a few milestones which are more
 * Add SEO features
    * maybe with [Yoast SEO](https://github.com/Yoast/javascript)
 * Think about revisions
-* Add options
 * Hardening the code with more tests
 * Artisan command which creates a Theme 
 
