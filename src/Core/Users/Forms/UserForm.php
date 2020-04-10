@@ -35,7 +35,7 @@ class UserForm extends Form
                 ]),
             TextareaField::make('bio', 'Biography'),
             PasswordField::make('password')
-                ->rulesForUpdate(['filled', 'confirmed']),
+                ->rules(['filled', 'confirmed']),
         ]);
     }
 }

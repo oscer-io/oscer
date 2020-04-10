@@ -46,7 +46,6 @@ class CreatePageTest extends ApiTestCase
     {
         return [
             ['name', ['name' => '']],
-            ['slug', ['slug' => '']],
         ];
     }
 }

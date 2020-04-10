@@ -18,10 +18,16 @@ class PostForm extends Form
     public function fields(): Collection
     {
         return collect([
-            ImageField::make('featured_image', 'Featured Image')->disk('public')->folder('images'),
-            TextField::make('name')->rules(['required', 'string']),
-            TextField::make('slug')->rules(['filled', 'string']),
-            MarkdownField::make('body')->rules(['required']),
+            ImageField::make('featured_image','Featured Image')
+                ->rules(['filled'])
+                ->disk('public')
+                ->folder('images'),
+            TextField::make('name')
+                ->rules(['required', 'string']),
+            TextField::make('slug')
+                ->rules(['filled', 'string']),
+            MarkdownField::make('body')
+                ->rules(['required']),
             TagsField::make('tags', 'Tags', function (Field $field) {
                 return $field->resource->tags->pluck('name');
             })->suggestions(Tag::all()->pluck('name')->toArray())->rules(['array']),

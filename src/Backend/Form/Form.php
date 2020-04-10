@@ -46,18 +46,25 @@ abstract class Form implements \JsonSerializable
      */
     abstract public function fields(): Collection;
 
+    protected function filteredFields(Request $request): Collection
+    {
+        return $this->fields->filter(function (Field $field) use ($request) {
+            return !$field->shouldBeRemoved($request);
+        });
+    }
+
     /**
      * This method returns all validation rules form the fields and merges them
      * with the "additionalValidationRules" for validation beyond fields.
      */
-    protected function getValidationRules()
+    protected function getValidationRules(Request $request)
     {
         return array_merge(
-            $this->fields->reduce(function ($rules, Field $field) {
-                $rules[$field->name] = $field->getRules($this->isCreateForm);
-
-                return $rules;
-            }, []),
+            $this->filteredFields($request)
+                ->reduce(function ($rules, Field $field) {
+                    $rules[$field->name] = $field->getRules($this->isCreateForm);
+                    return $rules;
+                }, []),
             $this->additionalValidationRules
         );
     }
@@ -65,11 +72,11 @@ abstract class Form implements \JsonSerializable
     /**
      * This method creates a validator with the rules form the relevant fields.
      */
-    protected function createValidator(array $data): Validator
+    protected function createValidator(Request $request): Validator
     {
-        $rules = $this->getValidationRules();
+        $rules = $this->getValidationRules($request);
 
-        return ValidatorFactory::make($data, $rules);
+        return ValidatorFactory::make($request->all(), $rules);
     }
 
     /**
@@ -79,16 +86,13 @@ abstract class Form implements \JsonSerializable
      */
     public function save(Request $request): FormResource
     {
-        $validator = $this->createValidator($request->all());
+        $validator = $this->createValidator($request);
 
         if ($validator->fails()) {
             throw new ValidationException($validator);
         }
 
-        $this->fields()
-            ->filter(function (Field $field) use ($request) {
-                return ! $field->shouldBeRemoved($request);
-            })
+        $this->filteredFields($request)
             ->each(function (Field $field) use ($request) {
                 $field->fill($this->resource, $request);
             });

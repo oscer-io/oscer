@@ -48,7 +48,7 @@ We have put together a roadmap. It is divided in a few milestones which are more
 * Add optional featured image to the post :heavy_check_mark:
 * Upgrade menu item to be able to select pages
 * Upgrade menu item to contain svg with preview
-* Update forgot password mechanism to set a chosen password
+* Update forgot password mechanism to set a chosen password :heavy_check_mark:
 * implement permissions :heavy_check_mark:
 * Add all strings as translations
 * Set up docs :heavy_check_mark:

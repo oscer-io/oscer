@@ -4,32 +4,34 @@ namespace Tests\Unit\Backend\Forms;
 
 use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
 use Bambamboole\LaravelCms\Backend\Form\Form;
-use Bambamboole\LaravelCms\Core\Models\BaseModel;
-use Bambamboole\LaravelCms\Tests\TestCase;
+use Bambamboole\LaravelCms\Tests\Fixtures\TestCreateResource;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use PHPUnit\Framework\TestCase;
 
 class RemoveNullValuesTest extends TestCase
 {
     /** @test */
     public function removeNullValues_is_true_if_a_field_has_a_filled_rule()
     {
-        $form = new TestTrueForm(new TestModel());
+        $resource = new TestCreateResource();
+        // We have to set this that the TestField can execute the property
+        $resource->test = 'init';
+        $form = new TestTrueForm($resource);
 
-        $this->assertTrue(Arr::get($form->toArray(), 'data.removeNullValues'));
+        $this->assertTrue(Arr::get($form->toArray(), 'removeNullValues'));
     }
 
     /** @test */
     public function removeNullValues_is_false_if_no_field_has_a_filled_rule()
     {
-        $form = new TestFalseForm(new TestModel());
+        $resource = new TestCreateResource();
+        // We have to set this that the TestField can execute the property
+        $resource->test = 'init';
+        $form = new TestFalseForm($resource);
 
-        $this->assertFalse(Arr::get($form->toArray(), 'data.removeNullValues'));
+        $this->assertFalse(Arr::get($form->toArray(), 'removeNullValues'));
     }
-}
-
-class TestModel extends BaseModel
-{
 }
 
 class TestTrueForm extends Form

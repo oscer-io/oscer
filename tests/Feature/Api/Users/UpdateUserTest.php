@@ -29,10 +29,16 @@ class UpdateUserTest extends ApiTestCase
     /** @test */
     public function a_user_can_be_updated()
     {
+        $this->withoutExceptionHandling();
         $user = factory(User::class)->create();
         $this->login();
 
-        $response = $this->patch("/api/cms/user/{$user->id}", ['name' => 'updated_name']);
+        $updateData = factory(User::class)->raw([
+            'name' => 'updated_name',
+            'password' => null
+        ]);
+
+        $response = $this->patch("/api/cms/user/{$user->id}", $updateData);
 
         $response->assertOk();
         $this->assertEquals('updated_name', $user->fresh()->name);
@@ -57,8 +63,6 @@ class UpdateUserTest extends ApiTestCase
     public function invalidData()
     {
         return [
-            ['name', ['name' => '']],
-            ['email', ['email' => '']],
             ['email', ['email' => 'invalid_email']],
         ];
     }
