@@ -4,10 +4,7 @@ composer.lock
 vendor
 coverage
 /.phpunit.result.cache
-dist/app.css
-dist/app.js
 dist/mix-manifest.json
-dist/swagger-ui.css
-dist/swagger-ui.js
 dist/app.js.LICENSE.txt
-dist/0.js
+dist/*.js
+dist/*.css
