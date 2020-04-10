@@ -10,3 +10,4 @@ dist/mix-manifest.json
 dist/swagger-ui.css
 dist/swagger-ui.js
 dist/app.js.LICENSE.txt
+dist/0.js
