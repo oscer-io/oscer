@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class CheckboxGroupField extends Field
 {
-    public string $component = 'checkbox-group-field';
+    public string $component = 'CheckboxGroupField';
 
     protected array $fields = [];
 

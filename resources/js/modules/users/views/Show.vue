@@ -9,7 +9,10 @@
                 </div>
                 <div class="mt-4 flex md:mt-0 md:ml-4">
                     <span class="ml-3 shadow-sm rounded-md">
-                        <RouterLink :to="{name: 'users.edit', params: {id: id}}" class="btn">
+                        <RouterLink
+                            class="btn"
+                            :to="{name: 'users.edit', params: {id: id}}"
+                        >
                             {{ $t('users.button_edit') }}
                         </RouterLink>
                     </span>

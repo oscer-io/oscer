@@ -9,15 +9,25 @@
                 </div>
                 <div class="mt-4 flex md:mt-0 md:ml-4">
                     <span class="ml-3 shadow-sm rounded-md">
-                        <RouterLink :to="{name: 'posts.edit', params: {id: id}}" class="btn">
+                        <RouterLink
+                            class="btn"
+                            :to="{name: 'posts.edit', params: {id: id}}"
+                        >
                             {{ $t('posts.button_edit') }}
                         </RouterLink>
                     </span>
                 </div>
             </div>
             <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
-                <div v-if="post.featured_image" class="sm:col-span-6">
-                    <img class="h-80" alt :src="post.featured_image"/>
+                <div
+                    class="sm:col-span-6"
+                    v-if="post.featured_image"
+                >
+                    <img
+                        class="h-80"
+                        alt
+                        :src="post.featured_image"
+                    />
                 </div>
                 <div class="sm:col-span-6">
                     <span class="block text-sm font-medium leading-5 text-gray-700">
@@ -48,9 +58,11 @@
                         {{ $t('posts.tags') }}
                     </span>
                     <div class="mt-2">
-                        <span class="bg-indigo-600 py-1 px-2 ml-1 text-white rounded"
-                              v-for="tag in post.tags"
-                              v-text="tag">
+                        <span
+                            class="bg-indigo-600 py-1 px-2 ml-1 text-white rounded"
+                            v-for="tag in post.tags"
+                            v-text="tag"
+                        >
                         </span>
                     </div>
                 </div>
