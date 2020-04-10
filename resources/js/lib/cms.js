@@ -3,6 +3,7 @@ import VueJSModal from "vue-js-modal";
 import router from "./router";
 import i18n from './i18n';
 import route from 'ziggy';
+import App from '../modules/App';
 
 export default class Cms {
 
@@ -34,9 +35,27 @@ export default class Cms {
         this.boot();
 
         Vue.use(VueJSModal, {dynamic: true});
+        Vue.mixin({
+            data() {
+                return {
+                    permissions: this
+                }
+            },
+            methods: {
+                can(ability) {
+                    const user = window.Cms.config.user;
+                    const roles = user.roles;
+                    const permissions = user.assigned_permissions;
+                    console.log(user);
+
+                    return roles.some(role => role.name === "super-admin") || permissions.includes(ability);
+                }
+            }
+        });
 
         this.app = new Vue({
             el: '#cms',
+            components: {App},
             router,
             i18n,
             data() {
@@ -54,6 +73,13 @@ export default class Cms {
                     next();
                 });
             },
+            render: function (createElement) {
+                return createElement(App, {
+                    props: {
+                        transitionName: this.transitionName
+                    }
+                });
+            }
         })
     }
 
