@@ -49,7 +49,7 @@ abstract class Form implements \JsonSerializable
     protected function filteredFields(Request $request): Collection
     {
         return $this->fields->filter(function (Field $field) use ($request) {
-            return !$field->shouldBeRemoved($request);
+            return ! $field->shouldBeRemoved($request);
         });
     }
 
@@ -63,6 +63,7 @@ abstract class Form implements \JsonSerializable
             $this->filteredFields($request)
                 ->reduce(function ($rules, Field $field) {
                     $rules[$field->name] = $field->getRules($this->isCreateForm);
+
                     return $rules;
                 }, []),
             $this->additionalValidationRules

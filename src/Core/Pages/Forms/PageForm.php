@@ -13,7 +13,7 @@ class PageForm extends Form
     public function fields(): Collection
     {
         return collect([
-            ImageField::make('featured_image','Featured Image')
+            ImageField::make('featured_image', 'Featured Image')
                 ->rules(['filled'])
                 ->disk('public')
                 ->folder('images'),
