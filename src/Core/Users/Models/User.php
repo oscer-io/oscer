@@ -222,13 +222,14 @@ class User extends BaseModel implements
     }
 
     /**
-     * Get all permission names that are assigned to the current user
+     * Get all permission names that are assigned to the current user.
      */
     public function getAssignedPermissionsAttribute()
     {
         return $this->getAllPermissions()
             ->reduce(function ($result, $permission) {
                 $result[] = $permission->name;
+
                 return $result;
             }, []);
     }
