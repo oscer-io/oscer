@@ -9,9 +9,9 @@
                 </div>
                 <div class="ml-4 mt-2 flex-shrink-0">
                     <span class="inline-flex rounded-md shadow-sm">
-                        <router-link :to="{name:'pages.create'}" class="btn">
+                        <RouterLink :to="{name:'pages.create'}" class="btn">
                             {{ $t('pages.button_create') }}
-                        </router-link>
+                        </RouterLink>
                     </span>
                 </div>
             </div>
@@ -19,7 +19,7 @@
         <div class="bg-white shadow overflow-hidden sm:rounded-md">
             <ul>
                 <li v-for="page in pages">
-                    <router-link :to="{name: 'pages.show', params:{id: page.id}}"
+                    <RouterLink :to="{name: 'pages.show', params:{id: page.id}}"
                                  class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out"
                     >
                         <div class="flex items-center px-4 py-4 sm:px-6">
@@ -59,7 +59,7 @@
                                 </svg>
                             </div>
                         </div>
-                    </router-link>
+                    </RouterLink>
                 </li>
             </ul>
         </div>

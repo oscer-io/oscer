@@ -10,10 +10,10 @@
                     </div>
                     <div class="ml-4 mt-2 flex-shrink-0">
                     <span class="inline-flex rounded-md shadow-sm">
-                        <router-link :to="{name: 'roles.create'}"
+                        <RouterLink :to="{name: 'roles.create'}"
                                      class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline">
                             {{ $t('roles.button_create') }}
-                        </router-link>
+                        </RouterLink>
                     </span>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
             <div class="bg-white shadow overflow-hidden sm:rounded-md">
                 <ul>
                     <li v-for="role in roles">
-                        <router-link :to="{name: 'roles.show',params: {id: role.id}}"
+                        <RouterLink :to="{name: 'roles.show',params: {id: role.id}}"
                                      class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
 
                             <div class="flex items-center px-4 py-4 sm:px-6">
@@ -50,7 +50,7 @@
                                     </svg>
                                 </div>
                             </div>
-                        </router-link>
+                        </RouterLink>
                     </li>
                 </ul>
             </div>

@@ -11,9 +11,9 @@
                 </div>
                 <div class="mt-4 flex md:mt-0 md:ml-4">
                     <span class="ml-3 shadow-sm rounded-md">
-                        <router-link :to="{name:'profile.edit'}" class="btn">
+                        <RouterLink :to="{name:'profile.edit'}" class="btn">
                             {{$t('profile.edit')}}
-                        </router-link>
+                        </RouterLink>
                     </span>
                 </div>
             </div>

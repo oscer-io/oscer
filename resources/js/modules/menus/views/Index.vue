@@ -13,7 +13,7 @@
         <div class="bg-white shadow overflow-hidden sm:rounded-md">
             <ul>
                 <li v-for="menu in menus">
-                    <router-link :to="{name: 'menus.show',params: {name: menu.name}}"
+                    <RouterLink :to="{name: 'menus.show',params: {name: menu.name}}"
                        class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
                         <div class="flex items-center px-4 py-4 sm:px-6">
                             <div class="min-w-0 flex-1 flex items-center">
@@ -46,7 +46,7 @@
                                 </svg>
                             </div>
                         </div>
-                    </router-link>
+                    </RouterLink>
                 </li>
             </ul>
         </div>

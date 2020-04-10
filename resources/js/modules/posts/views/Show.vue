@@ -9,9 +9,9 @@
                 </div>
                 <div class="mt-4 flex md:mt-0 md:ml-4">
                     <span class="ml-3 shadow-sm rounded-md">
-                        <router-link :to="{name: 'posts.edit', params: {id: id}}" class="btn">
+                        <RouterLink :to="{name: 'posts.edit', params: {id: id}}" class="btn">
                             {{ $t('posts.button_edit') }}
-                        </router-link>
+                        </RouterLink>
                     </span>
                 </div>
             </div>
