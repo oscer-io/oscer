@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Permissions\Models;
+namespace Bambamboole\LaravelCms\Core\Users\Models;
 
 use Bambamboole\LaravelCms\Api\Contracts\HasApiEndpoints;
 use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
@@ -8,8 +8,8 @@ use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
 use Bambamboole\LaravelCms\Backend\Contracts\FormResource;
 use Bambamboole\LaravelCms\Backend\Form\Form;
-use Bambamboole\LaravelCms\Core\Permissions\Forms\RoleForm;
-use Bambamboole\LaravelCms\Core\Permissions\Resources\RoleResource;
+use Bambamboole\LaravelCms\Core\Users\Forms\RoleForm;
+use Bambamboole\LaravelCms\Core\Users\Resources\RoleResource;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;

@@ -1,19 +1,19 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Permissions\Forms;
+namespace Bambamboole\LaravelCms\Core\Users\Forms;
 
 use Bambamboole\LaravelCms\Backend\Contracts\FormResource;
 use Bambamboole\LaravelCms\Backend\Form\Fields\CheckboxGroupField;
 use Bambamboole\LaravelCms\Backend\Form\Form;
-use Bambamboole\LaravelCms\Core\Permissions\Models\Permission;
-use Bambamboole\LaravelCms\Core\Permissions\Models\Role;
+use Bambamboole\LaravelCms\Core\Users\Models\Permission;
+use Bambamboole\LaravelCms\Core\Users\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 class RoleForm extends Form
 {
     /**
-     * @var FormResource | \Bambamboole\LaravelCms\Core\Permissions\Models\Role
+     * @var FormResource | \Bambamboole\LaravelCms\Core\Users\Models\Role
      */
     protected FormResource $resource;
 

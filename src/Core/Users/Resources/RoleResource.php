@@ -1,10 +1,10 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Permissions\Resources;
+namespace Bambamboole\LaravelCms\Core\Users\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PermissionResource extends JsonResource
+class RoleResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,8 +18,8 @@ class PermissionResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'group' => $this->getGroup(),
             'created_at' => $this->created_at,
+            'permissions' => $this->permissions,
         ];
     }
 }

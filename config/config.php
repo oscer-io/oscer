@@ -8,8 +8,8 @@ use Bambamboole\LaravelCms\Core\Menus\Models\Menu;
 use Bambamboole\LaravelCms\Core\Menus\Models\MenuItem;
 use Bambamboole\LaravelCms\Core\Options\Models\Option;
 use Bambamboole\LaravelCms\Core\Pages\Models\Page;
-use Bambamboole\LaravelCms\Core\Permissions\Models\Permission;
-use Bambamboole\LaravelCms\Core\Permissions\Models\Role;
+use Bambamboole\LaravelCms\Core\Users\Models\Permission;
+use Bambamboole\LaravelCms\Core\Users\Models\Role;
 use Bambamboole\LaravelCms\Core\Posts\Models\Post;
 use Bambamboole\LaravelCms\Core\Users\Models\User;
 
