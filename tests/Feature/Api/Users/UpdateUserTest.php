@@ -35,7 +35,7 @@ class UpdateUserTest extends ApiTestCase
 
         $updateData = factory(User::class)->raw([
             'name' => 'updated_name',
-            'password' => null
+            'password' => null,
         ]);
 
         $response = $this->patch("/api/cms/user/{$user->id}", $updateData);

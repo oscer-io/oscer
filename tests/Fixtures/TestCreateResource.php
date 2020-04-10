@@ -7,9 +7,8 @@ use Bambamboole\LaravelCms\Backend\Form\Form;
 
 class TestCreateResource implements FormResource
 {
-
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function isCreation(): bool
     {
@@ -17,7 +16,7 @@ class TestCreateResource implements FormResource
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function findByIdentifier(string $identifier): FormResource
     {
@@ -25,7 +24,7 @@ class TestCreateResource implements FormResource
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function save()
     {
@@ -33,7 +32,7 @@ class TestCreateResource implements FormResource
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function asApiResource()
     {
@@ -41,7 +40,7 @@ class TestCreateResource implements FormResource
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getForm(): Form
     {
