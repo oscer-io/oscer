@@ -46,7 +46,6 @@ export default class Cms {
                     const user = window.Cms.config.user;
                     const roles = user.roles;
                     const permissions = user.assigned_permissions;
-                    console.log(user);
 
                     return roles.some(role => role.name === "super-admin") || permissions.includes(ability);
                 }
