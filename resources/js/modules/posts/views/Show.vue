@@ -43,6 +43,17 @@
                         {{post.body}}
                     </div>
                 </div>
+                <div class="sm:col-span-6">
+                    <span class="block text-sm font-medium leading-5 text-gray-700">
+                        {{ $t('posts.tags') }}
+                    </span>
+                    <div class="mt-2">
+                        <span class="bg-indigo-600 py-1 px-2 ml-1 text-white rounded"
+                              v-for="tag in post.tags"
+                              v-text="tag">
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     </loading>
