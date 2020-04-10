@@ -7,9 +7,9 @@ import Flash from "../components/Flash";
 import Tab from "../components/Tab";
 import Tabs from "../components/Tabs";
 
-Vue.component('loading', Loading);
-Vue.component('dropdown', Dropdown);
-Vue.component('navbar-link', NavbarLink);
-Vue.component('flash', Flash);
-Vue.component('tab', Tab);
-Vue.component('tabs', Tabs);
+Vue.component('Loading', Loading);
+Vue.component('Dropdown', Dropdown);
+Vue.component('NavbarLink', NavbarLink);
+Vue.component('Flash', Flash);
+Vue.component('Tab', Tab);
+Vue.component('Tabs', Tabs);
