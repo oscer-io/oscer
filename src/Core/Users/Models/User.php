@@ -59,6 +59,9 @@ class User extends BaseModel implements
     protected $attributes = [
         'language' => 'en',
     ];
+
+    protected $appends = ['assigned_permissions'];
+
     /**
      * The column name of the "remember me" token.
      *
@@ -216,5 +219,17 @@ class User extends BaseModel implements
     public function asApiResource()
     {
         return new UserResource($this);
+    }
+
+    /**
+     * Get all permission names that are assigned to the current user
+     */
+    public function getAssignedPermissionsAttribute()
+    {
+        return $this->getAllPermissions()
+            ->reduce(function ($result, $permission) {
+                $result[] = $permission->name;
+                return $result;
+            }, []);
     }
 }
