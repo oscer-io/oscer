@@ -15,6 +15,10 @@ abstract class Field implements JsonSerializable
 
     public string $label;
 
+    public bool $active = true;
+
+    public array $dependency = [];
+
     public string $component;
 
     public $value;
@@ -33,8 +37,8 @@ abstract class Field implements JsonSerializable
         string $name,
         ?string $label = null,
         ?Closure $resolveValueCallback = null,
-        ?Closure $fillResourceCallback = null)
-    {
+        ?Closure $fillResourceCallback = null
+    ) {
         $this->name = $name;
         $this->label = $label ?: ucfirst($name);
         $this->resolveValueCallback = $resolveValueCallback ?: function (self $field) {
@@ -94,6 +98,9 @@ abstract class Field implements JsonSerializable
      * We use this to check if a field should be removed from the submit process
      * based on the request. If a field has a "filled" rule and is not
      * present In the request we determine is must be removed.
+     * Moreover if the current field has a dependency but is
+     * not present (not activated in the view), we
+     * determine is must be removed as well.
      */
     public function shouldBeRemoved(Request $request)
     {
@@ -114,6 +121,8 @@ abstract class Field implements JsonSerializable
             'label' => $this->label,
             'rules' => $this->getRules($this->isCreation),
             'value' => $this->resolveValue(),
+            'active' => $this->active,
+            'dependency' => $this->dependency,
         ];
 
         collect($this->with)->each(function (string $property) use (&$data) {
@@ -121,5 +130,29 @@ abstract class Field implements JsonSerializable
         });
 
         return $data;
+    }
+
+    /**
+     * Set the fields initial active state. This is useful when using field dependencies.
+     */
+    public function activate(bool $state) {
+        $this->active = $state;
+
+        return $this;
+    }
+
+    /**
+     * Set a dependency to another field. Whenever the dependency field value changes
+     * it will be checked against $value. If both match this field will be
+     * shown, else it will be hidden.
+     */
+    public function dependsOn(string $field, string $value)
+    {
+        $this->dependency = [
+            'field' => $field,
+            'value' => $value
+        ];
+
+        return $this;
     }
 }
