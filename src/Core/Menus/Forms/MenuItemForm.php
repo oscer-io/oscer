@@ -29,7 +29,6 @@ class MenuItemForm extends Form
                     ];
                 },
                 function () {
-                    return null;
                 }
             )
                 ->rules(['required'])
@@ -44,10 +43,9 @@ class MenuItemForm extends Form
                             'name' => 'post',
                             'label' => 'Posts',
                             'value' => 'post',
-                        ]
+                        ],
                     ]
-                )
-            ,
+                ),
             TextField::make('url')
                 ->rules(['required', 'string'])
                 ->activate(false)
@@ -79,7 +77,7 @@ class MenuItemForm extends Form
                         ->toArray()
                 )
                 ->activate(false)
-                ->dependsOn('type', 'post')
+                ->dependsOn('type', 'post'),
         ]);
     }
 

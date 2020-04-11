@@ -135,7 +135,8 @@ abstract class Field implements JsonSerializable
     /**
      * Set the fields initial active state. This is useful when using field dependencies.
      */
-    public function activate(bool $state) {
+    public function activate(bool $state)
+    {
         $this->active = $state;
 
         return $this;
@@ -150,7 +151,7 @@ abstract class Field implements JsonSerializable
     {
         $this->dependency = [
             'field' => $field,
-            'value' => $value
+            'value' => $value,
         ];
 
         return $this;
