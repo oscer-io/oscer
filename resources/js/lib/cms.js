@@ -56,8 +56,8 @@ export default class Cms {
                     next();
                 });
             },
-            render: function (createElement) {
-                return createElement(App, {
+            render: (h) => {
+                return h(App, {
                     props: {
                         transitionName: this.transitionName
                     }
