@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            <div v-show="isNewMode" class="w-1/3 p-6">
+            <div v-if="isNewMode" class="w-1/3 p-6">
                 <p class="pt-6 text-lg leading-6 font-medium text-gray-900 text-center">New item</p>
                 <ResourceForm
                     resource="menu-item"
