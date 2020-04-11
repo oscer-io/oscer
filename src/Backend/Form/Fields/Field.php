@@ -151,7 +151,7 @@ abstract class Field implements JsonSerializable
     {
         $this->dependency = [
             'field' => $field,
-            'value' => $value
+            'value' => $value,
         ];
 
         return $this;

@@ -8,7 +8,6 @@ use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
 use Bambamboole\LaravelCms\Backend\Form\Form;
 use Bambamboole\LaravelCms\Core\Menus\Models\MenuItem;
 use Bambamboole\LaravelCms\Core\Posts\Models\Post;
-use Faker\Provider\Text;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -24,8 +23,12 @@ class MenuItemForm extends Form
             SelectField::make(
                 'type',
                 'Type',
-                function () { return [];},
-                function () {return null;}
+                function () {
+                    return [];
+                },
+                function () {
+                    return null;
+                }
             )
                 ->rules(['required'])
                 ->options( // we pass the names of the fields here
