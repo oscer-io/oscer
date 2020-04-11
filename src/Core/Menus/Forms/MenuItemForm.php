@@ -8,6 +8,7 @@ use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
 use Bambamboole\LaravelCms\Backend\Form\Form;
 use Bambamboole\LaravelCms\Core\Menus\Models\MenuItem;
 use Bambamboole\LaravelCms\Core\Posts\Models\Post;
+use Faker\Provider\Text;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -23,14 +24,8 @@ class MenuItemForm extends Form
             SelectField::make(
                 'type',
                 'Type',
-                function () {
-                    return [
-
-                    ];
-                },
-                function () {
-                    return null;
-                }
+                function () { return [];},
+                function () {return null;}
             )
                 ->rules(['required'])
                 ->options( // we pass the names of the fields here
@@ -46,8 +41,8 @@ class MenuItemForm extends Form
                             'value' => 'post',
                         ]
                     ]
-                )
-            ,
+                ),
+
             TextField::make('url')
                 ->rules(['required', 'string'])
                 ->activate(false)
@@ -63,7 +58,7 @@ class MenuItemForm extends Form
 //                    $post = Post::query()->where('slug', $id)->first();
 //                    $resource->url = implode('/', [$post->type, $post->slug]);
                 }
-                )
+            )
                 ->rules(['required', 'string'])
                 ->options(
                     Post::all()
