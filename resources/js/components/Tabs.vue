@@ -9,13 +9,14 @@
                 role="presentation"
                 v-show="tab.isVisible"
             >
-                <a v-html="tab.header"
-                   :aria-controls="tab.hash"
-                   :aria-selected="tab.isActive"
-                   @click="selectTab(tab.hash, $event)"
-                   :href="tab.hash"
-                   class="tabs-component-tab-a"
-                   role="tab"
+                <a
+                    v-html="tab.header"
+                    :aria-controls="tab.hash"
+                    :aria-selected="tab.isActive"
+                    @click="selectTab(tab.hash, $event)"
+                    :href="tab.hash"
+                    class="tabs-component-tab-a"
+                    role="tab"
                 ></a>
             </li>
         </ul>
@@ -24,7 +25,6 @@
         </div>
     </div>
 </template>
-
 <script>
     export default {
         props: {
@@ -60,7 +60,7 @@
                 this.selectTab(window.location.hash);
                 return;
             }
-            if(this.options.defaultTabHash !== null && this.findTab("#" + this.options.defaultTabHash)) {
+            if (this.options.defaultTabHash !== null && this.findTab("#" + this.options.defaultTabHash)) {
                 this.selectTab("#" + this.options.defaultTabHash);
                 return;
             }
@@ -78,7 +78,7 @@
                     event.preventDefault();
                 }
                 const selectedTab = this.findTab(selectedTabHash);
-                if (! selectedTab) {
+                if (!selectedTab) {
                     return;
                 }
                 if (selectedTab.isDisabled) {
@@ -86,20 +86,20 @@
                     return;
                 }
                 if (this.lastActiveTabHash === selectedTab.hash) {
-                    this.$emit('clicked', { tab: selectedTab });
+                    this.$emit('clicked', {tab: selectedTab});
                     return;
                 }
                 this.tabs.forEach(tab => {
                     tab.isActive = (tab.hash === selectedTab.hash);
                 });
-                this.$emit('changed', { tab: selectedTab });
+                this.$emit('changed', {tab: selectedTab});
                 this.activeTabHash = selectedTab.hash;
                 this.activeTabIndex = this.getTabIndex(selectedTabHash);
                 this.lastActiveTabHash = this.activeTabHash = selectedTab.hash;
             },
             setTabVisible(hash, visible) {
                 const tab = this.findTab(hash);
-                if (! tab) {
+                if (!tab) {
                     return;
                 }
                 tab.isVisible = visible;
@@ -116,13 +116,13 @@
                 }
             },
 
-            getTabIndex(hash){
+            getTabIndex(hash) {
                 const tab = this.findTab(hash);
 
                 return this.tabs.indexOf(tab);
             },
 
-            getTabHash(index){
+            getTabHash(index) {
                 const tab = this.tabs.find(tab => this.tabs.indexOf(tab) === index);
 
                 if (!tab) {
@@ -132,7 +132,7 @@
                 return tab.hash;
             },
 
-            getActiveTab(){
+            getActiveTab() {
                 return this.findTab(this.activeTabHash);
             },
 

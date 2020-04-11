@@ -1,10 +1,12 @@
 <template>
     <div>
-        <field-wrapper v-for="(item, index) in field.fields"
-                       :name="item.name"
-                       :key="index"
-                       :label="item.label || item.name"
-                       :errors="validationErrors">
+        <FieldWrapper
+            v-for="(item, index) in field.fields"
+            :name="item.name"
+            :key="index"
+            :label="item.label || item.name"
+            :errors="validationErrors"
+        >
             <input
                 class="form-checkbox transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                 :class="{'border-red-600': !!hasValidationErrors}"
@@ -13,7 +15,7 @@
                 v-model="item.value"
                 type="checkbox"
             />
-        </field-wrapper>
+        </FieldWrapper>
     </div>
 </template>
 <script>

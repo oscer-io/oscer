@@ -1,5 +1,8 @@
 <template>
-    <div v-on-clickaway="away" class="ml-3 relative">
+    <div
+        class="ml-3 relative"
+        v-on-clickaway="away"
+    >
         <div @click="isDropdownActive=!isDropdownActive">
             <slot name="trigger">
             </slot>
