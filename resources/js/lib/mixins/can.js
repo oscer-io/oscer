@@ -6,11 +6,8 @@ export default {
     },
     methods: {
         can(ability) {
-            const user = window.Cms.config.user;
-            const roles = user.roles;
-            const permissions = user.assigned_permissions;
-
-            return roles.some(role => role.name === "super-admin") || permissions.includes(ability);
+            return window.Cms.config.user.roles.some(role => role.name === "super-admin") ||
+                window.Cms.config.user.assigned_permissions.includes(ability);
         }
     }
 };
