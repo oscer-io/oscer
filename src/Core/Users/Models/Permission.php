@@ -2,7 +2,9 @@
 
 namespace Bambamboole\LaravelCms\Core\Users\Models;
 
-class Permission extends \Spatie\Permission\Models\Permission
+use Spatie\Permission\Models\Permission as BasePermission;
+
+class Permission extends BasePermission
 {
     public function getGroup()
     {

@@ -2,23 +2,12 @@
 
 namespace Bambamboole\LaravelCms\Core\Posts\Models;
 
-use Bambamboole\LaravelCms\Api\Contracts\HasApiEndpoints;
-use Bambamboole\LaravelCms\Api\Contracts\HasDeleteEndpoint;
-use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
-use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
-use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
-use Bambamboole\LaravelCms\Api\Contracts\HasUpdateEndpoint;
-use Bambamboole\LaravelCms\Backend\Contracts\FormResource;
 use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
-use Bambamboole\LaravelCms\Backend\Form\Form;
 use Bambamboole\LaravelCms\Backend\Resources\IsSavableEloquentModel;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
-use Bambamboole\LaravelCms\Core\Posts\Forms\PostForm;
-use Bambamboole\LaravelCms\Core\Posts\Resources\PostResource;
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use League\CommonMark\Block\Element\FencedCode;
 use League\CommonMark\Block\Element\IndentedCode;
 use League\CommonMark\CommonMarkConverter;
@@ -40,14 +29,7 @@ use Spatie\Sluggable\SlugOptions;
  * @property Carbon updated_at
  * @property Carbon created_at
  */
-class Post extends BaseModel implements
-    SavableModel,
-    HasApiEndpoints,
-    HasIndexEndpoint,
-    HasShowEndpoint,
-    HasStoreEndpoint,
-    HasUpdateEndpoint,
-    HasDeleteEndpoint
+class Post extends BaseModel implements SavableModel
 {
     use HasSlug;
     use IsSavableEloquentModel;
@@ -59,18 +41,10 @@ class Post extends BaseModel implements
     protected static function booted()
     {
         static::creating(function (self $post) {
-            if (! $post->author_id) {
+            if (!$post->author_id) {
                 $post->author_id = auth()->user()->id;
             }
             $post->type = $post->getType();
-        });
-    }
-
-    public static function create(array $attributes): self
-    {
-        return tap(parent::query()->newModelInstance($attributes), function ($instance) {
-            $instance->type = Str::snake(class_basename($instance));
-            $instance->save();
         });
     }
 
@@ -95,8 +69,14 @@ class Post extends BaseModel implements
             ->doNotGenerateSlugsOnUpdate();
     }
 
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
     /**
-     * @param array $value
+     * This method allows to set the tags on a post via the property.
+     * If it is a new model they will be synced in a event callback.
      */
     public function setTagsAttribute(array $value)
     {
@@ -123,14 +103,6 @@ class Post extends BaseModel implements
         }
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function tags()
-    {
-        return $this->belongsToMany(Tag::class);
-    }
-
     public function getRenderedBody()
     {
         $languages = ['php', 'bash', 'yaml', 'ini', 'dockerfile'];
@@ -145,74 +117,5 @@ class Post extends BaseModel implements
     public function joiningTableSegment()
     {
         return 'post';
-    }
-
-    public function getForm(): Form
-    {
-        return new PostForm($this);
-    }
-
-    public function executeIndex()
-    {
-        return $this->asResourceCollection($this->newQuery()->where('type', $this->getType())->paginate());
-    }
-
-    public function executeShow($id)
-    {
-        return $this->findByIdentifier($id)->asApiResource();
-    }
-
-    public function executeStore(Request $request)
-    {
-        $form = $this->getForm();
-
-        $post = $form->save($request);
-
-        return $this->asResource($post);
-    }
-
-    public function executeUpdate(Request $request, $identifier)
-    {
-        $post = $this->findByIdentifier($identifier);
-        $form = $post->getForm();
-
-        $updatedPost = $form->save($request);
-
-        return $this->asResource($updatedPost);
-    }
-
-    public function executeDelete($id)
-    {
-        $this->newQuery()->findOrFail($id)->delete();
-
-        return ['success' => true];
-    }
-
-    /**
-     * We use this method to abstract the resource instantiation.
-     * This way we rely on the api implementation of the Post
-     * but override the returned resources as we need.
-     */
-    protected function asResource($model)
-    {
-        return new PostResource($model);
-    }
-
-    /**
-     * Same as the method above but with the collection.
-     */
-    protected function asResourceCollection($models)
-    {
-        return PostResource::collection($models);
-    }
-
-    public function findByIdentifier(string $identifier): FormResource
-    {
-        return $this->newQuery()->findOrFail($identifier);
-    }
-
-    public function asApiResource()
-    {
-        return new PostResource($this);
     }
 }
