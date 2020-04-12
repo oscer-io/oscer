@@ -8,8 +8,14 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="item in items">
-                <td v-for="field in item.fields" v-text="field.value"></td>
+            <tr v-for="(item, itemIndex) in items">
+                <td v-for="(field, fieldIndex) in item.fields.filter(currentField => currentField.component !== 'PasswordField')"
+                    :key="`${field.name}-${itemIndex}`">
+                    <component
+                        :is="`Index${field.component}`"
+                        :field="field"
+                    />
+                </td>
                 <td>
                     <router-link :to="{name:`${resource}s.show`, params: {id: item.resourceId}}" class="btn">
                         show
@@ -43,7 +49,11 @@
         },
         computed: {
             tableHeaderColumns() {
-                return this.items.length > 0 ? this.items[0].fields.map(field => field.name) : []
+                return this.items.length > 0
+                    ? this.items[0].fields
+                        .filter(field => field.component !== 'PasswordField')
+                        .map(field => field.name)
+                    : []
             }
         },
         mounted() {
@@ -52,7 +62,6 @@
         methods: {
             async fetchResourceList() {
                 const response = await api(Cms.route('cms.backend.resources.index', this.resource));
-                console.log(response.data)
                 this.items = response.data.data;
                 this.isLoading = false;
             }

@@ -9,7 +9,9 @@ use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasUpdateEndpoint;
 use Bambamboole\LaravelCms\Backend\Contracts\FormResource;
+use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
 use Bambamboole\LaravelCms\Backend\Form\Form;
+use Bambamboole\LaravelCms\Backend\Resources\IsSavableEloquentModel;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Bambamboole\LaravelCms\Core\Posts\Forms\PostForm;
 use Bambamboole\LaravelCms\Core\Posts\Resources\PostResource;
@@ -39,7 +41,7 @@ use Spatie\Sluggable\SlugOptions;
  * @property Carbon created_at
  */
 class Post extends BaseModel implements
-    FormResource,
+    SavableModel,
     HasApiEndpoints,
     HasIndexEndpoint,
     HasShowEndpoint,
@@ -48,6 +50,7 @@ class Post extends BaseModel implements
     HasDeleteEndpoint
 {
     use HasSlug;
+    use IsSavableEloquentModel;
 
     protected $table = 'cms_posts';
 
@@ -201,11 +204,6 @@ class Post extends BaseModel implements
     protected function asResourceCollection($models)
     {
         return PostResource::collection($models);
-    }
-
-    public function isCreation(): bool
-    {
-        return $this->id === null;
     }
 
     public function findByIdentifier(string $identifier): FormResource

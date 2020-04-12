@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Backend\Form\Fields;
 
-use Bambamboole\LaravelCms\Backend\Contracts\FormResource;
+use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
 use Illuminate\Http\Request;
 
 class CheckboxGroupField extends Field
@@ -25,10 +25,10 @@ class CheckboxGroupField extends Field
      * Therefore the vue components json string must be decoded
      * first and will be accessible by the resources name.
      */
-    public function fill(FormResource $resource, Request $request)
+    public function fill(SavableModel $model, Request $request)
     {
         $request->merge([$this->name => json_decode($request->input($this->name), true)]);
 
-        call_user_func($this->fillResourceCallback, $resource, $request);
+        call_user_func($this->fillResourceCallback, $model, $request);
     }
 }

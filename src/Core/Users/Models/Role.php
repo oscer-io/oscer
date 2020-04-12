@@ -7,7 +7,9 @@ use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
 use Bambamboole\LaravelCms\Backend\Contracts\FormResource;
+use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
 use Bambamboole\LaravelCms\Backend\Form\Form;
+use Bambamboole\LaravelCms\Backend\Resources\IsSavableEloquentModel;
 use Bambamboole\LaravelCms\Core\Users\Forms\RoleForm;
 use Bambamboole\LaravelCms\Core\Users\Resources\RoleResource;
 use Illuminate\Contracts\Support\Responsable;
@@ -15,12 +17,13 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 class Role extends \Spatie\Permission\Models\Role implements
-    FormResource,
+    SavableModel,
     HasApiEndpoints,
     HasIndexEndpoint,
     HasStoreEndpoint,
     HasShowEndpoint
 {
+    use IsSavableEloquentModel;
     const SUPER_ADMIN_ROLE = 'super-admin';
 
     public function executeIndex()
@@ -77,13 +80,5 @@ class Role extends \Spatie\Permission\Models\Role implements
     public function asApiResource()
     {
         return new RoleResource($this);
-    }
-
-    /**
-     * This method determines is this will be a create or a update form.
-     */
-    public function isCreation(): bool
-    {
-        return $this->id === null;
     }
 }

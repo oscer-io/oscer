@@ -2,9 +2,11 @@
 
 namespace Bambamboole\LaravelCms\Backend\Http\Controllers;
 
+use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
 use Bambamboole\LaravelCms\Backend\Http\Requests\BackendRequest;
 use Bambamboole\LaravelCms\Backend\Resources\Resource;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ResourceStoreController
 {
@@ -13,6 +15,10 @@ class ResourceStoreController
         $model = $request
             ->newResourceModel()
             ->show($request->identifier());
+
+        if(!$model instanceof SavableModel){
+            throw new HttpException(401, 'THe reosurce model is not savable');
+        }
 
         $resourceClass = $request->getResource();
         /** @var Resource $resource */

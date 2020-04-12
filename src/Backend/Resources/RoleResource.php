@@ -1,26 +1,23 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Users\Forms;
+namespace Bambamboole\LaravelCms\Backend\Resources;
 
-use Bambamboole\LaravelCms\Backend\Contracts\FormResource;
 use Bambamboole\LaravelCms\Backend\Form\Fields\CheckboxGroupField;
-use Bambamboole\LaravelCms\Backend\Form\Form;
+use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
 use Bambamboole\LaravelCms\Core\Users\Models\Permission;
 use Bambamboole\LaravelCms\Core\Users\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
-class RoleForm extends Form
+class RoleResource extends Resource
 {
-    /**
-     * @var FormResource | \Bambamboole\LaravelCms\Core\Users\Models\Role
-     */
-    protected FormResource $resource;
+    public static string $model = Role::class;
 
     public function fields(): Collection
     {
         return collect(
             [
+                TextField::make('name'),
                 CheckboxGroupField::make(
                     'permissions',
                     null,
@@ -43,7 +40,7 @@ class RoleForm extends Form
                                     return [
                                         'name' => $permission->name,
                                         'label' => $permission->name,
-                                        'value' => $this->resource->hasPermissionTo($permission),
+                                        'value' => $this->resourceModel->hasPermissionTo($permission),
                                     ];
                                 }
                             )

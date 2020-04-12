@@ -11,6 +11,7 @@ use Bambamboole\LaravelCms\Api\Contracts\HasUpdateEndpoint;
 use Bambamboole\LaravelCms\Backend\Contracts\FormResource;
 use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
 use Bambamboole\LaravelCms\Backend\Form\Form;
+use Bambamboole\LaravelCms\Backend\Resources\IsSavableEloquentModel;
 use Bambamboole\LaravelCms\Backend\Resources\UserResource;
 use Bambamboole\LaravelCms\Core\Mails\NewUserCreatedMail;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
@@ -49,6 +50,7 @@ class User extends BaseModel implements
     use HasApiTokens;
     use HasRoles;
     use AuthorizableTrait;
+    use IsSavableEloquentModel;
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -210,21 +212,6 @@ class User extends BaseModel implements
     public function findByIdentifier(string $identifier): FormResource
     {
         return $this->newQuery()->findOrFail($identifier);
-    }
-
-    public function index()
-    {
-        return $this->newQuery()->paginate();
-    }
-
-    public function show(string $identifier)
-    {
-        return $this->newQuery()->findOrFail($identifier);
-    }
-
-    public function isNew(): bool
-    {
-        return $this->id === null;
     }
 
     /**

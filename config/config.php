@@ -4,6 +4,8 @@
  * You can place your custom package configuration in here.
  */
 
+use Bambamboole\LaravelCms\Backend\Resources\PostResource;
+use Bambamboole\LaravelCms\Backend\Resources\RoleResource;
 use Bambamboole\LaravelCms\Backend\Resources\UserResource;
 use Bambamboole\LaravelCms\Core\Menus\Models\Menu;
 use Bambamboole\LaravelCms\Core\Menus\Models\MenuItem;
@@ -21,7 +23,9 @@ return [
         'url' => 'admin',
         'middleware' => 'web',
         'resources'  => [
-            'user'  => UserResource::class
+            'user'  => UserResource::class,
+            'role' => RoleResource::class,
+            'post' => PostResource::class
         ]
     ],
     'resources' => [

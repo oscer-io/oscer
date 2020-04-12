@@ -4,7 +4,7 @@ namespace Bambamboole\LaravelCms\Backend\Form\Fields;
 
 class TagsField extends Field
 {
-    public string $component = 'TasgField';
+    public string $component = 'TagsField';
 
     public array $suggestions = [];
 

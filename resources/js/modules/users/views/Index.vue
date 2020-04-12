@@ -1,10 +1,10 @@
 <template>
-    <ResourceList resource="user"/>
+    <ResourceIndex resource="user"/>
 </template>
 
 <script>
-    import ResourceList from "../../../components/ResourceList";
+    import ResourceIndex from "../../../components/ResourceIndex";
     export default {
-        components:{ResourceList},
+        components:{ResourceIndex},
     }
 </script>
