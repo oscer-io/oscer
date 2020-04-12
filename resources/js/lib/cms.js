@@ -3,7 +3,7 @@ import VueJSModal from "vue-js-modal";
 import router from "./router";
 import i18n from './i18n';
 import route from 'ziggy';
-import App from '../modules/App';
+import App from '../components/App';
 
 export default class Cms {
 
