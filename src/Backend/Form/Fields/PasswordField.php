@@ -4,7 +4,7 @@ namespace Bambamboole\LaravelCms\Backend\Form\Fields;
 
 class PasswordField extends Field
 {
-    public string $component = 'password-field';
+    public string $component = 'PasswordField';
 
     public bool $confirm = true;
 
