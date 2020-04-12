@@ -3,6 +3,7 @@ import VueJSModal from "vue-js-modal";
 import router from "./router";
 import i18n from './i18n';
 import route from 'ziggy';
+import Layout from '../components/Layout';
 
 export default class Cms {
 
@@ -37,6 +38,7 @@ export default class Cms {
 
         this.app = new Vue({
             el: '#cms',
+            components: {Layout},
             router,
             i18n,
             data() {
@@ -54,6 +56,13 @@ export default class Cms {
                     next();
                 });
             },
+            render: function (h) {
+                return h(Layout, {
+                    props: {
+                        transitionName: this.transitionName
+                    }
+                });
+            }
         })
     }
 
