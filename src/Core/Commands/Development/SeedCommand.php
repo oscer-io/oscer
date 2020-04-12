@@ -173,6 +173,7 @@ class SeedCommand extends Command
         ])->map(function ($page) {
             return factory(Page::class)->create(array_merge($page, ['author_id' => $this->admin->id]));
         })->tap(function (Collection $pages) {
+            factory(Page::class,50)->create(['author_id' => $this->admin->id]);
             $this->info("{$pages->count()} pages seeded");
         });
     }

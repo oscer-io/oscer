@@ -67,7 +67,7 @@
             },
         },
         async mounted() {
-            const response = await api(Cms.route('cms.api.resources.show', ['user', this.id]));
+            const response = await api(Cms.route('cms.backend.resources.show', ['user', this.id]));
             this.user = response.data.data;
             this.isLoading = false;
         }

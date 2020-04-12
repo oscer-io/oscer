@@ -2,15 +2,14 @@
 
 namespace Bambamboole\LaravelCms\Backend\Form\Fields;
 
-use Bambamboole\LaravelCms\Backend\Contracts\FormResource;
+use Bambamboole\LaravelCms\Backend\Contracts\DisplayableModel;
+use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
 use Closure;
 use Illuminate\Http\Request;
 use JsonSerializable;
 
 abstract class Field implements JsonSerializable
 {
-    use HasRules;
-
     public string $name;
 
     public string $label;
@@ -19,15 +18,19 @@ abstract class Field implements JsonSerializable
 
     public $value;
 
-    public FormResource $resource;
+    public array $rules = [];
+
+    protected array $rulesForCreate = [];
+
+    protected array $rulesForUpdate = [];
+
+    public DisplayableModel $resource;
 
     protected array $with = [];
 
     protected Closure $resolveValueCallback;
 
     protected Closure $fillResourceCallback;
-
-    protected bool $isCreation = true;
 
     public function __construct(
         string $name,
@@ -43,20 +46,19 @@ abstract class Field implements JsonSerializable
             return $field->resource->$property;
         };
 
-        $this->fillResourceCallback = $fillResourceCallback ?: function (FormResource $resource, Request $request) {
+        $this->fillResourceCallback = $fillResourceCallback ?: function (SavableModel $model, Request $request) {
             $property = $this->name;
             $value = $request->input($property);
-            $resource->$property = $value;
+            $model->$property = $value;
         };
     }
 
-    public static function make(
-        string $name,
-        ?string $label = null,
-        ?Closure $resolveValueCallback = null,
-        ?Closure $fillResourceCallback = null
-    ) {
-        return new static($name, $label, $resolveValueCallback, $fillResourceCallback);
+    /**
+     * Returns a new field which is chainable.
+     */
+    public static function make(...$arguments)
+    {
+        return new static(...$arguments);
     }
 
     /**
@@ -64,10 +66,9 @@ abstract class Field implements JsonSerializable
      * the resource on the field as well as the info if it is a
      * create or update form.
      */
-    public function resolve(FormResource $resource, bool $isCreation)
+    public function resolve(DisplayableModel $resource)
     {
         $this->resource = $resource;
-        $this->isCreation = $isCreation;
 
         $this->value = $this->resolveValue();
 
@@ -85,9 +86,43 @@ abstract class Field implements JsonSerializable
     /**
      * This method fills the resource with the updated value from the Form.
      */
-    public function fill(FormResource $resource, Request $request)
+    public function fill(SavableModel $model, Request $request)
     {
-        call_user_func($this->fillResourceCallback, $resource, $request);
+        call_user_func($this->fillResourceCallback, $model, $request);
+    }
+
+    /**
+     * Define the validation rules
+     */
+    public function rules(array $rules)
+    {
+        $this->rules = $rules;
+
+        return $this;
+    }
+
+    public function rulesForCreate(array $rules)
+    {
+        $this->rulesOnCreate = $rules;
+
+        return $this;
+    }
+
+    public function rulesForUpdate(array $rules)
+    {
+        $this->rulesOnUpdate = $rules;
+
+        return $this;
+    }
+
+    public function getCreationRules(): array
+    {
+        return array_merge($this->rules, $this->rulesForCreate);
+    }
+
+    public function getUpdateRules(): array
+    {
+        return array_merge($this->rules, $this->rulesForUpdate);
     }
 
     /**
@@ -97,7 +132,7 @@ abstract class Field implements JsonSerializable
      */
     public function shouldBeRemoved(Request $request)
     {
-        if (in_array('filled', $this->getRules($this->isCreation))
+        if (in_array('filled', $this->rules)
             && $request->input($this->name) === null
         ) {
             return true;
@@ -112,7 +147,6 @@ abstract class Field implements JsonSerializable
             'component' => $this->component,
             'name' => $this->name,
             'label' => $this->label,
-            'rules' => $this->getRules($this->isCreation),
             'value' => $this->resolveValue(),
         ];
 

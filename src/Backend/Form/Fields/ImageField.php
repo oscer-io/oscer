@@ -58,7 +58,7 @@ class ImageField extends Field
 
     public function shouldBeRemoved(Request $request)
     {
-        if (in_array('filled', $this->getRules($this->isCreation))
+        if (in_array('filled', $this->rules)
             && $request->file($this->name) === null
         ) {
             return true;

@@ -7,6 +7,9 @@ use Bambamboole\LaravelCms\Backend\Http\Controllers\Auth\LoginController;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\Auth\ResetPasswordController;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\BackendController;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceFormController;
+use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceIndexController;
+use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceShowController;
+use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceStoreController;
 use Bambamboole\LaravelCms\Core\Http\Middleware\Authenticate;
 use Bambamboole\LaravelCms\Core\Http\Middleware\SetLocale;
 use Illuminate\Config\Repository;
@@ -57,6 +60,10 @@ class BackendRouter
                 $router->get('/', [BackendController::class, 'show'])->name('start');
                 $router->get('/forms/{resource}/{id?}', [ResourceFormController::class, 'show'])->name('forms.show');
                 $router->post('/forms/{resource}/{id?}', [ResourceFormController::class, 'store'])->name('forms.store');
+                $router->get('/resources/{resource}', [ResourceIndexController::class,'handle'])->name('resources.index');
+                $router->get('/resources/{resource}/create', [ResourceShowController::class,'handle'])->name('resources.create');
+                $router->get('/resources/{resource}/{id}', [ResourceShowController::class,'handle'])->name('resources.show');
+                $router->post('/resources/{resource}/{id?}', [ResourceStoreController::class, 'handle'])->name('resources.store');
                 $router->get('/{view}', [BackendController::class, 'show'])
                     ->where('view', '.*')->name('router');
             });

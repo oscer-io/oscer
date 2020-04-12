@@ -110,15 +110,14 @@
                 return _.difference(positions, this.submitPositions).length === 0;
             },
 
-            prepareParams() {
-                // Filter null values. This way we can handle create and update
-                return [this.resource, this.resourceId].filter(el => el !== null)
-            },
-
             async fetchResourceForm() {
                 this.isLoading = true;
                 // fetch the form definition from the backend.
-                const response = await api(Cms.route('cms.backend.forms.show', this.prepareParams()));
+                console.log(this.resourceId)
+                const route = this.resourceId === null
+                    ? Cms.route('cms.backend.resources.create', this.resource)
+                    : Cms.route('cms.backend.resources.show', [this.resource, this.resourceId]);
+                const response = await api(route);
 
                 this.fields = response.data.data.fields;
                 this.removeNullValues = response.data.data.removeNullValues;
@@ -131,7 +130,9 @@
                     const data = this.getFormData(); // get current form values
 
                     const response = await api({
-                        ...Cms.route('cms.backend.forms.store', this.prepareParams()),
+                        ...Cms.route(
+                            'cms.backend.resources.store',
+                            [this.resource, this.resourceId].filter(el => el !== null)),
                         data: data
                     });
 

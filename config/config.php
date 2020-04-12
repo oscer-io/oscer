@@ -4,6 +4,7 @@
  * You can place your custom package configuration in here.
  */
 
+use Bambamboole\LaravelCms\Backend\Resources\UserResource;
 use Bambamboole\LaravelCms\Core\Menus\Models\Menu;
 use Bambamboole\LaravelCms\Core\Menus\Models\MenuItem;
 use Bambamboole\LaravelCms\Core\Options\Models\Option;
@@ -19,6 +20,9 @@ return [
         'domain' => env('CMS_BACKEND_DOMAIN'),
         'url' => 'admin',
         'middleware' => 'web',
+        'resources'  => [
+            'user'  => UserResource::class
+        ]
     ],
     'resources' => [
         'user' => User::class,
