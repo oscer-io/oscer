@@ -92,7 +92,7 @@ abstract class Field implements JsonSerializable
     }
 
     /**
-     * Define the validation rules
+     * Define the validation rules.
      */
     public function rules(array $rules)
     {

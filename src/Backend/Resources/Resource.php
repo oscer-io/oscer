@@ -44,6 +44,7 @@ abstract class Resource implements \JsonSerializable
     {
         return $this->fields()->map(function (Field $field) {
             $field->value = $field->resolve($this->resourceModel);
+
             return $field;
         });
     }
@@ -83,6 +84,7 @@ abstract class Resource implements \JsonSerializable
 
         return ValidatorFactory::make($request->all(), $rules);
     }
+
     /**
      * The "save" method is executed when a form will be submitted.
      * It executes the validator and fills the resource with
@@ -126,6 +128,7 @@ abstract class Resource implements \JsonSerializable
             foreach ($field->rules as $rule) {
                 $result[] = $rule;
             }
+
             return $result;
         }, []);
 

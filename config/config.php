@@ -25,8 +25,8 @@ return [
         'resources'  => [
             'user'  => UserResource::class,
             'role' => RoleResource::class,
-            'post' => PostResource::class
-        ]
+            'post' => PostResource::class,
+        ],
     ],
     'resources' => [
         'user' => User::class,
