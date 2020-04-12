@@ -48,7 +48,7 @@ class MenuItemForm extends Form
 
             TextField::make('url')
                 ->rules(['required', 'string'])
-                ->activate(false)
+                ->disable()
                 ->dependsOn('type', 'url'),
 
             // Post selection field
@@ -76,7 +76,7 @@ class MenuItemForm extends Form
                         )
                         ->toArray()
                 )
-                ->activate(false)
+                ->disable()
                 ->dependsOn('type', 'post')
         ]);
     }
