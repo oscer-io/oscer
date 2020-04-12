@@ -3,8 +3,8 @@
 namespace Bambamboole\LaravelCms\Backend\Http\Controllers;
 
 use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
-use Bambamboole\LaravelCms\Core\Http\Requests\ResourceRequest;
 use Bambamboole\LaravelCms\Backend\Resources\Resource;
+use Bambamboole\LaravelCms\Core\Http\Requests\ResourceRequest;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
