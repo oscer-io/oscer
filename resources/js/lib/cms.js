@@ -56,7 +56,7 @@ export default class Cms {
                     next();
                 });
             },
-            render: (h) => {
+            render: function (h) {
                 return h(App, {
                     props: {
                         transitionName: this.transitionName
