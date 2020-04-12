@@ -9,15 +9,25 @@
                 </div>
                 <div class="mt-4 flex md:mt-0 md:ml-4">
                     <span class="ml-3 shadow-sm rounded-md">
-                        <router-link :to="{name: 'pages.edit', params: {id: id}}" class="btn">
+                        <RouterLink
+                            class="btn"
+                            :to="{name: 'pages.edit', params: {id: id}}"
+                        >
                             {{ $t('pages.button_edit') }}
-                        </router-link>
+                        </RouterLink>
                     </span>
                 </div>
             </div>
             <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
-                <div v-if="page.featured_image" class="sm:col-span-6">
-                    <img class="h-80" alt :src="page.featured_image"/>
+                <div
+                    v-if="page.featured_image"
+                    class="sm:col-span-6"
+                >
+                    <img
+                        class="h-80"
+                        alt
+                        :src="page.featured_image"
+                    />
                 </div>
                 <div class="sm:col-span-6">
                     <span class="block text-sm font-medium leading-5 text-gray-700">

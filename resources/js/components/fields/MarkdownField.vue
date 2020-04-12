@@ -1,19 +1,24 @@
 <template>
-    <field-wrapper :name="field.name" :label="field.label" :errors="validationErrors">
+    <FieldWrapper :name="field.name" :label="field.label" :errors="validationErrors">
         <div class="markdown-toolbar">
             <div class="markdown-modes my-3">
                 <ul class="flex border-b">
                     <li class="-mb-px mr-1">
-                        <button type="button" @click="mode = 'write'"
-                                :class="( mode === 'write' ? 'active bg-white text-indigo-700 ': 'border-transparent ') +
-                                    'py-1 px-2 inline-block border-l border-t border-r rounded-t text-indigo-500 hover:text-blue-800 font-semibold focus:outline-none'">
+                        <button
+                            type="button"
+                            @click="mode = 'write'"
+                            :class="( mode === 'write' ? 'active bg-white text-indigo-700 ': 'border-transparent ') +
+                                    'py-1 px-2 inline-block border-l border-t border-r rounded-t text-indigo-500 hover:text-blue-800 font-semibold focus:outline-none'"
+                        >
                             Write
                         </button>
                     </li>
                     <li class="-mb-px mr-1">
-                        <button type="button" @click="mode = 'preview'"
-                                :class="( mode === 'preview' ? 'active bg-white text-indigo-700 ': 'border-transparent ') +
-                                    'py-1 px-2 inline-block border-l border-t border-r rounded-t text-indigo-500 hover:text-blue-800 font-semibold focus:outline-none'">
+                        <button
+                            type="button" @click="mode = 'preview'"
+                            :class="( mode === 'preview' ? 'active bg-white text-indigo-700 ': 'border-transparent ') +
+                                    'py-1 px-2 inline-block border-l border-t border-r rounded-t text-indigo-500 hover:text-blue-800 font-semibold focus:outline-none'"
+                        >
                             Preview
                         </button>
                     </li>
@@ -22,7 +27,7 @@
         </div>
         <div v-show="mode === 'write'" class="editor" ref="codemirror"></div>
         <div v-show="mode === 'preview'" v-html="markdownPreviewText" class="markdown-preview clean-content"></div>
-    </field-wrapper>
+    </FieldWrapper>
 </template>
 <script>
     let CodeMirror = require('codemirror');
@@ -55,6 +60,7 @@
                 codemirror: null, // the CodeMirror instance
             };
         },
+
         mounted() {
             // call stuff from mixin's mounted method because override it here.
             this.setInitialValue();
@@ -73,7 +79,6 @@
                 this.$emit('input', this.value);
 
             });
-
         },
         computed: {
             markdownPreviewText() {

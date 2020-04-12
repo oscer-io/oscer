@@ -140,11 +140,11 @@
                             </template>
                             <template v-slot:content>
                                 <div class="py-1 rounded-md bg-white shadow-xs">
-                                    <router-link :to="{name: 'profile.show'}"
+                                    <RouterLink :to="{name: 'profile.show'}"
                                                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">
                                         Your
                                         Profile
-                                    </router-link>
+                                    </RouterLink>
                                     <a href="/admin/logout"
                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">Sign
                                         out</a>

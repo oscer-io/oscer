@@ -1,22 +1,22 @@
 <template>
-    <section v-show="isActive"
-             :aria-hidden="! isActive"
-             class="tabs-component-panel"
-             :id="computedId"
-             role="tabpanel"
+    <section
+        v-show="isActive"
+        :aria-hidden="! isActive"
+        class="tabs-component-panel"
+        :id="computedId"
+        role="tabpanel"
     >
-        <slot />
+        <slot/>
     </section>
 </template>
-
 <script>
     export default {
         props: {
-            id: { default: null },
-            name: { required: true },
-            prefix: { default: '' },
-            suffix: { default: '' },
-            isDisabled:{ default: false },
+            id: {default: null},
+            name: {required: true},
+            prefix: {default: ''},
+            suffix: {default: ''},
+            isDisabled: {default: false},
         },
         data: () => ({
             isActive: false,

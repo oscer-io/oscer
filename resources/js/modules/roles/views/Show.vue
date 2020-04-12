@@ -9,10 +9,12 @@
                 </div>
                 <div class="mt-4 flex md:mt-0 md:ml-4">
                     <span class="ml-3 shadow-sm rounded-md">
-                        <router-link :to="{name: 'roles.edit', params: {id: id}}"
-                                     class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                        <RouterLink
+                            class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
+                            :to="{name: 'roles.edit', params: {id: id}}"
+                        >
                             {{ $t('roles.button_edit') }}
-                        </router-link>
+                        </RouterLink>
                     </span>
                 </div>
             </div>
@@ -56,8 +58,7 @@
                 Cms.flash('success', 'Role updated.');
             }
         },
-        computed: {
-        },
+        computed: {},
         async mounted() {
             const response = await api(Cms.route('cms.api.resources.show', ['role', this.id]));
             this.role = response.data.data;
