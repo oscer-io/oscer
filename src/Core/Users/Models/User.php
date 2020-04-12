@@ -77,7 +77,7 @@ class User extends BaseModel implements
         parent::boot();
 
         static::creating(function (self $user) {
-            if (!$user->password) {
+            if (! $user->password) {
                 $password = Str::random();
                 $user->password = $password;
 
@@ -123,8 +123,8 @@ class User extends BaseModel implements
      */
     public function getRememberToken()
     {
-        if (!empty($this->getRememberTokenName())) {
-            return (string)$this->{$this->getRememberTokenName()};
+        if (! empty($this->getRememberTokenName())) {
+            return (string) $this->{$this->getRememberTokenName()};
         }
     }
 
@@ -136,7 +136,7 @@ class User extends BaseModel implements
      */
     public function setRememberToken($value)
     {
-        if (!empty($this->getRememberTokenName())) {
+        if (! empty($this->getRememberTokenName())) {
             $this->{$this->getRememberTokenName()} = $value;
         }
     }
@@ -161,7 +161,7 @@ class User extends BaseModel implements
     {
         return $value
             ? Storage::url($value)
-            : 'https://secure.gravatar.com/avatar/' . md5(strtolower(trim($this->email))) . '?s=80';
+            : 'https://secure.gravatar.com/avatar/'.md5(strtolower(trim($this->email))).'?s=80';
     }
 
     public function setPasswordAttribute($value)

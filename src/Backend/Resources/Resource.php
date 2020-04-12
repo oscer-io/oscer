@@ -45,6 +45,7 @@ abstract class Resource implements \JsonSerializable
     {
         return $this->fields()->map(function (Field $field) {
             $field->value = $field->resolve($this->resourceModel);
+
             return $field;
         });
     }
@@ -128,6 +129,7 @@ abstract class Resource implements \JsonSerializable
             foreach ($field->rules as $rule) {
                 $result[] = $rule;
             }
+
             return $result;
         }, []);
 

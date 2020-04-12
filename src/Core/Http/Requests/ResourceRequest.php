@@ -19,7 +19,7 @@ class ResourceRequest extends FormRequest
     }
 
     /**
-     * Retrieves the resource class name based on the route parameter
+     * Retrieves the resource class name based on the route parameter.
      */
     public function getResource(): string
     {
@@ -34,20 +34,22 @@ class ResourceRequest extends FormRequest
     }
 
     /**
-     * Returns the string representation of the underlying model
+     * Returns the string representation of the underlying model.
      */
     public function getResourceModel(): string
     {
         $resource = $this->getResource();
+
         return $resource::$model;
     }
 
     /**
-     * Creates a new instance of the underlying model
+     * Creates a new instance of the underlying model.
      */
     public function newResourceModel(): DisplayableModel
     {
         $model = $this->getResourceModel();
+
         return new $model();
     }
 

@@ -2,7 +2,6 @@
 
 namespace Bambamboole\LaravelCms\Backend\Form\Fields;
 
-use Bambamboole\LaravelCms\Backend\Contracts\FormResource;
 use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
 use Closure;
 use Illuminate\Http\Request;
