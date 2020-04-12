@@ -3,14 +3,14 @@
 namespace Bambamboole\LaravelCms\Backend\Http\Controllers;
 
 use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
-use Bambamboole\LaravelCms\Backend\Http\Requests\BackendRequest;
+use Bambamboole\LaravelCms\Core\Http\Requests\ResourceRequest;
 use Bambamboole\LaravelCms\Backend\Resources\Resource;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ResourceStoreController
 {
-    public function handle(BackendRequest $request)
+    public function handle(ResourceRequest $request)
     {
         $model = $request
             ->newResourceModel()

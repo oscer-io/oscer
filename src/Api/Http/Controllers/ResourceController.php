@@ -8,20 +8,18 @@ use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasUpdateEndpoint;
+use Bambamboole\LaravelCms\Core\Http\Requests\ResourceRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ResourceController
 {
-    public function index(string $resource)
+    public function index(ResourceRequest $request)
     {
-        $instance = $this->getResourceInstance($resource);
-        if (! $instance instanceof HasIndexEndpoint) {
-            throw new NotFoundHttpException('resource has no index endpoint');
-        }
-
-        return $instance->executeIndex();
+        $resource = $request->getResource();
+        $model = $request->newResourceModel();
+        return $resource::asApiResourceCollection($model->index());
     }
 
     public function show(string $resource, $id)

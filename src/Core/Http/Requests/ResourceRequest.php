@@ -1,12 +1,12 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Backend\Http\Requests;
+namespace Bambamboole\LaravelCms\Core\Http\Requests;
 
 use Bambamboole\LaravelCms\Backend\Contracts\DisplayableModel;
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class BackendRequest extends FormRequest
+class ResourceRequest extends FormRequest
 {
     public function authorize()
     {

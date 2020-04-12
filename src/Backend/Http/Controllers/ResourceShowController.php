@@ -2,11 +2,11 @@
 
 namespace Bambamboole\LaravelCms\Backend\Http\Controllers;
 
-use Bambamboole\LaravelCms\Backend\Http\Requests\BackendRequest;
+use Bambamboole\LaravelCms\Core\Http\Requests\ResourceRequest;
 
 class ResourceShowController
 {
-    public function handle(BackendRequest $request)
+    public function handle(ResourceRequest $request)
     {
         $resourceModel = $request
             ->newResourceModel()

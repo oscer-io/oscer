@@ -7,6 +7,7 @@ use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
 use Bambamboole\LaravelCms\Backend\Form\Fields\Field;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\ConditionallyLoadsAttributes;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator as ValidatorFactory;
 use Illuminate\Validation\ValidationException;
@@ -51,7 +52,7 @@ abstract class Resource implements \JsonSerializable
     protected function filteredFields(Request $request): Collection
     {
         return $this->fields->filter(function (Field $field) use ($request) {
-            return ! $field->shouldBeRemoved($request);
+            return !$field->shouldBeRemoved($request);
         });
     }
 
@@ -83,6 +84,7 @@ abstract class Resource implements \JsonSerializable
 
         return ValidatorFactory::make($request->all(), $rules);
     }
+
     /**
      * The "save" method is executed when a form will be submitted.
      * It executes the validator and fills the resource with
@@ -130,6 +132,21 @@ abstract class Resource implements \JsonSerializable
         }, []);
 
         return in_array('filled', $rules);
+    }
+
+    public static function asApiResource(DisplayableModel $model)
+    {
+        $resource = new static($model);
+
+        return $resource->fields->reduce(function (array $result, Field $field) {
+            $result[$field->name] = $field->value;
+            return $result;
+        }, []);
+    }
+
+    public static function asApiResourceCollection($models)
+    {
+        return new AnonymousResourceCollection($models, static::class);
     }
 
     public function toArray()

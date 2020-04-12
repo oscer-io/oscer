@@ -3,12 +3,12 @@
 namespace Bambamboole\LaravelCms\Backend\Http\Controllers;
 
 use Bambamboole\LaravelCms\Backend\Contracts\DisplayableModel;
-use Bambamboole\LaravelCms\Backend\Http\Requests\BackendRequest;
+use Bambamboole\LaravelCms\Core\Http\Requests\ResourceRequest;
 use Illuminate\Contracts\Pagination\Paginator;
 
 class ResourceIndexController
 {
-    public function handle(BackendRequest $request)
+    public function handle(ResourceRequest $request)
     {
         $model = $request->newResourceModel();
         $collection = $model->index();
