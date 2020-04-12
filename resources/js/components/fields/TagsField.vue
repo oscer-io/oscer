@@ -1,5 +1,9 @@
 <template>
-    <field-wrapper :name="field.name" :label="field.label" :errors="validationErrors">
+    <FieldWrapper
+        :name="field.name"
+        :label="field.label"
+        :errors="validationErrors"
+    >
         <VueSelect taggable
                    multiple
                    class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
@@ -8,7 +12,7 @@
                    v-model="value"
                    :options="field.suggestions"
         />
-    </field-wrapper>
+    </FieldWrapper>
 </template>
 
 <script>

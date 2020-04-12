@@ -2,7 +2,13 @@
     <loading :loading="isLoading">
         <h1>{{$t('options.index_page_title')}}</h1>
         <Tabs :options="{ useUrlFragment: false }">
-            <Tab v-if="options" v-for="(fields,tab) in options" :key="tab" :name="tab.charAt(0).toUpperCase() + tab.slice(1)" :active="tab === 'pages'">
+            <Tab
+                v-if="options"
+                v-for="(fields,tab) in options"
+                :key="tab"
+                :name="tab.charAt(0).toUpperCase() + tab.slice(1)"
+                :active="tab === 'pages'"
+            >
                 <Option v-for="option in fields" :key="option.key" :option="option"/>
             </Tab>
         </Tabs>
@@ -21,11 +27,11 @@
             Tab,
             Tabs,
         },
-        data(){
-          return {
-              isLoading: true,
-              options: false
-          }
+        data() {
+            return {
+                isLoading: true,
+                options: false
+            }
         },
         async mounted() {
             const response = await api(Cms.route('cms.api.resources.index', 'option'));

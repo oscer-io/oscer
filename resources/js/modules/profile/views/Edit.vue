@@ -1,6 +1,5 @@
 <template>
     <div>
-
         <div class="md:flex md:items-center md:justify-between">
             <div class="flex-1 min-w-0">
                 <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -11,7 +10,6 @@
                 </p>
             </div>
         </div>
-
         <ResourceForm
             resource="user"
             :resource-id="currentUser.id"
@@ -28,10 +26,10 @@
         components: {
             ResourceForm
         },
-        computed:{
-          currentUser(){
-              return Cms.config.user;
-          }
+        computed: {
+            currentUser() {
+                return Cms.config.user;
+            }
         },
         methods: {
             handleSuccess(user) {

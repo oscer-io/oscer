@@ -1,25 +1,30 @@
 <template>
-    <field-wrapper :name="field.name" :label="field.label || field.name" :errors="validationErrors" :with-shadow="false">
+    <FieldWrapper
+        :name="field.name" :label="field.label || field.name" :errors="validationErrors" :with-shadow="false">
         <div v-if="value || dataUrl">
             <div class="py-4 flex justify-center">
-                <img :src="imageUrl"
-                     alt
-                     class="rounded w-40 h-40"
-                     :class="{'rounded-full': field.rounded}"
-                     ref="img"
+                <img
+                    :src="imageUrl"
+                    alt
+                    class="rounded w-40 h-40"
+                    :class="{'rounded-full': field.rounded}"
+                    ref="img"
                 >
             </div>
             <div class="flex justify-around py-6">
                 <button v-if="isCropping" class="btn" @click="save" type="button">Save cropped area</button>
                 <button v-if="!isCropping" class="btn" @click="startCrop" type="button">Crop image</button>
-                <button v-if="!isCropping" class="btn" @click="$refs.imageInput.click()" type="button">Change image</button>
+                <button v-if="!isCropping" class="btn" @click="$refs.imageInput.click()" type="button">Change image
+                </button>
             </div>
         </div>
-        <div v-else @click="$refs.imageInput.click()"
-             class="h-40 flex justify-center items-center rounded border border-2 border-dashed cursor-pointer">
+        <div
+            v-else
+            class="h-40 flex justify-center items-center rounded border border-2 border-dashed cursor-pointer"
+            @click="$refs.imageInput.click()"
+        >
             <p class="text-center">Click to add image</p>
         </div>
-
         <input
             class="hidden"
             :class="{'border-red-600': !!hasValidationErrors}"
@@ -29,7 +34,7 @@
             ref="imageInput"
             type="file"
         />
-    </field-wrapper>
+    </FieldWrapper>
 </template>
 <script>
     import FormField from "../../lib/mixins/FormField";
@@ -48,13 +53,13 @@
                 isCropping: false
             }
         },
-        computed:{
-          imageUrl(){
-              if(this.dataUrl){
-                  return this.dataUrl
-              }
-              return this.value;
-          }
+        computed: {
+            imageUrl() {
+                if (this.dataUrl) {
+                    return this.dataUrl
+                }
+                return this.value;
+            }
         },
         mounted() {
             this.reader.onload = event => {

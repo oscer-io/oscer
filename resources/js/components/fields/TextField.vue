@@ -1,5 +1,9 @@
 <template>
-    <field-wrapper  :name="field.name" :label="field.label || field.name" :errors="validationErrors">
+    <FieldWrapper
+        :name="field.name"
+        :label="field.label || field.name"
+        :errors="validationErrors"
+    >
         <input
             class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
             :class="{'border-red-600': !!hasValidationErrors}"
@@ -8,7 +12,7 @@
             v-model="value"
             :type="inputType"
         />
-    </field-wrapper>
+    </FieldWrapper>
 </template>
 <script>
     import FormField from "../../lib/mixins/FormField";

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageField extends Field
 {
-    public string $component = 'image-field';
+    public string $component = 'ImageField';
 
     protected string $disk;
 

@@ -1,17 +1,25 @@
 <template>
     <loading :loading="isLoading">
         <form @submit.prevent="submitResourceForm">
-            <div v-if="inSubmitPositions('top')" class="mb-8 border-b border-gray-200 pb-5">
+            <div
+                class="mb-8 border-b border-gray-200 pb-5"
+                v-if="inSubmitPositions('top')"
+            >
                 <div class="flex justify-end">
                     <span class="inline-flex rounded-md shadow-sm">
-                        <button type="button" @click="$emit('cancel')"
-                                class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
+                        <button
+                            type="button"
+                            class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
+                            @click="$emit('cancel')"
+                        >
                             {{this.cancelText}}
                         </button>
                     </span>
                     <span class="ml-3 inline-flex rounded-md shadow-sm">
-                        <button type="submit"
-                                class="btn">
+                        <button
+                            type="submit"
+                            class="btn"
+                        >
                             {{this.submitText}}
                         </button>
                     </span>
@@ -30,14 +38,19 @@
             <div v-if="inSubmitPositions('bottom')" class="mt-8 border-t border-gray-200 pt-5">
                 <div class="flex justify-end">
                     <span class="inline-flex rounded-md shadow-sm">
-                        <button type="button" @click="$emit('cancel')"
-                                class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
+                        <button
+                            type="button"
+                            class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
+                            @click="$emit('cancel')"
+                        >
                             {{this.cancelText}}
                         </button>
                     </span>
                     <span class="ml-3 inline-flex rounded-md shadow-sm">
-                        <button type="submit"
-                                class="btn">
+                        <button
+                            type="submit"
+                            class="btn"
+                        >
                             {{this.submitText}}
                         </button>
                     </span>

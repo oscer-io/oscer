@@ -8,27 +8,51 @@
                     </h1>
                 </div>
                 <div>
-                    <draggable class="border rounded" v-model="items" v-bind="{ghostClass: 'ghost'}" @start="drag=true"
-                               @end="drag=false">
+                    <draggable
+                        class="border rounded"
+                        v-model="items"
+                        v-bind="{ghostClass: 'ghost'}"
+                        @start="drag=true"
+                        @end="drag=false"
+                    >
                         <transition-group type="transition" name="flip-list">
-                            <div class="flex justify-between border-b cursor-move last:border-b-0 py-2 px-3"
-                                 v-for="(item, index) in items" :key="item.id">
+                            <div
+                                class="flex justify-between border-b cursor-move last:border-b-0 py-2 px-3"
+                                v-for="(item, index) in items" :key="item.id"
+                            >
                                 <div class="flex">
-                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                         class="text-gray-600 mt-1 w-4 h-4 mr-2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M4 6h16M4 12h16M4 18h16"></path>
+                                    <svg
+                                        fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        class="text-gray-600 mt-1 w-4 h-4 mr-2"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M4 6h16M4 12h16M4 18h16"
+                                        />
                                     </svg>
                                     <span>
                                 {{item.name}} - {{item.url}}
                             </span>
                                 </div>
                                 <div>
-                                    <button @click="deleteItem(item)" class="mr-4">
-                                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                             class="text-gray-600 mt-1 w-4 h-4">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                    <button
+                                        class="mr-4"
+                                        @click="deleteItem(item)"
+                                    >
+                                        <svg
+                                            fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            class="text-gray-600 mt-1 w-4 h-4"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                            />
                                         </svg>
                                     </button>
                                     <button @click="updateItem(item)">
@@ -47,20 +71,22 @@
                 </div>
                 <div class="mt-8 border-t border-gray-200 pt-5">
                     <div class="flex justify-end">
-                <span class="ml-3 inline-flex rounded-md shadow-sm">
-                    <button type="button" @click="saveOrder" :disabled="!reordered"
-                            :class="{
-                        'bg-gray-600 hover:bg-gray-500': !reordered,
-                        'bg-indigo-600 hover:bg-indigo-500': reordered
-                    }" class="btn">
-                        <span v-if="reordered">
-                            {{ $t('menus.button_order_save') }}
+                        <span class="ml-3 inline-flex rounded-md shadow-sm">
+                            <button
+                                type="button"
+                                class="btn"
+                                :disabled="!reordered"
+                                :class="{'bg-gray-600 hover:bg-gray-500': !reordered, 'bg-indigo-600 hover:bg-indigo-500': reordered}"
+                                @click="saveOrder"
+                            >
+                                <span v-if="reordered">
+                                    {{ $t('menus.button_order_save') }}
+                                </span>
+                                <span v-else>
+                                    {{ $t('menus.button_order_disabled') }}
+                                </span>
+                            </button>
                         </span>
-                        <span v-else>
-                            {{ $t('menus.button_order_disabled') }}
-                        </span>
-                    </button>
-                </span>
                     </div>
                 </div>
             </div>
