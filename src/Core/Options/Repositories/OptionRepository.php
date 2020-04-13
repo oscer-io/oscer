@@ -31,14 +31,23 @@ class OptionRepository
             });
     }
 
-    protected function getMergedOptionFields(): Collection
+    public function getMergedOptionFields(): Collection
     {
-        return collect(
-            array_merge(
-                $this->config->get('cms.options'),
-                ['theme' => $this->theme->getOptions()]
-            )
-        );
+        $mergedFields = collect([]);
+
+        collect(array_merge(
+            $this->config->get('cms.options'),
+            ['theme' => $this->theme->getOptions()]
+        ))->each(function ($fields, $tab) use ($mergedFields) {
+            foreach ($fields as $name => $definition)
+                $data = array_merge([
+                    'name' => $name,
+                    'path' => "{$tab}.{$name}",
+                ], $definition);
+            $mergedFields->add($data);
+        });
+
+        return $mergedFields;
     }
 
     protected function mergeValuesIntoOptionFields(string $tab, array $fields): Collection
@@ -65,7 +74,7 @@ class OptionRepository
 
     protected function getOptions(): Collection
     {
-        if (! $this->options) {
+        if (!$this->options) {
             $this->options = Option::all()->map(function (Option $option) {
                 return new OptionResource($option);
             });

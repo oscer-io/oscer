@@ -2,22 +2,16 @@
 
 namespace Bambamboole\LaravelCms\Core\Options\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use Bambamboole\LaravelCms\Backend\Resources\Resource;
+use Bambamboole\LaravelCms\Core\Options\Models\Option;
+use Illuminate\Support\Collection;
 
-class OptionResource extends JsonResource
+class OptionResource extends Resource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return array
-     */
-    public function toArray($request)
+    public static string $model = Option::class;
+
+    public function fields(): Collection
     {
-        return [
-            'key' => $this->key,
-            'value' => $this->value,
-        ];
+        return collect([]);
     }
 }

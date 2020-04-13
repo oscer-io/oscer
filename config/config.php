@@ -6,6 +6,7 @@
 
 use Bambamboole\LaravelCms\Core\Menus\Resources\MenuItemResource;
 use Bambamboole\LaravelCms\Core\Menus\Resources\MenuResource;
+use Bambamboole\LaravelCms\Core\Options\Resources\OptionResource;
 use Bambamboole\LaravelCms\Core\Pages\Resources\PageResource;
 use Bambamboole\LaravelCms\Core\Posts\Resources\PostResource;
 use Bambamboole\LaravelCms\Core\Users\Resources\RoleResource;
@@ -18,13 +19,14 @@ return [
         'url' => 'admin',
         'middleware' => 'web',
     ],
-    'resources'  => [
-        'user'  => UserResource::class,
+    'resources' => [
+        'user' => UserResource::class,
         'role' => RoleResource::class,
         'post' => PostResource::class,
         'page' => PageResource::class,
         'menu' => MenuResource::class,
-        'menu-item' => MenuItemResource::class
+        'menu-item' => MenuItemResource::class,
+        'option' => OptionResource::class,
     ],
     'options' => [
         'pages' => [
