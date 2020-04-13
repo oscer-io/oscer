@@ -2,12 +2,10 @@
 
 namespace Bambamboole\LaravelCms\Core\Menus\Models;
 
-use Bambamboole\LaravelCms\Api\Contracts\HasApiEndpoints;
-use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
-use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
+use Bambamboole\LaravelCms\Backend\Contracts\DisplayableModel;
 use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
 
-class Menu implements HasApiEndpoints, HasIndexEndpoint, HasShowEndpoint
+class Menu implements DisplayableModel
 {
     public string $name;
 
@@ -51,13 +49,19 @@ class Menu implements HasApiEndpoints, HasIndexEndpoint, HasShowEndpoint
             ->setItems($items);
     }
 
-    public function executeIndex()
+    /**
+     * @inheritDoc
+     */
+    public function index()
     {
-        return ['data' => self::all()];
+        return self::all();
     }
 
-    public function executeShow($identifier)
+    /**
+     * @inheritDoc
+     */
+    public function show(string $identifier)
     {
-        return ['data' => self::resolve($identifier)];
+        return self::resolve($identifier);
     }
 }

@@ -2,32 +2,30 @@
 
 namespace Bambamboole\LaravelCms\Core\Pages\Resources;
 
-use Bambamboole\LaravelCms\Core\Users\Resources\UserResource;
-use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Storage;
+use Bambamboole\LaravelCms\Backend\Form\Fields\ImageField;
+use Bambamboole\LaravelCms\Backend\Form\Fields\MarkdownField;
+use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
+use Bambamboole\LaravelCms\Backend\Resources\Resource;
+use Bambamboole\LaravelCms\Core\Pages\Models\Page;
+use Illuminate\Support\Collection;
 
-class PageResource extends JsonResource
+class PageResource extends Resource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return array
-     */
-    public function toArray($request)
+    public static string $model = Page::class;
+
+    public function fields(): Collection
     {
-        return [
-            'id' => $this->id,
-            'featured_image' => $this->when($this->featured_image !== null, Storage::url($this->featured_image)),
-            'name' => $this->name,
-            'slug' => $this->slug,
-            'body' => $this->body,
-            'author' => new UserResource($this->whenLoaded('author')),
-            'author_id' => $this->author_id,
-            'published_at' => $this->published_at,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-        ];
+        return collect([
+            ImageField::make('featured_image', 'Featured Image')
+                ->rules(['filled'])
+                ->disk('public')
+                ->folder('images'),
+            TextField::make('name')
+                ->rules(['required', 'string']),
+            TextField::make('slug')
+                ->rules(['filled', 'string']),
+            MarkdownField::make('body')
+                ->rules(['required']),
+        ]);
     }
 }

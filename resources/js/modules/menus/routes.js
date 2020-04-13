@@ -8,7 +8,7 @@ export default [
         component: Index
     },
     {
-        path: '/admin/menus/:name',
+        path: '/admin/menus/:id',
         name: 'menus.show',
         component: Show,
         props: true

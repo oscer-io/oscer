@@ -36,7 +36,7 @@ class UserResource extends Resource
                 ]),
             TextareaField::make('bio', 'Biography'),
             PasswordField::make('password')
-                ->rules(['filled', 'confirmed']),
+                ->rules(['filled', 'confirmed'])->hideOnIndex(),
         ]);
     }
 }

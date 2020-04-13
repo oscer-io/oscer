@@ -2,17 +2,27 @@
 
 namespace Bambamboole\LaravelCms\Core\Menus\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
+use Bambamboole\LaravelCms\Backend\Resources\Resource;
+use Bambamboole\LaravelCms\Core\Menus\Models\MenuItem;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
-class MenuItemResource extends JsonResource
+class MenuItemResource extends Resource
 {
-    public function toArray($request)
+    public static string $model = MenuItem::class;
+
+    public function fields(): Collection
     {
-        return [
-            'name' => $this->name,
-            'url' => $this->url,
-            'menu' => $this->menu,
-            'order' => $this->order,
-        ];
+        return collect([
+            TextField::make('name')->rules(['required', 'string']),
+            TextField::make('url')->rules(['required', 'string']),
+        ]);
+    }
+
+    public function beforeSave(Request $request)
+    {
+        $this->resourceModel->menu = $request->input('menu');
+        $this->resourceModel->order = $request->input('order');
     }
 }

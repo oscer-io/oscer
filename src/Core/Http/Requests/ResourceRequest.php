@@ -23,7 +23,7 @@ class ResourceRequest extends FormRequest
      */
     public function getResource(): string
     {
-        $resources = config('cms.backend.resources');
+        $resources = config('cms.resources');
 
         // Return a 404 response if the resource is not found
         if (! array_key_exists($this->route('resource'), $resources)) {

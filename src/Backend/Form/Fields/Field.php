@@ -32,6 +32,8 @@ abstract class Field implements JsonSerializable
 
     protected Closure $fillResourceCallback;
 
+    protected bool $showOnIndex = true;
+
     public function __construct(
         string $name,
         ?string $label = null,
@@ -125,6 +127,13 @@ abstract class Field implements JsonSerializable
         return array_merge($this->rules, $this->rulesForUpdate);
     }
 
+    public function hideOnIndex()
+    {
+        $this->showOnIndex = false;
+
+        return $this;
+    }
+
     /**
      * We use this to check if a field should be removed from the submit process
      * based on the request. If a field has a "filled" rule and is not
@@ -148,6 +157,7 @@ abstract class Field implements JsonSerializable
             'name' => $this->name,
             'label' => $this->label,
             'value' => $this->resolveValue(),
+            'showOnIndex' => $this->showOnIndex
         ];
 
         collect($this->with)->each(function (string $property) use (&$data) {

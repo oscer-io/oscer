@@ -155,6 +155,7 @@ abstract class Resource implements \JsonSerializable
     {
         $data = [
             'fields' => $this->fields,
+            'model' => $this->resourceModel,
             'resourceId' => $this->when($this->resourceModel->id, $this->resourceModel->id),
             'removeNullValues' => $this->shouldRemoveNullValues(),
         ];

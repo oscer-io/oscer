@@ -21,7 +21,7 @@ class ResourceStoreController
         }
 
         $resourceClass = $request->getResource();
-        /** @var resource $resource */
+        /** @var Resource $resource */
         $resource = new $resourceClass($model);
 
         try {

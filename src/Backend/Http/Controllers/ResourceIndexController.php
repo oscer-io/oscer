@@ -3,6 +3,7 @@
 namespace Bambamboole\LaravelCms\Backend\Http\Controllers;
 
 use Bambamboole\LaravelCms\Backend\Contracts\DisplayableModel;
+use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
 use Bambamboole\LaravelCms\Core\Http\Requests\ResourceRequest;
 use Illuminate\Contracts\Pagination\Paginator;
 
@@ -21,6 +22,7 @@ class ResourceIndexController
                         return new $resourceClass($model);
                     })->toArray(),
                 'meta' => [
+                    'is_editable' => $model instanceof SavableModel,
                     'total' => $collection->total(),
                     'from' => $collection->firstItem(),
                     'to' => $collection->lastItem(),
@@ -36,6 +38,13 @@ class ResourceIndexController
             ]);
         }
 
-        return response()->json(['data' => $collection]);
+        return response()->json([
+            'data' => $collection->map(function (DisplayableModel $model) use ($resourceClass) {
+                return new $resourceClass($model);
+            })->toArray(),
+            'meta' => [
+                'is_editable' => $model instanceof SavableModel,
+            ],
+        ]);
     }
 }

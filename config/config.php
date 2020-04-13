@@ -4,18 +4,12 @@
  * You can place your custom package configuration in here.
  */
 
+use Bambamboole\LaravelCms\Core\Menus\Resources\MenuItemResource;
+use Bambamboole\LaravelCms\Core\Menus\Resources\MenuResource;
 use Bambamboole\LaravelCms\Core\Pages\Resources\PageResource;
 use Bambamboole\LaravelCms\Core\Posts\Resources\PostResource;
 use Bambamboole\LaravelCms\Core\Users\Resources\RoleResource;
 use Bambamboole\LaravelCms\Core\Users\Resources\UserResource;
-use Bambamboole\LaravelCms\Core\Menus\Models\Menu;
-use Bambamboole\LaravelCms\Core\Menus\Models\MenuItem;
-use Bambamboole\LaravelCms\Core\Options\Models\Option;
-use Bambamboole\LaravelCms\Core\Pages\Models\Page;
-use Bambamboole\LaravelCms\Core\Posts\Models\Post;
-use Bambamboole\LaravelCms\Core\Users\Models\Permission;
-use Bambamboole\LaravelCms\Core\Users\Models\Role;
-use Bambamboole\LaravelCms\Core\Users\Models\User;
 
 return [
     'from_email' => env('CMS_FROM_EMAIL', 'cms@website.com'),
@@ -23,22 +17,14 @@ return [
         'domain' => env('CMS_BACKEND_DOMAIN'),
         'url' => 'admin',
         'middleware' => 'web',
-        'resources'  => [
-            'user'  => UserResource::class,
-            'role' => RoleResource::class,
-            'post' => PostResource::class,
-            'page' => PageResource::class
-        ],
     ],
-    'resources' => [
-        'user' => User::class,
-        'menu' => Menu::class,
-        'menu-item' => MenuItem::class,
-        'post' => Post::class,
-        'page' => Page::class,
-        'option' => Option::class,
-        'role' => Role::class,
-        'permission' => Permission::class,
+    'resources'  => [
+        'user'  => UserResource::class,
+        'role' => RoleResource::class,
+        'post' => PostResource::class,
+        'page' => PageResource::class,
+        'menu' => MenuResource::class,
+        'menu-item' => MenuItemResource::class
     ],
     'options' => [
         'pages' => [

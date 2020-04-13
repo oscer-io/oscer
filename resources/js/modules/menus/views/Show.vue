@@ -94,7 +94,7 @@
                 <p class="pt-6 text-lg leading-6 font-medium text-gray-900 text-center">New item</p>
                 <ResourceForm
                     resource="menu-item"
-                    :append="{menu: name, order: menu.items.length + 1}"
+                    :append="{menu: id, order: menu.items.length + 1}"
                     :clear-on-success="true"
                     @cancel=""
                     @success="handleNewItemSuccess"
@@ -105,7 +105,7 @@
                 <ResourceForm
                     resource="menu-item"
                     :resource-id="selectedItem.id"
-                    :append="{menu: name}"
+                    :append="{menu: id}"
                     @cancel="mode = 'new'"
                     @success="handleUpdateItemSuccess"
                 />
@@ -121,7 +121,7 @@
 
     export default {
         props: {
-            name: String,
+            id: {required: true}
         },
         components: {
             Draggable,
@@ -158,8 +158,8 @@
         },
         methods: {
             async fetchMenu() {
-                const response = await api(Cms.route('cms.api.resources.show', ['menu', this.name]));
-                this.menu = response.data.data
+                const {data} = await api(Cms.route('cms.backend.resources.show', ['menu', this.id]));
+                this.menu = data.data.model
             },
 
             updateItem(item) {
@@ -182,7 +182,7 @@
             async saveOrder() {
                 // update order
                 await api({
-                    ...Cms.route('cms.api.menus.save_order', this.name),
+                    ...Cms.route('cms.api.menus.save_order', this.id),
                     data: {
                         order: this.items.map((value, index) => {
                             return {
