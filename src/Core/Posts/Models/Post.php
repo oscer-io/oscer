@@ -41,7 +41,7 @@ class Post extends BaseModel implements SavableModel
     protected static function booted()
     {
         static::creating(function (self $post) {
-            if (!$post->author_id) {
+            if (! $post->author_id) {
                 $post->author_id = auth()->user()->id;
             }
             $post->type = $post->getType();

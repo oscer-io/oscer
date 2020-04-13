@@ -4,7 +4,7 @@ namespace Bambamboole\LaravelCms\Backend\Contracts;
 
 /**
  * This  interface isan extension of the "DisplayableModel". A model
- * needs to implement it if it should be updated by a resource
+ * needs to implement it if it should be updated by a resource.
  */
 interface SavableModel extends DisplayableModel
 {
@@ -15,7 +15,7 @@ interface SavableModel extends DisplayableModel
     public function save();
 
     /**
-     * Determines if the model is new
+     * Determines if the model is new.
      * @return bool
      */
     public function isNew(): bool;
