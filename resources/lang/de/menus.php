@@ -22,6 +22,7 @@ return [
     'button_show' => 'Anzeigen',
     'button_order_save' => 'Reihenfolge speichern',
     'button_order_disabled' => 'Reihenfolge nicht geändert',
+    'search_post' => 'Beitrag suchen',
     'index_item_count' => '{count} Menüeinträge',
     'toast.item_updated' => 'Menüeintrag \':item\' aktualisiert',
     'toast.item_created' => 'Menüeintrag \':item\' erstellt',
