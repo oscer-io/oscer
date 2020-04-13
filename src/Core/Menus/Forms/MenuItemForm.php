@@ -57,7 +57,7 @@ class MenuItemForm extends Form
                     $id = $request->input('post');
                     $post = Post::query()->where('slug', $id)->first();
                     //todo: maybe better associate the id instead of creating the url string
-                    $resource->url = '/' . $post->type . '/' . $post->slug;
+                    $resource->url = '/'.$post->type.'/'.$post->slug;
                 }
             )
                 ->rules(['required', 'string'])

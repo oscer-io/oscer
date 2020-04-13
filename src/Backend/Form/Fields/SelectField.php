@@ -55,28 +55,32 @@ class SelectField extends Field
         return $data;
     }
 
-    public function searchable(){
+    public function searchable()
+    {
         $this->searchable = true;
 
         return $this;
     }
 
-    public function filterable(){
+    public function filterable()
+    {
         $this->filterable = true;
 
         return $this;
     }
 
-    public function multiple() {
+    public function multiple()
+    {
         $this->multiple = true;
 
         return $this;
     }
 
     /**
-     * Set a custom placeholder
+     * Set a custom placeholder.
      */
-    public function placeholder(string $placeholder) {
+    public function placeholder(string $placeholder)
+    {
         $this->placeholder = $placeholder;
 
         return $this;
