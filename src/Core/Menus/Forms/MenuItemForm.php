@@ -3,7 +3,6 @@
 namespace Bambamboole\LaravelCms\Core\Menus\Forms;
 
 use Bambamboole\LaravelCms\Backend\Form\Fields\SelectField;
-use Bambamboole\LaravelCms\Backend\Form\Fields\SelectListField;
 use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
 use Bambamboole\LaravelCms\Backend\Form\Form;
 use Bambamboole\LaravelCms\Core\Menus\Models\MenuItem;
@@ -15,6 +14,10 @@ class MenuItemForm extends Form
 {
     public function fields(): Collection
     {
+        $null = function () {
+            return null;
+        };
+
         return collect([
             // Name field
             TextField::make('name')->rules(['required', 'string']),
@@ -23,43 +26,39 @@ class MenuItemForm extends Form
             SelectField::make(
                 'type',
                 'Type',
-                function () {
-                    return [];
-                },
-                function () {
-                    return null;
-                }
+                $null,
+                $null
             )
                 ->rules(['required'])
                 ->options( // we pass the names of the fields here
                     [
                         [
                             'name' => 'url',
-                            'label' => 'Custom Url',
-                            'value' => 'url',
+                            'label' => 'Custom Url'
                         ],
                         [
                             'name' => 'post',
-                            'label' => 'Posts',
-                            'value' => 'post',
+                            'label' => 'Posts'
                         ]
                     ]
                 ),
 
+            // custom url field
             TextField::make('url')
                 ->rules(['required', 'string'])
                 ->disable()
-                ->dependsOn('type', 'url'),
+                ->dependsOn('type'),
 
-            // Post selection field
-            SelectListField::make(
+            //
+            SelectField::make(
                 'post',
                 'Posts',
-                null,
+                $null,
                 function (MenuItem $resource, Request $request) {
-//                    $id = $request->input('post');
-//                    $post = Post::query()->where('slug', $id)->first();
-//                    $resource->url = implode('/', [$post->type, $post->slug]);
+                    $id = $request->input('post');
+                    $post = Post::query()->where('slug', $id)->first();
+                    //todo: maybe better associate the id instead of creating the url string
+                    $resource->url = implode('/', ['/', $post->type, $post->slug]);
                 }
             )
                 ->rules(['required', 'string'])
@@ -69,7 +68,6 @@ class MenuItemForm extends Form
                             function ($post) {
                                 return [
                                     'name' => $post->name,
-                                    'label' => $post->name,
                                     'value' => $post->slug,
                                 ];
                             }
@@ -77,7 +75,7 @@ class MenuItemForm extends Form
                         ->toArray()
                 )
                 ->disable()
-                ->dependsOn('type', 'post')
+                ->dependsOn('type')
         ]);
     }
 
