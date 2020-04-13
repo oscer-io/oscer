@@ -15,7 +15,6 @@ class MenuItemForm extends Form
     public function fields(): Collection
     {
         $null = function () {
-            return null;
         };
 
         return collect([
@@ -34,12 +33,12 @@ class MenuItemForm extends Form
                     [
                         [
                             'name' => 'url',
-                            'label' => 'Custom Url'
+                            'label' => 'Custom Url',
                         ],
                         [
                             'name' => 'post',
-                            'label' => 'Posts'
-                        ]
+                            'label' => 'Posts',
+                        ],
                     ]
                 ),
 
@@ -77,7 +76,7 @@ class MenuItemForm extends Form
                 ->disable()
                 ->dependsOn('type')
                 ->searchable()
-                ->placeholder(__('cms::menus.search_post'))
+                ->placeholder(__('cms::menus.search_post')),
         ]);
     }
 

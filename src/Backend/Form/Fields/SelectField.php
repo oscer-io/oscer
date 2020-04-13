@@ -2,7 +2,6 @@
 
 namespace Bambamboole\LaravelCms\Backend\Form\Fields;
 
-
 class SelectField extends Field
 {
     public string $component = 'SelectField';
@@ -18,13 +17,14 @@ class SelectField extends Field
     public string $placeholder = '';
 
     protected array $with = ['options', 'filterable', 'searchable', 'multiple', 'placeholder'];
+
     /**
      * @var string
      */
 
     /**
      * Each option must have a 'name', a 'label' and a 'value' like this
-     * ['name' => 'foo', 'label' => 'bar', 'value' => 'baz'],
+     * ['name' => 'foo', 'label' => 'bar', 'value' => 'baz'].
      */
     public function options(array $options)
     {
@@ -47,7 +47,7 @@ class SelectField extends Field
                 $data[] = [
                     'name' => $name,
                     'label' => $option['label'] ?? $name,
-                    'value' => $option['value'] ?? $name
+                    'value' => $option['value'] ?? $name,
                 ];
             }
         }
@@ -81,5 +81,4 @@ class SelectField extends Field
 
         return $this;
     }
-
 }
