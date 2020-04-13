@@ -4,7 +4,6 @@ namespace Bambamboole\LaravelCms\Api\Http\Controllers;
 
 use Bambamboole\LaravelCms\Api\Contracts\HasApiEndpoints;
 use Bambamboole\LaravelCms\Api\Contracts\HasDeleteEndpoint;
-use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
 use Bambamboole\LaravelCms\Api\Contracts\HasUpdateEndpoint;
@@ -19,6 +18,7 @@ class ResourceController
     {
         $resource = $request->getResource();
         $model = $request->newResourceModel();
+
         return $resource::asApiResourceCollection($model->index());
     }
 
