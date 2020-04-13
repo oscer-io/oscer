@@ -15,7 +15,6 @@ class MenuItemForm extends Form
     public function fields(): Collection
     {
         $null = function () {
-            return null;
         };
 
         return collect([
@@ -34,12 +33,12 @@ class MenuItemForm extends Form
                     [
                         [
                             'name' => 'url',
-                            'label' => 'Custom Url'
+                            'label' => 'Custom Url',
                         ],
                         [
                             'name' => 'post',
-                            'label' => 'Posts'
-                        ]
+                            'label' => 'Posts',
+                        ],
                     ]
                 ),
 
@@ -75,7 +74,7 @@ class MenuItemForm extends Form
                         ->toArray()
                 )
                 ->disable()
-                ->dependsOn('type')
+                ->dependsOn('type'),
         ]);
     }
 

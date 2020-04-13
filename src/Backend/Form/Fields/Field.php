@@ -119,19 +119,20 @@ abstract class Field implements JsonSerializable
     }
 
     /**
-     * Check whether the current field has a dependency
+     * Check whether the current field has a dependency.
      */
     public function hasDependency()
     {
-        return !empty($this->dependency);
+        return ! empty($this->dependency);
     }
 
     /**
-     * Check whether the given $value matches the value that has been set in the dependency
+     * Check whether the given $value matches the value that has been set in the dependency.
      */
     protected function isDependencyMatched(string $value)
     {
         $dependency = $this->dependency['value'] ?? null;
+
         return $value === $dependency;
     }
 
