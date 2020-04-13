@@ -1,49 +1,71 @@
 <template>
     <div>
-        <field-wrapper :name="field.name" :label="field.label || field.name" :errors="validationErrors">
-            <select
-                class="form-select w-full leading-tight pr-8 rounded-md w-fullfocus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
+        <FieldWrapper :name="field.name" :label="field.label || field.name" :errors="validationErrors">
+            <VueSelect
+                class="vue-select form-input transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                 :class="{'border-red-600': !!hasValidationErrors}"
-                :name="field.name"
-                :errors="validationErrors"
+                :id="field.name"
                 v-model="value"
-            >
-                <option value="default">
-                    {{$t('select.default_value') }}
-                </option>
-                <option
-                    v-for="(item, index) in field.options"
-                    :name="item.name"
-                    :key="index"
-                    :label="item.label || item.name"
-                    class="p-2"
-                    :class="{'border-red-600': !!hasValidationErrors}"
-                    :id="item.name"
-                    :value="item.value"
-                ></option>
-            </select>
-        </field-wrapper>
+                :options="field.options"
+                label="label"
+                :reduce="option => option.value"
+            />
+        </FieldWrapper>
     </div>
 </template>
 <script>
     import FormField from "../../lib/mixins/FormField";
+    import {VueSelect} from 'vue-select';
 
     export default {
         mixins: [FormField],
 
-        data() {
-            return {
-                value: 'default'
-            }
-        },
-        methods: {
-            fill(data) {
-                if (!_.isArray(this.value) && this.value !== 'default') {
-                    data[this.field.name] = this.value;
-                }
-
-                return data;
-            }
+        components: {
+            VueSelect,
         }
     }
 </script>
+<style>
+    .vue-select .vs__actions {
+        padding: 0;
+    }
+
+    .vue-select .vs__open-indicator:hover {
+        cursor: pointer;
+    }
+
+    .vue-select .vs__search::placeholder,
+    .vue-select .vs__dropdown-toggle,
+    .vue-select .vs__dropdown-menu {
+        border: none;
+        background: #fff;
+    }
+
+    .vue-select .vs__dropdown-toggle,
+    .vue-select .vs__selected-options {
+        padding: 0;
+    }
+
+    .vue-select .vs__selected-options {
+        flex-wrap: nowrap;
+    }
+
+    .vue-select .vs__selected{
+        padding: 0;
+        margin: 0;
+    }
+
+    .vue-select .vs__search,
+    .vue-select .vs__search:focus {
+        padding-left: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin: 0;
+        border: none;
+    }
+
+    /* Fix content jumping... */
+    .vue-select.vs--single.vs--open .vs__selected {
+        position: static;
+    }
+</style>
