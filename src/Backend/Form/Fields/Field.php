@@ -104,13 +104,35 @@ abstract class Field implements JsonSerializable
      */
     public function shouldBeRemoved(Request $request)
     {
-        if (in_array('filled', $this->getRules($this->isCreation))
-            && $request->input($this->name) === null
-        ) {
-            return true;
+        if ($request->input($this->name) === null) {
+            if ($this->hasDependency() && ($dependency = $request->input($this->dependency['field']))) {
+                //check whether this field is active & therefore must be validated or should be skipped
+                return ! $this->isDependencyMatched($dependency);
+            }
+
+            if (in_array('filled', $this->getRules($this->isCreation))) {
+                return true;
+            }
         }
 
         return false;
+    }
+
+    /**
+     * Check whether the current field has a dependency
+     */
+    public function hasDependency()
+    {
+        return !empty($this->dependency);
+    }
+
+    /**
+     * Check whether the given $value matches the value that has been set in the dependency
+     */
+    protected function isDependencyMatched(string $value)
+    {
+        $dependency = $this->dependency['value'] ?? null;
+        return $value === $dependency;
     }
 
     public function jsonSerialize()
@@ -145,13 +167,14 @@ abstract class Field implements JsonSerializable
     /**
      * Set a dependency to another field. Whenever the dependency field value changes
      * it will be checked against $value. If both match this field will be
-     * shown, else it will be hidden.
+     * shown, else it will be hidden. $value can be omitted, this
+     * fields name will be used instead.
      */
-    public function dependsOn(string $field, string $value)
+    public function dependsOn(string $field, ?string $value = null)
     {
         $this->dependency = [
             'field' => $field,
-            'value' => $value,
+            'value' => $value ?? $this->name,
         ];
 
         return $this;
