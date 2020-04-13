@@ -24,7 +24,7 @@ return [
         'post' => PostResource::class,
         'page' => PageResource::class,
         'menu' => MenuResource::class,
-        'menu-item' => MenuItemResource::class
+        'menu-item' => MenuItemResource::class,
     ],
     'options' => [
         'pages' => [

@@ -157,7 +157,7 @@ abstract class Field implements JsonSerializable
             'name' => $this->name,
             'label' => $this->label,
             'value' => $this->resolveValue(),
-            'showOnIndex' => $this->showOnIndex
+            'showOnIndex' => $this->showOnIndex,
         ];
 
         collect($this->with)->each(function (string $property) use (&$data) {

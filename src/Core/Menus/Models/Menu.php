@@ -50,7 +50,7 @@ class Menu implements DisplayableModel
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function index()
     {
@@ -58,7 +58,7 @@ class Menu implements DisplayableModel
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function show(string $identifier)
     {
