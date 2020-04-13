@@ -2,6 +2,7 @@
     <div>
         <FieldWrapper :name="field.name" :label="field.label || field.name" :errors="validationErrors">
             <VueSelect
+                :placeholder="field.placeholder || $t('selectfield.default_placeholder')"
                 class="vue-select form-input transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                 :class="{'border-red-600': !!hasValidationErrors}"
                 :id="field.name"
@@ -9,6 +10,9 @@
                 :options="field.options"
                 label="label"
                 :reduce="option => option.value"
+                :searchable="field.searchable"
+                :filterable="field.filterable"
+                :multiple="field.multiple"
             />
         </FieldWrapper>
     </div>

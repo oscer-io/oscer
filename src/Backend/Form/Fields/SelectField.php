@@ -9,7 +9,18 @@ class SelectField extends Field
 
     public array $options = [];
 
-    protected array $with = ['options'];
+    public bool $filterable = false;
+
+    public bool $searchable = false;
+
+    public bool $multiple = false;
+
+    public string $placeholder = '';
+
+    protected array $with = ['options', 'filterable', 'searchable', 'multiple', 'placeholder'];
+    /**
+     * @var string
+     */
 
     /**
      * Each option must have a 'name', a 'label' and a 'value' like this
@@ -44,9 +55,31 @@ class SelectField extends Field
         return $data;
     }
 
+    public function searchable(){
+        $this->searchable = true;
 
-    public function beforeSave()
-    {
-
+        return $this;
     }
+
+    public function filterable(){
+        $this->filterable = true;
+
+        return $this;
+    }
+
+    public function multiple() {
+        $this->multiple = true;
+
+        return $this;
+    }
+
+    /**
+     * Set a custom placeholder
+     */
+    public function placeholder(string $placeholder) {
+        $this->placeholder = $placeholder;
+
+        return $this;
+    }
+
 }
