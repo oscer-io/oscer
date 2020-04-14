@@ -18,7 +18,7 @@ class ResourceStoreController
             $model = $model->show($request->identifier());
         }
 
-        if (!$model instanceof SavableModel) {
+        if (! $model instanceof SavableModel) {
             throw new HttpException(401, 'THe reosurce model is not savable');
         }
 
