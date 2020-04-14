@@ -4,7 +4,7 @@
         :label="field.label || field.name"
         :with-shadow="false"
     >
-        <div v-text="asMarkdown(field.value)"></div>
+        <div v-html="asMarkdown(field.value)"></div>
     </FieldWrapper>
 </template>
 <script>
