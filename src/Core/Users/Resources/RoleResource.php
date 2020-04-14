@@ -14,6 +14,8 @@ class RoleResource extends Resource
 {
     public static string $model = Role::class;
 
+    protected bool $displayEditButtonOnIndex = false;
+
     public function fields(): Collection
     {
         return collect(

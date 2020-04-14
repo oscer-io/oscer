@@ -25,6 +25,10 @@ abstract class Resource implements \JsonSerializable
 
     protected array $additionalValidationRules = [];
 
+    protected bool $displayShowButtonOnIndex = true;
+
+    protected bool $displayEditButtonOnIndex = true;
+
     public function __construct(DisplayableModel $resourceModel)
     {
         $this->resourceModel = $resourceModel;
@@ -53,7 +57,7 @@ abstract class Resource implements \JsonSerializable
     protected function filteredFields(Request $request): Collection
     {
         return $this->fields->filter(function (Field $field) use ($request) {
-            return ! $field->shouldBeRemoved($request);
+            return !$field->shouldBeRemoved($request);
         });
     }
 
@@ -158,6 +162,8 @@ abstract class Resource implements \JsonSerializable
             'fields' => $this->fields,
             'model' => $this->resourceModel,
             'resourceId' => $this->when($this->resourceModel->id, $this->resourceModel->id),
+            'displayShowButtonOnIndex' => $this->displayShowButtonOnIndex,
+            'displayEditButtonOnIndex' => $this->displayEditButtonOnIndex,
             'removeNullValues' => $this->shouldRemoveNullValues(),
         ];
 
