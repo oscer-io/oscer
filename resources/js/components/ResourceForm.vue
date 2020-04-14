@@ -150,7 +150,7 @@
                     });
 
                     // Emit success event with the data from the successful response
-                    this.$emit('success', response.data.data);
+                    this.$emit('success', response.data.data.model);
                     // Reset form by fetching the fields again. Only if resetOnSuccess prop is true
                     this.resetOnSuccess && this.fetchResourceForm();
                 } catch (error) {
