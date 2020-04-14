@@ -7,7 +7,6 @@ use Bambamboole\LaravelCms\Backend\Http\Controllers\Auth\LoginController;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\Auth\ResetPasswordController;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\BackendController;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceCreateController;
-use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceFormController;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceIndexController;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceShowController;
 use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceStoreController;

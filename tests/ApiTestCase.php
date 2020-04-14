@@ -22,7 +22,7 @@ class ApiTestCase extends TestCase
     public function assertJsonSchema($schema, string $json): void
     {
         (new SchemaAssertion())
-            ->schema(__DIR__ . '/../resources/open-api/' . $schema)
+            ->schema(__DIR__.'/../resources/open-api/'.$schema)
             ->assert($json);
     }
 
