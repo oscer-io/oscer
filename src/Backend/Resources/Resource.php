@@ -57,7 +57,7 @@ abstract class Resource implements \JsonSerializable
     protected function filteredFields(Request $request): Collection
     {
         return $this->fields->filter(function (Field $field) use ($request) {
-            return !$field->shouldBeRemoved($request);
+            return ! $field->shouldBeRemoved($request);
         });
     }
 
