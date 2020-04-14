@@ -3,7 +3,7 @@
 namespace Bambamboole\LaravelCms\Backend\Contracts;
 
 /**
- * This  interface isan extension of the "DisplayableModel". A model
+ * This  interface is an extension of the "DisplayableModel". A model
  * needs to implement it if it should be updated by a resource.
  */
 interface SavableModel extends DisplayableModel

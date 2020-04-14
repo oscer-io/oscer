@@ -2,11 +2,11 @@
 
 namespace Bambamboole\LaravelCms\Core\Posts\Resources;
 
-use Bambamboole\LaravelCms\Backend\Form\Fields\Field;
-use Bambamboole\LaravelCms\Backend\Form\Fields\ImageField;
-use Bambamboole\LaravelCms\Backend\Form\Fields\MarkdownField;
-use Bambamboole\LaravelCms\Backend\Form\Fields\TagsField;
-use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
+use Bambamboole\LaravelCms\Backend\Resources\Fields\Field;
+use Bambamboole\LaravelCms\Backend\Resources\Fields\ImageField;
+use Bambamboole\LaravelCms\Backend\Resources\Fields\MarkdownField;
+use Bambamboole\LaravelCms\Backend\Resources\Fields\TagsField;
+use Bambamboole\LaravelCms\Backend\Resources\Fields\TextField;
 use Bambamboole\LaravelCms\Backend\Resources\Resource;
 use Bambamboole\LaravelCms\Core\Posts\Models\Post;
 use Bambamboole\LaravelCms\Core\Posts\Models\Tag;

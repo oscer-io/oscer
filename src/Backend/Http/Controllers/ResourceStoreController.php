@@ -19,7 +19,7 @@ class ResourceStoreController
         }
 
         if (! $model instanceof SavableModel) {
-            throw new HttpException(401, 'THe reosurce model is not savable');
+            throw new HttpException(401, 'The resource model is not savable');
         }
 
         $resourceClass = $request->getResource();

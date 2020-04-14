@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Tests\Fixtures;
 
-use Bambamboole\LaravelCms\Backend\Form\Fields\Field;
+use Bambamboole\LaravelCms\Backend\Resources\Fields\Field;
 
 class TestField extends Field
 {

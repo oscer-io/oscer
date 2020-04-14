@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Backend\Forms;
 
-use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
+use Bambamboole\LaravelCms\Backend\Resources\Fields\TextField;
 use Bambamboole\LaravelCms\Backend\Form\Form;
 use Bambamboole\LaravelCms\Backend\Resources\Resource;
 use Bambamboole\LaravelCms\Tests\Fixtures\TestModel;

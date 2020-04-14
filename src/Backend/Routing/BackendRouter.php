@@ -59,8 +59,6 @@ class BackendRouter
             ->prefix($this->config->get('cms.backend.url'))
             ->group(function (Router $router) {
                 $router->get('/', [BackendController::class, 'show'])->name('start');
-                $router->get('/forms/{resource}/{id?}', [ResourceFormController::class, 'show'])->name('forms.show');
-                $router->post('/forms/{resource}/{id?}', [ResourceFormController::class, 'store'])->name('forms.store');
                 $router->get('/resources/{resource}', [ResourceIndexController::class, 'handle'])->name('resources.index');
                 $router->get('/resources/{resource}/create', [ResourceCreateController::class, 'handle'])->name('resources.create');
                 $router->get('/resources/{resource}/{id}', [ResourceShowController::class, 'handle'])->name('resources.show');

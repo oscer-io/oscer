@@ -2,10 +2,10 @@
 
 namespace Bambamboole\LaravelCms\Core\Users\Resources;
 
-use Bambamboole\LaravelCms\Backend\Form\Fields\ImageField;
-use Bambamboole\LaravelCms\Backend\Form\Fields\PasswordField;
-use Bambamboole\LaravelCms\Backend\Form\Fields\TextareaField;
-use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
+use Bambamboole\LaravelCms\Backend\Resources\Fields\ImageField;
+use Bambamboole\LaravelCms\Backend\Resources\Fields\PasswordField;
+use Bambamboole\LaravelCms\Backend\Resources\Fields\TextareaField;
+use Bambamboole\LaravelCms\Backend\Resources\Fields\TextField;
 use Bambamboole\LaravelCms\Backend\Resources\Resource;
 use Bambamboole\LaravelCms\Core\Users\Models\User;
 use Illuminate\Support\Collection;

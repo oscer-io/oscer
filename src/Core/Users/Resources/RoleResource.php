@@ -2,8 +2,8 @@
 
 namespace Bambamboole\LaravelCms\Core\Users\Resources;
 
-use Bambamboole\LaravelCms\Backend\Form\Fields\CheckboxGroupField;
-use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
+use Bambamboole\LaravelCms\Backend\Resources\Fields\CheckboxGroupField;
+use Bambamboole\LaravelCms\Backend\Resources\Fields\TextField;
 use Bambamboole\LaravelCms\Backend\Resources\Resource;
 use Bambamboole\LaravelCms\Core\Users\Models\Permission;
 use Bambamboole\LaravelCms\Core\Users\Models\Role;

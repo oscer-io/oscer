@@ -4,7 +4,7 @@ namespace Bambamboole\LaravelCms\Backend\Resources;
 
 use Bambamboole\LaravelCms\Backend\Contracts\DisplayableModel;
 use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
-use Bambamboole\LaravelCms\Backend\Form\Fields\Field;
+use Bambamboole\LaravelCms\Backend\Resources\Fields\Field;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\ConditionallyLoadsAttributes;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;

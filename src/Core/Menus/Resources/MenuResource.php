@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Core\Menus\Resources;
 
-use Bambamboole\LaravelCms\Backend\Form\Fields\TextField;
+use Bambamboole\LaravelCms\Backend\Resources\Fields\TextField;
 use Bambamboole\LaravelCms\Backend\Resources\Resource;
 use Bambamboole\LaravelCms\Core\Menus\Models\Menu;
 use Illuminate\Support\Collection;

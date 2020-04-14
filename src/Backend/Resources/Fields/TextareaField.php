@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Backend\Form\Fields;
+namespace Bambamboole\LaravelCms\Backend\Resources\Fields;
 
 class TextareaField extends Field
 {
