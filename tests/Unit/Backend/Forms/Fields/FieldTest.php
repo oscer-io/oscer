@@ -2,7 +2,10 @@
 
 namespace Bambamboole\LaravelCms\Tests\Unit\Backend\Forms\Fields;
 
+use Bambamboole\LaravelCms\Backend\Contracts\DisplayableModel;
 use Bambamboole\LaravelCms\Backend\Contracts\FormResource;
+use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
+use Bambamboole\LaravelCms\Backend\Resources\Resource;
 use Bambamboole\LaravelCms\Tests\Fixtures\TestField;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\TestCase;
@@ -44,12 +47,12 @@ class FieldTest extends TestCase
     /** @test */
     public function the_default_resolveValueCallback_returns_the_value_based_on_name()
     {
-        $resourceMock = \Mockery::spy(FormResource::class);
+        $model = \Mockery::spy(DisplayableModel::class);
         // we fill the property name
-        $resourceMock->name = 'test';
+        $model->name = 'test';
 
         $field = new TestField('name');
-        $value = $field->resolve($resourceMock, true);
+        $value = $field->resolve($model);
 
         $this->assertEquals('test', $value);
     }
@@ -57,13 +60,13 @@ class FieldTest extends TestCase
     /** @test */
     public function the_resolveValueCallback_can_be_set()
     {
-        $resourceMock = \Mockery::spy(FormResource::class);
+        $model = \Mockery::spy(DisplayableModel::class);
         $callback = function () {
             return 'executed';
         };
 
         $field = new TestField('name', null, $callback);
-        $value = $field->resolve($resourceMock, true);
+        $value = $field->resolve($model);
 
         $this->assertEquals('executed', $value);
     }
@@ -76,11 +79,11 @@ class FieldTest extends TestCase
             ->shouldReceive('input')
             ->with('name')
             ->andReturn('test')->getMock();
-        $resourceMock = \Mockery::spy(FormResource::class);
+        $model = \Mockery::spy(SavableModel::class);
 
-        $field->fill($resourceMock, $requestMock);
+        $field->fill($model, $requestMock);
 
-        $this->assertEquals('test', $resourceMock->name);
+        $this->assertEquals('test', $model->name);
     }
 
     /** @test */
@@ -91,11 +94,11 @@ class FieldTest extends TestCase
         };
         $field = new TestField('name', null, null, $callback);
         $requestMock = \Mockery::spy(Request::class);
-        $resourceMock = \Mockery::spy(FormResource::class);
+        $model = \Mockery::spy(SavableModel::class);
 
-        $field->fill($resourceMock, $requestMock);
+        $field->fill($model, $requestMock);
 
-        $this->assertEquals('filled', $resourceMock->testAttribute);
+        $this->assertEquals('filled', $model->testAttribute);
     }
 
     /** @test */
@@ -103,7 +106,7 @@ class FieldTest extends TestCase
     {
         $field = TestField::make('name')->rules(['required', 'string']);
 
-        $this->assertEquals(['required', 'string'], $field->getRules(true));
+        $this->assertEquals(['required', 'string'], $field->rules);
     }
 
     /** @test */
@@ -111,8 +114,8 @@ class FieldTest extends TestCase
     {
         $field = TestField::make('name')->rulesForUpdate(['required', 'string']);
 
-        $this->assertEquals([], $field->getRules(true));
-        $this->assertEquals(['required', 'string'], $field->getRules(false));
+        $this->assertEquals([], $field->getCreationRules());
+        $this->assertEquals(['required', 'string'], $field->getUpdateRules());
     }
 
     /** @test */
@@ -120,17 +123,17 @@ class FieldTest extends TestCase
     {
         $field = TestField::make('name')->rulesForCreate(['required', 'string']);
 
-        $this->assertEquals([], $field->getRules(false));
-        $this->assertEquals(['required', 'string'], $field->getRules(true));
+        $this->assertEquals([], $field->getUpdateRules());
+        $this->assertEquals(['required', 'string'], $field->getCreationRules());
     }
 
     /** @test */
     public function a_field_with_a_filled_rule_will_be_removed_if_request_has_no_value()
     {
         $field = TestField::make('name')->rules(['filled']);
-        $resourceMock = \Mockery::spy(FormResource::class);
-        $resourceMock->name = 'test';
-        $field->resolve($resourceMock, true);
+        $model = \Mockery::spy(SavableModel::class);
+        $model->name = 'test';
+        $field->resolve($model);
         $requestMock = \Mockery::mock(Request::class)
             ->shouldReceive('input')
             ->with('name')

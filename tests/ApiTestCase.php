@@ -4,25 +4,13 @@ namespace Bambamboole\LaravelCms\Tests;
 
 use Bambamboole\LaravelCms\Core\Users\Models\Role;
 use Bambamboole\LaravelCms\Core\Users\Models\User;
-use Bambamboole\LaravelCms\LaravelCmsServiceProvider;
 use Laravel\Sanctum\Sanctum;
-use Laravel\Sanctum\SanctumServiceProvider;
-use Orchestra\Testbench\TestCase as BaseTestCase;
 use PHPUnit\Framework\AssertionFailedError;
 use sixlive\JsonSchemaAssertions\SchemaAssertion;
-use Spatie\Permission\PermissionServiceProvider;
 
-class ApiTestCase extends BaseTestCase
+class ApiTestCase extends TestCase
 {
     protected $defaultHeaders = ['Accept' => 'application/json'];
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->loadMigrationsFrom(['--path' => __DIR__.'/../migrations']);
-        $this->loadMigrationsFrom(['--path' => __DIR__.'/../vendor/laravel/sanctum/database/migrations']);
-        $this->withFactories(__DIR__.'/factories');
-    }
 
     /**
      * @param array|string $schema
@@ -34,17 +22,8 @@ class ApiTestCase extends BaseTestCase
     public function assertJsonSchema($schema, string $json): void
     {
         (new SchemaAssertion())
-            ->schema(__DIR__.'/../resources/open-api/'.$schema)
+            ->schema(__DIR__ . '/../resources/open-api/' . $schema)
             ->assert($json);
-    }
-
-    protected function getPackageProviders($app)
-    {
-        return [
-            SanctumServiceProvider::class,
-            PermissionServiceProvider::class,
-            LaravelCmsServiceProvider::class,
-        ];
     }
 
     protected function login(array $overrides = []): User

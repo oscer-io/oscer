@@ -15,6 +15,7 @@ class TestCase extends BaseTestCase
     {
         parent::setUp();
         $this->loadMigrationsFrom(['--path' => __DIR__.'/../migrations']);
+        $this->loadMigrationsFrom(['--path' => __DIR__.'/../vendor/laravel/sanctum/database/migrations']);
         $this->withFactories(__DIR__.'/factories');
     }
 

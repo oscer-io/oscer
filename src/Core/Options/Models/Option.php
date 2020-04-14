@@ -4,7 +4,7 @@ namespace Bambamboole\LaravelCms\Core\Options\Models;
 
 use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
-use Bambamboole\LaravelCms\Core\Options\Repositories\OptionRepository;
+use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
 use Illuminate\Support\Carbon;
 
 /**
@@ -23,17 +23,27 @@ class Option extends BaseModel implements SavableModel
         return $option ? $option->value : $default;
     }
 
-    protected function getRepository(): OptionRepository
-    {
-        return app(OptionRepository::class);
-    }
-
     public function index()
     {
-        $fields = $this->getRepository()->getMergedOptionFields();
+        $mergedFields = collect([]);
+        collect(array_merge(
+            config('cms.options'),
+            ['theme' => app(Theme::class)->getOptions(),
+            ]
+        ))->each(function ($fields, $tab) use ($mergedFields) {
+            foreach ($fields as $name => $definition) {
+                $mergedFields->add(array_merge(
+                    [
+                        'name' => $name,
+                        'path' => "{$tab}.{$name}",
+                    ],
+                    $definition
+                ));
+            }
+        });
 
-        if ($fields->count() !== $this->newQuery()->count()) {
-            return $fields->map(function (array $field) {
+        if ($mergedFields->count() !== $this->newQuery()->count()) {
+            return $mergedFields->map(function (array $field) {
                 return $this->newQuery()->firstOrNew(['path' => $field['path']], ['path' => $field['path']]);
             });
         } else {

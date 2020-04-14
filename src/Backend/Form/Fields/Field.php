@@ -105,14 +105,14 @@ abstract class Field implements JsonSerializable
 
     public function rulesForCreate(array $rules)
     {
-        $this->rulesOnCreate = $rules;
+        $this->rulesForCreate = $rules;
 
         return $this;
     }
 
     public function rulesForUpdate(array $rules)
     {
-        $this->rulesOnUpdate = $rules;
+        $this->rulesForUpdate = $rules;
 
         return $this;
     }
