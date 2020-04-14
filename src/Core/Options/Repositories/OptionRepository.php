@@ -39,11 +39,12 @@ class OptionRepository
             $this->config->get('cms.options'),
             ['theme' => $this->theme->getOptions()]
         ))->each(function ($fields, $tab) use ($mergedFields) {
-            foreach ($fields as $name => $definition)
+            foreach ($fields as $name => $definition) {
                 $data = array_merge([
                     'name' => $name,
                     'path' => "{$tab}.{$name}",
                 ], $definition);
+            }
             $mergedFields->add($data);
         });
 
@@ -74,7 +75,7 @@ class OptionRepository
 
     protected function getOptions(): Collection
     {
-        if (!$this->options) {
+        if (! $this->options) {
             $this->options = Option::all()->map(function (Option $option) {
                 return new OptionResource($option);
             });

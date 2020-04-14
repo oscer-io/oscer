@@ -2,17 +2,10 @@
 
 namespace Bambamboole\LaravelCms\Core\Options\Models;
 
-use Bambamboole\LaravelCms\Api\Contracts\HasApiEndpoints;
-use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
-use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
 use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Bambamboole\LaravelCms\Core\Options\Repositories\OptionRepository;
-use Bambamboole\LaravelCms\Core\Options\Resources\OptionResource;
-use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
 
 /**
  * @property int id
@@ -41,9 +34,9 @@ class Option extends BaseModel implements SavableModel
 
         if ($fields->count() !== $this->newQuery()->count()) {
             return $fields->map(function (array $field) {
-                return $this->newQuery()->firstOrNew(['path' => $field['path']],['path' => $field['path']]);
+                return $this->newQuery()->firstOrNew(['path' => $field['path']], ['path' => $field['path']]);
             });
-        } else{
+        } else {
             return $this->newQuery()->get();
         }
     }
