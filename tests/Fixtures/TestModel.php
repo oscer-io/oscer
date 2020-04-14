@@ -8,6 +8,8 @@ class TestModel implements SavableModel
 {
     public int $id = 1;
 
+    public string $test = 'value initially set for test';
+
     public function index()
     {
         // TODO: Implement index() method.
