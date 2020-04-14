@@ -12,11 +12,13 @@ class ResourceStoreController
 {
     public function handle(ResourceRequest $request)
     {
-        $model = $request
-            ->newResourceModel()
-            ->show($request->identifier());
+        $model = $request->newResourceModel();
 
-        if (! $model instanceof SavableModel) {
+        if ($request->identifier() !== null) {
+            $model = $model->show($request->identifier());
+        }
+
+        if (!$model instanceof SavableModel) {
             throw new HttpException(401, 'THe reosurce model is not savable');
         }
 

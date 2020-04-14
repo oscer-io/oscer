@@ -22,7 +22,9 @@ class MenuItemResource extends Resource
 
     public function beforeSave(Request $request)
     {
-        $this->resourceModel->menu = $request->input('menu');
-        $this->resourceModel->order = $request->input('order');
+        if ($request->route('id') === null) {
+            $this->resourceModel->menu = $request->input('menu');
+            $this->resourceModel->order = $request->input('order');
+        }
     }
 }
