@@ -25,10 +25,12 @@
                     />
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                    <router-link v-if="item.displayShowButtonOnIndex" :to="{name:`${resource}s.show`, params: {id: item.resourceId}}" class="btn">
+                    <router-link v-if="item.displayShowButtonOnIndex"
+                                 :to="{name:`${resource}s.show`, params: {id: item.resourceId}}" class="btn">
                         show
                     </router-link>
-                    <router-link v-if="item.displayEditButtonOnIndex && meta.is_editable" :to="{name:`${resource}s.edit`, params: {id: item.resourceId}}"
+                    <router-link v-if="item.displayEditButtonOnIndex && meta.is_editable"
+                                 :to="{name:`${resource}s.edit`, params: {id: item.resourceId}}"
                                  class="btn">
                         edit
                     </router-link>
@@ -36,7 +38,10 @@
             </tr>
             </tbody>
         </table>
-
+        <div v-if="meta.total" class="flex justify-between py-6">
+            <button v-if="page > 1" @click="prevPage" class="btn">prev page</button>
+            <button @click="nextPage" class="btn">next page</button>
+        </div>
     </loading>
 </template>
 
@@ -53,6 +58,7 @@
         data() {
             return {
                 isLoading: true,
+                page: 1,
                 items: [],
                 meta: {},
             }
@@ -65,18 +71,32 @@
                     : []
             },
         },
+        watch: {
+            page() {
+                this.fetchResourceList();
+            }
+        },
         mounted() {
             this.fetchResourceList();
         },
         methods: {
             async fetchResourceList() {
-                const response = await api(Cms.route('cms.backend.resources.index', this.resource));
+                const response = await api(Cms.route('cms.backend.resources.index', {
+                    resource: this.resource,
+                    page: this.page
+                }));
                 this.items = response.data.data;
                 this.meta = response.data.meta;
                 this.isLoading = false;
             },
             filteredFields(resource) {
                 return resource.fields.filter(field => !!field.showOnIndex)
+            },
+            nextPage() {
+                this.page = this.page + 1
+            },
+            prevPage() {
+                this.page = Math.max(1,this.page - 1)
             }
         }
     }
