@@ -35,7 +35,7 @@ class Option extends BaseModel implements SavableModel
                 $mergedFields->add(array_merge(
                     [
                         'name' => $name,
-                        'path' => "{$tab}.{$name}",
+                        'key' => "{$tab}.{$name}",
                     ],
                     $definition
                 ));
@@ -44,7 +44,14 @@ class Option extends BaseModel implements SavableModel
 
         if ($mergedFields->count() !== $this->newQuery()->count()) {
             return $mergedFields->map(function (array $field) {
-                return $this->newQuery()->firstOrNew(['path' => $field['path']], ['path' => $field['path']]);
+                return $this->newQuery()
+                    ->firstOrNew(
+                        ['key' => $field['key']],
+                        [
+                            'type' => $field['type'],
+                            'key' => $field['key'],
+                        ]
+                    );
             });
         } else {
             return $this->newQuery()->get();

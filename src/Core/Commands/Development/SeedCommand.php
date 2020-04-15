@@ -28,6 +28,7 @@ class SeedCommand extends Command
 
     public function handle(Application $app, Generator $faker): void
     {
+
         $this->faker = $faker;
         // Let Laravel's factory load the factories from this package
         $app->singleton(Factory::class, function ($app) {
@@ -215,6 +216,12 @@ class SeedCommand extends Command
 
     protected function seedOptions()
     {
-        Option::query()->create(['key' => 'pages.front_page', 'value' => 'front-page']);
+        $option = new Option();
+        $options = $option->index();
+        $frontPageOption = $options->first(function (Option $option){
+            return $option->key === 'pages.front_page';
+        });
+        $frontPageOption->value = 'front-page';
+        $frontPageOption->save();
     }
 }
