@@ -19,4 +19,9 @@ interface SavableModel extends DisplayableModel
      * @return bool
      */
     public function isNew(): bool;
+
+    /**
+     * Deletes itself
+     */
+    public function delete();
 }
