@@ -40,6 +40,7 @@
         </table>
         <div v-if="meta.total" class="flex justify-between py-6">
             <button v-if="page > 1" @click="prevPage" class="btn">prev page</button>
+            <p>Show Items {{meta.from}} to {{meta.to}} from {{meta.total}}</p>
             <button @click="nextPage" class="btn">next page</button>
         </div>
     </loading>
@@ -93,7 +94,7 @@
                 return resource.fields.filter(field => !!field.showOnIndex)
             },
             nextPage() {
-                this.page = this.page + 1
+                this.page = Math.max(this.meta.last_page,this.page + 1)
             },
             prevPage() {
                 this.page = Math.max(1,this.page - 1)
