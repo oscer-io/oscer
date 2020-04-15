@@ -1,6 +1,6 @@
 <template>
     <loading :loading="isLoading">
-        <table v-if="items.length > 0" class="table-auto">
+        <table v-if="items.length > 0" class="table w-full">
             <thead>
             <tr>
                 <th
@@ -8,7 +8,7 @@
                     v-text="column"
                     class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider text-left"
                 ></th>
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider text-center">
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider text-center w-32">
                     Actions
                 </th>
             </tr>
@@ -41,7 +41,7 @@
         <div v-if="meta.total" class="flex justify-between py-6">
             <button v-if="page > 1" @click="prevPage" class="btn">prev page</button>
             <p>Show Items {{meta.from}} to {{meta.to}} from {{meta.total}}</p>
-            <button @click="nextPage" class="btn">next page</button>
+            <button v-if="page < meta.last_page" @click="nextPage" class="btn">next page</button>
         </div>
     </loading>
 </template>
@@ -102,3 +102,9 @@
         }
     }
 </script>
+<style>
+    .table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+</style>

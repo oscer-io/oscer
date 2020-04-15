@@ -1,7 +1,9 @@
 <template>
-    <div>
-        <span class="mr-2" v-for="checkedField in checkedFields" v-text="checkedField.label"></span>
-    </div>
+    <ul class="flex flex-wrap max-w-2xl">
+        <li v-for="checkedField in checkedFields">
+            <span class="items-center py-1 pl-2 pr-3 rounded-full font-bold text-sm" v-text="checkedField.label"></span>
+        </li>
+    </ul>
 </template>
 <script>
     export default {
