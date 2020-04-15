@@ -13,6 +13,7 @@ class OptionField
 
         $resolveValueCallback = function (Field $field) {
             dump($field->resource);
+
             return $field->resource->value;
         };
 
