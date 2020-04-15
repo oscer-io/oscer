@@ -14,6 +14,10 @@ abstract class Field implements JsonSerializable
 
     public string $label;
 
+    public bool $active = true;
+
+    public array $dependency = [];
+
     public string $component;
 
     public $value;
@@ -38,8 +42,8 @@ abstract class Field implements JsonSerializable
         string $name,
         ?string $label = null,
         ?Closure $resolveValueCallback = null,
-        ?Closure $fillResourceCallback = null)
-    {
+        ?Closure $fillResourceCallback = null
+    ) {
         $this->name = $name;
         $this->label = $label ?: ucfirst($name);
         $this->resolveValueCallback = $resolveValueCallback ?: function (self $field) {
@@ -138,16 +142,43 @@ abstract class Field implements JsonSerializable
      * We use this to check if a field should be removed from the submit process
      * based on the request. If a field has a "filled" rule and is not
      * present In the request we determine is must be removed.
+     * Moreover if the current field has a dependency but is
+     * not present (not activated in the view), we
+     * determine is must be removed as well.
      */
     public function shouldBeRemoved(Request $request)
     {
-        if (in_array('filled', $this->rules)
-            && $request->input($this->name) === null
-        ) {
-            return true;
+        if ($request->input($this->name) === null) {
+            if ($this->hasDependency() && ($dependency = $request->input($this->dependency['field']))) {
+                //check whether this field is active & therefore must be validated or should be skipped
+                return ! $this->isDependencyMatched($dependency);
+            }
+
+            if (in_array('filled', $this->rules)
+                && $request->input($this->name) === null) {
+                return true;
+            }
         }
 
         return false;
+    }
+
+    /**
+     * Check whether the current field has a dependency.
+     */
+    public function hasDependency()
+    {
+        return ! empty($this->dependency);
+    }
+
+    /**
+     * Check whether the given $value matches the value that has been set in the dependency.
+     */
+    protected function isDependencyMatched(string $value)
+    {
+        $dependency = $this->dependency['value'] ?? null;
+
+        return $value === $dependency;
     }
 
     public function jsonSerialize()
@@ -158,6 +189,8 @@ abstract class Field implements JsonSerializable
             'label' => $this->label,
             'value' => $this->resolveValue(),
             'showOnIndex' => $this->showOnIndex,
+            'active' => $this->active,
+            'dependency' => $this->dependency,
         ];
 
         collect($this->with)->each(function (string $property) use (&$data) {
@@ -165,5 +198,31 @@ abstract class Field implements JsonSerializable
         });
 
         return $data;
+    }
+
+    /**
+     * Set the fields initial active state to false. This is useful when using field dependencies.
+     */
+    public function disable()
+    {
+        $this->active = false;
+
+        return $this;
+    }
+
+    /**
+     * Set a dependency to another field. Whenever the dependency field value changes
+     * it will be checked against $value. If both match this field will be
+     * shown, else it will be hidden. $value can be omitted, this
+     * fields name will be used instead.
+     */
+    public function dependsOn(string $field, ?string $value = null)
+    {
+        $this->dependency = [
+            'field' => $field,
+            'value' => $value ?? $this->name,
+        ];
+
+        return $this;
     }
 }

@@ -27,11 +27,13 @@
             </div>
             <component
                 v-for="(field, index) in fields"
+                v-if="field.active"
                 :key="field.name + index"
                 :ref="`${field.name}-field`"
                 :is="field.component"
                 :field="field"
                 :validation-errors="getValidationErrors(field)"
+                @componentChange="activateDependents"
             />
             <div v-if="inSubmitPositions('bottom')" class="mt-8 border-t border-gray-200 pt-5">
                 <div class="flex justify-end">
@@ -165,7 +167,10 @@
                 let data = {};
                 // Fill the FormData object with executing the fill method of all fields
                 _.each(this.fields, field => {
-                    data = field.fill(data);
+                    //skip fields that are not active
+                    if(field.active === true) {
+                        data = field.fill(data);
+                    }
                 });
                 // If a form has removeNullValues set, this block will remove all keys
                 // which have null or an empty string as their value.
@@ -182,6 +187,22 @@
 
             getValidationErrors(field) {
                 return this.$data.validationErrors[field.name] || [];
+            },
+
+            /**
+             * Activate or deactivate all fields when the dependency field matches the value activation value.
+             *
+             * @param name of the field that changed
+             * @param value of the field that changed
+             */
+            activateDependents(name, value) {
+                _.each(this.fields, function (field) {
+                    if (!_.isEmpty(field.dependency)) {
+                        if (field.dependency.field === name) {
+                            field.active = field.dependency.value === value
+                        }
+                    }
+                });
             }
         }
     }

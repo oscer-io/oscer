@@ -11,7 +11,9 @@ export default {
 
     data() {
         return {
-            value: ''
+            value: '',
+            active: true,
+            dependency: {},
         }
     },
 
@@ -27,8 +29,9 @@ export default {
             this.field.fill = this.fill
         },
         value() {
-            this.$emit('input', this.value)
-        }
+            this.$emit('input', this.value);
+            this.$emit('componentChange', this.field.name, this.value);
+        },
     },
 
     mounted() {
