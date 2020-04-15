@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 class ResourceTest extends TestCase
 {
     /**
-     * Helper method to get content of a protected property
+     * Helper method to get content of a protected property.
      */
     protected function getProtectedProperty($object, string $property)
     {
