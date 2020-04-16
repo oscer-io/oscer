@@ -2,11 +2,8 @@
 
 namespace Bambamboole\LaravelCms\Tests\Unit\Backend\Resources\Fields;
 
-use Bambamboole\LaravelCms\Backend\Contracts\DisplayableModel;
-use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
 use Bambamboole\LaravelCms\Tests\Fixtures\TestField;
 use Bambamboole\LaravelCms\Tests\Fixtures\TestModel;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\TestCase;
 
