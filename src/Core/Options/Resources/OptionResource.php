@@ -13,6 +13,6 @@ class OptionResource extends Resource
 
     public function fields(): Collection
     {
-        return collect([OptionField::make($this->resourceModel->key,$this->resourceModel->type)]);
+        return collect([OptionField::make($this->resourceModel->key, $this->resourceModel->type)]);
     }
 }

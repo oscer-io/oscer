@@ -128,7 +128,6 @@
             async fetchResourceForm() {
                 this.isLoading = true;
                 // fetch the form definition from the backend.
-                console.log(this.resourceId)
                 const route = this.resourceId === null
                     ? Cms.route('cms.backend.resources.create', this.resource)
                     : Cms.route('cms.backend.resources.show', [this.resource, this.resourceId]);
