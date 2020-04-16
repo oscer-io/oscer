@@ -13,11 +13,14 @@ class OptionField
         [$tab, $label] = explode('.', $key);
 
         $resolveValueCallback = function (Field $field) {
+            // We access the value property of the Option model
             return $field->model->value;
         };
 
         $fillResourceCallback = function (Model $model, Request $request) {
+            // We need to replace the "." with an "_" because dot notation acts like array access
             $value = $request->input(Str::replaceFirst('.','_',$model->key));
+            // We Write the value into the value property of the Option model
             $model->value = $value;
         };
 
