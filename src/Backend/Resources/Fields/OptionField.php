@@ -28,7 +28,7 @@ class OptionField
             case 'text':
                 return TextField::make($key, $label, $resolveValueCallback, $fillResourceCallback);
             default:
-                throw new \Exception('unknow field type');
+                throw new \Exception('unknown field type');
         }
     }
 }
