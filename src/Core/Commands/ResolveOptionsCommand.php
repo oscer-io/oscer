@@ -41,9 +41,8 @@ class ResolveOptionsCommand extends Command
 
         if ($resolvedOptions->count() < Option::query()->count()) {
             Option::all()->filter(function (Option $option) use ($resolvedOptionKeys) {
-                return !$resolvedOptionKeys->contains($option->key);
+                return ! $resolvedOptionKeys->contains($option->key);
             })->each->delete();
         }
-
     }
 }
