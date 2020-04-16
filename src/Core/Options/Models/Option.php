@@ -3,7 +3,6 @@
 namespace Bambamboole\LaravelCms\Core\Options\Models;
 
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
-use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
 use Illuminate\Support\Carbon;
 
 /**
