@@ -17,7 +17,7 @@ class OptionField
         };
 
         $fillResourceCallback = function (Model $model, Request $request) {
-            $value = $request->input(Str::replaceFirst('.','_',$model->key));
+            $value = $request->input(Str::replaceFirst('.', '_', $model->key));
             $model->value = $value;
         };
 
