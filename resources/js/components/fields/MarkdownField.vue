@@ -1,19 +1,24 @@
 <template>
-    <div>
+    <FieldWrapper :name="field.name" :label="field.label" :errors="validationErrors">
         <div class="markdown-toolbar">
             <div class="markdown-modes my-3">
                 <ul class="flex border-b">
                     <li class="-mb-px mr-1">
-                        <button type="button" @click="mode = 'write'"
-                                :class="( mode === 'write' ? 'active bg-white text-indigo-700 ': 'border-transparent ') +
-                                    'py-1 px-2 inline-block border-l border-t border-r rounded-t text-indigo-500 hover:text-blue-800 font-semibold focus:outline-none'">
+                        <button
+                            type="button"
+                            @click="mode = 'write'"
+                            :class="( mode === 'write' ? 'active bg-white text-indigo-700 ': 'border-transparent ') +
+                                    'py-1 px-2 inline-block border-l border-t border-r rounded-t text-indigo-500 hover:text-blue-800 font-semibold focus:outline-none'"
+                        >
                             Write
                         </button>
                     </li>
                     <li class="-mb-px mr-1">
-                        <button type="button" @click="mode = 'preview'"
-                                :class="( mode === 'preview' ? 'active bg-white text-indigo-700 ': 'border-transparent ') +
-                                    'py-1 px-2 inline-block border-l border-t border-r rounded-t text-indigo-500 hover:text-blue-800 font-semibold focus:outline-none'">
+                        <button
+                            type="button" @click="mode = 'preview'"
+                            :class="( mode === 'preview' ? 'active bg-white text-indigo-700 ': 'border-transparent ') +
+                                    'py-1 px-2 inline-block border-l border-t border-r rounded-t text-indigo-500 hover:text-blue-800 font-semibold focus:outline-none'"
+                        >
                             Preview
                         </button>
                     </li>
@@ -22,7 +27,7 @@
         </div>
         <div v-show="mode === 'write'" class="editor" ref="codemirror"></div>
         <div v-show="mode === 'preview'" v-html="markdownPreviewText" class="markdown-preview clean-content"></div>
-    </div>
+    </FieldWrapper>
 </template>
 <script>
     let CodeMirror = require('codemirror');
@@ -45,26 +50,24 @@
     import 'codemirror/lib/codemirror.css'
     import 'codemirror/keymap/sublime'
     import marked from 'marked';
+    import FormField from '../../lib/mixins/FormField'
 
     export default {
-        props: {
-            value: String
-        },
-        data: function () {
+        mixins: [FormField],
+        data() {
             return {
-                data: this.value || '',
                 mode: 'write',
                 codemirror: null, // the CodeMirror instance
             };
         },
-        watch: {
-            data(data) {
-                this.update(data);
-            },
-        },
+
         mounted() {
+            // call stuff from mixin's mounted method because override it here.
+            this.setInitialValue();
+            this.field.getValue = this.getValue;
+
             this.codemirror = CodeMirror(this.$refs.codemirror, {
-                value: this.data,
+                value: this.value,
                 mode: 'gfm',
                 keyMap: 'sublime',
                 lineWrapping: true,
@@ -72,24 +75,14 @@
             });
 
             this.codemirror.on('change', (codemirror) => {
-                this.data = codemirror.doc.getValue();
-            });
+                this.value = codemirror.doc.getValue();
+                this.$emit('input', this.value);
 
-            // update CodeMirror if we change the value independently of CodeMirror
-            this.$watch('value', (value) => {
-                if (value !== this.codemirror.doc.getValue()) {
-                    this.codemirror.doc.setValue(value);
-                }
             });
-        },
-        methods: {
-            update(value) {
-                this.$emit('input', value);
-            },
         },
         computed: {
             markdownPreviewText() {
-                return marked(this.data);
+                return marked(this.value);
             },
         }
     }

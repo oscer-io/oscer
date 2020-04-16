@@ -1,38 +1,45 @@
-@extends('cms::layouts.logged-out')
+@extends('cms::auth.layout')
 
 @section('content')
     <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-md w-full">
             <div>
                 <img class="mx-auto h-12 w-auto" src="/vendor/cms/workflow-mark-on-white.svg" alt="Workflow"/>
-                <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+                <h2 class="my-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
                     {{__('cms::auth.pages.reset_password.title')}}
 
                 </h2>
 
                 @if ($errors->any())
-                    <div class="font-semibold text-red mb-4">
+                    <div class="my-3 text-center">
                         @if ($errors->has('email'))
-                            {{ $errors->first('email') }}
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2  rounded-md relative"
+                                 role="alert">
+                                <span class="font-semibold">{{ $errors->first('email') }}</span>
+                            </div>
                         @endif
                     </div>
                 @endif
 
                 @if(session()->has('invalidResetToken'))
-                    <div class="font-semibold text-red mb-4">
-                        {{__('cms::auth.pages.reset_password.error')}}
-
+                    <div class="my-3 text-center">
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded-md relative"
+                             role="alert">
+                            <span class="font-semibold">{{__('cms::auth.pages.reset_password.error')}}</span>
+                        </div>
                     </div>
                 @endif
 
                 @if (session()->has('sent'))
-                    <div class="font-semibold text-success mb-4">
-                        {{__('cms::auth.pages.reset_password.success')}}
-
+                    <div class="my-3 text-center">
+                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded-md relative"
+                             role="alert">
+                            <span class="font-semibold">{{__('cms::auth.pages.reset_password.success')}}</span>
+                        </div>
                     </div>
                 @endif
             </div>
-            <form class="mt-8" method="POST" action="{{route('cms.password.email')}}">
+            <form class="mt-4" method="POST" action="{{route('cms.password.email')}}">
                 @csrf
                 <div class="rounded-md shadow-sm">
                     <div>

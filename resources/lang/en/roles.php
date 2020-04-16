@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'roles' => 'Roles',
+    'edit_page_title' => 'Edit role - \'{name}\' (ID: {id})',
+    'create_page_title' => 'New role',
+    'show_page_title' => 'Show role - \'{name}\' (ID: {id})',
+    'index_page_title' => 'Roles',
+    'edit_title' => 'Edit role - \'{name}\'',
+    'create_title' => 'New role',
+    'show_title' => 'Show role - \'{name}\'',
+    'index_title' => 'Roles',
+    'name' => 'Name',
+    'message_no_items' => 'No roles created yet. Why not creating one?',
+    'created_at' => 'Created at',
+    'published_at' => 'Published at',
+    'updated_at' => 'Updated at',
+    'button_save' => 'Save role',
+    'button_cancel' => 'Cancel',
+    'button_create' => 'Create role',
+    'button_edit' => 'Edit role',
+    'button_show' => 'Show',
+    'placeholder_search' => 'Search...',
+    'toast.updated' => 'Role \':role\' updated',
+    'toast.created' => 'Role \':role\' created',
+];

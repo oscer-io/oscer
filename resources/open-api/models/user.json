@@ -1,0 +1,29 @@
+{
+  "title": "user",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "bio": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "avatar": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "email"
+  ]
+}

@@ -20,8 +20,9 @@
         </whitelist>
     </filter>
     <php>
-        <env name="CMS_DB_CONNECTION" value="testing"/>
+        <env name="DB_CONNECTION" value="testing"/>
         <env name="APP_KEY" value="base64:xxtmeheYsGxgRWgsHMHiFZwI4bTta/2rOlUwC9FqKjs="/>
+        <env name="BCRYPT_ROUNDS" value="4"/>
     </php>
     <logging>
         <log type="tap" target="build/report.tap"/>

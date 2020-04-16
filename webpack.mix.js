@@ -1,18 +1,23 @@
 const mix = require('laravel-mix');
 let tailwindcss = require('tailwindcss');
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for the application as well as bundling up all the JS files.
- |
- */
+const path = require('path')
+
+mix.webpackConfig({
+    resolve: {
+        alias: {
+            ziggy: path.resolve('vendor/tightenco/ziggy/dist/js/route.js'),
+        },
+    },
+})
 
 mix.options({processCssUrls: false})
     .setPublicPath('dist')
     .js('resources/js/app.js', 'dist')
     .sass('resources/sass/app.scss', 'dist', {}, [tailwindcss('./tailwind.config.js')])
+    .version();
+
+mix.options({processCssUrls: false})
+    .setPublicPath('dist')
+    .js('resources/js/swagger-ui.js', 'dist')
+    .sass('resources/sass/swagger-ui.scss', 'dist')
     .version();

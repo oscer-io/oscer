@@ -1,0 +1,12 @@
+{
+  "title": "user response",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "../models/user.json"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

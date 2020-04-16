@@ -1,0 +1,23 @@
+{
+  "title": "user-collection",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "../models/user.json"
+      }
+    },
+    "meta": {
+      "$ref": "./meta.json"
+    },
+    "links": {
+      "$ref": "./links.json"
+    }
+  },
+  "required": [
+    "data",
+    "meta",
+    "links"
+  ]
+}

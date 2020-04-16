@@ -1,0 +1,26 @@
+{
+  "title": "page-collection response",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "items": {
+        "$ref": "../models/page.json"
+      }
+    },
+    "links": {
+      "$ref": "./links.json"
+    },
+    "meta": {
+      "$ref": "./meta.json"
+    }
+  },
+  "required": [
+    "data",
+    "links",
+    "meta"
+  ]
+}

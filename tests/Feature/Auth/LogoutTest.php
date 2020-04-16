@@ -12,8 +12,7 @@ class LogoutTest extends TestCase
         $user = $this->login();
         $this->assertAuthenticatedAs($user);
 
-        $this->get('/admin/logout');
-
-        $this->assertGuest();
+        $this->get('/admin/logout')
+            ->assertRedirect(route('cms.auth.login'));
     }
 }

@@ -22,6 +22,7 @@ return [
     'button_show' => 'Show',
     'button_order_save' => 'Save order',
     'button_order_disabled' => 'Menu not reordered',
+    'search_post' => 'Search post',
     'index_item_count' => '{count} menu items',
     'toast.item_updated' => 'Menu item \':item\' updated',
     'toast.item_created' => 'Menu item \':item\' created',

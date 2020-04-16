@@ -3,28 +3,35 @@ module.exports = {
     description: 'A simple CMS and blogging platform made for developers.',
 
     themeConfig: {
+        nav: [
+            { text: 'Discord', link: 'https://discord.gg/EwpuT3z', target:'_blank' }
+        ],
         repo: 'bambamboole/laravel-cms',
         editLinks: true,
         docsDir: 'docs',
         displayAllHeaders: true,
         sidebarDepth: 0,
         sidebar: [
+            ['introduction', 'Introduction & Roadmap'],
             {
                 title: 'Getting Started',
                 collapsable: false,
                 children: [
                     ['getting-started/installation', 'Installation'],
+                    ['getting-started/configuration', 'Configuration'],
                     ['getting-started/dummy-data', 'Seed dummy data'],
                 ],
 
             },
             {
-                title: 'Usage',
+                title: 'Resources',
                 collapsable: false,
                 children: [
-                    ['usage/user-management', 'Users'],
-                    ['usage/pages', 'Pages'],
-                    ['usage/posts-tags', 'Posts & Tags'],
+                    ['resources/posts-tags', 'Posts & Tags'],
+                    ['resources/pages', 'Pages'],
+                    ['resources/menus', 'Menus & Menu Items'],
+                    ['resources/users', 'Users'],
+                    ['resources/roles', 'Roles & Permissions'],
                 ],
 
             },
@@ -32,6 +39,7 @@ module.exports = {
                 title: 'Theming',
                 collapsable: false,
                 children: [
+                    ['theming/introduction', 'Introduction'],
                     ['theming/default-theme', 'DefaultTheme'],
                     ['theming/menus', 'Menus'],
                     ['theming/posts', 'Posts'],

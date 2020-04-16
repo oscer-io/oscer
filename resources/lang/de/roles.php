@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'users' => 'Rolle',
+    'edit_page_title' => 'Rolle bearbeiten - \'{name}\' (ID: {id})',
+    'create_page_title' => 'Neue Rolle',
+    'show_page_title' => 'Rolle anzeigen - \'{name}\' (ID: {id})',
+    'index_page_title' => 'Rolle',
+    'edit_title' => 'Rolle bearbeiten - \'{name}\'',
+    'create_title' => 'Neue Rolle',
+    'show_title' => 'Rolle anzeigen - \'{name}\'',
+    'index_title' => 'Rolle',
+    'name' => 'Name',
+    'message_no_items' => 'Es wurde noch kein Rolle erstellt. Warum erstellst du nicht eine?',
+    'created_at' => 'Erstellt am',
+    'published_at' => 'Veröffentlicht am',
+    'updated_at' => 'Geändert am',
+    'button_save' => 'Rolle speichern',
+    'button_cancel' => 'Abbrechen',
+    'button_create' => 'Rolle erstellen',
+    'button_edit' => 'Rolle bearbeiten',
+    'button_show' => 'Anzeigen',
+    'placeholder_search' => 'Suchen...',
+    'toast.updated' => 'Rolle \':role\' aktualisiert',
+    'toast.created' => 'Rolle \':role\' erstellt',
+];

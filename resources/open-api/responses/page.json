@@ -1,0 +1,12 @@
+{
+  "title": "page response",
+  "type": "object",
+  "properties": {
+    "data": {
+      "$ref": "../models/page.json"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}
