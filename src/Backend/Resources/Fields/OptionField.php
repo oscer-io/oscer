@@ -19,7 +19,7 @@ class OptionField
 
         $fillResourceCallback = function (Model $model, Request $request) {
             // We need to replace the "." with an "_" because dot notation acts like array access
-            $value = $request->input(Str::replaceFirst('.','_',$model->key));
+            $value = $request->input(Str::replaceFirst('.', '_', $model->key));
             // We Write the value into the value property of the Option model
             $model->value = $value;
         };
