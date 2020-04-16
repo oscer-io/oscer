@@ -26,7 +26,10 @@
 
         methods: {
             handleSuccess(page) {
-                Cms.flash('success', 'Nice one!');
+                this.$store.dispatch('flash', {
+                    type: 'success',
+                    text: 'Nice one!'
+                });
                 this.$router.push({name: 'pages.show', params: {id: page.id}})
             }
         }

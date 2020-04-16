@@ -16,7 +16,10 @@
         props: ['id'],
         methods: {
             handleSuccess(role) {
-                Cms.flash('success', 'Role updated.');
+                this.$store.dispatch('flash', {
+                    type: 'success',
+                    text: 'Role updated'
+                });
             }
         }
     }

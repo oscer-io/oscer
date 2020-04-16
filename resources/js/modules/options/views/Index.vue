@@ -53,7 +53,10 @@
         },
         methods: {
             handleSuccess() {
-                Cms.flash('success', 'Nice one!');
+                this.$store.dispatch('flash', {
+                    type: 'success',
+                    text: 'Nice one!'
+                });
             }
         }
     }

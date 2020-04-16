@@ -1,6 +1,7 @@
 import Vue from 'vue';
-import VueJSModal from "vue-js-modal";
-import router from "./router";
+import VueJSModal from 'vue-js-modal';
+import router from './router';
+import store from './store'
 import i18n from './i18n';
 import route from 'ziggy';
 import Layout from '../components/Layout';
@@ -8,7 +9,6 @@ import Layout from '../components/Layout';
 export default class Cms {
 
     constructor(config) {
-        this.bus = new Vue();
         this.bootingCallbacks = [];
         this.config = config;
     }
@@ -40,6 +40,7 @@ export default class Cms {
             el: '#cms',
             components: {Layout},
             router,
+            store,
             i18n,
             data() {
                 return {
@@ -64,20 +65,6 @@ export default class Cms {
                 });
             }
         })
-    }
-
-    /**
-     * Register a listener on the event bus
-     */
-    $on(...args) {
-        this.bus.$on(...args)
-    }
-
-    /**
-     * flash a message via the event bus
-     */
-    flash(type, text) {
-        this.bus.$emit('flash', {'type': type, 'text': text});
     }
 
     /**

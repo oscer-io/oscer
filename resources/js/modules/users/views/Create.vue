@@ -24,7 +24,10 @@
         },
         methods: {
             handleSuccess(user) {
-                Cms.flash('success', 'Nice one!');
+                this.$store.dispatch('flash', {
+                    type: 'success',
+                    text: 'Nice one!'
+                });
                 this.$router.push({name: 'users.show', params: {id: user.id}})
             }
         }
