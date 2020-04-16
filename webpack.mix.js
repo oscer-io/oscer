@@ -1,6 +1,6 @@
 const mix = require('laravel-mix');
 let tailwindcss = require('tailwindcss');
-const path = require('path')
+const path = require('path');
 
 mix.webpackConfig({
     resolve: {
@@ -16,8 +16,3 @@ mix.options({processCssUrls: false})
     .sass('resources/sass/app.scss', 'dist', {}, [tailwindcss('./tailwind.config.js')])
     .version();
 
-mix.options({processCssUrls: false})
-    .setPublicPath('dist')
-    .js('resources/js/swagger-ui.js', 'dist')
-    .sass('resources/sass/swagger-ui.scss', 'dist')
-    .version();

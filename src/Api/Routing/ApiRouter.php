@@ -33,10 +33,6 @@ class ApiRouter
             ->prefix($this->prefix)
             ->group(function (Router $router) {
                 $router->post('/auth/token', IssueTokenController::class)->name('auth.token');
-//                This is commented out because they are not functional at the moment
-//                $router->get('/swagger-ui', SwaggerUiController::class)->name('swagger-ui');
-//                $router->get('/open-api/reference/definition.yaml', [OpenApiController::class, 'reference'])->name('oas.reference');
-//                $router->get('/open-api/{folder}/{file}', [OpenApiController::class, 'file'])->name('oas.file');
             });
 
         $this->registerProtectedApiRoutes();
