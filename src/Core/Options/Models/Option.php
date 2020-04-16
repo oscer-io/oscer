@@ -21,39 +21,4 @@ class Option extends BaseModel
 
         return $option ? $option->value : $default;
     }
-
-    public function index()
-    {
-        $mergedFields = collect([]);
-        collect(array_merge(
-            config('cms.options'),
-            ['theme' => app(Theme::class)->getOptions(),
-            ]
-        ))->each(function ($fields, $tab) use ($mergedFields) {
-            foreach ($fields as $name => $definition) {
-                $mergedFields->add(array_merge(
-                    [
-                        'name' => $name,
-                        'key' => "{$tab}.{$name}",
-                    ],
-                    $definition
-                ));
-            }
-        });
-
-        if ($mergedFields->count() !== $this->newQuery()->count()) {
-            return $mergedFields->map(function (array $field) {
-                return $this->newQuery()
-                    ->firstOrNew(
-                        ['key' => $field['key']],
-                        [
-                            'type' => $field['type'],
-                            'key' => $field['key'],
-                        ]
-                    );
-            });
-        } else {
-            return $this->newQuery()->get();
-        }
-    }
 }

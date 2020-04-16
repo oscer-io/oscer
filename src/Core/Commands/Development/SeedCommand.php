@@ -2,6 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Core\Commands\Development;
 
+use Bambamboole\LaravelCms\Core\Menus\Models\Menu;
 use Bambamboole\LaravelCms\Core\Menus\Models\MenuItem;
 use Bambamboole\LaravelCms\Core\Options\Models\Option;
 use Bambamboole\LaravelCms\Core\Pages\Models\Page;
@@ -181,46 +182,55 @@ class SeedCommand extends Command
     protected function seedMenuItems()
     {
         $this->comment('Seeding menu items');
-        $menuItems = collect([
+        $menus = collect([
             [
-                'name' => 'About me',
-                'menu' => 'main',
-                'url' => '/about',
-                'order' => 1,
+                'name' => 'Main Menu',
+                'location' => 'main',
+                'items' => [
+                    [
+                        'name' => 'About me',
+                        'url' => '/about',
+                        'order' => 1,
+                    ],
+                    [
+                        'name' => 'Blog',
+                        'url' => '/posts',
+                        'order' => 2,
+                    ],
+                ],
             ],
             [
-                'name' => 'Blog',
-                'menu' => 'main',
-                'url' => '/posts',
-                'order' => 2,
+                'name' => 'Footer Menu',
+                'location' => 'footer',
+                'items' => [
+                    [
+                        'name' => 'Legal Notice',
+                        'url' => '/legal',
+                        'order' => 1,
+                    ],
+                    [
+                        'name' => 'Privacy',
+                        'url' => '/privacy',
+                        'order' => 2,
+                    ],
+                ],
             ],
-            [
-                'name' => 'Legal Notice',
-                'menu' => 'footer',
-                'url' => '/legal',
-                'order' => 1,
-            ],
-            [
-                'name' => 'Privacy',
-                'menu' => 'footer',
-                'url' => '/privacy',
-                'order' => 2,
-            ],
-        ])->map(function ($data) {
-            return factory(MenuItem::class)->create($data);
+        ]);
+        $menus->each(function (array $data) {
+            /** @var Menu $menu */
+            $menu = factory(Menu::class)->create(['name' => $data['name'], 'location' => $data['location']]);
+            $menu->items()->createMany($data['items']);
         });
 
-        $this->info("{$menuItems->count()} menu items seeded.");
+        $this->info("{$menus->count()} menus seeded.");
     }
 
     protected function seedOptions()
     {
-        $option = new Option();
-        $options = $option->index();
-        $frontPageOption = $options->first(function (Option $option) {
-            return $option->key === 'pages.front_page';
-        });
-        $frontPageOption->value = 'front-page';
-        $frontPageOption->save();
+        $this->callSilent('cms:options:resolve');
+        Option::query()
+            ->where('key', 'pages.front_page')
+            ->first()
+            ->update(['value' => 'front-page']);
     }
 }

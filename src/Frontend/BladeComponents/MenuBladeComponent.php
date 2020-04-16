@@ -12,16 +12,18 @@ class MenuBladeComponent extends Component
 
     protected Menu $menu;
 
-    public function __construct(Theme $theme, string $name)
+    public function __construct(Theme $theme, string $location)
     {
         $this->theme = $theme;
-        $this->menu = Menu::resolve($name);
+        $this->menu = Menu::query()->firstOrCreate(
+            ['location' => $location],
+            ['name' => "New menu at location: {$location}", 'location' => $location]);
     }
 
     public function render()
     {
         return view(
-            $this->theme->getMenus()[$this->menu->name]['template'],
+            $this->theme->getMenus()[$this->menu->location]['template'],
             ['menu' => $this->menu]
         );
     }

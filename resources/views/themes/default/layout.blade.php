@@ -8,8 +8,8 @@
 
 </head>
 <body>
-<x-menu name="main"/>
+<x-menu location="main"/>
 @yield('content')
-<x-menu name="footer"/>
+<x-menu location="footer"/>
 </body>
 </html>
