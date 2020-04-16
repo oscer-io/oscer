@@ -7,6 +7,7 @@ use Bambamboole\LaravelCms\Backend\Routing\BackendRouter;
 use Bambamboole\LaravelCms\Backend\ViewComposer\BackendViewComposer;
 use Bambamboole\LaravelCms\Core\Commands\Development\SeedCommand;
 use Bambamboole\LaravelCms\Core\Commands\PublishCommand;
+use Bambamboole\LaravelCms\Core\Commands\ResolveOptionsCommand;
 use Bambamboole\LaravelCms\Core\Users\Models\Permission;
 use Bambamboole\LaravelCms\Core\Users\Models\Role;
 use Bambamboole\LaravelCms\Core\Users\Models\User;
@@ -133,6 +134,7 @@ class LaravelCmsServiceProvider extends ServiceProvider
         $this->commands([
             PublishCommand::class,
             SeedCommand::class,
+            ResolveOptionsCommand::class,
         ]);
 
         $this->app->singleton('commonmark', function () {

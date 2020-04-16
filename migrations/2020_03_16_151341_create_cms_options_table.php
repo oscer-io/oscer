@@ -17,6 +17,7 @@ class CreateCmsOptionsTable extends Migration
             $table->bigIncrements('id');
             $table->string('key')->unique();
             $table->string('type');
+            $table->string('label')->nullable();
             $table->text('value')->nullable();
             $table->timestamps();
         });
