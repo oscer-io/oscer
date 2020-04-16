@@ -8,4 +8,5 @@
     @empty
         <p>No posts available</p>
     @endforelse
+    {{$posts->links()}}
 @endsection

@@ -20,7 +20,7 @@ class PagesController
     {
         $pathParts = explode('.', $request->route()->getName());
         $slug = end($pathParts);
-        $page = Page::query()->where('slug', $slug)->firstOrFail();
+        $page = Page::query()->where('type', 'page')->where('slug', $slug)->firstOrFail();
 
         return view($this->theme->getPageTemplate(), ['page' => $page]);
     }
