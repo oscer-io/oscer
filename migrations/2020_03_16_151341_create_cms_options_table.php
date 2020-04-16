@@ -16,6 +16,8 @@ class CreateCmsOptionsTable extends Migration
         Schema::create('cms_options', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('key')->unique();
+            $table->string('type');
+            $table->string('label')->nullable();
             $table->text('value')->nullable();
             $table->timestamps();
         });

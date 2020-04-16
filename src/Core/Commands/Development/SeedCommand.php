@@ -173,6 +173,7 @@ class SeedCommand extends Command
         ])->map(function ($page) {
             return factory(Page::class)->create(array_merge($page, ['author_id' => $this->admin->id]));
         })->tap(function (Collection $pages) {
+            factory(Page::class, 50)->create(['author_id' => $this->admin->id]);
             $this->info("{$pages->count()} pages seeded");
         });
     }
@@ -214,6 +215,12 @@ class SeedCommand extends Command
 
     protected function seedOptions()
     {
-        Option::query()->create(['key' => 'pages.front_page', 'value' => 'front-page']);
+        $option = new Option();
+        $options = $option->index();
+        $frontPageOption = $options->first(function (Option $option) {
+            return $option->key === 'pages.front_page';
+        });
+        $frontPageOption->value = 'front-page';
+        $frontPageOption->save();
     }
 }

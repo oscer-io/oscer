@@ -2,27 +2,41 @@
 
 namespace Bambamboole\LaravelCms\Core\Users\Resources;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
+use Bambamboole\LaravelCms\Backend\Resources\Fields\ImageField;
+use Bambamboole\LaravelCms\Backend\Resources\Fields\PasswordField;
+use Bambamboole\LaravelCms\Backend\Resources\Fields\TextareaField;
+use Bambamboole\LaravelCms\Backend\Resources\Fields\TextField;
+use Bambamboole\LaravelCms\Backend\Resources\Resource;
+use Bambamboole\LaravelCms\Core\Users\Models\User;
+use Illuminate\Support\Collection;
+use Illuminate\Validation\Rule;
 
-class UserResource extends JsonResource
+class UserResource extends Resource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param Request $request
-     *
-     * @return array
-     */
-    public function toArray($request)
+    public static string $model = User::class;
+
+    public function fields(): Collection
     {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'email' => $this->email,
-            'bio' => $this->bio,
-            'avatar' => $this->avatar,
-            'language' => $this->language,
-        ];
+        return collect([
+            ImageField::make('avatar')
+                ->rules(['filled', 'image'])
+                ->disk('public')
+                ->folder('avatars')
+                ->rounded(),
+            TextField::make('name')
+                ->rulesForCreate(['required', 'string'])
+                ->rulesForUpdate(['filled', 'string']),
+            TextField::make('email')
+                ->rulesForCreate(['required', 'email', 'unique:cms_users,email'])
+                ->rulesForUpdate([
+                    'filled',
+                    'email',
+                    Rule::unique('cms_users', 'email')
+                        ->ignore($this->resourceModel->id),
+                ]),
+            TextareaField::make('bio', 'Biography'),
+            PasswordField::make('password')
+                ->rules(['filled', 'confirmed'])->hideOnIndex(),
+        ]);
     }
 }

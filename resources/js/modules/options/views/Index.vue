@@ -34,7 +34,7 @@
             }
         },
         async mounted() {
-            const response = await api(Cms.route('cms.api.resources.index', 'option'));
+            const response = await api(Cms.route('cms.backend.resources.index', 'option'));
             this.options = response.data.data;
             this.isLoading = false;
         }

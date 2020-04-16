@@ -1,5 +1,6 @@
 import Index from "./views/Index";
 import Show from "./views/Show";
+import Create from "./views/Create";
 
 export default [
     {
@@ -8,7 +9,12 @@ export default [
         component: Index
     },
     {
-        path: '/admin/menus/:name',
+        path: '/admin/menus/create',
+        name: 'menus.create',
+        component: Create
+    },
+    {
+        path: '/admin/menus/:id',
         name: 'menus.show',
         component: Show,
         props: true

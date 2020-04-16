@@ -2,62 +2,15 @@
 
 namespace Bambamboole\LaravelCms\Core\Menus\Models;
 
-use Bambamboole\LaravelCms\Api\Contracts\HasApiEndpoints;
-use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
-use Bambamboole\LaravelCms\Api\Contracts\HasShowEndpoint;
-use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
+use Bambamboole\LaravelCms\Core\Models\BaseModel;
 
-class Menu implements HasApiEndpoints, HasIndexEndpoint, HasShowEndpoint
+class Menu extends BaseModel
 {
-    public string $name;
+    protected $with = ['items'];
 
-    public array $items;
-
-    public function setName(string $name): self
+    public function items()
     {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function setItems(array $items): self
-    {
-        $this->items = $items;
-
-        return $this;
-    }
-
-    public static function all()
-    {
-        return collect(app(Theme::class)->getMenus())
-            ->keys()
-            ->map(function (string $name) {
-                return self::resolve($name);
-            });
-    }
-
-    public static function resolve(string $name)
-    {
-        $items = MenuItem::query()
-            ->where('menu', $name)
-            ->orderBy('order')
-            ->get()
-            ->toArray();
-
-        $menu = new self();
-
-        return $menu
-            ->setName($name)
-            ->setItems($items);
-    }
-
-    public function executeIndex()
-    {
-        return ['data' => self::all()];
-    }
-
-    public function executeShow($identifier)
-    {
-        return ['data' => self::resolve($identifier)];
+        return $this->hasMany(MenuItem::class)
+            ->orderBy('order');
     }
 }

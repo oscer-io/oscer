@@ -2,16 +2,9 @@
 
 namespace Bambamboole\LaravelCms\Core\Options\Models;
 
-use Bambamboole\LaravelCms\Api\Contracts\HasApiEndpoints;
-use Bambamboole\LaravelCms\Api\Contracts\HasIndexEndpoint;
-use Bambamboole\LaravelCms\Api\Contracts\HasStoreEndpoint;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
-use Bambamboole\LaravelCms\Core\Options\Repositories\OptionRepository;
-use Bambamboole\LaravelCms\Core\Options\Resources\OptionResource;
-use Illuminate\Http\Request;
+use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
 
 /**
  * @property int id
@@ -20,38 +13,47 @@ use Illuminate\Validation\ValidationException;
  * @property Carbon created_at
  * @property Carbon updated_at
  */
-class Option extends BaseModel implements HasApiEndpoints, HasIndexEndpoint, HasStoreEndpoint
+class Option extends BaseModel
 {
     public static function getValueByKey(string $key, $default = null): ?string
     {
         $option = static::query()->where('key', $key)->first();
 
-        return $option ? $option->value : null;
+        return $option ? $option->value : $default;
     }
 
-    public function executeIndex()
+    public function index()
     {
-        return ['data' => $this->getRepository()->getOptionFields()];
-    }
+        $mergedFields = collect([]);
+        collect(array_merge(
+            config('cms.options'),
+            ['theme' => app(Theme::class)->getOptions(),
+            ]
+        ))->each(function ($fields, $tab) use ($mergedFields) {
+            foreach ($fields as $name => $definition) {
+                $mergedFields->add(array_merge(
+                    [
+                        'name' => $name,
+                        'key' => "{$tab}.{$name}",
+                    ],
+                    $definition
+                ));
+            }
+        });
 
-    protected function getRepository(): OptionRepository
-    {
-        return app(OptionRepository::class);
-    }
-
-    public function executeStore(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'key' => ['required', 'string'],
-            'value' => ['string', 'nullable'],
-        ]);
-
-        if ($validator->fails()) {
-            throw new ValidationException($validator);
+        if ($mergedFields->count() !== $this->newQuery()->count()) {
+            return $mergedFields->map(function (array $field) {
+                return $this->newQuery()
+                    ->firstOrNew(
+                        ['key' => $field['key']],
+                        [
+                            'type' => $field['type'],
+                            'key' => $field['key'],
+                        ]
+                    );
+            });
+        } else {
+            return $this->newQuery()->get();
         }
-
-        $option = $this->getRepository()->store($request->input('key'), $request->input('value'));
-
-        return new OptionResource($option);
     }
 }

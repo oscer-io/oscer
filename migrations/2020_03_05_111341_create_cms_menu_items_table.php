@@ -16,10 +16,14 @@ class CreateCmsMenuItemsTable extends Migration
         Schema::create('cms_menu_items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('menu');
+            $table->foreignId('menu_id');
             $table->string('url');
             $table->integer('order');
             $table->timestamps();
+
+            $table->foreign('menu_id')
+                ->references('id')
+                ->on('cms_menus');
         });
     }
 
