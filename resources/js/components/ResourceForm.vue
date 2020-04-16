@@ -74,6 +74,10 @@
                 required: false,
                 default: null
             },
+            preloadedResource: {
+                required: false,
+                default: false
+            },
             resetOnSuccess: {
                 required: false,
                 default: false
@@ -114,8 +118,16 @@
                 this.fetchResourceForm();
             }
         },
-        created() {
-            this.fetchResourceForm();
+        mounted() {
+            if (this.preloadedResource !== false) {
+                console.log('foo');
+                console.log(this.preloadedResource);
+                this.fields = this.preloadedResource.fields;
+                this.removeNullValues = this.preloadedResource.removeNullValues;
+                this.isLoading = false;
+            } else {
+                this.fetchResourceForm();
+            }
         },
         methods: {
             inSubmitPositions(positions) {
@@ -167,7 +179,7 @@
                 // Fill the FormData object with executing the fill method of all fields
                 _.each(this.fields, field => {
                     //skip fields that are not active
-                    if(field.active === true) {
+                    if (field.active === true) {
                         data = field.fill(data);
                     }
                 });

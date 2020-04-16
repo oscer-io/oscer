@@ -4,6 +4,7 @@ namespace Bambamboole\LaravelCms\Backend\Resources\Fields;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class OptionField
 {
@@ -12,13 +13,11 @@ class OptionField
         [$tab, $label] = explode('.', $key);
 
         $resolveValueCallback = function (Field $field) {
-            dump($field->model);
-
             return $field->model->value;
         };
 
         $fillResourceCallback = function (Model $model, Request $request) {
-            $value = $request->input($model->key);
+            $value = $request->input(Str::replaceFirst('.','_',$model->key));
             $model->value = $value;
         };
 
