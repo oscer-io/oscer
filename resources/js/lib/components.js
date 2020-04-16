@@ -4,6 +4,7 @@ import Loading from '../components/Loading';
 import Dropdown from '../components/Dropdown';
 import NavbarLink from '../components/NavbarLink';
 import Flash from "../components/Flash";
+import Tag from "../components/Tag";
 import Tab from "../components/Tab";
 import Tabs from "../components/Tabs";
 
@@ -11,5 +12,6 @@ Vue.component('Loading', Loading);
 Vue.component('Dropdown', Dropdown);
 Vue.component('NavbarLink', NavbarLink);
 Vue.component('Flash', Flash);
+Vue.component('Tag', Tag);
 Vue.component('Tab', Tab);
 Vue.component('Tabs', Tabs);

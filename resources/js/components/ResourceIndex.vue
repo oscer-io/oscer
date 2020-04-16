@@ -18,17 +18,16 @@
                 </div>
             </div>
         </div>
-        <loading :loading="isLoading">
+        <loading :loading="isLoading" class="bg-white">
             <table v-if="items.length > 0" class="table w-full overflow-x-scroll">
                 <thead>
                 <tr>
                     <th
                         v-for="column in tableHeaderColumns"
                         v-text="column"
-                        class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider text-left"
+                        class="p-3 border-b border-gray-200 bg-gray-50 text-xs leading-4 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
                     ></th>
-                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider text-center w-32">
-                        Actions
+                    <th class="p-3 border-b border-gray-200 bg-gray-50 th-fit">
                     </th>
                 </tr>
                 </thead>
@@ -36,23 +35,35 @@
                 <tr v-for="(item, itemIndex) in items">
                     <td v-for="(field, fieldIndex) in filteredFields(item)"
                         :key="`${field.name}-${itemIndex}`"
-                        class="px-6 py-4 whitespace-no-wrap border-b border-gray-200"
+                        class="p-3 whitespace-no-wrap border-b border-gray-200 text-sm"
                     >
                         <component
                             :is="`Index${field.component}`"
                             :field="field"
                         />
                     </td>
-                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                        <router-link v-if="item.displayShowButtonOnIndex"
-                                     :to="{name:`${resource}s.show`, params: {id: item.resourceId}}" class="btn">
-                            show
-                        </router-link>
-                        <router-link v-if="item.displayEditButtonOnIndex && meta.is_editable"
-                                     :to="{name:`${resource}s.edit`, params: {id: item.resourceId}}"
-                                     class="btn">
-                            edit
-                        </router-link>
+                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 td-fit">
+                        <div class="inline-flex items-center">
+                            <router-link :to="{name:`${resource}s.show`, params: {id: item.resourceId}}" class="inline-flex">
+                                <svg class="w-8 h-8" viewBox="0 0 64 64" stroke="currentColor">
+                                    <path fill="none" stroke-miterlimit="10" stroke-width="2"
+                                          d="M54.09 32S44.2 45.82 32 45.82 9.91 32 9.91 32 19.8 18.18 32 18.18 54.09 32 54.09 32z"/>
+                                    <circle cx="32" cy="32" r="13.82" fill="none" stroke-miterlimit="10"
+                                            stroke-width="2"/>
+                                    <circle cx="32" cy="32" r="3.21" fill="#4a4a4a"/>
+                                </svg>
+                            </router-link>
+                            <router-link :to="{name:`${resource}s.edit`, params: {id: item.resourceId}}" class="inline-flex">
+                                <svg class="w-8 h-8" viewBox="0 0 64 64" stroke="currentColor">
+                                    <path
+                                        fill="none"
+                                        stroke-miterlimit="10"
+                                        stroke-width="2"
+                                        d="M27.92 46.23L17.77 36.08M45.603 14.2l4.186 4.187a4.22 4.22 0 010 5.968l-4.95 4.95h0L34.685 19.15h0l4.95-4.95a4.22 4.22 0 015.968 0zM27.93 46.23l-14.96 4.8 4.8-14.95h0l16.89-16.9 10.16 10.16-16.89 16.89h0zM15.61 42.81l5.58 5.58"/>
+                                </svg>
+                            </router-link>
+                        </div>
+
                     </td>
                 </tr>
                 </tbody>
@@ -129,5 +140,10 @@
     .table {
         border-collapse: collapse;
         border-spacing: 0;
+    }
+
+    .td-fit, .th-fit {
+        width: 1%;
+        white-space: nowrap;
     }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <span v-for="tag in field.values" v-text="tag"></span>
+        <Tag v-for="tag in field.value" :key="tag" :label="tag"></Tag>
     </div>
 </template>
 <script>

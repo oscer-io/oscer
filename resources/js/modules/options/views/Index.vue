@@ -10,6 +10,7 @@
             >
                 <ResourceForm
                     v-for="option in options"
+                    :key="option.model.key"
                     resource="option"
                     :resource-id="option.model.id"
                     :preloaded-resource="option"
@@ -21,17 +22,15 @@
 </template>
 
 <script>
+    import _ from 'lodash';
     import Tab from "../../../components/Tab";
     import Tabs from "../../../components/Tabs";
-    import Option from "./../components/Option";
     import api from "../../../lib/api";
-    import _ from 'lodash';
     import ResourceForm from "../../../components/ResourceForm";
 
     export default {
         components: {
             ResourceForm,
-            Option,
             Tab,
             Tabs,
         },
@@ -59,6 +58,7 @@
         }
     }
 </script>
+
 
 <style>
 

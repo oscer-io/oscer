@@ -25,7 +25,7 @@ class PageResource extends Resource
             TextField::make('slug')
                 ->rules(['filled', 'string']),
             MarkdownField::make('body')
-                ->rules(['required']),
+                ->rules(['required'])->hideOnIndex(),
         ]);
     }
 }

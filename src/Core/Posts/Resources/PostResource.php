@@ -30,7 +30,7 @@ class PostResource extends Resource
             TextField::make('slug')
                 ->rules(['filled', 'string']),
             MarkdownField::make('body')
-                ->rules(['required']),
+                ->rules(['required'])->hideOnIndex(),
             TagsField::make('tags', 'Tags', function (Field $field) {
                 return $field->model->tags->pluck('name');
             })->suggestions(Tag::all()->pluck('name')->toArray())->rules(['array']),

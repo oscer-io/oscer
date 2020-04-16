@@ -1,8 +1,7 @@
 <template>
-    <div v-text="asMarkdown(field.value)"></div>
+    <div>...</div>
 </template>
 <script>
-    import marked from 'marked';
     export default {
         props: {
             field: {
@@ -10,10 +9,5 @@
                 required: true
             }
         },
-        methods: {
-            asMarkdown(value) {
-                return marked(value).substring(0, 100);
-            },
-        }
     }
 </script>
