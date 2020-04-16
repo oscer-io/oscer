@@ -5,6 +5,8 @@ namespace Bambamboole\LaravelCms\Tests\Unit\Backend\Resources\Fields;
 use Bambamboole\LaravelCms\Backend\Contracts\DisplayableModel;
 use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
 use Bambamboole\LaravelCms\Tests\Fixtures\TestField;
+use Bambamboole\LaravelCms\Tests\Fixtures\TestModel;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\TestCase;
 
@@ -45,7 +47,7 @@ class FieldTest extends TestCase
     /** @test */
     public function the_default_resolveValueCallback_returns_the_value_based_on_name()
     {
-        $model = \Mockery::spy(DisplayableModel::class);
+        $model = new TestModel();
         // we fill the property name
         $model->name = 'test';
 
@@ -58,7 +60,7 @@ class FieldTest extends TestCase
     /** @test */
     public function the_resolveValueCallback_can_be_set()
     {
-        $model = \Mockery::spy(DisplayableModel::class);
+        $model = new TestModel();
         $callback = function () {
             return 'executed';
         };
@@ -77,7 +79,7 @@ class FieldTest extends TestCase
             ->shouldReceive('input')
             ->with('name')
             ->andReturn('test')->getMock();
-        $model = \Mockery::spy(SavableModel::class);
+        $model = new TestModel();
 
         $field->fill($model, $requestMock);
 
@@ -92,7 +94,7 @@ class FieldTest extends TestCase
         };
         $field = new TestField('name', null, null, $callback);
         $requestMock = \Mockery::spy(Request::class);
-        $model = \Mockery::spy(SavableModel::class);
+        $model = new TestModel();
 
         $field->fill($model, $requestMock);
 
@@ -129,7 +131,7 @@ class FieldTest extends TestCase
     public function a_field_with_a_filled_rule_will_be_removed_if_request_has_no_value()
     {
         $field = TestField::make('name')->rules(['filled']);
-        $model = \Mockery::spy(SavableModel::class);
+        $model = new TestModel();
         $model->name = 'test';
         $field->resolve($model);
         $requestMock = \Mockery::mock(Request::class)
