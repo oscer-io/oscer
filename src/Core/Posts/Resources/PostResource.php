@@ -32,7 +32,7 @@ class PostResource extends Resource
             MarkdownField::make('body')
                 ->rules(['required']),
             TagsField::make('tags', 'Tags', function (Field $field) {
-                return $field->resource->tags->pluck('name');
+                return $field->model->tags->pluck('name');
             })->suggestions(Tag::all()->pluck('name')->toArray())->rules(['array']),
         ]);
     }

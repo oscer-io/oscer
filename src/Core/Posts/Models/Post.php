@@ -2,12 +2,11 @@
 
 namespace Bambamboole\LaravelCms\Core\Posts\Models;
 
-use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
-use Bambamboole\LaravelCms\Backend\Resources\IsSavableEloquentModel;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 use League\CommonMark\Block\Element\FencedCode;
 use League\CommonMark\Block\Element\IndentedCode;
 use League\CommonMark\CommonMarkConverter;
@@ -29,10 +28,9 @@ use Spatie\Sluggable\SlugOptions;
  * @property Carbon updated_at
  * @property Carbon created_at
  */
-class Post extends BaseModel implements SavableModel
+class Post extends BaseModel
 {
     use HasSlug;
-    use IsSavableEloquentModel;
 
     protected $table = 'cms_posts';
 
@@ -117,5 +115,10 @@ class Post extends BaseModel implements SavableModel
     public function joiningTableSegment()
     {
         return 'post';
+    }
+
+    public function getFeaturedImageAttribute($value)
+    {
+        return $value ? Storage::url($value) : null;
     }
 }

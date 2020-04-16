@@ -1,5 +1,5 @@
 <template>
-        <img class="rounded w-20 h-20"
+        <img class="rounded w-10 h-10"
              :class="{'rounded-full': field.rounded}" :src="field.value" alt=""/>
 </template>
 <script>

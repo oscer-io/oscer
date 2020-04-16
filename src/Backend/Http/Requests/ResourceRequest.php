@@ -1,8 +1,8 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Http\Requests;
+namespace Bambamboole\LaravelCms\Backend\Http\Requests;
 
-use Bambamboole\LaravelCms\Backend\Contracts\DisplayableModel;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -46,7 +46,7 @@ class ResourceRequest extends FormRequest
     /**
      * Creates a new instance of the underlying model.
      */
-    public function newResourceModel(): DisplayableModel
+    public function newResourceModel(): Model
     {
         $model = $this->getResourceModel();
 

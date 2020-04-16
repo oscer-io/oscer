@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Backend\Resources\Fields;
 
-use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class OptionField
@@ -12,11 +12,11 @@ class OptionField
         [$tab, $label] = explode('.', $key);
 
         $resolveValueCallback = function (Field $field) {
-            dump($field->resource);
-            return $field->resource->value;
+            dump($field->model);
+            return $field->model->value;
         };
 
-        $fillResourceCallback = function (SavableModel $model, Request $request) {
+        $fillResourceCallback = function (Model $model, Request $request) {
             $value = $request->input($model->key);
             $model->value = $value;
         };

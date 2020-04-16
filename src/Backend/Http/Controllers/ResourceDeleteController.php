@@ -2,7 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Backend\Http\Controllers;
 
-use Bambamboole\LaravelCms\Core\Http\Requests\ResourceRequest;
+use Bambamboole\LaravelCms\Backend\Http\Requests\ResourceRequest;
 
 class ResourceDeleteController
 {
@@ -10,7 +10,8 @@ class ResourceDeleteController
     {
         $resourceModel = $request
             ->newResourceModel()
-            ->show($request->identifier());
+            ->newQuery()
+            ->findOrFail($request->identifier());
 
         $resourceModel->delete();
 

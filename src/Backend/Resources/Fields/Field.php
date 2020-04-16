@@ -2,9 +2,8 @@
 
 namespace Bambamboole\LaravelCms\Backend\Resources\Fields;
 
-use Bambamboole\LaravelCms\Backend\Contracts\DisplayableModel;
-use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
 use Closure;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use JsonSerializable;
 
@@ -28,7 +27,7 @@ abstract class Field implements JsonSerializable
 
     protected array $rulesForUpdate = [];
 
-    public DisplayableModel $resource;
+    public Model $model;
 
     protected array $with = [];
 
@@ -49,10 +48,10 @@ abstract class Field implements JsonSerializable
         $this->resolveValueCallback = $resolveValueCallback ?: function (self $field) {
             $property = $this->name;
 
-            return $field->resource->$property;
+            return $field->model->$property;
         };
 
-        $this->fillResourceCallback = $fillResourceCallback ?: function (SavableModel $model, Request $request) {
+        $this->fillResourceCallback = $fillResourceCallback ?: function (Model $model, Request $request) {
             $property = $this->name;
             $value = $request->input($property);
             $model->$property = $value;
@@ -72,9 +71,9 @@ abstract class Field implements JsonSerializable
      * the resource on the field as well as the info if it is a
      * create or update form.
      */
-    public function resolve(DisplayableModel $resource)
+    public function resolve(Model $model)
     {
-        $this->resource = $resource;
+        $this->model = $model;
 
         $this->value = $this->resolveValue();
 
@@ -92,7 +91,7 @@ abstract class Field implements JsonSerializable
     /**
      * This method fills the resource with the updated value from the Form.
      */
-    public function fill(SavableModel $model, Request $request)
+    public function fill(Model $model, Request $request)
     {
         call_user_func($this->fillResourceCallback, $model, $request);
     }
@@ -181,25 +180,6 @@ abstract class Field implements JsonSerializable
         return $value === $dependency;
     }
 
-    public function jsonSerialize()
-    {
-        $data = [
-            'component' => $this->component,
-            'name' => $this->name,
-            'label' => $this->label,
-            'value' => $this->resolveValue(),
-            'showOnIndex' => $this->showOnIndex,
-            'active' => $this->active,
-            'dependency' => $this->dependency,
-        ];
-
-        collect($this->with)->each(function (string $property) use (&$data) {
-            $data[$property] = $this->$property;
-        });
-
-        return $data;
-    }
-
     /**
      * Set the fields initial active state to false. This is useful when using field dependencies.
      */
@@ -224,5 +204,24 @@ abstract class Field implements JsonSerializable
         ];
 
         return $this;
+    }
+
+    public function jsonSerialize()
+    {
+        $data = [
+            'component' => $this->component,
+            'name' => $this->name,
+            'label' => $this->label,
+            'value' => $this->resolveValue(),
+            'showOnIndex' => $this->showOnIndex,
+            'active' => $this->active,
+            'dependency' => $this->dependency,
+        ];
+
+        collect($this->with)->each(function (string $property) use (&$data) {
+            $data[$property] = $this->$property;
+        });
+
+        return $data;
     }
 }

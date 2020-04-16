@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCmsMenuItemsTable extends Migration
+class CreateCmsMenusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,11 @@ class CreateCmsMenuItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cms_menu_items', function (Blueprint $table) {
+        Schema::create('cms_menus', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->foreignId('menu_id');
-            $table->string('url');
-            $table->integer('order');
+            $table->string('location')->nullable();
             $table->timestamps();
-
-            $table->foreign('menu_id')
-                ->references('id')
-                ->on('cms_menus');
         });
     }
 

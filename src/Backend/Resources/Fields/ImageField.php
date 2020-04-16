@@ -2,8 +2,8 @@
 
 namespace Bambamboole\LaravelCms\Backend\Resources\Fields;
 
-use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
 use Closure;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -26,7 +26,7 @@ class ImageField extends Field
         ?Closure $fillResourceCallback = null
     ) {
         if ($fillResourceCallback === null) {
-            $fillResourceCallback = function (SavableModel $model, Request $request) {
+            $fillResourceCallback = function (Model $model, Request $request) {
                 $property = $this->name;
                 $path = Storage::disk($this->disk)->put($this->folder, $request->file($property));
                 $model->$property = $path;

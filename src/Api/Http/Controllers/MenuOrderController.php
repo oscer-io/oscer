@@ -8,16 +8,16 @@ use Bambamboole\LaravelCms\Core\Menus\Models\MenuItem;
 
 class MenuOrderController
 {
-    public function update(SaveMenuOrderRequest $request, string $name)
+    public function update(SaveMenuOrderRequest $request, int $id)
     {
         // this is n+1 query and should be refactored
         foreach ($request->validated()['order'] as $item) {
             MenuItem::query()
-                ->where('menu', $name)
+                ->where('menu_id', $id)
                 ->where('id', $item['id'])
                 ->update(['order' => $item['order']]);
         }
 
-        return ['data' => Menu::resolve($name)];
+        return ['data' => Menu::query()->findOrFail($id)];
     }
 }

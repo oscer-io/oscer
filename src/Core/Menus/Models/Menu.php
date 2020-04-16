@@ -2,66 +2,15 @@
 
 namespace Bambamboole\LaravelCms\Core\Menus\Models;
 
-use Bambamboole\LaravelCms\Backend\Contracts\DisplayableModel;
-use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
+use Bambamboole\LaravelCms\Core\Models\BaseModel;
 
-class Menu implements DisplayableModel
+class Menu extends BaseModel
 {
-    public string $name;
+    protected $with = ['items'];
 
-    public array $items;
-
-    public function setName(string $name): self
+    public function items()
     {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function setItems(array $items): self
-    {
-        $this->items = $items;
-
-        return $this;
-    }
-
-    public static function all()
-    {
-        return collect(app(Theme::class)->getMenus())
-            ->keys()
-            ->map(function (string $name) {
-                return self::resolve($name);
-            });
-    }
-
-    public static function resolve(string $name)
-    {
-        $items = MenuItem::query()
-            ->where('menu', $name)
-            ->orderBy('order')
-            ->get()
-            ->toArray();
-
-        $menu = new self();
-
-        return $menu
-            ->setName($name)
-            ->setItems($items);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function index()
-    {
-        return self::all();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function show(string $identifier)
-    {
-        return self::resolve($identifier);
+        return $this->hasMany(MenuItem::class)
+            ->orderBy('order');
     }
 }

@@ -2,8 +2,6 @@
 
 namespace Bambamboole\LaravelCms\Core\Users\Models;
 
-use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
-use Bambamboole\LaravelCms\Backend\Resources\IsSavableEloquentModel;
 use Bambamboole\LaravelCms\Core\Mails\NewUserCreatedMail;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Illuminate\Contracts\Auth\Access\Authorizable;
@@ -25,12 +23,11 @@ use Spatie\Permission\Traits\HasRoles;
  * @property Carbon updated_at
  * @property Carbon created_at
  */
-class User extends BaseModel implements Authenticatable, Authorizable, SavableModel
+class User extends BaseModel implements Authenticatable, Authorizable
 {
     use HasApiTokens;
     use HasRoles;
     use AuthorizableTrait;
-    use IsSavableEloquentModel;
 
     /**
      * The attributes excluded from the model's JSON form.

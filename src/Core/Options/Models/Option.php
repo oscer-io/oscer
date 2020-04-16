@@ -2,7 +2,6 @@
 
 namespace Bambamboole\LaravelCms\Core\Options\Models;
 
-use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
 use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
 use Illuminate\Support\Carbon;
@@ -14,7 +13,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon created_at
  * @property Carbon updated_at
  */
-class Option extends BaseModel implements SavableModel
+class Option extends BaseModel
 {
     public static function getValueByKey(string $key, $default = null): ?string
     {
@@ -56,15 +55,5 @@ class Option extends BaseModel implements SavableModel
         } else {
             return $this->newQuery()->get();
         }
-    }
-
-    public function show(string $identifier)
-    {
-        return $this->newQuery()->where('path', $identifier)->firstOrFail();
-    }
-
-    public function isNew(): bool
-    {
-        return $this->id === null;
     }
 }

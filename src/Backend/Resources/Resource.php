@@ -2,12 +2,10 @@
 
 namespace Bambamboole\LaravelCms\Backend\Resources;
 
-use Bambamboole\LaravelCms\Backend\Contracts\DisplayableModel;
-use Bambamboole\LaravelCms\Backend\Contracts\SavableModel;
 use Bambamboole\LaravelCms\Backend\Resources\Fields\Field;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\ConditionallyLoadsAttributes;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator as ValidatorFactory;
 use Illuminate\Validation\ValidationException;
@@ -19,7 +17,7 @@ abstract class Resource implements \JsonSerializable
 
     public static string $model;
 
-    protected DisplayableModel $resourceModel;
+    protected Model $resourceModel;
 
     protected Collection $fields;
 
@@ -29,7 +27,7 @@ abstract class Resource implements \JsonSerializable
 
     protected bool $displayEditButtonOnIndex = true;
 
-    public function __construct(DisplayableModel $resourceModel)
+    public function __construct(Model $resourceModel)
     {
         $this->resourceModel = $resourceModel;
         $this->fields = $this->resolveFields();
@@ -70,7 +68,7 @@ abstract class Resource implements \JsonSerializable
         return array_merge(
             $this->filteredFields($request)
                 ->reduce(function ($rules, Field $field) use ($request) {
-                    $rules[$field->name] = $this->resourceModel->isNew()
+                    $rules[$field->name] = $this->resourceModel->id === null
                         ? $field->getCreationRules()
                         : $field->getUpdateRules();
 
@@ -95,7 +93,7 @@ abstract class Resource implements \JsonSerializable
      * It executes the validator and fills the resource with
      * the updated values from the request.
      */
-    public function save(Request $request): SavableModel
+    public function save(Request $request): Model
     {
         $validator = $this->createValidator($request);
 
@@ -138,22 +136,6 @@ abstract class Resource implements \JsonSerializable
         }, []);
 
         return in_array('filled', $rules);
-    }
-
-    public static function asApiResource(DisplayableModel $model)
-    {
-        $resource = new static($model);
-
-        return $resource->fields->reduce(function (array $result, Field $field) {
-            $result[$field->name] = $field->value;
-
-            return $result;
-        }, []);
-    }
-
-    public static function asApiResourceCollection($models)
-    {
-        return new AnonymousResourceCollection($models, static::class);
     }
 
     public function toArray()

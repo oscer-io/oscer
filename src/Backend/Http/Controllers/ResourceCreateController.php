@@ -2,15 +2,15 @@
 
 namespace Bambamboole\LaravelCms\Backend\Http\Controllers;
 
-use Bambamboole\LaravelCms\Core\Http\Requests\ResourceRequest;
+use Bambamboole\LaravelCms\Backend\Http\Requests\ResourceRequest;
 
 class ResourceCreateController
 {
     public function handle(ResourceRequest $request)
     {
-        $model = $request->newResourceModel();
+        $resourceModel = $request->newResourceModel();
         $resourceClass = $request->getResource();
 
-        return response()->json(['data' => new $resourceClass($model)]);
+        return response()->json(['data' => new $resourceClass($resourceModel)]);
     }
 }
