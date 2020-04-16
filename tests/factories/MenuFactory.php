@@ -20,6 +20,6 @@ use Illuminate\Database\Eloquent\Factory;
 $factory->define(Menu::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'location' => null
+        'location' => null,
     ];
 });

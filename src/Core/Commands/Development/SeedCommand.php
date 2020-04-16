@@ -3,7 +3,6 @@
 namespace Bambamboole\LaravelCms\Core\Commands\Development;
 
 use Bambamboole\LaravelCms\Core\Menus\Models\Menu;
-use Bambamboole\LaravelCms\Core\Menus\Models\MenuItem;
 use Bambamboole\LaravelCms\Core\Options\Models\Option;
 use Bambamboole\LaravelCms\Core\Pages\Models\Page;
 use Bambamboole\LaravelCms\Core\Posts\Models\Post;
