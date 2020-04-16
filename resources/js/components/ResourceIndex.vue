@@ -25,15 +25,20 @@
                     />
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                    <router-link v-if="item.displayShowButtonOnIndex"
-                                 :to="{name:`${resource}s.show`, params: {id: item.resourceId}}" class="btn">
+                    <RouterLink 
+                        v-if="item.displayShowButtonOnIndex"
+                        :to="{name:`${resource}s.show`, params: {id: item.resourceId}}" 
+                        class="btn"
+                     >
                         show
-                    </router-link>
-                    <router-link v-if="item.displayEditButtonOnIndex && meta.is_editable"
-                                 :to="{name:`${resource}s.edit`, params: {id: item.resourceId}}"
-                                 class="btn">
+                    </RouterLink>
+                    <RouterLink 
+                        v-if="item.displayEditButtonOnIndex && meta.is_editable"
+                       :to="{name:`${resource}s.edit`, params: {id: item.resourceId}}"
+                       class="btn"
+                    >
                         edit
-                    </router-link>
+                    </RouterLink>
                 </td>
             </tr>
             </tbody>
