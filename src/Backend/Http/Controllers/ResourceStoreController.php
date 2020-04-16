@@ -2,8 +2,8 @@
 
 namespace Bambamboole\LaravelCms\Backend\Http\Controllers;
 
-use Bambamboole\LaravelCms\Backend\Resources\Resource;
 use Bambamboole\LaravelCms\Backend\Http\Requests\ResourceRequest;
+use Bambamboole\LaravelCms\Backend\Resources\Resource;
 use Illuminate\Validation\ValidationException;
 
 class ResourceStoreController
@@ -17,7 +17,7 @@ class ResourceStoreController
             $resourceModel = $resourceModel->newQuery()->findOrFail($request->identifier());
         }
 
-        /** @var Resource $resource */
+        /** @var resource $resource */
         $resource = new $resourceClass($resourceModel);
 
         try {

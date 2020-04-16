@@ -19,7 +19,7 @@ class MenuResource extends Resource
             TextField::make('name'),
             // @TODO Only show not used locations and add some help text
             SelectField::make('location')
-                ->options(collect(array_keys(app(Theme::class)->getMenus()))->map(function ($name){
+                ->options(collect(array_keys(app(Theme::class)->getMenus()))->map(function ($name) {
                     return [
                         'name' => $name,
                         'label' => $name,
