@@ -4,7 +4,6 @@ namespace Bambamboole\LaravelCms\Backend\Resources\Fields;
 
 use Bambamboole\LaravelCms\Core\Menus\Models\Menu;
 use Closure;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class MenuItemsField extends Field
@@ -16,8 +15,7 @@ class MenuItemsField extends Field
         ?string $label = null,
         ?Closure $resolveValueCallback = null,
         ?Closure $fillResourceCallback = null
-    )
-    {
+    ) {
         $fillResourceCallback = $fillResourceCallback ?: function (Menu $model, Request $request) {
             $updatedItems = json_decode($request->input($this->name), true);
             foreach ($updatedItems as $updatedItem) {
