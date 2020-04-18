@@ -27,7 +27,7 @@ class MenuResource extends Resource
                         'value' => $name,
                     ];
                 })->toArray()),
-            MenuItemsField::make('items','Menu items')->hideOnIndex(),
+            MenuItemsField::make('items', 'Menu items')->hideOnIndex(),
         ]);
     }
 }
