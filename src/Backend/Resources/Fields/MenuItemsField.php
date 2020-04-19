@@ -17,13 +17,14 @@ class MenuItemsField extends Field
         ?string $label = null,
         ?Closure $resolveValueCallback = null,
         ?Closure $fillResourceCallback = null
-    ) {
+    )
+    {
         $fillResourceCallback = $fillResourceCallback ?: function (Menu $model, Request $request) {
             $updatedItems = json_decode($request->input($this->name), true);
             foreach ($updatedItems as $updatedItem) {
-                $model->items()
-                    ->firstWhere('id', $updatedItem['id'])
-                    ->update(['order' => $updatedItem['order']]);
+                if ($item = $model->items()->firstWhere('id', $updatedItem['id'])) {
+                    $item->update(['order' => $updatedItem['order']]);
+                }
             }
         };
         parent::__construct($name, $label, $resolveValueCallback, $fillResourceCallback);

@@ -19,7 +19,8 @@
                     >
                         <div class="flex">
                             <svg
-                                fill="none" viewBox="0 0 24 24"
+                                fill="none"
+                                viewBox="0 0 24 24"
                                 stroke="currentColor"
                                 class="text-gray-600 mt-1 w-4 h-4 mr-2"
                             >
@@ -37,10 +38,12 @@
                         <div>
                             <button
                                 class="mr-4"
+                                type="button"
                                 @click="deleteItem(item)"
                             >
                                 <svg
-                                    fill="none" viewBox="0 0 24 24"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
                                     stroke="currentColor"
                                     class="text-gray-600 mt-1 w-4 h-4"
                                 >
@@ -52,13 +55,23 @@
                                     />
                                 </svg>
                             </button>
-                            <button @click="updateItem(item)">
-                                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                     class="text-gray-600 mt-1 w-4 h-4">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <button @click="updateItem(item)" type="button">
+                                <svg
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    class="text-gray-600 mt-1 w-4 h-4">
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+                                    </path>
                                 </svg>
                             </button>
                         </div>
@@ -68,7 +81,6 @@
             <button class="btn" type="button" @click="$modal.show('new-menu-item')">new</button>
 
             <modal name="new-menu-item" height="auto" >
-
                 <ResourceForm
                     class="p-4"
                     resource="menu-item"
@@ -78,14 +90,18 @@
                     @success="handleNewItemSuccess"
                 />
             </modal>
-            <!--            <p>update</p>-->
-            <!--            <ResourceForm-->
-            <!--                resource="menu-item"-->
-            <!--                :resource-id="selectedItem.id"-->
-            <!--                :append="{menu: id}"-->
-            <!--                @cancel="mode = 'new'"-->
-            <!--                @success="handleUpdateItemSuccess"-->
-            <!--            />-->
+
+            <modal name="update-menu-item" height="auto" >
+                <ResourceForm
+                    v-if="selectedItem"
+                    class="p-4"
+                    resource="menu-item"
+                    :resource-id="selectedItem.id"
+                    :append="{menu: field.model.id}"
+                    @cancel="handleCancelUpdateItem"
+                    @success="handleUpdateItemSuccess"
+                />
+            </modal>
         </div>
     </FieldWrapper>
 </template>
@@ -93,6 +109,7 @@
     import Draggable from 'vuedraggable';
     import FormField from "../../lib/mixins/FormField";
     import ResourceForm from "../ResourceForm";
+    import api from "../../lib/api";
 
     export default {
         mixins: [FormField],
@@ -100,21 +117,34 @@
         data() {
             return {
                 value: [],
-                drag: false
+                drag: false,
+                selectedItem: false,
             }
         },
 
         methods: {
-            updateItem() {
-                console.log('update')
+            updateItem(item) {
+                this.selectedItem = item;
+                this.$modal.show('update-menu-item');
             },
-            deleteItem() {
-                console.log('delete')
+            async deleteItem(item) {
+                // delete item
+                await api(Cms.route('cms.backend.resources.delete', ['menu-item', item.id]));
+                Cms.flash('success', 'Item deleted');
+                Cms.$emit('reset-form-menu');
+            },
+            handleCancelUpdateItem(){
+                this.$modal.hide('update-menu-item');
+                this.selectedItem = false;
+            },
+            handleUpdateItemSuccess(payload) {
+                this.$modal.hide('update-menu-item');
+                Cms.flash('success', 'Item updated');
+                Cms.$emit('reset-form-menu');
             },
             handleNewItemSuccess(payload) {
-                console.log('success', payload);
                 this.$modal.hide('new-menu-item');
-                Cms.flash('success', 'Item updated');
+                Cms.flash('success', 'new Item created');
                 Cms.$emit('reset-form-menu');
             },
             fill(data) {
