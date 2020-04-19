@@ -74,6 +74,13 @@ export default class Cms {
     }
 
     /**
+     * Emit an event via the event bus
+     */
+    $emit(...args) {
+        this.bus.$emit(...args)
+    }
+
+    /**
      * flash a message via the event bus
      */
     flash(type, text) {

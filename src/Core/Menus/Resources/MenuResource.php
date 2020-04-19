@@ -30,4 +30,9 @@ class MenuResource extends Resource
             MenuItemsField::make('items', 'Menu items')->hideOnIndex(),
         ]);
     }
+
+    public function labels()
+    {
+
+    }
 }

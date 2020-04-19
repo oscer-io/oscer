@@ -65,32 +65,61 @@
                     </div>
                 </transition-group>
             </Draggable>
+            <button class="btn" type="button" @click="$modal.show('new-menu-item')">new</button>
+
+            <modal name="new-menu-item" height="auto" >
+
+                <ResourceForm
+                    class="p-4"
+                    resource="menu-item"
+                    :append="{menu: field.model.id, order: field.model.items.length + 1}"
+                    :clear-on-success="true"
+                    @cancel="$modal.hide('new-menu-item')"
+                    @success="handleNewItemSuccess"
+                />
+            </modal>
+            <!--            <p>update</p>-->
+            <!--            <ResourceForm-->
+            <!--                resource="menu-item"-->
+            <!--                :resource-id="selectedItem.id"-->
+            <!--                :append="{menu: id}"-->
+            <!--                @cancel="mode = 'new'"-->
+            <!--                @success="handleUpdateItemSuccess"-->
+            <!--            />-->
         </div>
     </FieldWrapper>
 </template>
 <script>
     import Draggable from 'vuedraggable';
     import FormField from "../../lib/mixins/FormField";
+    import ResourceForm from "../ResourceForm";
 
     export default {
         mixins: [FormField],
-        components:{Draggable},
-        data(){
+        components: {Draggable, ResourceForm},
+        data() {
             return {
-                drag:false
+                value: [],
+                drag: false
             }
         },
 
-        methods:{
-            updateItem(){
-              console.log('update')
+        methods: {
+            updateItem() {
+                console.log('update')
             },
-            deleteItem(){
+            deleteItem() {
                 console.log('delete')
             },
-            fill(data){
+            handleNewItemSuccess(payload) {
+                console.log('success', payload);
+                this.$modal.hide('new-menu-item');
+                Cms.flash('success', 'Item updated');
+                Cms.$emit('reset-form-menu');
+            },
+            fill(data) {
                 data[this.field.name] = JSON.stringify(this.value.map((item, index) => {
-                    item.order = index +1;
+                    item.order = index + 1;
                     return item;
                 }));
 

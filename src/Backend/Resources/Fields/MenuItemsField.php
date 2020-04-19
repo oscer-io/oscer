@@ -10,6 +10,8 @@ class MenuItemsField extends Field
 {
     public string $component = 'MenuItemsField';
 
+    protected array $with = ['model'];
+
     public function __construct(
         string $name,
         ?string $label = null,
