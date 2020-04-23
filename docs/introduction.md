@@ -54,6 +54,7 @@ We have put together a roadmap. It is divided in a few milestones which are more
 * Set up docs :heavy_check_mark:
 
 ### Third milestone: Now I am also beautiful (0.3)
+* Introduce a simple search
 * Iterate over the design
    * backend
    * DefaultTheme
@@ -64,6 +65,7 @@ We have put together a roadmap. It is divided in a few milestones which are more
    * maybe with [Yoast SEO](https://github.com/Yoast/javascript)
 * Think about revisions
 * Hardening the code with more tests
+* Introduce Vue and Dusk tests
 * Artisan command which creates a Theme 
 
 ### Fourth milestone: I know what I want (0.4)

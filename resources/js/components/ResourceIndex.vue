@@ -38,13 +38,14 @@
                         class="p-3 whitespace-no-wrap border-b border-gray-200 text-sm"
                     >
                         <component
-                            :is="`Index${field.component}`"
+                            :is="getComponentName(field)"
                             :field="field"
                         />
                     </td>
                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 td-fit">
                         <div class="inline-flex items-center">
-                            <router-link :to="{name:`${resource}s.show`, params: {id: item.resourceId}}" class="inline-flex">
+                            <router-link :to="{name:`${resource}s.show`, params: {id: item.resourceId}}"
+                                         class="inline-flex">
                                 <svg class="w-8 h-8" viewBox="0 0 64 64" stroke="currentColor">
                                     <path fill="none" stroke-miterlimit="10" stroke-width="2"
                                           d="M54.09 32S44.2 45.82 32 45.82 9.91 32 9.91 32 19.8 18.18 32 18.18 54.09 32 54.09 32z"/>
@@ -53,7 +54,8 @@
                                     <circle cx="32" cy="32" r="3.21" fill="#4a4a4a"/>
                                 </svg>
                             </router-link>
-                            <router-link :to="{name:`${resource}s.edit`, params: {id: item.resourceId}}" class="inline-flex">
+                            <router-link :to="{name:`${resource}s.edit`, params: {id: item.resourceId}}"
+                                         class="inline-flex">
                                 <svg class="w-8 h-8" viewBox="0 0 64 64" stroke="currentColor">
                                     <path
                                         fill="none"
@@ -132,6 +134,14 @@
             },
             prevPage() {
                 this.page = Math.max(1, this.page - 1)
+            },
+            getComponentName(field) {
+                let component = field.component;
+                if (component === 'SelectField') {
+                    component = 'TextField';
+                }
+
+                return 'Index' + component;
             }
         }
     }

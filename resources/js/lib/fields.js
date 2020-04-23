@@ -1,5 +1,4 @@
 import Vue from 'vue';
-
 import FieldWrapper from "../components/fields/FieldWrapper";
 import TextField from "../components/fields/TextField";
 import CheckboxField from "../components/fields/CheckboxField";
@@ -10,6 +9,7 @@ import TagsField from "../components/fields/TagsField";
 import MarkdownField from "../components/fields/MarkdownField";
 import ImageField from "../components/fields/ImageField";
 import SelectField from "../components/fields/SelectField";
+import MenuItemsField from "../components/fields/MenuItemsField";
 
 Vue.component('FieldWrapper', FieldWrapper);
 Vue.component('TextField', TextField);
@@ -21,6 +21,7 @@ Vue.component('PasswordField', PasswordField);
 Vue.component('TagsField', TagsField);
 Vue.component('MarkdownField', MarkdownField);
 Vue.component('ImageField', ImageField);
+Vue.component('MenuItemsField', MenuItemsField);
 
 import DetailTextField from '../components/details/TextField';
 import DetailTextareaField from '../components/details/TextareaField';

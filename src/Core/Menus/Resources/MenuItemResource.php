@@ -27,8 +27,6 @@ class MenuItemResource extends Resource
             SelectField::make(
                 'type',
                 'Type',
-                $null,
-                $null
             )
                 ->rules(['required'])
                 ->options( // we pass the names of the fields here

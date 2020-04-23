@@ -7,6 +7,6 @@ Vue.use(VueI18n);
 
 export default new VueI18n({
     // the locale needs to be filled dynamically
-    locale: 'en',
+    locale: window.locale,
     messages: languageBundle,
 });

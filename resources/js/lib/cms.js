@@ -9,6 +9,7 @@ import Layout from '../components/Layout';
 export default class Cms {
 
     constructor(config) {
+        this.bus = new Vue();
         this.bootingCallbacks = [];
         this.config = config;
     }
@@ -65,6 +66,20 @@ export default class Cms {
                 });
             }
         })
+    }
+
+    /**
+     * Register a listener on the event bus
+     */
+    $on(...args) {
+        this.bus.$on(...args)
+    }
+
+    /**
+     * Emit an event via the event bus
+     */
+    $emit(...args) {
+        this.bus.$emit(...args)
     }
 
     /**

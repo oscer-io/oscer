@@ -4,6 +4,7 @@ namespace Bambamboole\LaravelCms\Core\Users\Resources;
 
 use Bambamboole\LaravelCms\Backend\Resources\Fields\ImageField;
 use Bambamboole\LaravelCms\Backend\Resources\Fields\PasswordField;
+use Bambamboole\LaravelCms\Backend\Resources\Fields\SelectField;
 use Bambamboole\LaravelCms\Backend\Resources\Fields\TextareaField;
 use Bambamboole\LaravelCms\Backend\Resources\Fields\TextField;
 use Bambamboole\LaravelCms\Backend\Resources\Resource;
@@ -37,6 +38,7 @@ class UserResource extends Resource
             TextareaField::make('bio', 'Biography'),
             PasswordField::make('password')
                 ->rules(['filled', 'confirmed'])->hideOnIndex(),
+            SelectField::make('language')->options(['en','de'])
         ]);
     }
 }
