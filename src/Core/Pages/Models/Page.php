@@ -1,8 +1,8 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Pages\Models;
+namespace Oscer\Cms\Core\Pages\Models;
 
-use Bambamboole\LaravelCms\Core\Posts\Models\Post;
+use Oscer\Cms\Core\Posts\Models\Post;
 
 class Page extends Post
 {

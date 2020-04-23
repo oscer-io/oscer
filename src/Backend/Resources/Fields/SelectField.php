@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Backend\Resources\Fields;
+namespace Oscer\Cms\Backend\Resources\Fields;
 
 class SelectField extends Field
 {

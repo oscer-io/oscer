@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Mails;
+namespace Oscer\Cms\Core\Mails;
 
 use Illuminate\Mail\Mailable;
 

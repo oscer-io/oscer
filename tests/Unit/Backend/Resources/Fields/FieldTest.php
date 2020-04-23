@@ -1,9 +1,9 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Tests\Unit\Backend\Resources\Fields;
+namespace Oscer\Cms\Tests\Unit\Backend\Resources\Fields;
 
-use Bambamboole\LaravelCms\Tests\Fixtures\TestField;
-use Bambamboole\LaravelCms\Tests\Fixtures\TestModel;
+use Oscer\Cms\Tests\Fixtures\TestField;
+use Oscer\Cms\Tests\Fixtures\TestModel;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\TestCase;
 

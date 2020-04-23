@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Commands;
+namespace Oscer\Cms\Core\Commands;
 
 use Illuminate\Console\Command;
 

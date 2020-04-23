@@ -1,9 +1,9 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Backend\Http\Controllers\Auth;
+namespace Oscer\Cms\Backend\Http\Controllers\Auth;
 
-use Bambamboole\LaravelCms\Backend\Http\Requests\Auth\ResetPasswordRequest;
-use Bambamboole\LaravelCms\Core\Users\Models\User;
+use Oscer\Cms\Backend\Http\Requests\Auth\ResetPasswordRequest;
+use Oscer\Cms\Core\Users\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;

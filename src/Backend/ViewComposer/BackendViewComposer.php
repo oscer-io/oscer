@@ -1,8 +1,8 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Backend\ViewComposer;
+namespace Oscer\Cms\Backend\ViewComposer;
 
-use Bambamboole\LaravelCms\Backend\Routing\RouteGenerator;
+use Oscer\Cms\Backend\Routing\RouteGenerator;
 use Illuminate\Routing\Router;
 use Illuminate\View\View;
 

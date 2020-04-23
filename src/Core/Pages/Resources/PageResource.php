@@ -1,12 +1,12 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Pages\Resources;
+namespace Oscer\Cms\Core\Pages\Resources;
 
-use Bambamboole\LaravelCms\Backend\Resources\Fields\ImageField;
-use Bambamboole\LaravelCms\Backend\Resources\Fields\MarkdownField;
-use Bambamboole\LaravelCms\Backend\Resources\Fields\TextField;
-use Bambamboole\LaravelCms\Backend\Resources\Resource;
-use Bambamboole\LaravelCms\Core\Pages\Models\Page;
+use Oscer\Cms\Backend\Resources\Fields\ImageField;
+use Oscer\Cms\Backend\Resources\Fields\MarkdownField;
+use Oscer\Cms\Backend\Resources\Fields\TextField;
+use Oscer\Cms\Backend\Resources\Resource;
+use Oscer\Cms\Core\Pages\Models\Page;
 use Illuminate\Support\Collection;
 
 class PageResource extends Resource

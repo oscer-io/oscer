@@ -1,9 +1,9 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Commands;
+namespace Oscer\Cms\Core\Commands;
 
-use Bambamboole\LaravelCms\Core\Options\Models\Option;
-use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
+use Oscer\Cms\Core\Options\Models\Option;
+use Oscer\Cms\Frontend\Contracts\Theme;
 use Illuminate\Config\Repository;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;

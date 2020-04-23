@@ -1,10 +1,10 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Frontend\Http\Controllers;
+namespace Oscer\Cms\Frontend\Http\Controllers;
 
-use Bambamboole\LaravelCms\Core\Options\Models\Option;
-use Bambamboole\LaravelCms\Core\Pages\Models\Page;
-use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
+use Oscer\Cms\Core\Options\Models\Option;
+use Oscer\Cms\Core\Pages\Models\Page;
+use Oscer\Cms\Frontend\Contracts\Theme;
 use Illuminate\Http\Request;
 
 class PagesController

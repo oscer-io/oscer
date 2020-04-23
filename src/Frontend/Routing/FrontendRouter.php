@@ -1,12 +1,12 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Frontend\Routing;
+namespace Oscer\Cms\Frontend\Routing;
 
-use Bambamboole\LaravelCms\Core\Http\Middleware\SetLocale;
-use Bambamboole\LaravelCms\Core\Options\Models\Option;
-use Bambamboole\LaravelCms\Core\Pages\Models\Page;
-use Bambamboole\LaravelCms\Frontend\Http\Controllers\PagesController;
-use Bambamboole\LaravelCms\Frontend\Http\Controllers\PostsController;
+use Oscer\Cms\Core\Http\Middleware\SetLocale;
+use Oscer\Cms\Core\Options\Models\Option;
+use Oscer\Cms\Core\Pages\Models\Page;
+use Oscer\Cms\Frontend\Http\Controllers\PagesController;
+use Oscer\Cms\Frontend\Http\Controllers\PostsController;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Schema;
 

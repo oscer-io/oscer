@@ -35,12 +35,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Bambamboole\\LaravelCms\\": "src"
+            "Oscer\\Cms\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Bambamboole\\LaravelCms\\Tests\\": "tests"
+            "Oscer\\Cms\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -54,7 +54,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Bambamboole\\LaravelCms\\LaravelCmsServiceProvider"
+                "Oscer\\Cms\\OscerServiceProvider"
             ]
         }
     }

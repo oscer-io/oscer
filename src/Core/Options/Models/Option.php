@@ -1,8 +1,8 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Options\Models;
+namespace Oscer\Cms\Core\Options\Models;
 
-use Bambamboole\LaravelCms\Core\Models\BaseModel;
+use Oscer\Cms\Core\Models\BaseModel;
 use Illuminate\Support\Carbon;
 
 /**

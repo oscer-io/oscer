@@ -1,6 +1,6 @@
 <?php
 
-use Bambamboole\LaravelCms\Core\Users\Models\Permission;
+use Oscer\Cms\Core\Users\Models\Permission;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateCmsPermissions extends Migration

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Backend\Routing;
+namespace Oscer\Cms\Backend\Routing;
 
 use Tightenco\Ziggy\BladeRouteGenerator;
 

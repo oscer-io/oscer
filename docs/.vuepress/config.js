@@ -6,7 +6,7 @@ module.exports = {
         nav: [
             { text: 'Discord', link: 'https://discord.gg/EwpuT3z', target:'_blank' }
         ],
-        repo: 'bambamboole/laravel-cms',
+        repo: 'oscer-io/oscer',
         editLinks: true,
         docsDir: 'docs',
         displayAllHeaders: true,

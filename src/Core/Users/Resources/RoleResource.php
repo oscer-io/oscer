@@ -1,12 +1,12 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Users\Resources;
+namespace Oscer\Cms\Core\Users\Resources;
 
-use Bambamboole\LaravelCms\Backend\Resources\Fields\CheckboxGroupField;
-use Bambamboole\LaravelCms\Backend\Resources\Fields\TextField;
-use Bambamboole\LaravelCms\Backend\Resources\Resource;
-use Bambamboole\LaravelCms\Core\Users\Models\Permission;
-use Bambamboole\LaravelCms\Core\Users\Models\Role;
+use Oscer\Cms\Backend\Resources\Fields\CheckboxGroupField;
+use Oscer\Cms\Backend\Resources\Fields\TextField;
+use Oscer\Cms\Backend\Resources\Resource;
+use Oscer\Cms\Core\Users\Models\Permission;
+use Oscer\Cms\Core\Users\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 

@@ -1,6 +1,6 @@
 ---
 home: true
-heroText: Laravel CMS
+heroText: Oscer
 tagline: a developer friendly CMS and blogging platform
 actionText: Getting Started →
 actionLink: /getting-started/installation

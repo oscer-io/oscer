@@ -1,8 +1,8 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Backend\Resources;
+namespace Oscer\Cms\Backend\Resources;
 
-use Bambamboole\LaravelCms\Backend\Resources\Fields\Field;
+use Oscer\Cms\Backend\Resources\Fields\Field;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\ConditionallyLoadsAttributes;

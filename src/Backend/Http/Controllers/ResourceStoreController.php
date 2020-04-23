@@ -1,9 +1,9 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Backend\Http\Controllers;
+namespace Oscer\Cms\Backend\Http\Controllers;
 
-use Bambamboole\LaravelCms\Backend\Http\Requests\ResourceRequest;
-use Bambamboole\LaravelCms\Backend\Resources\Resource;
+use Oscer\Cms\Backend\Http\Requests\ResourceRequest;
+use Oscer\Cms\Backend\Resources\Resource;
 use Illuminate\Validation\ValidationException;
 
 class ResourceStoreController

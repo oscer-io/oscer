@@ -1,18 +1,18 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Backend\Routing;
+namespace Oscer\Cms\Backend\Routing;
 
-use Bambamboole\LaravelCms\Backend\Http\Controllers\Auth\ForgotPasswordController;
-use Bambamboole\LaravelCms\Backend\Http\Controllers\Auth\LoginController;
-use Bambamboole\LaravelCms\Backend\Http\Controllers\Auth\ResetPasswordController;
-use Bambamboole\LaravelCms\Backend\Http\Controllers\BackendController;
-use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceCreateController;
-use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceDeleteController;
-use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceIndexController;
-use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceShowController;
-use Bambamboole\LaravelCms\Backend\Http\Controllers\ResourceStoreController;
-use Bambamboole\LaravelCms\Core\Http\Middleware\Authenticate;
-use Bambamboole\LaravelCms\Core\Http\Middleware\SetLocale;
+use Oscer\Cms\Backend\Http\Controllers\Auth\ForgotPasswordController;
+use Oscer\Cms\Backend\Http\Controllers\Auth\LoginController;
+use Oscer\Cms\Backend\Http\Controllers\Auth\ResetPasswordController;
+use Oscer\Cms\Backend\Http\Controllers\BackendController;
+use Oscer\Cms\Backend\Http\Controllers\ResourceCreateController;
+use Oscer\Cms\Backend\Http\Controllers\ResourceDeleteController;
+use Oscer\Cms\Backend\Http\Controllers\ResourceIndexController;
+use Oscer\Cms\Backend\Http\Controllers\ResourceShowController;
+use Oscer\Cms\Backend\Http\Controllers\ResourceStoreController;
+use Oscer\Cms\Core\Http\Middleware\Authenticate;
+use Oscer\Cms\Core\Http\Middleware\SetLocale;
 use Illuminate\Config\Repository;
 use Illuminate\Routing\Router;
 use Spatie\Permission\Middlewares\PermissionMiddleware;

@@ -2,7 +2,7 @@
 
 /** @var Factory $factory */
 
-use Bambamboole\LaravelCms\Core\Options\Models\Option;
+use Oscer\Cms\Core\Options\Models\Option;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
 

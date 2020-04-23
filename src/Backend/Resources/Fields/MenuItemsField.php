@@ -1,8 +1,8 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Backend\Resources\Fields;
+namespace Oscer\Cms\Backend\Resources\Fields;
 
-use Bambamboole\LaravelCms\Core\Menus\Models\Menu;
+use Oscer\Cms\Core\Menus\Models\Menu;
 use Closure;
 use Illuminate\Http\Request;
 
