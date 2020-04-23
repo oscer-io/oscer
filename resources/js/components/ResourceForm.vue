@@ -120,21 +120,33 @@
         },
         mounted() {
             if (this.preloadedResource !== false) {
-                console.log('foo');
-                console.log(this.preloadedResource);
-                this.fields = this.preloadedResource.fields;
-                this.removeNullValues = this.preloadedResource.removeNullValues;
+                this.initializeForm(this.preloadedResource);
                 this.isLoading = false;
             } else {
                 this.fetchResourceForm();
             }
+
+            Cms.$on('reset-form-' + this.resource, payload => {
+                console.log('reset', payload);
+                if (typeof payload !== 'undefined') {
+                    this.initializeForm(payload);
+                } else {
+                    this.fetchResourceForm();
+                }
+            });
         },
         methods: {
             inSubmitPositions(positions) {
                 if (!Array.isArray(positions)) {
+
                     positions = [positions];
                 }
                 return _.difference(positions, this.submitPositions).length === 0;
+            },
+
+            initializeForm(resource) {
+                this.fields = resource.fields;
+                this.removeNullValues = resource.removeNullValues;
             },
 
             async fetchResourceForm() {
@@ -145,8 +157,7 @@
                     : Cms.route('cms.backend.resources.show', [this.resource, this.resourceId]);
                 const response = await api(route);
 
-                this.fields = response.data.data.fields;
-                this.removeNullValues = response.data.data.removeNullValues;
+                this.initializeForm(response.data.data);
                 this.isLoading = false;
             },
 
@@ -163,7 +174,7 @@
                     });
 
                     // Emit success event with the data from the successful response
-                    this.$emit('success', response.data.data.model);
+                    this.$emit('success', response.data.data);
                     // Reset form by fetching the fields again. Only if resetOnSuccess prop is true
                     this.resetOnSuccess && this.fetchResourceForm();
                 } catch (error) {

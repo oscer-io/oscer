@@ -43,7 +43,7 @@ class SelectField extends Field
     {
         $data = [];
         foreach ($options as $option) {
-            if ($name = $option['name'] ?? '') {
+            if ($name = is_string($option) ? $option : $option['name']) {
                 $data[] = [
                     'name' => $name,
                     'label' => $option['label'] ?? $name,

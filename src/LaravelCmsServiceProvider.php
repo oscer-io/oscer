@@ -137,9 +137,6 @@ class LaravelCmsServiceProvider extends ServiceProvider
             ResolveOptionsCommand::class,
         ]);
 
-        $this->app->singleton('commonmark', function () {
-        });
-
         $this->app->singleton(Theme::class, function () {
             return new DefaultTheme();
         });

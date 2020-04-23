@@ -2,6 +2,7 @@
 
 namespace Bambamboole\LaravelCms\Core\Menus\Resources;
 
+use Bambamboole\LaravelCms\Backend\Resources\Fields\MenuItemsField;
 use Bambamboole\LaravelCms\Backend\Resources\Fields\SelectField;
 use Bambamboole\LaravelCms\Backend\Resources\Fields\TextField;
 use Bambamboole\LaravelCms\Backend\Resources\Resource;
@@ -26,15 +27,12 @@ class MenuResource extends Resource
                         'value' => $name,
                     ];
                 })->toArray()),
+            MenuItemsField::make('items', 'Menu items')->hideOnIndex(),
         ]);
     }
 
-    public function toArray()
+    public function labels()
     {
-        return [
-            'fields' => $this->fields,
-            'model' => $this->resourceModel,
-            'resourceId' => $this->resourceModel->name,
-        ];
+
     }
 }
