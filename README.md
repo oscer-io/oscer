@@ -7,10 +7,10 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/bambamboole/laravel-cms.svg?style=flat-square)](https://packagist.org/packages/bambamboole/laravel-cms)
 
 A developer friendly CMS and blogging system. 
-If you want to view the current state you should pick the master branch instead of a realse tag.
+If you want to view the current state you should pick the master branch instead of a release tag.
 
 ## Documentation
-See the [docs](https://laravel-cms.io) for detailed installation and usage instructions.
+See the [docs](https://oscer.io) for detailed installation and usage instructions.
 
 ### Testing
 

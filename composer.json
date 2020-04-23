@@ -1,11 +1,13 @@
 {
-    "name": "bambamboole/laravel-cms",
+    "name": "oscer-io/oscer",
     "description": "",
     "keywords": [
-        "bambamboole",
-        "laravel-cms"
+        "laravel",
+        "cms",
+        "blog",
+        "bambamboole"
     ],
-    "homepage": "https://github.com/bambamboole/laravel-cms",
+    "homepage": "https://oscer.io",
     "license": "MIT",
     "type": "library",
     "authors": [
