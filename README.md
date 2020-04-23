@@ -1,10 +1,9 @@
 # A small CMS/Blog as a Laravel package
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/bambamboole/laravel-cms.svg?style=flat-square)](https://packagist.org/packages/bambamboole/laravel-cms)
-[![StyleCI](https://github.styleci.io/repos/244145339/shield?branch=master)](https://github.styleci.io/repos/244145339)
-[![Build Status](https://img.shields.io/travis/bambamboole/laravel-cms/master.svg?style=flat-square)](https://travis-ci.org/bambamboole/laravel-cms)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bambamboole/laravel-cms/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/bambamboole/laravel-cms/?branch=master)
-[![Total Downloads](https://img.shields.io/packagist/dt/bambamboole/laravel-cms.svg?style=flat-square)](https://packagist.org/packages/bambamboole/laravel-cms)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/oscer-io/oscer.svg?style=flat-square)](https://packagist.org/packages/oscer-io/oscer)
+[![StyleCI](https://github.styleci.io/repos/244145339/shield?branch=master)](https://github.styleci.io/repos/244145339)[![Build Status](https://img.shields.io/travis/bambamboole/laravel-cms/master.svg?style=flat-square)](https://travis-ci.org/bambamboole/laravel-cms)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/oscer-io/oscer/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/oscer-io/oscer/?branch=master)
+[![Total Downloads](https://img.shields.io/packagist/dt/oscer-io/oscer.svg?style=flat-square)](https://packagist.org/packages/bambamboole/laravel-cms)
 
 A developer friendly CMS and blogging system. 
 If you want to view the current state you should pick the master branch instead of a release tag.
