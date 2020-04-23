@@ -38,7 +38,7 @@ class UserResource extends Resource
             TextareaField::make('bio', 'Biography'),
             PasswordField::make('password')
                 ->rules(['filled', 'confirmed'])->hideOnIndex(),
-            SelectField::make('language')->options(['en','de'])
+            SelectField::make('language')->options(['en', 'de']),
         ]);
     }
 }

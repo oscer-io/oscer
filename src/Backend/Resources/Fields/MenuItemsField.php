@@ -17,8 +17,7 @@ class MenuItemsField extends Field
         ?string $label = null,
         ?Closure $resolveValueCallback = null,
         ?Closure $fillResourceCallback = null
-    )
-    {
+    ) {
         $fillResourceCallback = $fillResourceCallback ?: function (Menu $model, Request $request) {
             $updatedItems = json_decode($request->input($this->name), true);
             foreach ($updatedItems as $updatedItem) {

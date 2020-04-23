@@ -33,6 +33,5 @@ class MenuResource extends Resource
 
     public function labels()
     {
-
     }
 }
