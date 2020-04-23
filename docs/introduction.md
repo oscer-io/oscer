@@ -7,7 +7,7 @@ I am a software developer based in Augsburg/Germany.
 
 ## History
 
-I started to build Laravel CMS for my own needs on the first March 2020. I wanted a simple platform to write my blog posts and a few pages. Maybe also with dynamic menus. 
+I started to build Oscer for my own needs on the first March 2020. I wanted a simple platform to write my blog posts and a few pages. Maybe also with dynamic menus. 
 In this situation almost everybody reach out to [Wordpress](https://wordpress.org/). It has a very good time to market and there is a plugin for (almost) everything. But it also has down sides. It lacks in developer friendliness and has no modern dependency management. It is made for the editor and enables him to do everything. And I don’t like it.  
 A solution like [TYPO3](https://typo3.org/) felt like overkill...   
   

@@ -1,5 +1,5 @@
 module.exports = {
-    title: 'Laravel CMS',
+    title: 'Oscer',
     description: 'A simple CMS and blogging platform made for developers.',
 
     themeConfig: {
