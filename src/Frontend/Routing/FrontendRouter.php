@@ -2,13 +2,13 @@
 
 namespace Oscer\Cms\Frontend\Routing;
 
+use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Schema;
 use Oscer\Cms\Core\Http\Middleware\SetLocale;
 use Oscer\Cms\Core\Options\Models\Option;
 use Oscer\Cms\Core\Pages\Models\Page;
 use Oscer\Cms\Frontend\Http\Controllers\PagesController;
 use Oscer\Cms\Frontend\Http\Controllers\PostsController;
-use Illuminate\Routing\Router;
-use Illuminate\Support\Facades\Schema;
 
 class FrontendRouter
 {

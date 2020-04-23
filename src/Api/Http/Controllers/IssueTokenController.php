@@ -2,11 +2,11 @@
 
 namespace Oscer\Cms\Api\Http\Controllers;
 
-use Oscer\Cms\Api\Http\Requests\IssueTokenRequest;
-use Oscer\Cms\Core\Users\Models\User;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
+use Oscer\Cms\Api\Http\Requests\IssueTokenRequest;
+use Oscer\Cms\Core\Users\Models\User;
 
 class IssueTokenController
 {

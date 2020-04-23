@@ -2,10 +2,10 @@
 
 namespace Oscer\Cms\Core\Options\Resources;
 
+use Illuminate\Support\Collection;
 use Oscer\Cms\Backend\Resources\Fields\OptionField;
 use Oscer\Cms\Backend\Resources\Resource;
 use Oscer\Cms\Core\Options\Models\Option;
-use Illuminate\Support\Collection;
 
 class OptionResource extends Resource
 {

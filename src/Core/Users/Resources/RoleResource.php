@@ -2,13 +2,13 @@
 
 namespace Oscer\Cms\Core\Users\Resources;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Oscer\Cms\Backend\Resources\Fields\CheckboxGroupField;
 use Oscer\Cms\Backend\Resources\Fields\TextField;
 use Oscer\Cms\Backend\Resources\Resource;
 use Oscer\Cms\Core\Users\Models\Permission;
 use Oscer\Cms\Core\Users\Models\Role;
-use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
 class RoleResource extends Resource
 {

@@ -2,7 +2,6 @@
 
 namespace Oscer\Cms\Core\Posts\Models;
 
-use Oscer\Cms\Core\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
@@ -11,6 +10,7 @@ use League\CommonMark\Block\Element\FencedCode;
 use League\CommonMark\Block\Element\IndentedCode;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
+use Oscer\Cms\Core\Models\BaseModel;
 use Spatie\CommonMarkHighlighter\FencedCodeRenderer;
 use Spatie\CommonMarkHighlighter\IndentedCodeRenderer;
 use Spatie\Sluggable\HasSlug;

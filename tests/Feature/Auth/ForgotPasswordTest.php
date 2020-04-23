@@ -2,10 +2,10 @@
 
 namespace Oscer\Cms\Tests\Feature\Auth;
 
+use Illuminate\Support\Facades\Mail;
 use Oscer\Cms\Core\Mails\ResetPasswordMail;
 use Oscer\Cms\Core\Users\Models\User;
 use Oscer\Cms\Tests\TestCase;
-use Illuminate\Support\Facades\Mail;
 
 class ForgotPasswordTest extends TestCase
 {

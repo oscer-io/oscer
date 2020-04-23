@@ -2,14 +2,14 @@
 
 namespace Oscer\Cms\Backend\Http\Controllers\Auth;
 
-use Oscer\Cms\Backend\Http\Requests\Auth\SendPasswordResetLinkRequest;
-use Oscer\Cms\Core\Mails\ResetPasswordMail;
-use Oscer\Cms\Core\Users\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use Oscer\Cms\Backend\Http\Requests\Auth\SendPasswordResetLinkRequest;
+use Oscer\Cms\Core\Mails\ResetPasswordMail;
+use Oscer\Cms\Core\Users\Models\User;
 use Throwable;
 
 class ForgotPasswordController

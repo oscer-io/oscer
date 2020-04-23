@@ -2,10 +2,10 @@
 
 namespace Oscer\Cms\Frontend\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Oscer\Cms\Core\Options\Models\Option;
 use Oscer\Cms\Core\Pages\Models\Page;
 use Oscer\Cms\Frontend\Contracts\Theme;
-use Illuminate\Http\Request;
 
 class PagesController
 {

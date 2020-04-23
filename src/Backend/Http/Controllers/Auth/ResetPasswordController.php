@@ -2,11 +2,11 @@
 
 namespace Oscer\Cms\Backend\Http\Controllers\Auth;
 
-use Oscer\Cms\Backend\Http\Requests\Auth\ResetPasswordRequest;
-use Oscer\Cms\Core\Users\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Oscer\Cms\Backend\Http\Requests\Auth\ResetPasswordRequest;
+use Oscer\Cms\Core\Users\Models\User;
 use Throwable;
 
 class ResetPasswordController

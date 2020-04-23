@@ -2,9 +2,9 @@
 
 namespace Oscer\Cms\Tests\Unit\Backend\Resources\Fields;
 
+use Illuminate\Http\Request;
 use Oscer\Cms\Tests\Fixtures\TestField;
 use Oscer\Cms\Tests\Fixtures\TestModel;
-use Illuminate\Http\Request;
 use PHPUnit\Framework\TestCase;
 
 class FieldTest extends TestCase

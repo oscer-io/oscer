@@ -2,9 +2,9 @@
 
 namespace Oscer\Cms\Backend\ViewComposer;
 
-use Oscer\Cms\Backend\Routing\RouteGenerator;
 use Illuminate\Routing\Router;
 use Illuminate\View\View;
+use Oscer\Cms\Backend\Routing\RouteGenerator;
 
 class BackendViewComposer
 {

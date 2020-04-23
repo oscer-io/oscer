@@ -2,8 +2,8 @@
 
 namespace Oscer\Cms\Core\Options\Models;
 
-use Oscer\Cms\Core\Models\BaseModel;
 use Illuminate\Support\Carbon;
+use Oscer\Cms\Core\Models\BaseModel;
 
 /**
  * @property int id

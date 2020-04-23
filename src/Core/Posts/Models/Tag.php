@@ -2,9 +2,9 @@
 
 namespace Oscer\Cms\Core\Posts\Models;
 
-use Oscer\Cms\Core\Models\BaseModel;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Oscer\Cms\Core\Models\BaseModel;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
