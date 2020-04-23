@@ -1,28 +1,28 @@
 <?php
 
-namespace Bambamboole\LaravelCms;
+namespace Oscer\Cms;
 
-use Bambamboole\LaravelCms\Api\Routing\ApiRouter;
-use Bambamboole\LaravelCms\Backend\Routing\BackendRouter;
-use Bambamboole\LaravelCms\Backend\ViewComposer\BackendViewComposer;
-use Bambamboole\LaravelCms\Core\Commands\Development\SeedCommand;
-use Bambamboole\LaravelCms\Core\Commands\PublishCommand;
-use Bambamboole\LaravelCms\Core\Commands\ResolveOptionsCommand;
-use Bambamboole\LaravelCms\Core\Users\Models\Permission;
-use Bambamboole\LaravelCms\Core\Users\Models\Role;
-use Bambamboole\LaravelCms\Core\Users\Models\User;
-use Bambamboole\LaravelCms\Frontend\BladeComponents\MenuBladeComponent;
-use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
-use Bambamboole\LaravelCms\Frontend\DefaultTheme;
-use Bambamboole\LaravelCms\Frontend\ViewComposers\ThemeViewComposer;
 use Illuminate\Config\Repository;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Factory;
+use Oscer\Cms\Api\Routing\ApiRouter;
+use Oscer\Cms\Backend\Routing\BackendRouter;
+use Oscer\Cms\Backend\ViewComposer\BackendViewComposer;
+use Oscer\Cms\Core\Commands\Development\SeedCommand;
+use Oscer\Cms\Core\Commands\PublishCommand;
+use Oscer\Cms\Core\Commands\ResolveOptionsCommand;
+use Oscer\Cms\Core\Users\Models\Permission;
+use Oscer\Cms\Core\Users\Models\Role;
+use Oscer\Cms\Core\Users\Models\User;
+use Oscer\Cms\Frontend\BladeComponents\MenuBladeComponent;
+use Oscer\Cms\Frontend\Contracts\Theme;
+use Oscer\Cms\Frontend\DefaultTheme;
+use Oscer\Cms\Frontend\ViewComposers\ThemeViewComposer;
 
-class LaravelCmsServiceProvider extends ServiceProvider
+class OscerServiceProvider extends ServiceProvider
 {
     protected ApiRouter $apiRouter;
 

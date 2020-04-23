@@ -1,10 +1,10 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Frontend\BladeComponents;
+namespace Oscer\Cms\Frontend\BladeComponents;
 
-use Bambamboole\LaravelCms\Core\Menus\Models\Menu;
-use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
 use Illuminate\View\Component;
+use Oscer\Cms\Core\Menus\Models\Menu;
+use Oscer\Cms\Frontend\Contracts\Theme;
 
 class MenuBladeComponent extends Component
 {

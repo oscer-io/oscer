@@ -1,11 +1,11 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Options\Resources;
+namespace Oscer\Cms\Core\Options\Resources;
 
-use Bambamboole\LaravelCms\Backend\Resources\Fields\OptionField;
-use Bambamboole\LaravelCms\Backend\Resources\Resource;
-use Bambamboole\LaravelCms\Core\Options\Models\Option;
 use Illuminate\Support\Collection;
+use Oscer\Cms\Backend\Resources\Fields\OptionField;
+use Oscer\Cms\Backend\Resources\Resource;
+use Oscer\Cms\Core\Options\Models\Option;
 
 class OptionResource extends Resource
 {

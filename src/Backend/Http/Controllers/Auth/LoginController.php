@@ -1,13 +1,13 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Backend\Http\Controllers\Auth;
+namespace Oscer\Cms\Backend\Http\Controllers\Auth;
 
-use Bambamboole\LaravelCms\Backend\Http\Requests\Auth\LoginRequest;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Oscer\Cms\Backend\Http\Requests\Auth\LoginRequest;
 
 class LoginController
 {

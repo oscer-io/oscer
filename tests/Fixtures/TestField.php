@@ -1,8 +1,8 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Tests\Fixtures;
+namespace Oscer\Cms\Tests\Fixtures;
 
-use Bambamboole\LaravelCms\Backend\Resources\Fields\Field;
+use Oscer\Cms\Backend\Resources\Fields\Field;
 
 class TestField extends Field
 {

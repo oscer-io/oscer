@@ -2,9 +2,9 @@
 
 /** @var Factory $factory */
 
-use Bambamboole\LaravelCms\Core\Users\Models\User;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
+use Oscer\Cms\Core\Users\Models\User;
 
 /*
 |--------------------------------------------------------------------------

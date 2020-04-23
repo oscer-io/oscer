@@ -3,7 +3,7 @@
 ### Install dependencies
 You can install the package via composer:
 ```bash
-composer require bambamboole/laravel-cms
+composer require oscer-io/oscer
 ```
 
 ### Run migrations
@@ -20,7 +20,7 @@ Create a new `CmsServiceProvider` with the following `boot()` call:
 
 namespace App\Providers;
 
-use Bambamboole\LaravelCms\Frontend\Routing\FrontendRouter;
+use Oscer\Cms\Frontend\Routing\FrontendRouter;
 use Illuminate\Support\ServiceProvider;
 
 class CmsServiceProvider extends ServiceProvider

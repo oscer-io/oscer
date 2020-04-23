@@ -1,8 +1,7 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Posts\Models;
+namespace Oscer\Cms\Core\Posts\Models;
 
-use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
@@ -11,6 +10,7 @@ use League\CommonMark\Block\Element\FencedCode;
 use League\CommonMark\Block\Element\IndentedCode;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
+use Oscer\Cms\Core\Models\BaseModel;
 use Spatie\CommonMarkHighlighter\FencedCodeRenderer;
 use Spatie\CommonMarkHighlighter\IndentedCodeRenderer;
 use Spatie\Sluggable\HasSlug;
@@ -21,7 +21,7 @@ use Spatie\Sluggable\SlugOptions;
  * @property string name
  * @property string slug
  * @property string body
- * @property \Bambamboole\LaravelCms\Core\Users\Models\User author
+ * @property \Oscer\Cms\Core\Users\Models\User author
  * @property int author_id
  * @property Collection tags
  * @property Carbon|null published_at
@@ -56,7 +56,7 @@ class Post extends BaseModel
      */
     public function author()
     {
-        return $this->belongsTo(\Bambamboole\LaravelCms\Core\Users\Models\User::class);
+        return $this->belongsTo(\Oscer\Cms\Core\Users\Models\User::class);
     }
 
     public function getSlugOptions(): SlugOptions

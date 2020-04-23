@@ -1,9 +1,9 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Backend\Http\Controllers;
+namespace Oscer\Cms\Backend\Http\Controllers;
 
-use Bambamboole\LaravelCms\Backend\Http\Requests\ResourceRequest;
 use Illuminate\Database\Eloquent\Model;
+use Oscer\Cms\Backend\Http\Requests\ResourceRequest;
 
 class ResourceIndexController
 {

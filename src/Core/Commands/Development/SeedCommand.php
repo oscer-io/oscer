@@ -1,20 +1,20 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Commands\Development;
+namespace Oscer\Cms\Core\Commands\Development;
 
-use Bambamboole\LaravelCms\Core\Menus\Models\Menu;
-use Bambamboole\LaravelCms\Core\Options\Models\Option;
-use Bambamboole\LaravelCms\Core\Pages\Models\Page;
-use Bambamboole\LaravelCms\Core\Posts\Models\Post;
-use Bambamboole\LaravelCms\Core\Posts\Models\Tag;
-use Bambamboole\LaravelCms\Core\Users\Models\Permission;
-use Bambamboole\LaravelCms\Core\Users\Models\Role;
-use Bambamboole\LaravelCms\Core\Users\Models\User;
 use Faker\Generator;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Collection;
+use Oscer\Cms\Core\Menus\Models\Menu;
+use Oscer\Cms\Core\Options\Models\Option;
+use Oscer\Cms\Core\Pages\Models\Page;
+use Oscer\Cms\Core\Posts\Models\Post;
+use Oscer\Cms\Core\Posts\Models\Tag;
+use Oscer\Cms\Core\Users\Models\Permission;
+use Oscer\Cms\Core\Users\Models\Role;
+use Oscer\Cms\Core\Users\Models\User;
 
 class SeedCommand extends Command
 {
@@ -33,7 +33,7 @@ class SeedCommand extends Command
         $app->singleton(Factory::class, function ($app) {
             $faker = $app->make(Generator::class);
 
-            return Factory::construct($faker, base_path('vendor/bambamboole/laravel-cms/tests/factories'));
+            return Factory::construct($faker, base_path('vendor/oscer-io/oscer/tests/factories'));
         });
 
         // Super Admin

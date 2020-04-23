@@ -1,9 +1,9 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Tests\Feature\Auth;
+namespace Oscer\Cms\Tests\Feature\Auth;
 
-use Bambamboole\LaravelCms\Core\Users\Models\User;
-use Bambamboole\LaravelCms\Tests\TestCase;
+use Oscer\Cms\Core\Users\Models\User;
+use Oscer\Cms\Tests\TestCase;
 
 class LoginTest extends TestCase
 {

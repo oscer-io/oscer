@@ -4,13 +4,13 @@
  * You can place your custom package configuration in here.
  */
 
-use Bambamboole\LaravelCms\Core\Menus\Resources\MenuItemResource;
-use Bambamboole\LaravelCms\Core\Menus\Resources\MenuResource;
-use Bambamboole\LaravelCms\Core\Options\Resources\OptionResource;
-use Bambamboole\LaravelCms\Core\Pages\Resources\PageResource;
-use Bambamboole\LaravelCms\Core\Posts\Resources\PostResource;
-use Bambamboole\LaravelCms\Core\Users\Resources\RoleResource;
-use Bambamboole\LaravelCms\Core\Users\Resources\UserResource;
+use Oscer\Cms\Core\Menus\Resources\MenuItemResource;
+use Oscer\Cms\Core\Menus\Resources\MenuResource;
+use Oscer\Cms\Core\Options\Resources\OptionResource;
+use Oscer\Cms\Core\Pages\Resources\PageResource;
+use Oscer\Cms\Core\Posts\Resources\PostResource;
+use Oscer\Cms\Core\Users\Resources\RoleResource;
+use Oscer\Cms\Core\Users\Resources\UserResource;
 
 return [
     'from_email' => env('CMS_FROM_EMAIL', 'cms@website.com'),

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Users\Models;
+namespace Oscer\Cms\Core\Users\Models;
 
 use Spatie\Permission\Models\Role as BaseRole;
 
