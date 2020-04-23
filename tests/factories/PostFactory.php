@@ -2,10 +2,10 @@
 
 /** @var Factory $factory */
 
-use Oscer\Cms\Core\Posts\Models\Post;
-use Oscer\Cms\Core\Users\Models\User;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
+use Oscer\Cms\Core\Posts\Models\Post;
+use Oscer\Cms\Core\Users\Models\User;
 
 /*
 |--------------------------------------------------------------------------

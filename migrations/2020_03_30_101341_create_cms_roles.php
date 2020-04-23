@@ -1,7 +1,7 @@
 <?php
 
-use Oscer\Cms\Core\Users\Models\Role;
 use Illuminate\Database\Migrations\Migration;
+use Oscer\Cms\Core\Users\Models\Role;
 
 class CreateCmsRoles extends Migration
 {

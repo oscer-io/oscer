@@ -2,12 +2,12 @@
 
 namespace Oscer\Cms\Api\Routing;
 
-use Oscer\Cms\Api\Http\Controllers\IssueTokenController;
-use Oscer\Cms\Api\Http\Controllers\MenuOrderController;
-use Oscer\Cms\Core\Http\Middleware\Authenticate;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Routing\Router;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
+use Oscer\Cms\Api\Http\Controllers\IssueTokenController;
+use Oscer\Cms\Api\Http\Controllers\MenuOrderController;
+use Oscer\Cms\Core\Http\Middleware\Authenticate;
 
 class ApiRouter
 {

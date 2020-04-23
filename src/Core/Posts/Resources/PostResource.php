@@ -2,6 +2,7 @@
 
 namespace Oscer\Cms\Core\Posts\Resources;
 
+use Illuminate\Support\Collection;
 use Oscer\Cms\Backend\Resources\Fields\Field;
 use Oscer\Cms\Backend\Resources\Fields\ImageField;
 use Oscer\Cms\Backend\Resources\Fields\MarkdownField;
@@ -10,7 +11,6 @@ use Oscer\Cms\Backend\Resources\Fields\TextField;
 use Oscer\Cms\Backend\Resources\Resource;
 use Oscer\Cms\Core\Posts\Models\Post;
 use Oscer\Cms\Core\Posts\Models\Tag;
-use Illuminate\Support\Collection;
 
 class PostResource extends Resource
 {

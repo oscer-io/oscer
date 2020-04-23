@@ -2,9 +2,9 @@
 
 /** @var Factory $factory */
 
-use Oscer\Cms\Core\Options\Models\Option;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
+use Oscer\Cms\Core\Options\Models\Option;
 
 /*
 |--------------------------------------------------------------------------

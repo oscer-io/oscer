@@ -2,6 +2,11 @@
 
 namespace Oscer\Cms\Core\Commands\Development;
 
+use Faker\Generator;
+use Illuminate\Console\Command;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Support\Collection;
 use Oscer\Cms\Core\Menus\Models\Menu;
 use Oscer\Cms\Core\Options\Models\Option;
 use Oscer\Cms\Core\Pages\Models\Page;
@@ -10,11 +15,6 @@ use Oscer\Cms\Core\Posts\Models\Tag;
 use Oscer\Cms\Core\Users\Models\Permission;
 use Oscer\Cms\Core\Users\Models\Role;
 use Oscer\Cms\Core\Users\Models\User;
-use Faker\Generator;
-use Illuminate\Console\Command;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Database\Eloquent\Factory;
-use Illuminate\Support\Collection;
 
 class SeedCommand extends Command
 {

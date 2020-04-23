@@ -2,9 +2,9 @@
 
 namespace Oscer\Cms\Backend\Http\Controllers;
 
+use Illuminate\Validation\ValidationException;
 use Oscer\Cms\Backend\Http\Requests\ResourceRequest;
 use Oscer\Cms\Backend\Resources\Resource;
-use Illuminate\Validation\ValidationException;
 
 class ResourceStoreController
 {

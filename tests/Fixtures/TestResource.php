@@ -2,8 +2,8 @@
 
 namespace Oscer\Cms\Tests\Fixtures;
 
-use Oscer\Cms\Backend\Resources\Resource;
 use Illuminate\Support\Collection;
+use Oscer\Cms\Backend\Resources\Resource;
 
 class TestResource extends Resource
 {

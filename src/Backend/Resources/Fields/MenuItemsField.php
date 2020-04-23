@@ -2,9 +2,9 @@
 
 namespace Oscer\Cms\Backend\Resources\Fields;
 
-use Oscer\Cms\Core\Menus\Models\Menu;
 use Closure;
 use Illuminate\Http\Request;
+use Oscer\Cms\Core\Menus\Models\Menu;
 
 class MenuItemsField extends Field
 {

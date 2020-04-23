@@ -2,11 +2,11 @@
 
 namespace Oscer\Cms\Tests;
 
-use Oscer\Cms\Core\Users\Models\User;
-use Oscer\Cms\OscerServiceProvider;
 use Laravel\Sanctum\Sanctum;
 use Laravel\Sanctum\SanctumServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use Oscer\Cms\Core\Users\Models\User;
+use Oscer\Cms\OscerServiceProvider;
 use Spatie\Permission\PermissionServiceProvider;
 
 class TestCase extends BaseTestCase

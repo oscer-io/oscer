@@ -2,13 +2,13 @@
 
 namespace Oscer\Cms\Core\Menus\Resources;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Oscer\Cms\Backend\Resources\Fields\SelectField;
 use Oscer\Cms\Backend\Resources\Fields\TextField;
 use Oscer\Cms\Backend\Resources\Resource;
 use Oscer\Cms\Core\Menus\Models\MenuItem;
 use Oscer\Cms\Core\Posts\Models\Post;
-use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
 class MenuItemResource extends Resource
 {

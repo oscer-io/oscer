@@ -1,7 +1,7 @@
 <?php
 
-use Oscer\Cms\Core\Users\Models\Permission;
 use Illuminate\Database\Migrations\Migration;
+use Oscer\Cms\Core\Users\Models\Permission;
 
 class CreateCmsPermissions extends Migration
 {

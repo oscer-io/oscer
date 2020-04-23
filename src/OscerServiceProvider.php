@@ -2,6 +2,12 @@
 
 namespace Oscer\Cms;
 
+use Illuminate\Config\Repository;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\View\Compilers\BladeCompiler;
+use Illuminate\View\Factory;
 use Oscer\Cms\Api\Routing\ApiRouter;
 use Oscer\Cms\Backend\Routing\BackendRouter;
 use Oscer\Cms\Backend\ViewComposer\BackendViewComposer;
@@ -15,12 +21,6 @@ use Oscer\Cms\Frontend\BladeComponents\MenuBladeComponent;
 use Oscer\Cms\Frontend\Contracts\Theme;
 use Oscer\Cms\Frontend\DefaultTheme;
 use Oscer\Cms\Frontend\ViewComposers\ThemeViewComposer;
-use Illuminate\Config\Repository;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\ServiceProvider;
-use Illuminate\View\Compilers\BladeCompiler;
-use Illuminate\View\Factory;
 
 class OscerServiceProvider extends ServiceProvider
 {

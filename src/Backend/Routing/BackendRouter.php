@@ -2,6 +2,8 @@
 
 namespace Oscer\Cms\Backend\Routing;
 
+use Illuminate\Config\Repository;
+use Illuminate\Routing\Router;
 use Oscer\Cms\Backend\Http\Controllers\Auth\ForgotPasswordController;
 use Oscer\Cms\Backend\Http\Controllers\Auth\LoginController;
 use Oscer\Cms\Backend\Http\Controllers\Auth\ResetPasswordController;
@@ -13,8 +15,6 @@ use Oscer\Cms\Backend\Http\Controllers\ResourceShowController;
 use Oscer\Cms\Backend\Http\Controllers\ResourceStoreController;
 use Oscer\Cms\Core\Http\Middleware\Authenticate;
 use Oscer\Cms\Core\Http\Middleware\SetLocale;
-use Illuminate\Config\Repository;
-use Illuminate\Routing\Router;
 use Spatie\Permission\Middlewares\PermissionMiddleware;
 
 class BackendRouter

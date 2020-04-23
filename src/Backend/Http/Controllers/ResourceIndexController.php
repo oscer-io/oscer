@@ -2,8 +2,8 @@
 
 namespace Oscer\Cms\Backend\Http\Controllers;
 
-use Oscer\Cms\Backend\Http\Requests\ResourceRequest;
 use Illuminate\Database\Eloquent\Model;
+use Oscer\Cms\Backend\Http\Requests\ResourceRequest;
 
 class ResourceIndexController
 {

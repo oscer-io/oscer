@@ -2,6 +2,8 @@
 
 namespace Oscer\Cms\Core\Users\Resources;
 
+use Illuminate\Support\Collection;
+use Illuminate\Validation\Rule;
 use Oscer\Cms\Backend\Resources\Fields\ImageField;
 use Oscer\Cms\Backend\Resources\Fields\PasswordField;
 use Oscer\Cms\Backend\Resources\Fields\SelectField;
@@ -9,8 +11,6 @@ use Oscer\Cms\Backend\Resources\Fields\TextareaField;
 use Oscer\Cms\Backend\Resources\Fields\TextField;
 use Oscer\Cms\Backend\Resources\Resource;
 use Oscer\Cms\Core\Users\Models\User;
-use Illuminate\Support\Collection;
-use Illuminate\Validation\Rule;
 
 class UserResource extends Resource
 {

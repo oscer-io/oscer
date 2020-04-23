@@ -2,7 +2,6 @@
 
 namespace Oscer\Cms\Backend\Resources;
 
-use Oscer\Cms\Backend\Resources\Fields\Field;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\ConditionallyLoadsAttributes;
@@ -10,6 +9,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator as ValidatorFactory;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
+use Oscer\Cms\Backend\Resources\Fields\Field;
 
 abstract class Resource implements \JsonSerializable
 {

@@ -2,8 +2,8 @@
 
 namespace Oscer\Cms\Frontend\ViewComposers;
 
-use Oscer\Cms\Frontend\Contracts\Theme;
 use Illuminate\View\View;
+use Oscer\Cms\Frontend\Contracts\Theme;
 
 class ThemeViewComposer
 {
