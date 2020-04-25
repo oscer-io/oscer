@@ -15,7 +15,7 @@ export default class Cms {
     }
 
     /**
-     * Register a callback to be called before Laravel CMS starts
+     * Register a callback to be called before Oscer starts
      */
     booting(callback) {
         this.bootingCallbacks.push(callback)
@@ -30,7 +30,7 @@ export default class Cms {
     }
 
     /**
-     * Start Laravel CMS by calling each of the booting callbacks and create the underlying Vue instance.
+     * Start Oscer by calling each of the booting callbacks and create the underlying Vue instance.
      */
     start() {
         this.boot();

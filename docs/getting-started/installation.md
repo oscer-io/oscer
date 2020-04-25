@@ -7,7 +7,7 @@ composer require oscer-io/oscer
 ```
 
 ### Run migrations
-Laravel CMS adds its migrations to the default Laravel database connection. 
+Oscer adds its migrations to the default Laravel database connection. 
 We prefix all tables with `cms_` to ensure they are not clashing with your migrations.
 ```bash
 php artisan migrate
@@ -42,7 +42,7 @@ php artisan cms:publish
 
 ### Add environment variable
 
-Let the authentication system know on which domain Laravel CMS will run:
+Let the authentication system know on which domain Oscer will run:
 ```bash
 # ...
 CMS_BACKEND_DOMAIN=web.cms.test

@@ -1,6 +1,6 @@
 # Introduction
 
-Laravel CMS has a simple but powerful Theming System. 
+Oscer has a simple but powerful Theming System. 
 it is based on Laravel's [Blade](https://laravel.com/docs/7.x/blade) engine and configured by a PHP class 
 which has to implement a specific interface. All template files of the Theme have an 
 instance of the Theme available via the `$theme` variable.

@@ -45,7 +45,7 @@ class SeedCommand extends Command
         $this->seedMenuItems();
         $this->seedOptions();
 
-        $this->info('Laravel CMS was seeded with dummy data.');
+        $this->info('Oscer was seeded with dummy data.');
     }
 
     protected function seedSuperAdmin()
@@ -153,7 +153,7 @@ class SeedCommand extends Command
             [
                 'name' => 'Home',
                 'slug' => 'front-page',
-                'body' => 'Welcome to Laravel CMS',
+                'body' => 'Welcome to Oscer',
             ],
             [
                 'name' => 'About me',

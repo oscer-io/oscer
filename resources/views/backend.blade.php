@@ -6,7 +6,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel cms') }}</title>
+    <title>{{ config('app.name', 'Oscer') }}</title>
 
     <script>window.locale = '{{app()->getLocale()}}'</script>
     <!-- Styles -->

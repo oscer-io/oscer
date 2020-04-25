@@ -23,6 +23,6 @@ class PublishCommand extends Command
         $this->comment('Publishing cms Configuration...');
         $this->callSilent('vendor:publish', ['--tag' => 'cms-config']);
 
-        $this->info('Laravel cms was installed successfully.');
+        $this->info('Oscer was installed successfully.');
     }
 }

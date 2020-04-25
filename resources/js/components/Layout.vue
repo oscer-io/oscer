@@ -5,7 +5,7 @@
             <div class="hidden md:flex md:flex-shrink-0">
                 <div class="flex flex-col w-64">
                     <div class="flex items-center h-16 flex-shrink-0 px-4 bg-gray-900">
-                        <h1 class="text-xl text-white font-bold w-full text-center">Laravel CMS</h1>
+                        <h1 class="text-xl text-white font-bold w-full text-center">Oscer</h1>
                     </div>
                     <div class="h-0 flex-1 flex flex-col overflow-y-auto">
                         <!-- Sidebar component, swap this element with another sidebar if you like -->

@@ -1,6 +1,6 @@
 # Menus
 
-In Laravel CMS menus are defined by code and the menu items are in the database. 
+In Oscer menus are defined by code and the menu items are in the database. 
 This way we can ensure that the editor does not delete a menu accidentally.
  
 ## Declaration
