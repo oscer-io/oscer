@@ -49,8 +49,6 @@
 
 <script>
     export default {
-        created() {
-        },
         data() {
             return {
                 user: window.Cms.config.user

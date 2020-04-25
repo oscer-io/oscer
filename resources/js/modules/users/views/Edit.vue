@@ -17,11 +17,7 @@
 </template>
 
 <script>
-    import ResourceForm from "../../../components/ResourceForm";
-
     export default {
-        components: {ResourceForm},
-
         props: ['id'],
 
         methods: {

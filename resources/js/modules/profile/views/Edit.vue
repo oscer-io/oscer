@@ -20,12 +20,7 @@
 </template>
 
 <script>
-    import ResourceForm from "../../../components/ResourceForm";
-
     export default {
-        components: {
-            ResourceForm
-        },
         computed: {
             currentUser() {
                 return Cms.config.user;

@@ -16,22 +16,14 @@
 </template>
 
 <script>
-    import ResourceForm from "../../../components/ResourceForm";
-
     export default {
-        components: {
-            ResourceForm
-        },
         methods: {
-            handleCancel() {
-                this.$router.push({name: 'posts.index'})
-            },
-            handleSuccess(post) {
+            handleSuccess(payload) {
                 this.$store.dispatch('flash', {
                     type: 'success',
                     text: 'Nice one!'
                 });
-                this.$router.push({name: 'posts.show', params: {id: post.id}})
+                this.$router.push({name: 'posts.show', params: {id: payload.model.id}})
             }
         }
     }

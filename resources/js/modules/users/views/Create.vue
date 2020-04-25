@@ -16,12 +16,7 @@
 </template>
 
 <script>
-    import ResourceForm from "../../../components/ResourceForm";
-
     export default {
-        components: {
-            ResourceForm
-        },
         methods: {
             handleSuccess(payload) {
                 this.$store.dispatch('flash', {

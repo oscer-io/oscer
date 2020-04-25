@@ -9,12 +9,7 @@
 </template>
 
 <script>
-    import ResourceForm from "../../../components/ResourceForm";
-
     export default {
-        components: {
-            ResourceForm
-        },
         methods: {
             handleSuccess(menu) {
                 this.$store.dispatch('flash', {

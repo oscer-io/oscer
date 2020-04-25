@@ -16,19 +16,14 @@
 </template>
 
 <script>
-    import ResourceForm from "../../../components/ResourceForm";
-
     export default {
-        components: {
-            ResourceForm
-        },
         methods: {
-            handleSuccess(page) {
+            handleSuccess(payload) {
                 this.$store.dispatch('flash', {
                     type: 'success',
                     text: 'Nice one!'
                 });
-                this.$router.push({name: 'pages.show', params: {id: page.id}})
+                this.$router.push({name: 'pages.show', params: {id: payload.model.id}})
             }
         }
     }

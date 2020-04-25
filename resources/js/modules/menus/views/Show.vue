@@ -115,17 +115,15 @@
 </template>
 
 <script>
-    import api from "../../../lib/api";
+    import api from "@/lib/api";
     import Draggable from 'vuedraggable';
-    import ResourceForm from "../../../components/ResourceForm";
 
     export default {
         props: {
             id: {required: true}
         },
         components: {
-            Draggable,
-            ResourceForm
+            Draggable
         },
         data() {
             return {
