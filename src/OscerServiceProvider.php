@@ -40,15 +40,14 @@ class OscerServiceProvider extends ServiceProvider
         Repository $config,
         Theme $theme,
         Sidebar $sidebar
-    )
-    {
+    ) {
         $this->apiRouter = $apiRouter;
         $this->backendRouter = $backendRouter;
         $this->config = $config;
 
-        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'cms');
-        $this->loadMigrationsFrom(__DIR__ . '/../migrations');
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'cms');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'cms');
+        $this->loadMigrationsFrom(__DIR__.'/../migrations');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'cms');
 
         $this->configureGuard();
         $this->configurePermissions();
@@ -121,11 +120,11 @@ class OscerServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../dist' => public_path('vendor/cms'),
+                __DIR__.'/../dist' => public_path('vendor/cms'),
             ], 'cms-assets');
 
             $this->publishes([
-                __DIR__ . '/../config/config.php' => config_path('cms.php'),
+                __DIR__.'/../config/config.php' => config_path('cms.php'),
             ], 'cms-config');
         }
     }
@@ -142,7 +141,7 @@ class OscerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'cms');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'cms');
 
         $this->commands([
             PublishCommand::class,
