@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\ConditionallyLoadsAttributes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator as ValidatorFactory;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
 use Oscer\Cms\Backend\Resources\Fields\Field;
@@ -55,7 +56,7 @@ abstract class Resource implements \JsonSerializable
     protected function filteredFields(Request $request): Collection
     {
         return $this->fields->filter(function (Field $field) use ($request) {
-            return ! $field->shouldBeRemoved($request);
+            return !$field->shouldBeRemoved($request);
         });
     }
 
@@ -138,15 +139,43 @@ abstract class Resource implements \JsonSerializable
         return in_array('filled', $rules);
     }
 
+    public function labels()
+    {
+        return [
+            'buttons' => [
+                'create' => __('cms::resources.buttons.create', ['resource' => class_basename($this->resourceModel)]),
+                'edit' => __('cms::resources.buttons.edit', ['resource' => class_basename($this->resourceModel)]),
+                'save' => __('cms::resources.buttons.save', ['resource' => class_basename($this->resourceModel)]),
+                'cancel' => __('cms::resources.buttons.cancel'),
+            ],
+            'titles' => [
+                'index' => __('cms::resources.titles.index', ['resources' => Str::plural(class_basename($this->resourceModel))]),
+                'detail' => __('cms::resources.titles.detail', ['resource' => class_basename($this->resourceModel)]),
+                'create' => __('cms::resources.titles.create', ['resource' => class_basename($this->resourceModel)]),
+                'update' => __('cms::resources.titles.update', ['resource' => class_basename($this->resourceModel)]),
+            ],
+            'index' => [
+                'search' => __('cms::resources.index.search'),
+            ],
+        ];
+    }
+
+    protected function hasDetailView(): bool
+    {
+        return true;
+    }
+
     public function toArray()
     {
         $data = [
+            'labels' => $this->labels(),
             'fields' => $this->fields,
             'model' => $this->resourceModel,
             'resourceId' => $this->when($this->resourceModel->id, $this->resourceModel->id),
             'displayShowButtonOnIndex' => $this->displayShowButtonOnIndex,
             'displayEditButtonOnIndex' => $this->displayEditButtonOnIndex,
             'removeNullValues' => $this->shouldRemoveNullValues(),
+            'hasDetailView' => $this->hasDetailView(),
         ];
 
         return $this->filter($data);
@@ -156,4 +185,5 @@ abstract class Resource implements \JsonSerializable
     {
         return $this->toArray();
     }
+
 }

@@ -3,16 +3,19 @@
         <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
             <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
                 <div class="ml-4 mt-2">
-                    <h1 class="text-lg leading-6 font-medium text-gray-900">
-                        {{resource}}
+                    <h1
+                        class="text-lg leading-6 font-medium text-gray-900"
+                        v-text="this.labels ? this.labels.titles.index : ''"
+                    >
                     </h1>
                 </div>
                 <div class="ml-4 mt-2 flex-shrink-0">
                     <span class="inline-flex rounded-md shadow-sm">
                         <router-link
                             :to="{name:`${resource}s.create`}"
-                            class="btn">
-                        Create {{resource}}
+                            class="btn"
+                            v-text="this.labels ? this.labels.buttons.create : ''"
+                        >
                     </router-link>
                     </span>
                 </div>
@@ -44,7 +47,7 @@
                     </td>
                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 td-fit">
                         <div class="inline-flex items-center">
-                            <router-link :to="{name:`${resource}s.show`, params: {id: item.resourceId}}"
+                            <router-link v-if="showDetailButton" :to="{name:`${resource}s.show`, params: {id: item.resourceId}}"
                                          class="inline-flex">
                                 <svg class="w-8 h-8 text-gray-500" viewBox="0 0 64 64" stroke="currentColor">
                                     <path fill="none" stroke-miterlimit="10" stroke-width="3"
@@ -97,6 +100,7 @@
                 isLoading: true,
                 page: 1,
                 items: [],
+                labels: false,
                 meta: false,
             }
         },
@@ -106,6 +110,9 @@
                     ? this.filteredFields(this.items[0])
                         .map(field => field.name)
                     : []
+            },
+            showDetailButton(){
+              return !!this.items[0].hasDetailView;
             },
         },
         watch: {
@@ -123,6 +130,7 @@
                     page: this.page
                 }));
                 this.items = response.data.data;
+                this.labels = this.items[0].labels;
                 this.meta = response.data.meta;
                 this.isLoading = false;
             },

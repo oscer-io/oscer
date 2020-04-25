@@ -31,7 +31,8 @@ class MenuResource extends Resource
         ]);
     }
 
-    public function labels()
+    protected function hasDetailView(): bool
     {
+        return false;
     }
 }

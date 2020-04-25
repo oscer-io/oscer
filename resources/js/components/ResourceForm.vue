@@ -1,5 +1,14 @@
 <template>
     <loading :loading="isLoading">
+        <div class="md:flex md:items-center md:justify-between">
+            <div class="flex-1 min-w-0">
+                <h1 v-if="this.labels"
+                    class="text-lg leading-6 font-medium text-gray-900"
+                    v-text="this.resourceId ? this.labels.titles.update : this.labels.titles.create"
+                >
+                </h1>
+            </div>
+        </div>
         <form @submit.prevent="submitResourceForm">
             <div
                 class="mb-8 border-b border-gray-200 pb-5"
@@ -9,18 +18,18 @@
                     <span class="inline-flex rounded-md shadow-sm">
                         <button
                             type="button"
-                            class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
+                            class="btn-transparent"
                             @click="$emit('cancel')"
+                            v-text="this.labels ? this.labels.buttons.cancel : ''"
                         >
-                            {{this.cancelText}}
                         </button>
                     </span>
                     <span class="ml-3 inline-flex rounded-md shadow-sm">
                         <button
                             type="submit"
                             class="btn"
+                            v-text="this.labels ? this.labels.buttons.save : ''"
                         >
-                            {{this.submitText}}
                         </button>
                     </span>
                 </div>
@@ -40,18 +49,18 @@
                     <span class="inline-flex rounded-md shadow-sm">
                         <button
                             type="button"
-                            class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
+                            class="btn-transparent"
                             @click="$emit('cancel')"
+                            v-text="this.labels ? this.labels.buttons.cancel : ''"
                         >
-                            {{this.cancelText}}
                         </button>
                     </span>
                     <span class="ml-3 inline-flex rounded-md shadow-sm">
                         <button
                             type="submit"
                             class="btn"
+                            v-text="this.labels ? this.labels.buttons.save : ''"
                         >
-                            {{this.submitText}}
                         </button>
                     </span>
                 </div>
@@ -109,6 +118,7 @@
             return {
                 isLoading: true,
                 fields: [],
+                labels: false,
                 removeNullValues: false,
                 validationErrors: {}
             }
@@ -145,6 +155,7 @@
 
             initializeForm(resource) {
                 this.fields = resource.fields;
+                this.labels = resource.labels;
                 this.removeNullValues = resource.removeNullValues;
             },
 

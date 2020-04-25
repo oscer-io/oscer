@@ -52,4 +52,9 @@ class RoleResource extends Resource
             ]
         );
     }
+
+    protected function hasDetailView(): bool
+    {
+        return false;
+    }
 }
