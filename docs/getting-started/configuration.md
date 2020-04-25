@@ -1,16 +1,16 @@
 # Configuration
 
-You can find the config of laravel CMS in `config/cms.php`.  
+You can find the config of oscer in `config/cms.php`.  
 You can publish it with `php artisan cms:publish` if the file does not exist.
 
 ### `from_email`
-This configuration value will be used for all E-Mails which are sent by Laravel CMS.
+This configuration value will be used for all E-Mails which are sent by oscer.
 
 ### `backend`
 This key is for all Admin UI related things.
 
 #### `domain`
-This variable lets the authentication system know on which domain Laravel CMS will run.
+This variable lets the authentication system know on which domain oscer will run.
 I can be set via the environment variable `CMS_BACKEND_DOMAIN`.
 
 #### `url`
