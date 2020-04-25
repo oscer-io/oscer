@@ -23,9 +23,9 @@
             ResourceForm
         },
         methods: {
-            handleSuccess(user) {
+            handleSuccess(payload) {
                 Cms.flash('success', 'Nice one!');
-                this.$router.push({name: 'users.show', params: {id: user.id}})
+                this.$router.push({name: 'users.show', params: {id: payload.model.id}})
             }
         }
     }

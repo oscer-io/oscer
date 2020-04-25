@@ -107,9 +107,9 @@
 </template>
 <script>
     import Draggable from 'vuedraggable';
-    import FormField from "../../lib/mixins/FormField";
-    import ResourceForm from "../ResourceForm";
-    import api from "../../lib/api";
+    import FormField from "@/lib/mixins/FormField";
+    import ResourceForm from "@/components/ResourceForm";
+    import api from "@/lib/api";
 
     export default {
         mixins: [FormField],

@@ -4,8 +4,7 @@ import Cms from './lib/cms';
  * Register all global mixins, components and fields
  */
 import './lib/mixins';
-import './lib/components';
-import './lib/fields';
+import './components';
 
 /**
  * We create a factory on the window which can create a new Cms instance

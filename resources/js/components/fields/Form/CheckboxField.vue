@@ -15,7 +15,7 @@
     </FieldWrapper>
 </template>
 <script>
-    import FormField from "../../lib/mixins/FormField";
+    import FormField from "@/lib/mixins/FormField";
 
     export default {
         mixins: [FormField]

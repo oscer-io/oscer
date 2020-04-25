@@ -48,7 +48,6 @@
         async mounted() {
             const response = await api(Cms.route('cms.backend.resources.index', 'option'));
             this.rawOptions = response.data.data;
-            console.log(this.tabsWithOptions);
             this.isLoading = false;
         },
         methods: {
