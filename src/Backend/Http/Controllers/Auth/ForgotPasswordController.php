@@ -1,15 +1,15 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Backend\Http\Controllers\Auth;
+namespace Oscer\Cms\Backend\Http\Controllers\Auth;
 
-use Bambamboole\LaravelCms\Backend\Http\Requests\Auth\SendPasswordResetLinkRequest;
-use Bambamboole\LaravelCms\Core\Mails\ResetPasswordMail;
-use Bambamboole\LaravelCms\Core\Users\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use Oscer\Cms\Backend\Http\Requests\Auth\SendPasswordResetLinkRequest;
+use Oscer\Cms\Core\Mails\ResetPasswordMail;
+use Oscer\Cms\Core\Users\Models\User;
 use Throwable;
 
 class ForgotPasswordController
@@ -48,7 +48,7 @@ class ForgotPasswordController
 
             [$userId, $token] = explode('|', $token);
 
-            /** @var \Bambamboole\LaravelCms\Core\Users\Models\User $user */
+            /** @var \Oscer\Cms\Core\Users\Models\User $user */
             $user = User::query()->findOrFail($userId);
         } catch (Throwable $e) {
             return redirect()->route('cms.password.forgot')->with('invalidResetToken', true);

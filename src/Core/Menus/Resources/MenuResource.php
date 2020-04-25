@@ -1,14 +1,14 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Menus\Resources;
+namespace Oscer\Cms\Core\Menus\Resources;
 
-use Bambamboole\LaravelCms\Backend\Resources\Fields\MenuItemsField;
-use Bambamboole\LaravelCms\Backend\Resources\Fields\SelectField;
-use Bambamboole\LaravelCms\Backend\Resources\Fields\TextField;
-use Bambamboole\LaravelCms\Backend\Resources\Resource;
-use Bambamboole\LaravelCms\Core\Menus\Models\Menu;
-use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
 use Illuminate\Support\Collection;
+use Oscer\Cms\Backend\Resources\Fields\MenuItemsField;
+use Oscer\Cms\Backend\Resources\Fields\SelectField;
+use Oscer\Cms\Backend\Resources\Fields\TextField;
+use Oscer\Cms\Backend\Resources\Resource;
+use Oscer\Cms\Core\Menus\Models\Menu;
+use Oscer\Cms\Frontend\Contracts\Theme;
 
 class MenuResource extends Resource
 {

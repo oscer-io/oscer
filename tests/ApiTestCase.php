@@ -1,10 +1,10 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Tests;
+namespace Oscer\Cms\Tests;
 
-use Bambamboole\LaravelCms\Core\Users\Models\Role;
-use Bambamboole\LaravelCms\Core\Users\Models\User;
 use Laravel\Sanctum\Sanctum;
+use Oscer\Cms\Core\Users\Models\Role;
+use Oscer\Cms\Core\Users\Models\User;
 use PHPUnit\Framework\AssertionFailedError;
 use sixlive\JsonSchemaAssertions\SchemaAssertion;
 

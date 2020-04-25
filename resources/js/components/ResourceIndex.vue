@@ -38,7 +38,7 @@
                         class="p-3 whitespace-no-wrap border-b border-gray-200 text-sm"
                     >
                         <component
-                            :is="getComponentName(field)"
+                            :is="`Index${field.component}`"
                             :field="field"
                         />
                     </td>
@@ -46,21 +46,21 @@
                         <div class="inline-flex items-center">
                             <router-link :to="{name:`${resource}s.show`, params: {id: item.resourceId}}"
                                          class="inline-flex">
-                                <svg class="w-8 h-8" viewBox="0 0 64 64" stroke="currentColor">
-                                    <path fill="none" stroke-miterlimit="10" stroke-width="2"
+                                <svg class="w-8 h-8 text-gray-500" viewBox="0 0 64 64" stroke="currentColor">
+                                    <path fill="none" stroke-miterlimit="10" stroke-width="3"
                                           d="M54.09 32S44.2 45.82 32 45.82 9.91 32 9.91 32 19.8 18.18 32 18.18 54.09 32 54.09 32z"/>
                                     <circle cx="32" cy="32" r="13.82" fill="none" stroke-miterlimit="10"
-                                            stroke-width="2"/>
-                                    <circle cx="32" cy="32" r="3.21" fill="#4a4a4a"/>
+                                            stroke-width="3"/>
+                                    <circle cx="32" cy="32" r="3.21" fill="currentColor"/>
                                 </svg>
                             </router-link>
                             <router-link :to="{name:`${resource}s.edit`, params: {id: item.resourceId}}"
                                          class="inline-flex">
-                                <svg class="w-8 h-8" viewBox="0 0 64 64" stroke="currentColor">
+                                <svg class="w-8 h-8 text-gray-500" viewBox="0 0 64 64" stroke="currentColor">
                                     <path
                                         fill="none"
                                         stroke-miterlimit="10"
-                                        stroke-width="2"
+                                        stroke-width="3"
                                         d="M27.92 46.23L17.77 36.08M45.603 14.2l4.186 4.187a4.22 4.22 0 010 5.968l-4.95 4.95h0L34.685 19.15h0l4.95-4.95a4.22 4.22 0 015.968 0zM27.93 46.23l-14.96 4.8 4.8-14.95h0l16.89-16.9 10.16 10.16-16.89 16.89h0zM15.61 42.81l5.58 5.58"/>
                                 </svg>
                             </router-link>
@@ -134,14 +134,6 @@
             },
             prevPage() {
                 this.page = Math.max(1, this.page - 1)
-            },
-            getComponentName(field) {
-                let component = field.component;
-                if (component === 'SelectField') {
-                    component = 'TextField';
-                }
-
-                return 'Index' + component;
             }
         }
     }

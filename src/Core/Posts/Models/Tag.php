@@ -1,10 +1,10 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Posts\Models;
+namespace Oscer\Cms\Core\Posts\Models;
 
-use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Oscer\Cms\Core\Models\BaseModel;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 

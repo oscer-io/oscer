@@ -1,14 +1,14 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Menus\Resources;
+namespace Oscer\Cms\Core\Menus\Resources;
 
-use Bambamboole\LaravelCms\Backend\Resources\Fields\SelectField;
-use Bambamboole\LaravelCms\Backend\Resources\Fields\TextField;
-use Bambamboole\LaravelCms\Backend\Resources\Resource;
-use Bambamboole\LaravelCms\Core\Menus\Models\MenuItem;
-use Bambamboole\LaravelCms\Core\Posts\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Oscer\Cms\Backend\Resources\Fields\SelectField;
+use Oscer\Cms\Backend\Resources\Fields\TextField;
+use Oscer\Cms\Backend\Resources\Resource;
+use Oscer\Cms\Core\Menus\Models\MenuItem;
+use Oscer\Cms\Core\Posts\Models\Post;
 
 class MenuItemResource extends Resource
 {
@@ -27,6 +27,9 @@ class MenuItemResource extends Resource
             SelectField::make(
                 'type',
                 'Type',
+                null,
+                function () {
+                }
             )
                 ->rules(['required'])
                 ->options( // we pass the names of the fields here

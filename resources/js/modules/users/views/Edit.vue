@@ -25,12 +25,12 @@
         props: ['id'],
 
         methods: {
-            handleSuccess(user) {
+            handleSuccess(payload) {
                 this.$store.dispatch('flash', {
                     type: 'success',
                     text: 'Nice one!'
                 });
-                this.$router.push({name: 'users.show', params: {id: user.id}})
+                this.$router.push({name: 'users.show', params: {id: payload.model.id}})
             }
         }
     }

@@ -1,9 +1,9 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Frontend\Http\Controllers;
+namespace Oscer\Cms\Frontend\Http\Controllers;
 
-use Bambamboole\LaravelCms\Core\Posts\Models\Post;
-use Bambamboole\LaravelCms\Frontend\Contracts\Theme;
+use Oscer\Cms\Core\Posts\Models\Post;
+use Oscer\Cms\Frontend\Contracts\Theme;
 
 class PostsController
 {

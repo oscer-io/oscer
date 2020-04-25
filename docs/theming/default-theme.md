@@ -1,10 +1,10 @@
 # DefaultTheme
-The `DefaultTheme` which comes with LaravelCms looks like this:
+The `DefaultTheme` which comes with Oscer looks like this:
 
 ```php
 <?php
 
-namespace Bambamboole\LaravelCms\Theming;
+namespace Oscer\Cms\Theming;
 
 class DefaultTheme implements Theme
 {

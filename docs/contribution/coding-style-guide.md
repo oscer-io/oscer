@@ -25,7 +25,7 @@ The following sections further define our conventions.
 - components that group particular Models views MUST be stored in `js/views/`
 - mixins MUST be stored in `js/mixins/`
 - library JS files MUST be stored in `js/lib/`  (i.e. classes, modules etc.)
-- files that handling the bootstrapping of LaravelCms must be stored in `js/bootstrap/`
+- files that handling the bootstrapping of Oscer must be stored in `js/bootstrap/`
 
 **Example:**
 

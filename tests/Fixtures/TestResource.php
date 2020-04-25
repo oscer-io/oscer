@@ -1,9 +1,9 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Tests\Fixtures;
+namespace Oscer\Cms\Tests\Fixtures;
 
-use Bambamboole\LaravelCms\Backend\Resources\Resource;
 use Illuminate\Support\Collection;
+use Oscer\Cms\Backend\Resources\Resource;
 
 class TestResource extends Resource
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Backend\Http\Requests\Auth;
+namespace Oscer\Cms\Backend\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 

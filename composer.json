@@ -1,11 +1,13 @@
 {
-    "name": "bambamboole/laravel-cms",
+    "name": "oscer-io/oscer",
     "description": "",
     "keywords": [
-        "bambamboole",
-        "laravel-cms"
+        "laravel",
+        "cms",
+        "blog",
+        "bambamboole"
     ],
-    "homepage": "https://github.com/bambamboole/laravel-cms",
+    "homepage": "https://oscer.io",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -33,12 +35,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Bambamboole\\LaravelCms\\": "src"
+            "Oscer\\Cms\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Bambamboole\\LaravelCms\\Tests\\": "tests"
+            "Oscer\\Cms\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -52,7 +54,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Bambamboole\\LaravelCms\\LaravelCmsServiceProvider"
+                "Oscer\\Cms\\OscerServiceProvider"
             ]
         }
     }

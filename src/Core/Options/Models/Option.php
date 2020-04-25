@@ -1,9 +1,9 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Options\Models;
+namespace Oscer\Cms\Core\Options\Models;
 
-use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Illuminate\Support\Carbon;
+use Oscer\Cms\Core\Models\BaseModel;
 
 /**
  * @property int id

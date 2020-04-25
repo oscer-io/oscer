@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Http\Middleware;
+namespace Oscer\Cms\Core\Http\Middleware;
 
 use Closure;
 use Illuminate\Auth\AuthenticationException;

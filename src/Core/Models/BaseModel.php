@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Models;
+namespace Oscer\Cms\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;

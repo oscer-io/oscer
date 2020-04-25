@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Backend\Http\Controllers;
+namespace Oscer\Cms\Backend\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;

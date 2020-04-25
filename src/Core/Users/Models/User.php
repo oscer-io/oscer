@@ -1,9 +1,7 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Users\Models;
+namespace Oscer\Cms\Core\Users\Models;
 
-use Bambamboole\LaravelCms\Core\Mails\NewUserCreatedMail;
-use Bambamboole\LaravelCms\Core\Models\BaseModel;
 use Illuminate\Contracts\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Auth\Access\Authorizable as AuthorizableTrait;
@@ -12,6 +10,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
+use Oscer\Cms\Core\Mails\NewUserCreatedMail;
+use Oscer\Cms\Core\Models\BaseModel;
 use Spatie\Permission\Traits\HasRoles;
 
 /**

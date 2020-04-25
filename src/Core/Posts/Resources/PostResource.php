@@ -1,16 +1,16 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Core\Posts\Resources;
+namespace Oscer\Cms\Core\Posts\Resources;
 
-use Bambamboole\LaravelCms\Backend\Resources\Fields\Field;
-use Bambamboole\LaravelCms\Backend\Resources\Fields\ImageField;
-use Bambamboole\LaravelCms\Backend\Resources\Fields\MarkdownField;
-use Bambamboole\LaravelCms\Backend\Resources\Fields\TagsField;
-use Bambamboole\LaravelCms\Backend\Resources\Fields\TextField;
-use Bambamboole\LaravelCms\Backend\Resources\Resource;
-use Bambamboole\LaravelCms\Core\Posts\Models\Post;
-use Bambamboole\LaravelCms\Core\Posts\Models\Tag;
 use Illuminate\Support\Collection;
+use Oscer\Cms\Backend\Resources\Fields\Field;
+use Oscer\Cms\Backend\Resources\Fields\ImageField;
+use Oscer\Cms\Backend\Resources\Fields\MarkdownField;
+use Oscer\Cms\Backend\Resources\Fields\TagsField;
+use Oscer\Cms\Backend\Resources\Fields\TextField;
+use Oscer\Cms\Backend\Resources\Resource;
+use Oscer\Cms\Core\Posts\Models\Post;
+use Oscer\Cms\Core\Posts\Models\Tag;
 
 class PostResource extends Resource
 {

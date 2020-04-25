@@ -30,7 +30,7 @@
                 v-if="field.active"
                 :key="field.name + index"
                 :ref="`${field.name}-field`"
-                :is="field.component"
+                :is="`Form${field.component}`"
                 :field="field"
                 :validation-errors="getValidationErrors(field)"
                 @componentChange="activateDependents"
@@ -127,7 +127,6 @@
             }
 
             Cms.$on('reset-form-' + this.resource, payload => {
-                console.log('reset', payload);
                 if (typeof payload !== 'undefined') {
                     this.initializeForm(payload);
                 } else {

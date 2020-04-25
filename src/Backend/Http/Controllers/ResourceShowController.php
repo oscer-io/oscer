@@ -1,8 +1,8 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Backend\Http\Controllers;
+namespace Oscer\Cms\Backend\Http\Controllers;
 
-use Bambamboole\LaravelCms\Backend\Http\Requests\ResourceRequest;
+use Oscer\Cms\Backend\Http\Requests\ResourceRequest;
 
 class ResourceShowController
 {
