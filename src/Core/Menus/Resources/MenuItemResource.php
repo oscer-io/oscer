@@ -28,7 +28,8 @@ class MenuItemResource extends Resource
                 'type',
                 'Type',
                 null,
-                function (){}
+                function () {
+                }
             )
                 ->rules(['required'])
                 ->options( // we pass the names of the fields here
