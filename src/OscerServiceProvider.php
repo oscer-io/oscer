@@ -10,6 +10,8 @@ use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Factory;
 use Oscer\Cms\Api\Routing\ApiRouter;
 use Oscer\Cms\Backend\Routing\BackendRouter;
+use Oscer\Cms\Backend\Sidebar\Sidebar;
+use Oscer\Cms\Backend\Sidebar\SidebarItem;
 use Oscer\Cms\Backend\ViewComposer\BackendViewComposer;
 use Oscer\Cms\Core\Commands\Development\SeedCommand;
 use Oscer\Cms\Core\Commands\PublishCommand;
@@ -36,15 +38,17 @@ class OscerServiceProvider extends ServiceProvider
         BladeCompiler $blade,
         Factory $view,
         Repository $config,
-        Theme $theme
-    ) {
+        Theme $theme,
+        Sidebar $sidebar
+    )
+    {
         $this->apiRouter = $apiRouter;
         $this->backendRouter = $backendRouter;
         $this->config = $config;
 
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'cms');
-        $this->loadMigrationsFrom(__DIR__.'/../migrations');
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'cms');
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'cms');
+        $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'cms');
 
         $this->configureGuard();
         $this->configurePermissions();
@@ -66,6 +70,14 @@ class OscerServiceProvider extends ServiceProvider
         $view->composer('cms::backend', BackendViewComposer::class);
 
         $blade->component(MenuBladeComponent::class, 'menu');
+
+        $sidebar
+            ->addItem(new SidebarItem('folder', 'Pages', 'pages.index', 'pages.view'))
+            ->addItem(new SidebarItem('folder', 'Posts', 'posts.index', 'posts.view'))
+            ->addItem(new SidebarItem('folder', 'Menus', 'menus.index', 'menus.view'))
+            ->addItem(new SidebarItem('folder', 'Options', 'options.index', 'options.view'))
+            ->addItem(new SidebarItem('folder', 'Users', 'users.index', 'users.view'))
+            ->addItem(new SidebarItem('folder', 'Roles', 'roles.index', 'roles.view'));
     }
 
     protected function configureGuard(): void
@@ -93,6 +105,7 @@ class OscerServiceProvider extends ServiceProvider
     {
         $this->config->set('ziggy.whitelist', ['cms.*']);
         $this->config->set('ziggy.skip-route-function', true);
+        $this->config->set('blade-icons.sets.cms.path', 'vendor/oscer-io/oscer/resources/icons');
     }
 
     protected function configureSanctum()
@@ -108,11 +121,11 @@ class OscerServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../dist' => public_path('vendor/cms'),
+                __DIR__ . '/../dist' => public_path('vendor/cms'),
             ], 'cms-assets');
 
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('cms.php'),
+                __DIR__ . '/../config/config.php' => config_path('cms.php'),
             ], 'cms-config');
         }
     }
@@ -129,13 +142,15 @@ class OscerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'cms');
+        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'cms');
 
         $this->commands([
             PublishCommand::class,
             SeedCommand::class,
             ResolveOptionsCommand::class,
         ]);
+
+        $this->app->singleton(Sidebar::class, Sidebar::class);
 
         $this->app->singleton(Theme::class, function () {
             return new DefaultTheme();
