@@ -8,13 +8,13 @@ return [
         'cancel' => 'Cancel',
     ],
     'titles' => [
-      'index' => 'All :Resources',
-      'detail' => 'Show :Resource',
-      'create' => 'New :Resource',
-      'update' => 'Update :Resource',
+        'index' => 'All :Resources',
+        'detail' => 'Show :Resource',
+        'create' => 'New :Resource',
+        'update' => 'Update :Resource',
     ],
     'index' =>[
-      'search' => 'Search'
+        'search' => 'Search',
     ],
-    'create'
+    'create',
 ];
