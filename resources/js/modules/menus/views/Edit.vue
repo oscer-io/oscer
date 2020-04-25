@@ -8,16 +8,14 @@
 </template>
 
 <script>
-    import ResourceForm from "../../../components/ResourceForm";
-
     export default {
-        components: {ResourceForm},
-
         props: ['id'],
-
         methods: {
             handleSuccess(menu) {
-                Cms.flash('success', 'Nice one!');
+                this.$store.dispatch('flash', {
+                    type: 'success',
+                    text: 'Nice one!'
+                });
                 this.$router.push({name: 'menus.show', params: {id: menu.id}})
             }
         }

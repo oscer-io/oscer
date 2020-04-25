@@ -9,14 +9,14 @@
 </template>
 
 <script>
-    import ResourceForm from "../../../components/ResourceForm";
-
     export default {
-        components: {ResourceForm},
         props: ['id'],
         methods: {
-            handleSuccess(role) {
-                Cms.flash('success', 'Role updated.');
+            handleSuccess() {
+                this.$store.dispatch('flash', {
+                    type: 'success',
+                    text: 'Role updated'
+                });
             }
         }
     }

@@ -20,12 +20,7 @@
 </template>
 
 <script>
-    import ResourceForm from "../../../components/ResourceForm";
-
     export default {
-        components: {
-            ResourceForm
-        },
         computed: {
             currentUser() {
                 return Cms.config.user;
@@ -34,7 +29,10 @@
         methods: {
             handleSuccess(user) {
                 Cms.config.user = user;
-                Cms.flash('success', 'Nice one!');
+                this.$store.dispatch('flash', {
+                    type: 'success',
+                    text: 'Nice one!'
+                });
                 this.$router.push({name: 'profile.show'})
             }
         }

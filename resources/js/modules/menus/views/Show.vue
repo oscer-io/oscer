@@ -115,17 +115,15 @@
 </template>
 
 <script>
-    import api from "../../../lib/api";
+    import api from "@/lib/api";
     import Draggable from 'vuedraggable';
-    import ResourceForm from "../../../components/ResourceForm";
 
     export default {
         props: {
             id: {required: true}
         },
         components: {
-            Draggable,
-            ResourceForm
+            Draggable
         },
         data() {
             return {
@@ -169,14 +167,20 @@
 
 
             handleNewItemSuccess() {
-                Cms.flash('success', 'new Item created');
+                this.$store.dispatch('flash', {
+                    type: 'success',
+                    text: 'New item created'
+                });
                 this.fetchMenu();
             },
 
             handleUpdateItemSuccess() {
                 this.fetchMenu();
                 this.mode = 'new';
-                Cms.flash('success', 'new Item created');
+                this.$store.dispatch('flash', {
+                    type: 'success',
+                    text: 'Item updated'
+                });
             },
 
             async saveOrder() {
@@ -194,7 +198,10 @@
                 });
                 // and fetch menu again
                 this.fetchMenu();
-                Cms.flash('success', 'Items reordered');
+                this.$store.dispatch('flash', {
+                    type: 'success',
+                    text: 'Items reordered'
+                });
             },
 
             async deleteItem(item) {
@@ -202,7 +209,10 @@
                 await api(Cms.route('cms.backend.resources.delete', ['menu-item', item.id]));
                 // and fetch menu again
                 this.fetchMenu();
-                Cms.flash('success', 'Item deleted');
+                this.$store.dispatch('flash', {
+                    type: 'success',
+                    text: 'Item deleted'
+                });
             }
         }
     }

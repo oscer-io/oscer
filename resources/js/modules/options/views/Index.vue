@@ -22,18 +22,10 @@
 </template>
 
 <script>
-    import _ from 'lodash';
-    import Tab from "../../../components/Tab";
-    import Tabs from "../../../components/Tabs";
-    import api from "../../../lib/api";
-    import ResourceForm from "../../../components/ResourceForm";
+    import {groupBy} from 'lodash';
+    import api from "@/lib/api";
 
     export default {
-        components: {
-            ResourceForm,
-            Tab,
-            Tabs,
-        },
         data() {
             return {
                 isLoading: true,
@@ -42,7 +34,7 @@
         },
         computed: {
             tabsWithOptions() {
-                return _.groupBy(this.rawOptions, option => option.model.key.split('.')[0]);
+                return groupBy(this.rawOptions, option => option.model.key.split('.')[0]);
             }
         },
         async mounted() {
@@ -52,7 +44,10 @@
         },
         methods: {
             handleSuccess() {
-                Cms.flash('success', 'Nice one!');
+                this.$store.dispatch('flash', {
+                    type: 'success',
+                    text: 'Nice one!'
+                });
             }
         }
     }

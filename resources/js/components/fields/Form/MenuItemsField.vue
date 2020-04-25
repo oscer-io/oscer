@@ -130,7 +130,10 @@
             async deleteItem(item) {
                 // delete item
                 await api(Cms.route('cms.backend.resources.delete', ['menu-item', item.id]));
-                Cms.flash('success', 'Item deleted');
+                this.$store.dispatch('flash', {
+                    type: 'success',
+                    text: 'Item deleted!'
+                });
                 Cms.$emit('reset-form-menu');
             },
             handleCancelUpdateItem(){
@@ -139,12 +142,18 @@
             },
             handleUpdateItemSuccess(payload) {
                 this.$modal.hide('update-menu-item');
-                Cms.flash('success', 'Item updated');
+                this.$store.dispatch('flash', {
+                    type: 'success',
+                    text: 'Item updated!'
+                });
                 Cms.$emit('reset-form-menu');
             },
             handleNewItemSuccess(payload) {
                 this.$modal.hide('new-menu-item');
-                Cms.flash('success', 'new Item created');
+                this.$store.dispatch('flash', {
+                    type: 'success',
+                    text: 'New item created!'
+                });
                 Cms.$emit('reset-form-menu');
             },
             fill(data) {

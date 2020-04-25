@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import axios from 'axios'
 import router from './router'
 
@@ -14,7 +15,10 @@ axios.interceptors.response.use(
 
         // Show the user a 500 error
         if (status >= 500) {
-            Cms.flash('error', error.response.data.message)
+            Vue.store.dispatch('flash', {
+                type: 'error',
+                text: error.response.data.message
+            });
         }
 
         // Handle Session Timeouts

@@ -1,6 +1,7 @@
 import Vue from 'vue';
-import VueJSModal from "vue-js-modal";
-import router from "./router";
+import VueJSModal from 'vue-js-modal';
+import router from './router';
+import store from './store'
 import i18n from './i18n';
 import route from 'ziggy';
 import Layout from '../components/Layout';
@@ -40,6 +41,7 @@ export default class Cms {
             el: '#cms',
             components: {Layout},
             router,
+            store,
             i18n,
             data() {
                 return {
@@ -78,13 +80,6 @@ export default class Cms {
      */
     $emit(...args) {
         this.bus.$emit(...args)
-    }
-
-    /**
-     * flash a message via the event bus
-     */
-    flash(type, text) {
-        this.bus.$emit('flash', {'type': type, 'text': text});
     }
 
     /**

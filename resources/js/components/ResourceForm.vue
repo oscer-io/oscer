@@ -179,7 +179,10 @@
                 } catch (error) {
                     if (error.response.status === 422) {
                         this.validationErrors = error.response.data.errors;
-                        Cms.flash('error', 'There are validation errors in the form.')
+                        this.$store.dispatch('flash', {
+                            type: 'error',
+                            text: 'There are validation errors in the form.'
+                        })
                     }
                 }
             },
