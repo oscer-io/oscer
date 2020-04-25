@@ -7,14 +7,14 @@
                     </h1>
                 </div>
                 <div class="mt-4 flex md:mt-0 md:ml-4">
-                    <span class="ml-3 shadow-sm rounded-md">
+                    <slot name="edit-button">
                         <RouterLink
                             class="btn"
                             :to="{name:`${resource}s.edit`, params: {id: resourceId}}"
                         >
-                           edit
+                            edit
                         </RouterLink>
-                    </span>
+                    </slot>
                 </div>
             </div>
             <div>
