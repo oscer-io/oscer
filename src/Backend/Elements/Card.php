@@ -22,9 +22,10 @@ class Card implements \JsonSerializable
 
     protected function initializeFields(array $fields)
     {
-        return collect($fields)->map(function (Field $field){
-           $field->card = $this->name;
-           return $field;
+        return collect($fields)->map(function (Field $field) {
+            $field->card = $this->name;
+
+            return $field;
         })->all();
     }
 
@@ -34,7 +35,7 @@ class Card implements \JsonSerializable
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function jsonSerialize()
     {

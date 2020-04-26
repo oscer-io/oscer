@@ -54,9 +54,10 @@ abstract class Resource implements \JsonSerializable
                     foreach ($field->fields as $fieldInCard) {
                         $fields->add($fieldInCard);
                     }
+
                     return;
                 }
-                if (!$field->card) {
+                if (! $field->card) {
                     $field->card = 'default';
                 }
                 $fields->add($field);
@@ -75,7 +76,7 @@ abstract class Resource implements \JsonSerializable
     protected function filteredFields(Request $request): Collection
     {
         return $this->resolveFields()->filter(function (Field $field) use ($request) {
-            return !$field->shouldBeRemoved($request);
+            return ! $field->shouldBeRemoved($request);
         });
     }
 
@@ -192,16 +193,16 @@ abstract class Resource implements \JsonSerializable
     protected function cards()
     {
         $rawFields = $this->fields();
-        $cards =  $rawFields->whereInstanceOf(Card::class);
-        if($rawFields->whereInstanceOf(Field::class)->isNotEmpty()){
+        $cards = $rawFields->whereInstanceOf(Card::class);
+        if ($rawFields->whereInstanceOf(Field::class)->isNotEmpty()) {
             $cards->prepend($this->defaultCard());
         }
+
         return $cards;
     }
 
     public function toArray()
     {
-
         $data = [
             'labels' => $this->labels(),
             'cards' => $this->cards(),

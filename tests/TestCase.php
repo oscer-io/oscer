@@ -26,7 +26,7 @@ class TestCase extends BaseTestCase
             SanctumServiceProvider::class,
             PermissionServiceProvider::class,
             OscerServiceProvider::class,
-            TranslationServiceProvider::class
+            TranslationServiceProvider::class,
         ];
     }
 
