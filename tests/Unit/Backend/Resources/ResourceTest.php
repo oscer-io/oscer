@@ -8,7 +8,7 @@ use Oscer\Cms\Backend\Resources\Fields\TextField;
 use Oscer\Cms\Backend\Resources\Resource;
 use Oscer\Cms\Tests\Fixtures\TestModel;
 use Oscer\Cms\Tests\Fixtures\TestResource;
-use PHPUnit\Framework\TestCase;
+use Oscer\Cms\Tests\TestCase;
 
 class ResourceTest extends TestCase
 {
