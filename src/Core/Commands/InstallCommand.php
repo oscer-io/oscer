@@ -33,7 +33,7 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        if($this->option('dev')){
+        if ($this->option('dev')) {
             $this->call('migrate:fresh');
         }
         $this->comment('Publishing Oscers assets...');
@@ -49,13 +49,12 @@ class InstallCommand extends Command
 
         $this->seedDummyContent();
 
-
         $this->info('Oscer is installed successfully.');
     }
 
     public function createAdminUser(): void
     {
-// admin user
+        // admin user
         if ($this->option('dev')) {
             $admin = User::query()->create([
                 'name' => 'admin',
@@ -132,10 +131,10 @@ class InstallCommand extends Command
                     return Role::query()
                         ->create(['name' => $role['name']])
                         ->givePermissionTo($role['permissions']);
-                })->map(function (Role $role){
+                })->map(function (Role $role) {
                     return [
-                      'name' => $role->name,
-                      'permissions' => $role->permissions->pluck('name')->implode(', '),
+                        'name' => $role->name,
+                        'permissions' => $role->permissions->pluck('name')->implode(', '),
                     ];
                 })->toArray();
 
@@ -161,9 +160,9 @@ class InstallCommand extends Command
             $this->faker = app()->make(Generator::class);
             app()->singleton(Factory::class, function ($app) {
                 $faker = $app->make(Generator::class);
+
                 return Factory::construct($faker, base_path('vendor/oscer-io/oscer/tests/factories'));
             });
-
 
             $this->seedTagsAndPosts();
             $this->seedPages();
