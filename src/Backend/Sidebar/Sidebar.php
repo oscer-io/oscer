@@ -3,7 +3,6 @@
 namespace Oscer\Cms\Backend\Sidebar;
 
 use Illuminate\Http\Request;
-use Oscer\Cms\Core\Users\Models\Role;
 
 class Sidebar implements \JsonSerializable
 {
