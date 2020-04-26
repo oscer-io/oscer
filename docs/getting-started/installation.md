@@ -37,7 +37,7 @@ Do not forget to register it in the `providers` key inside your `config/app.php`
 ### Publish config
 
 ```bash
-php artisan cms:publish
+php artisan cms:install
 ```  
 
 ### Add environment variable

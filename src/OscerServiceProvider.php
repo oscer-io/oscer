@@ -14,6 +14,7 @@ use Oscer\Cms\Backend\Sidebar\Sidebar;
 use Oscer\Cms\Backend\Sidebar\SidebarItem;
 use Oscer\Cms\Backend\ViewComposer\BackendViewComposer;
 use Oscer\Cms\Core\Commands\Development\SeedCommand;
+use Oscer\Cms\Core\Commands\InstallCommand;
 use Oscer\Cms\Core\Commands\PublishCommand;
 use Oscer\Cms\Core\Commands\ResolveOptionsCommand;
 use Oscer\Cms\Core\Users\Models\Permission;
@@ -145,8 +146,8 @@ class OscerServiceProvider extends ServiceProvider
 
         $this->commands([
             PublishCommand::class,
-            SeedCommand::class,
             ResolveOptionsCommand::class,
+            InstallCommand::class,
         ]);
 
         $this->app->singleton(Sidebar::class, Sidebar::class);
