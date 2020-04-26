@@ -9,7 +9,6 @@ use Oscer\Cms\Backend\Resources\Fields\PasswordField;
 use Oscer\Cms\Backend\Resources\Fields\SelectField;
 use Oscer\Cms\Backend\Resources\Fields\TextareaField;
 use Oscer\Cms\Backend\Resources\Fields\TextField;
-use Oscer\Cms\Backend\Resources\Resource;
 use Oscer\Cms\Core\Models\User;
 
 class UserResource extends Resource

@@ -10,10 +10,10 @@ use Illuminate\Support\Collection;
 use Oscer\Cms\Core\Models\Menu;
 use Oscer\Cms\Core\Models\Option;
 use Oscer\Cms\Core\Models\Page;
-use Oscer\Cms\Core\Models\Post;
-use Oscer\Cms\Core\Models\Tag;
 use Oscer\Cms\Core\Models\Permission;
+use Oscer\Cms\Core\Models\Post;
 use Oscer\Cms\Core\Models\Role;
+use Oscer\Cms\Core\Models\Tag;
 use Oscer\Cms\Core\Models\User;
 
 class SeedCommand extends Command

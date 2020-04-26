@@ -4,8 +4,6 @@ namespace Oscer\Cms\Core\Models;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
-use Oscer\Cms\Core\Models\BaseModel;
-use Oscer\Cms\Core\Models\Post;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 

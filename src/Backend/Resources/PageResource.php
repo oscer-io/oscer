@@ -6,7 +6,6 @@ use Illuminate\Support\Collection;
 use Oscer\Cms\Backend\Resources\Fields\ImageField;
 use Oscer\Cms\Backend\Resources\Fields\MarkdownField;
 use Oscer\Cms\Backend\Resources\Fields\TextField;
-use Oscer\Cms\Backend\Resources\Resource;
 use Oscer\Cms\Core\Models\Page;
 
 class PageResource extends Resource
