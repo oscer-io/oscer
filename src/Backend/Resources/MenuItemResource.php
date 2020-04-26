@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Oscer\Cms\Backend\Resources\Fields\SelectField;
 use Oscer\Cms\Backend\Resources\Fields\TextField;
-use Oscer\Cms\Backend\Resources\Resource;
 use Oscer\Cms\Core\Models\MenuItem;
 use Oscer\Cms\Core\Models\Post;
 

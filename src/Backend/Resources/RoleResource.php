@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Oscer\Cms\Backend\Resources\Fields\CheckboxGroupField;
 use Oscer\Cms\Backend\Resources\Fields\TextField;
-use Oscer\Cms\Backend\Resources\Resource;
 use Oscer\Cms\Core\Models\Permission;
 use Oscer\Cms\Core\Models\Role;
 

@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Oscer\Cms\Core\Mails\NewUserCreatedMail;
-use Oscer\Cms\Core\Models\BaseModel;
 use Spatie\Permission\Traits\HasRoles;
 
 /**

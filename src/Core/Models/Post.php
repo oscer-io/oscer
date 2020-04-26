@@ -10,8 +10,6 @@ use League\CommonMark\Block\Element\FencedCode;
 use League\CommonMark\Block\Element\IndentedCode;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
-use Oscer\Cms\Core\Models\BaseModel;
-use Oscer\Cms\Core\Models\Tag;
 use Spatie\CommonMarkHighlighter\FencedCodeRenderer;
 use Spatie\CommonMarkHighlighter\IndentedCodeRenderer;
 use Spatie\Sluggable\HasSlug;

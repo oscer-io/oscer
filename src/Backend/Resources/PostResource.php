@@ -8,7 +8,6 @@ use Oscer\Cms\Backend\Resources\Fields\ImageField;
 use Oscer\Cms\Backend\Resources\Fields\MarkdownField;
 use Oscer\Cms\Backend\Resources\Fields\TagsField;
 use Oscer\Cms\Backend\Resources\Fields\TextField;
-use Oscer\Cms\Backend\Resources\Resource;
 use Oscer\Cms\Core\Models\Post;
 use Oscer\Cms\Core\Models\Tag;
 

@@ -3,8 +3,6 @@
 namespace Oscer\Cms\Core\Models;
 
 use Illuminate\Support\Carbon;
-use Oscer\Cms\Core\Models\BaseModel;
-use Oscer\Cms\Core\Models\Menu;
 
 /**
  * @property int id

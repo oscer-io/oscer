@@ -4,7 +4,6 @@ namespace Oscer\Cms\Backend\Resources;
 
 use Illuminate\Support\Collection;
 use Oscer\Cms\Backend\Resources\Fields\OptionField;
-use Oscer\Cms\Backend\Resources\Resource;
 use Oscer\Cms\Core\Models\Option;
 
 class OptionResource extends Resource
