@@ -25,8 +25,7 @@ class Sidebar implements \JsonSerializable
     public function authorizeItems()
     {
         return array_filter($this->items, function (SidebarItem $item) {
-            return
-                $this->request->user()->can($item->getPermission());
+            return $this->request->user()->can($item->getPermission());
         });
     }
 

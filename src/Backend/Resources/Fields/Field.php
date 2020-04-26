@@ -37,12 +37,15 @@ abstract class Field implements JsonSerializable
 
     protected bool $showOnIndex = true;
 
+    public $card = false;
+
     public function __construct(
         string $name,
         ?string $label = null,
         ?Closure $resolveValueCallback = null,
         ?Closure $fillResourceCallback = null
-    ) {
+    )
+    {
         $this->name = $name;
         $this->label = $label ?: ucfirst($name);
         $this->resolveValueCallback = $resolveValueCallback ?: function (self $field) {
@@ -150,7 +153,7 @@ abstract class Field implements JsonSerializable
         if ($request->input($this->name) === null) {
             if ($this->hasDependency() && ($dependency = $request->input($this->dependency['field']))) {
                 //check whether this field is active & therefore must be validated or should be skipped
-                return ! $this->isDependencyMatched($dependency);
+                return !$this->isDependencyMatched($dependency);
             }
 
             if (in_array('filled', $this->rules)
@@ -167,7 +170,7 @@ abstract class Field implements JsonSerializable
      */
     public function hasDependency()
     {
-        return ! empty($this->dependency);
+        return !empty($this->dependency);
     }
 
     /**
@@ -210,6 +213,7 @@ abstract class Field implements JsonSerializable
     {
         $data = [
             'component' => $this->component,
+            'card' => $this->card,
             'name' => $this->name,
             'label' => $this->label,
             'value' => $this->resolveValue(),

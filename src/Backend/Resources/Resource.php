@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator as ValidatorFactory;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
+use Oscer\Cms\Backend\Elements\Card;
 use Oscer\Cms\Backend\Resources\Fields\Field;
 
 abstract class Resource implements \JsonSerializable
@@ -31,7 +32,7 @@ abstract class Resource implements \JsonSerializable
     public function __construct(Model $resourceModel)
     {
         $this->resourceModel = $resourceModel;
-        $this->fields = $this->resolveFields();
+        $this->fields = new Collection();
     }
 
     /**
@@ -46,17 +47,35 @@ abstract class Resource implements \JsonSerializable
      */
     protected function resolveFields()
     {
-        return $this->fields()->map(function (Field $field) {
-            $field->value = $field->resolve($this->resourceModel);
+        if ($this->fields->isEmpty()) {
+            $fields = new Collection();
+            $this->fields()->each(function ($field) use ($fields) {
+                if ($field instanceof Card) {
+                    foreach ($field->fields as $fieldInCard) {
+                        $fields->add($fieldInCard);
+                    }
+                    return;
+                }
+                if (!$field->card) {
+                    $field->card = 'default';
+                }
+                $fields->add($field);
+            });
 
-            return $field;
-        });
+            $this->fields = $fields->map(function (Field $field) {
+                $field->value = $field->resolve($this->resourceModel);
+
+                return $field;
+            });
+        }
+
+        return $this->fields;
     }
 
     protected function filteredFields(Request $request): Collection
     {
-        return $this->fields->filter(function (Field $field) use ($request) {
-            return ! $field->shouldBeRemoved($request);
+        return $this->resolveFields()->filter(function (Field $field) use ($request) {
+            return !$field->shouldBeRemoved($request);
         });
     }
 
@@ -128,7 +147,7 @@ abstract class Resource implements \JsonSerializable
      */
     protected function shouldRemoveNullValues(): bool
     {
-        $rules = $this->fields->reduce(function ($result, Field $field) {
+        $rules = $this->resolveFields()->reduce(function ($result, Field $field) {
             foreach ($field->rules as $rule) {
                 $result[] = $rule;
             }
@@ -165,11 +184,28 @@ abstract class Resource implements \JsonSerializable
         return true;
     }
 
+    protected function defaultCard()
+    {
+        return new Card('default', [], 'full');
+    }
+
+    protected function cards()
+    {
+        $rawFields = $this->fields();
+        $cards =  $rawFields->whereInstanceOf(Card::class);
+        if($rawFields->whereInstanceOf(Field::class)->isNotEmpty()){
+            $cards->prepend($this->defaultCard());
+        }
+        return $cards;
+    }
+
     public function toArray()
     {
+
         $data = [
             'labels' => $this->labels(),
-            'fields' => $this->fields,
+            'cards' => $this->cards(),
+            'fields' => $this->resolveFields(),
             'model' => $this->resourceModel,
             'resourceId' => $this->when($this->resourceModel->id, $this->resourceModel->id),
             'displayShowButtonOnIndex' => $this->displayShowButtonOnIndex,

@@ -2,6 +2,7 @@
 
 namespace Oscer\Cms\Tests;
 
+use Illuminate\Translation\TranslationServiceProvider;
 use Laravel\Sanctum\Sanctum;
 use Laravel\Sanctum\SanctumServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
@@ -25,6 +26,7 @@ class TestCase extends BaseTestCase
             SanctumServiceProvider::class,
             PermissionServiceProvider::class,
             OscerServiceProvider::class,
+            TranslationServiceProvider::class
         ];
     }
 
