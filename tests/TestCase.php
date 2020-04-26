@@ -5,7 +5,7 @@ namespace Oscer\Cms\Tests;
 use Laravel\Sanctum\Sanctum;
 use Laravel\Sanctum\SanctumServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
-use Oscer\Cms\Core\Users\Models\User;
+use Oscer\Cms\Core\Models\User;
 use Oscer\Cms\OscerServiceProvider;
 use Spatie\Permission\PermissionServiceProvider;
 

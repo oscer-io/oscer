@@ -2,7 +2,7 @@
 
 namespace Oscer\Cms\Frontend\Http\Controllers;
 
-use Oscer\Cms\Core\Posts\Models\Post;
+use Oscer\Cms\Core\Models\Post;
 use Oscer\Cms\Frontend\Contracts\Theme;
 
 class PostsController

@@ -7,14 +7,14 @@ use Illuminate\Console\Command;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Collection;
-use Oscer\Cms\Core\Menus\Models\Menu;
-use Oscer\Cms\Core\Options\Models\Option;
-use Oscer\Cms\Core\Pages\Models\Page;
-use Oscer\Cms\Core\Posts\Models\Post;
-use Oscer\Cms\Core\Posts\Models\Tag;
-use Oscer\Cms\Core\Users\Models\Permission;
-use Oscer\Cms\Core\Users\Models\Role;
-use Oscer\Cms\Core\Users\Models\User;
+use Oscer\Cms\Core\Models\Menu;
+use Oscer\Cms\Core\Models\Option;
+use Oscer\Cms\Core\Models\Page;
+use Oscer\Cms\Core\Models\Post;
+use Oscer\Cms\Core\Models\Tag;
+use Oscer\Cms\Core\Models\Permission;
+use Oscer\Cms\Core\Models\Role;
+use Oscer\Cms\Core\Models\User;
 
 class SeedCommand extends Command
 {
@@ -216,7 +216,7 @@ class SeedCommand extends Command
             ],
         ]);
         $menus->each(function (array $data) {
-            /** @var Menu $menu */
+            /** @var \Oscer\Cms\Core\Models\Menu $menu */
             $menu = factory(Menu::class)->create(['name' => $data['name'], 'location' => $data['location']]);
             $menu->items()->createMany($data['items']);
         });

@@ -2,7 +2,7 @@
 
 namespace Oscer\Cms\Tests\Feature\Api\Auth;
 
-use Oscer\Cms\Core\Users\Models\User;
+use Oscer\Cms\Core\Models\User;
 use Oscer\Cms\Tests\ApiTestCase;
 
 class IssueTokenTest extends ApiTestCase

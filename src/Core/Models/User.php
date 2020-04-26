@@ -1,6 +1,6 @@
 <?php
 
-namespace Oscer\Cms\Core\Users\Models;
+namespace Oscer\Cms\Core\Models;
 
 use Illuminate\Contracts\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable;

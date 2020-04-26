@@ -1,6 +1,6 @@
 <?php
 
-namespace Oscer\Cms\Core\Users\Models;
+namespace Oscer\Cms\Core\Models;
 
 use Spatie\Permission\Models\Role as BaseRole;
 

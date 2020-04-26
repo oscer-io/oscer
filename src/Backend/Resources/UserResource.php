@@ -1,6 +1,6 @@
 <?php
 
-namespace Oscer\Cms\Core\Users\Resources;
+namespace Oscer\Cms\Backend\Resources;
 
 use Illuminate\Support\Collection;
 use Illuminate\Validation\Rule;
@@ -10,7 +10,7 @@ use Oscer\Cms\Backend\Resources\Fields\SelectField;
 use Oscer\Cms\Backend\Resources\Fields\TextareaField;
 use Oscer\Cms\Backend\Resources\Fields\TextField;
 use Oscer\Cms\Backend\Resources\Resource;
-use Oscer\Cms\Core\Users\Models\User;
+use Oscer\Cms\Core\Models\User;
 
 class UserResource extends Resource
 {
