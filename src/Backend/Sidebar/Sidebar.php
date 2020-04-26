@@ -27,8 +27,7 @@ class Sidebar implements \JsonSerializable
     {
         return array_filter($this->items,function (SidebarItem $item){
             return
-                $this->request->user()->hasPermissionTo($item->getPermission())
-                || $this->request->user()->hasRole(Role::SUPER_ADMIN_ROLE);
+                $this->request->user()->can($item->getPermission());
         });
     }
 
