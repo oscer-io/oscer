@@ -10,6 +10,7 @@ use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Factory;
 use Oscer\Cms\Api\Routing\ApiRouter;
 use Oscer\Cms\Backend\Routing\BackendRouter;
+use Oscer\Cms\Backend\ScriptHandler;
 use Oscer\Cms\Backend\Sidebar\Sidebar;
 use Oscer\Cms\Backend\Sidebar\SidebarItem;
 use Oscer\Cms\Backend\ViewComposer\BackendViewComposer;
@@ -150,7 +151,7 @@ class OscerServiceProvider extends ServiceProvider
         ]);
 
         $this->app->singleton(Sidebar::class, Sidebar::class);
-
+        $this->app->singleton(ScriptHandler::class, ScriptHandler::class);
         $this->app->singleton(Theme::class, function () {
             return new DefaultTheme();
         });
