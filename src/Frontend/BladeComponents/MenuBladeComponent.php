@@ -3,7 +3,7 @@
 namespace Oscer\Cms\Frontend\BladeComponents;
 
 use Illuminate\View\Component;
-use Oscer\Cms\Core\Menus\Models\Menu;
+use Oscer\Cms\Core\Models\Menu;
 use Oscer\Cms\Frontend\Contracts\Theme;
 
 class MenuBladeComponent extends Component

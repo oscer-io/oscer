@@ -5,7 +5,7 @@ namespace Oscer\Cms\Core\Commands;
 use Illuminate\Config\Repository;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
-use Oscer\Cms\Core\Options\Models\Option;
+use Oscer\Cms\Core\Models\Option;
 use Oscer\Cms\Frontend\Contracts\Theme;
 
 class ResolveOptionsCommand extends Command

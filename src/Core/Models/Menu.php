@@ -1,8 +1,6 @@
 <?php
 
-namespace Oscer\Cms\Core\Menus\Models;
-
-use Oscer\Cms\Core\Models\BaseModel;
+namespace Oscer\Cms\Core\Models;
 
 class Menu extends BaseModel
 {

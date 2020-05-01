@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Oscer\Cms\Backend\Http\Requests\Auth\SendPasswordResetLinkRequest;
 use Oscer\Cms\Core\Mails\ResetPasswordMail;
-use Oscer\Cms\Core\Users\Models\User;
+use Oscer\Cms\Core\Models\User;
 use Throwable;
 
 class ForgotPasswordController
@@ -48,7 +48,7 @@ class ForgotPasswordController
 
             [$userId, $token] = explode('|', $token);
 
-            /** @var \Oscer\Cms\Core\Users\Models\User $user */
+            /** @var \Oscer\Cms\Core\Models\User $user */
             $user = User::query()->findOrFail($userId);
         } catch (Throwable $e) {
             return redirect()->route('cms.password.forgot')->with('invalidResetToken', true);

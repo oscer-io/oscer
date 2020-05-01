@@ -1,6 +1,6 @@
 <?php
 
-namespace Oscer\Cms\Core\Users\Models;
+namespace Oscer\Cms\Core\Models;
 
 use Illuminate\Contracts\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Oscer\Cms\Core\Mails\NewUserCreatedMail;
-use Oscer\Cms\Core\Models\BaseModel;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
