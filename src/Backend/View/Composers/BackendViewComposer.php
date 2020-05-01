@@ -5,8 +5,8 @@ namespace Oscer\Cms\Backend\View\Composers;
 use Illuminate\Routing\Router;
 use Illuminate\View\View;
 use Oscer\Cms\Backend\Routing\RouteGenerator;
-use Oscer\Cms\Backend\View\ScriptHandler;
 use Oscer\Cms\Backend\Sidebar\Sidebar;
+use Oscer\Cms\Backend\View\ScriptHandler;
 
 class BackendViewComposer
 {
