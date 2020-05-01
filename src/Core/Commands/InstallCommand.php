@@ -10,10 +10,10 @@ use Illuminate\Support\Str;
 use Oscer\Cms\Core\Models\Menu;
 use Oscer\Cms\Core\Models\Option;
 use Oscer\Cms\Core\Models\Page;
-use Oscer\Cms\Core\Models\Post;
-use Oscer\Cms\Core\Models\Tag;
 use Oscer\Cms\Core\Models\Permission;
+use Oscer\Cms\Core\Models\Post;
 use Oscer\Cms\Core\Models\Role;
+use Oscer\Cms\Core\Models\Tag;
 use Oscer\Cms\Core\Models\User;
 use Symfony\Component\Console\Helper\Table;
 
@@ -61,16 +61,16 @@ class InstallCommand extends Command
 
     /**
      * Register the Cms service provider in the application configuration file.
-     * Thanks to laravel/nova for inspiration
+     * Thanks to laravel/nova for inspiration.
      */
     protected function registerCmsServiceProvider(): void
     {
-        if (!file_exists(app_path('Providers/CmsServiceProvider.php'))) {
+        if (! file_exists(app_path('Providers/CmsServiceProvider.php'))) {
             $namespace = Str::replaceLast('\\', '', $this->laravel->getNamespace());
 
             file_put_contents(config_path('app.php'), str_replace(
-                "{$namespace}\\Providers\RouteServiceProvider::class," . PHP_EOL,
-                "{$namespace}\\Providers\RouteServiceProvider::class," . PHP_EOL . "        {$namespace}\Providers\CmsServiceProvider::class," . PHP_EOL,
+                "{$namespace}\\Providers\RouteServiceProvider::class,".PHP_EOL,
+                "{$namespace}\\Providers\RouteServiceProvider::class,".PHP_EOL."        {$namespace}\Providers\CmsServiceProvider::class,".PHP_EOL,
                 file_get_contents(config_path('app.php'))
             ));
         }
