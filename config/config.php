@@ -4,13 +4,13 @@
  * You can place your custom package configuration in here.
  */
 
-use Oscer\Cms\Core\Menus\Resources\MenuItemResource;
-use Oscer\Cms\Core\Menus\Resources\MenuResource;
-use Oscer\Cms\Core\Options\Resources\OptionResource;
-use Oscer\Cms\Core\Pages\Resources\PageResource;
-use Oscer\Cms\Core\Posts\Resources\PostResource;
-use Oscer\Cms\Core\Users\Resources\RoleResource;
-use Oscer\Cms\Core\Users\Resources\UserResource;
+use Oscer\Cms\Backend\Resources\MenuItemResource;
+use Oscer\Cms\Backend\Resources\MenuResource;
+use Oscer\Cms\Backend\Resources\OptionResource;
+use Oscer\Cms\Backend\Resources\PageResource;
+use Oscer\Cms\Backend\Resources\PostResource;
+use Oscer\Cms\Backend\Resources\RoleResource;
+use Oscer\Cms\Backend\Resources\UserResource;
 
 return [
     'from_email' => env('CMS_FROM_EMAIL', 'cms@website.com'),

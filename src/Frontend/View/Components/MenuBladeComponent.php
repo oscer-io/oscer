@@ -1,9 +1,9 @@
 <?php
 
-namespace Oscer\Cms\Frontend\BladeComponents;
+namespace Oscer\Cms\Frontend\View\Components;
 
 use Illuminate\View\Component;
-use Oscer\Cms\Core\Menus\Models\Menu;
+use Oscer\Cms\Core\Models\Menu;
 use Oscer\Cms\Frontend\Contracts\Theme;
 
 class MenuBladeComponent extends Component

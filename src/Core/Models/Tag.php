@@ -1,10 +1,9 @@
 <?php
 
-namespace Oscer\Cms\Core\Posts\Models;
+namespace Oscer\Cms\Core\Models;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
-use Oscer\Cms\Core\Models\BaseModel;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 

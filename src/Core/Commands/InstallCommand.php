@@ -6,19 +6,20 @@ use Faker\Generator;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Collection;
-use Oscer\Cms\Core\Menus\Models\Menu;
-use Oscer\Cms\Core\Options\Models\Option;
-use Oscer\Cms\Core\Pages\Models\Page;
-use Oscer\Cms\Core\Posts\Models\Post;
-use Oscer\Cms\Core\Posts\Models\Tag;
-use Oscer\Cms\Core\Users\Models\Permission;
-use Oscer\Cms\Core\Users\Models\Role;
-use Oscer\Cms\Core\Users\Models\User;
+use Illuminate\Support\Str;
+use Oscer\Cms\Core\Models\Menu;
+use Oscer\Cms\Core\Models\Option;
+use Oscer\Cms\Core\Models\Page;
+use Oscer\Cms\Core\Models\Post;
+use Oscer\Cms\Core\Models\Tag;
+use Oscer\Cms\Core\Models\Permission;
+use Oscer\Cms\Core\Models\Role;
+use Oscer\Cms\Core\Models\User;
 use Symfony\Component\Console\Helper\Table;
 
 class InstallCommand extends Command
 {
-    protected $signature = 'cms:install {--dev}';
+    protected $signature = 'cms:install {--dev} {--fresh}';
 
     protected $description = 'Install Oscer';
 
@@ -33,13 +34,19 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        if ($this->option('dev')) {
-            $this->call('migrate:fresh');
-        }
-        $this->comment('Publishing Oscers assets...');
+        // If --fresh option is enabled the database will be migrated fresh
+        $this->option('fresh')
+            ? $this->call('migrate:fresh')
+            : $this->call('migrate');
+
+        $this->registerCmsServiceProvider();
+        $this->comment('Publishing Oscer Service Provider...');
+        $this->callSilent('vendor:publish', ['--tag' => 'cms-provider']);
+
+        $this->comment('Publishing Oscer assets...');
         $this->callSilent('vendor:publish', ['--tag' => 'cms-assets']);
 
-        $this->comment('Publishing Oscers configuration...');
+        $this->comment('Publishing Oscer configuration...');
         $this->callSilent('vendor:publish', ['--tag' => 'cms-config']);
 
         $this->createAdminUser();
@@ -50,6 +57,23 @@ class InstallCommand extends Command
         $this->seedDummyContent();
 
         $this->info('Oscer is installed successfully.');
+    }
+
+    /**
+     * Register the Cms service provider in the application configuration file.
+     * Thanks to laravel/nova for inspiration
+     */
+    protected function registerCmsServiceProvider(): void
+    {
+        if (!file_exists(app_path('Providers/CmsServiceProvider.php'))) {
+            $namespace = Str::replaceLast('\\', '', $this->laravel->getNamespace());
+
+            file_put_contents(config_path('app.php'), str_replace(
+                "{$namespace}\\Providers\RouteServiceProvider::class," . PHP_EOL,
+                "{$namespace}\\Providers\RouteServiceProvider::class," . PHP_EOL . "        {$namespace}\Providers\CmsServiceProvider::class," . PHP_EOL,
+                file_get_contents(config_path('app.php'))
+            ));
+        }
     }
 
     public function createAdminUser(): void

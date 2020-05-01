@@ -3,8 +3,8 @@
 namespace Oscer\Cms\Api\Http\Controllers;
 
 use Oscer\Cms\Api\Http\Requests\SaveMenuOrderRequest;
-use Oscer\Cms\Core\Menus\Models\Menu;
-use Oscer\Cms\Core\Menus\Models\MenuItem;
+use Oscer\Cms\Core\Models\Menu;
+use Oscer\Cms\Core\Models\MenuItem;
 
 class MenuOrderController
 {

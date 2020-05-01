@@ -10,19 +10,20 @@ use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Factory;
 use Oscer\Cms\Api\Routing\ApiRouter;
 use Oscer\Cms\Backend\Routing\BackendRouter;
+use Oscer\Cms\Backend\View\ScriptHandler;
 use Oscer\Cms\Backend\Sidebar\Sidebar;
 use Oscer\Cms\Backend\Sidebar\SidebarItem;
-use Oscer\Cms\Backend\ViewComposer\BackendViewComposer;
 use Oscer\Cms\Core\Commands\InstallCommand;
+use Oscer\Cms\Backend\View\Composers\BackendViewComposer;
 use Oscer\Cms\Core\Commands\PublishCommand;
 use Oscer\Cms\Core\Commands\ResolveOptionsCommand;
-use Oscer\Cms\Core\Users\Models\Permission;
-use Oscer\Cms\Core\Users\Models\Role;
-use Oscer\Cms\Core\Users\Models\User;
-use Oscer\Cms\Frontend\BladeComponents\MenuBladeComponent;
+use Oscer\Cms\Core\Models\Permission;
+use Oscer\Cms\Core\Models\Role;
+use Oscer\Cms\Core\Models\User;
+use Oscer\Cms\Frontend\View\Components\MenuBladeComponent;
 use Oscer\Cms\Frontend\Contracts\Theme;
 use Oscer\Cms\Frontend\DefaultTheme;
-use Oscer\Cms\Frontend\ViewComposers\ThemeViewComposer;
+use Oscer\Cms\Frontend\View\Composers\ThemeViewComposer;
 
 class OscerServiceProvider extends ServiceProvider
 {
@@ -40,14 +41,15 @@ class OscerServiceProvider extends ServiceProvider
         Repository $config,
         Theme $theme,
         Sidebar $sidebar
-    ) {
+    )
+    {
         $this->apiRouter = $apiRouter;
         $this->backendRouter = $backendRouter;
         $this->config = $config;
 
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'cms');
-        $this->loadMigrationsFrom(__DIR__.'/../migrations');
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'cms');
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'cms');
+        $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'cms');
 
         $this->configureGuard();
         $this->configurePermissions();
@@ -120,11 +122,15 @@ class OscerServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../dist' => public_path('vendor/cms'),
+                __DIR__ . '/../resources/stubs/CmsServiceProvider.stub' => app_path('Providers/CmsServiceProvider.php'),
+            ], 'cms-provider');
+
+            $this->publishes([
+                __DIR__ . '/../dist' => public_path('vendor/cms'),
             ], 'cms-assets');
 
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('cms.php'),
+                __DIR__ . '/../config/config.php' => config_path('cms.php'),
             ], 'cms-config');
         }
     }
@@ -141,7 +147,7 @@ class OscerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'cms');
+        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'cms');
 
         $this->commands([
             PublishCommand::class,
@@ -150,7 +156,7 @@ class OscerServiceProvider extends ServiceProvider
         ]);
 
         $this->app->singleton(Sidebar::class, Sidebar::class);
-
+        $this->app->singleton(ScriptHandler::class, ScriptHandler::class);
         $this->app->singleton(Theme::class, function () {
             return new DefaultTheme();
         });

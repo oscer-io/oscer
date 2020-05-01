@@ -4,7 +4,7 @@ namespace Oscer\Cms\Tests\Feature\Auth;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
-use Oscer\Cms\Core\Users\Models\User;
+use Oscer\Cms\Core\Models\User;
 use Oscer\Cms\Tests\TestCase;
 
 class ResetPasswordTest extends TestCase

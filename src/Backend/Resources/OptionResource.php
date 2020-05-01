@@ -1,11 +1,10 @@
 <?php
 
-namespace Oscer\Cms\Core\Options\Resources;
+namespace Oscer\Cms\Backend\Resources;
 
 use Illuminate\Support\Collection;
 use Oscer\Cms\Backend\Resources\Fields\OptionField;
-use Oscer\Cms\Backend\Resources\Resource;
-use Oscer\Cms\Core\Options\Models\Option;
+use Oscer\Cms\Core\Models\Option;
 
 class OptionResource extends Resource
 {

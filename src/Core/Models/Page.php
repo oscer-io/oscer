@@ -1,8 +1,6 @@
 <?php
 
-namespace Oscer\Cms\Core\Pages\Models;
-
-use Oscer\Cms\Core\Posts\Models\Post;
+namespace Oscer\Cms\Core\Models;
 
 class Page extends Post
 {

@@ -4,7 +4,7 @@ namespace Oscer\Cms\Backend\Resources\Fields;
 
 use Closure;
 use Illuminate\Http\Request;
-use Oscer\Cms\Core\Menus\Models\Menu;
+use Oscer\Cms\Core\Models\Menu;
 
 class MenuItemsField extends Field
 {

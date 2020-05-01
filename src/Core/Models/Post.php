@@ -1,6 +1,6 @@
 <?php
 
-namespace Oscer\Cms\Core\Posts\Models;
+namespace Oscer\Cms\Core\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon;
@@ -10,7 +10,6 @@ use League\CommonMark\Block\Element\FencedCode;
 use League\CommonMark\Block\Element\IndentedCode;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
-use Oscer\Cms\Core\Models\BaseModel;
 use Spatie\CommonMarkHighlighter\FencedCodeRenderer;
 use Spatie\CommonMarkHighlighter\IndentedCodeRenderer;
 use Spatie\Sluggable\HasSlug;
@@ -21,7 +20,7 @@ use Spatie\Sluggable\SlugOptions;
  * @property string name
  * @property string slug
  * @property string body
- * @property \Oscer\Cms\Core\Users\Models\User author
+ * @property \Oscer\Cms\Core\Models\User author
  * @property int author_id
  * @property Collection tags
  * @property Carbon|null published_at
@@ -56,7 +55,7 @@ class Post extends BaseModel
      */
     public function author()
     {
-        return $this->belongsTo(\Oscer\Cms\Core\Users\Models\User::class);
+        return $this->belongsTo(\Oscer\Cms\Core\Models\User::class);
     }
 
     public function getSlugOptions(): SlugOptions

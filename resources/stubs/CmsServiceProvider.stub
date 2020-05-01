@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use Oscer\Cms\Frontend\Contracts\Theme;
+use Oscer\Cms\Frontend\Routing\FrontendRouter;
+
+class CmsServiceProvider extends ServiceProvider
+{
+    public function boot(FrontendRouter $router)
+    {
+        $router->registerPagesRoutes();
+        $router->registerPostsRoutes();
+    }
+
+    public function register()
+    {
+//        This way we can enable a custom theme
+//        $this->app->singleton(Theme::class, function (){
+//            return new YourCustomTheme();
+//        });
+    }
+}
