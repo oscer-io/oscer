@@ -1,11 +1,11 @@
 <?php
 
-namespace Oscer\Cms\Backend\ViewComposer;
+namespace Oscer\Cms\Backend\View\Composers;
 
 use Illuminate\Routing\Router;
 use Illuminate\View\View;
 use Oscer\Cms\Backend\Routing\RouteGenerator;
-use Oscer\Cms\Backend\ScriptHandler;
+use Oscer\Cms\Backend\View\ScriptHandler;
 use Oscer\Cms\Backend\Sidebar\Sidebar;
 
 class BackendViewComposer

@@ -1,6 +1,6 @@
 <?php
 
-namespace Oscer\Cms\Frontend\ViewComposers;
+namespace Oscer\Cms\Frontend\View\Composers;
 
 use Illuminate\View\View;
 use Oscer\Cms\Frontend\Contracts\Theme;

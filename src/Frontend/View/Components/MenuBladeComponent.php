@@ -1,6 +1,6 @@
 <?php
 
-namespace Oscer\Cms\Frontend\BladeComponents;
+namespace Oscer\Cms\Frontend\View\Components;
 
 use Illuminate\View\Component;
 use Oscer\Cms\Core\Models\Menu;

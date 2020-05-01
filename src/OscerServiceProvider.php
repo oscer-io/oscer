@@ -10,20 +10,20 @@ use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Factory;
 use Oscer\Cms\Api\Routing\ApiRouter;
 use Oscer\Cms\Backend\Routing\BackendRouter;
-use Oscer\Cms\Backend\ScriptHandler;
+use Oscer\Cms\Backend\View\ScriptHandler;
 use Oscer\Cms\Backend\Sidebar\Sidebar;
 use Oscer\Cms\Backend\Sidebar\SidebarItem;
-use Oscer\Cms\Backend\ViewComposer\BackendViewComposer;
+use Oscer\Cms\Backend\View\Composers\BackendViewComposer;
 use Oscer\Cms\Core\Commands\Development\SeedCommand;
 use Oscer\Cms\Core\Commands\PublishCommand;
 use Oscer\Cms\Core\Commands\ResolveOptionsCommand;
 use Oscer\Cms\Core\Models\Permission;
 use Oscer\Cms\Core\Models\Role;
 use Oscer\Cms\Core\Models\User;
-use Oscer\Cms\Frontend\BladeComponents\MenuBladeComponent;
+use Oscer\Cms\Frontend\View\Components\MenuBladeComponent;
 use Oscer\Cms\Frontend\Contracts\Theme;
 use Oscer\Cms\Frontend\DefaultTheme;
-use Oscer\Cms\Frontend\ViewComposers\ThemeViewComposer;
+use Oscer\Cms\Frontend\View\Composers\ThemeViewComposer;
 
 class OscerServiceProvider extends ServiceProvider
 {

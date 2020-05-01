@@ -1,6 +1,6 @@
 <?php
 
-namespace Oscer\Cms\Backend;
+namespace Oscer\Cms\Backend\View;
 
 class ScriptHandler
 {
