@@ -89,9 +89,9 @@ class InstallCommand extends Command
             $this->line('Password: <info>password</info>');
         } else {
             $admin = User::query()->create([
-                'name' => $this->ask('Name for the first admin user?','admin'),
-                'email' => $this->ask('Email for the first admin user?','admin@admin.com'),
-                'password' => $this->secret('Password for the first admin user?','password'),
+                'name' => $this->ask('Name for the first admin user?', 'admin'),
+                'email' => $this->ask('Email for the first admin user?', 'admin@admin.com'),
+                'password' => $this->secret('Password for the first admin user?', 'password'),
             ]);
         }
         $admin->assignRole(Role::SUPER_ADMIN_ROLE);
