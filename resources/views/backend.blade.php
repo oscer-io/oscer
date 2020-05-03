@@ -19,6 +19,9 @@
 <script>
     window.Cms = new CreateCms(@json($json))
 </script>
+@foreach($scripts as $script)
+    <script src="{{$script}}"></script>
+@endforeach
 <script>
     Cms.start()
 </script>

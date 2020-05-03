@@ -3,8 +3,8 @@
 namespace Oscer\Cms\Frontend\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Oscer\Cms\Core\Options\Models\Option;
-use Oscer\Cms\Core\Pages\Models\Page;
+use Oscer\Cms\Core\Models\Option;
+use Oscer\Cms\Core\Models\Page;
 use Oscer\Cms\Frontend\Contracts\Theme;
 
 class PagesController

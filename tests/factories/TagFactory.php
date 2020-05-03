@@ -4,7 +4,7 @@
 
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
-use Oscer\Cms\Core\Posts\Models\Tag;
+use Oscer\Cms\Core\Models\Tag;
 
 /*
 |--------------------------------------------------------------------------

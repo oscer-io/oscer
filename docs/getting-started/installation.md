@@ -6,39 +6,14 @@ You can install the package via composer:
 composer require oscer-io/oscer
 ```
 
-### Run migrations
-Oscer adds its migrations to the default Laravel database connection. 
-We prefix all tables with `cms_` to ensure they are not clashing with your migrations.
-```bash
-php artisan migrate
-```
-
-### Enabling pages and posts routes
-Create a new `CmsServiceProvider` with the following `boot()` call:
-```php
-<?php
-
-namespace App\Providers;
-
-use Oscer\Cms\Frontend\Routing\FrontendRouter;
-use Illuminate\Support\ServiceProvider;
-
-class CmsServiceProvider extends ServiceProvider
-{
-    public function boot(FrontendRouter $router)
-    {
-        $router->registerPagesRoutes();
-        $router->registerPostsRoutes();
-    }
-}
-```  
-Do not forget to register it in the `providers` key inside your `config/app.php`.
-
-### Publish config
+### Install Oscer
 
 ```bash
-php artisan cms:publish
+php artisan cms:install
 ```  
+To skip the interactive part of the command you can append `--dev` which adds defaults for the first user.  
+The `--fresh` option migrates the database fresh. These options in combination speed up the process in development.
+Simply execute `php artisan cms:install --dev --fresh` to "reset" Oscer.  
 
 ### Add environment variable
 

@@ -3,8 +3,8 @@
 namespace Oscer\Cms\Tests;
 
 use Laravel\Sanctum\Sanctum;
-use Oscer\Cms\Core\Users\Models\Role;
-use Oscer\Cms\Core\Users\Models\User;
+use Oscer\Cms\Core\Models\Role;
+use Oscer\Cms\Core\Models\User;
 use PHPUnit\Framework\AssertionFailedError;
 use sixlive\JsonSchemaAssertions\SchemaAssertion;
 

@@ -12,17 +12,18 @@ use Oscer\Cms\Api\Routing\ApiRouter;
 use Oscer\Cms\Backend\Routing\BackendRouter;
 use Oscer\Cms\Backend\Sidebar\Sidebar;
 use Oscer\Cms\Backend\Sidebar\SidebarItem;
-use Oscer\Cms\Backend\ViewComposer\BackendViewComposer;
-use Oscer\Cms\Core\Commands\Development\SeedCommand;
+use Oscer\Cms\Backend\View\Composers\BackendViewComposer;
+use Oscer\Cms\Backend\View\ScriptHandler;
+use Oscer\Cms\Core\Commands\InstallCommand;
 use Oscer\Cms\Core\Commands\PublishCommand;
 use Oscer\Cms\Core\Commands\ResolveOptionsCommand;
-use Oscer\Cms\Core\Users\Models\Permission;
-use Oscer\Cms\Core\Users\Models\Role;
-use Oscer\Cms\Core\Users\Models\User;
-use Oscer\Cms\Frontend\BladeComponents\MenuBladeComponent;
+use Oscer\Cms\Core\Models\Permission;
+use Oscer\Cms\Core\Models\Role;
+use Oscer\Cms\Core\Models\User;
 use Oscer\Cms\Frontend\Contracts\Theme;
 use Oscer\Cms\Frontend\DefaultTheme;
-use Oscer\Cms\Frontend\ViewComposers\ThemeViewComposer;
+use Oscer\Cms\Frontend\View\Components\MenuBladeComponent;
+use Oscer\Cms\Frontend\View\Composers\ThemeViewComposer;
 
 class OscerServiceProvider extends ServiceProvider
 {
@@ -104,7 +105,7 @@ class OscerServiceProvider extends ServiceProvider
     {
         $this->config->set('ziggy.whitelist', ['cms.*']);
         $this->config->set('ziggy.skip-route-function', true);
-        $this->config->set('blade-icons.sets.cms.path', 'vendor/oscer-io/oscer/resources/icons');
+        $this->config->set('blade-icons.sets.cms', ['path' => 'vendor/oscer-io/oscer/resources/icons', 'prefix' => 'cms']);
     }
 
     protected function configureSanctum()
@@ -119,6 +120,10 @@ class OscerServiceProvider extends ServiceProvider
     protected function registerPublishes(): void
     {
         if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__.'/../resources/stubs/CmsServiceProvider.stub' => app_path('Providers/CmsServiceProvider.php'),
+            ], 'cms-provider');
+
             $this->publishes([
                 __DIR__.'/../dist' => public_path('vendor/cms'),
             ], 'cms-assets');
@@ -145,12 +150,12 @@ class OscerServiceProvider extends ServiceProvider
 
         $this->commands([
             PublishCommand::class,
-            SeedCommand::class,
             ResolveOptionsCommand::class,
+            InstallCommand::class,
         ]);
 
         $this->app->singleton(Sidebar::class, Sidebar::class);
-
+        $this->app->singleton(ScriptHandler::class, ScriptHandler::class);
         $this->app->singleton(Theme::class, function () {
             return new DefaultTheme();
         });
