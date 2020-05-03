@@ -14,7 +14,7 @@ use Oscer\Cms\Backend\Sidebar\Sidebar;
 use Oscer\Cms\Backend\Sidebar\SidebarItem;
 use Oscer\Cms\Backend\View\Composers\BackendViewComposer;
 use Oscer\Cms\Backend\View\ScriptHandler;
-use Oscer\Cms\Core\Commands\Development\SeedCommand;
+use Oscer\Cms\Core\Commands\InstallCommand;
 use Oscer\Cms\Core\Commands\PublishCommand;
 use Oscer\Cms\Core\Commands\ResolveOptionsCommand;
 use Oscer\Cms\Core\Models\Permission;
@@ -105,7 +105,7 @@ class OscerServiceProvider extends ServiceProvider
     {
         $this->config->set('ziggy.whitelist', ['cms.*']);
         $this->config->set('ziggy.skip-route-function', true);
-        $this->config->set('blade-icons.sets.cms.path', 'vendor/oscer-io/oscer/resources/icons');
+        $this->config->set('blade-icons.sets.cms', ['path' => 'vendor/oscer-io/oscer/resources/icons', 'prefix' => 'cms']);
     }
 
     protected function configureSanctum()
@@ -120,6 +120,10 @@ class OscerServiceProvider extends ServiceProvider
     protected function registerPublishes(): void
     {
         if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__.'/../resources/stubs/CmsServiceProvider.stub' => app_path('Providers/CmsServiceProvider.php'),
+            ], 'cms-provider');
+
             $this->publishes([
                 __DIR__.'/../dist' => public_path('vendor/cms'),
             ], 'cms-assets');
@@ -146,8 +150,8 @@ class OscerServiceProvider extends ServiceProvider
 
         $this->commands([
             PublishCommand::class,
-            SeedCommand::class,
             ResolveOptionsCommand::class,
+            InstallCommand::class,
         ]);
 
         $this->app->singleton(Sidebar::class, Sidebar::class);

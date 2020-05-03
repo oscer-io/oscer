@@ -19,7 +19,6 @@ module.exports = {
                 children: [
                     ['getting-started/installation', 'Installation'],
                     ['getting-started/configuration', 'Configuration'],
-                    ['getting-started/dummy-data', 'Seed dummy data'],
                 ],
 
             },
