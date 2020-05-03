@@ -1,6 +1,6 @@
 # Introduction
 
-Laravel CMS has a simple but powerful Theming System. 
+Oscer has a simple but powerful Theming System. 
 it is based on Laravel's [Blade](https://laravel.com/docs/7.x/blade) engine and configured by a PHP class 
 which has to implement a specific interface. All template files of the Theme have an 
 instance of the Theme available via the `$theme` variable.
@@ -10,7 +10,7 @@ If you want to implement a `Theme` by you own, feel free to implement described 
 
 ## Theme interface
 
-A Theme is a  PHP class which implements `Bambamboole\LaravelCms\Frontend\Contracts\Theme`. All template strings which are returned
+A Theme is a  PHP class which implements `Oscer\Cms\Frontend\Contracts\Theme`. All template strings which are returned
 by the Theme class are read by Laravel's `view()` method.
 The contract tells us to implement the following methods:
 

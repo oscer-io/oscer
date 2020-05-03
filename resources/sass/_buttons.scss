@@ -11,3 +11,16 @@
         @apply bg-indigo-700;
     }
 }
+.btn-transparent {
+    @apply inline-flex justify-center py-2 px-4 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 transition duration-150 ease-in-out;
+    &:hover {
+        @apply text-gray-500;
+    }
+
+    &:focus {
+        @apply outline-none border-blue-300 shadow-outline-blue;
+    }
+    &:active {
+        @apply bg-gray-50 text-gray-800;
+    }
+}

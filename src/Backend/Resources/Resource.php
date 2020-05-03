@@ -1,15 +1,16 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Backend\Resources;
+namespace Oscer\Cms\Backend\Resources;
 
-use Bambamboole\LaravelCms\Backend\Resources\Fields\Field;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\ConditionallyLoadsAttributes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator as ValidatorFactory;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
+use Oscer\Cms\Backend\Resources\Fields\Field;
 
 abstract class Resource implements \JsonSerializable
 {
@@ -30,7 +31,7 @@ abstract class Resource implements \JsonSerializable
     public function __construct(Model $resourceModel)
     {
         $this->resourceModel = $resourceModel;
-        $this->fields = $this->resolveFields();
+        $this->fields = new Collection();
     }
 
     /**
@@ -45,16 +46,45 @@ abstract class Resource implements \JsonSerializable
      */
     protected function resolveFields()
     {
-        return $this->fields()->map(function (Field $field) {
-            $field->value = $field->resolve($this->resourceModel);
+        // if this method was not executed
+        if ($this->fields->isEmpty()) {
+            // temporary variable to get a flat collection of fields
+            $fields = new Collection();
+            // Iterate over the collection returned by the fields method
+            $this->fields()->each(function ($field) use ($fields) {
+                // These instances can also be cards
+                if ($field instanceof Card) {
+                    // if it is a card we need all its fields...
+                    foreach ($field->fields as $fieldInCard) {
+                        // We need to resolve the values for the fields from the resource model.
+                        $fieldInCard->resolve($this->resourceModel);
+                        // add them to our temporary collection
+                        $fields->add($fieldInCard);
+                    }
+                } elseif ($field instanceof Field) {
+                    // the rest should be field instances...
+                    if (! $field->card) {
+                        // Assign the default card to all fields without card assignment
+                        $field->card = 'default';
+                    }
+                    $field->resolve($this->resourceModel);
+                    // add them to our temporary collection
+                    $fields->add($field);
+                }
+            });
 
-            return $field;
-        });
+            // We need to resolve the values for the fields from the resource model.
+            // The result will be assigned to the fields property of this resource.
+            $this->fields = $fields;
+        }
+
+        // Return the fields
+        return $this->fields;
     }
 
     protected function filteredFields(Request $request): Collection
     {
-        return $this->fields->filter(function (Field $field) use ($request) {
+        return $this->resolveFields()->filter(function (Field $field) use ($request) {
             return ! $field->shouldBeRemoved($request);
         });
     }
@@ -127,7 +157,7 @@ abstract class Resource implements \JsonSerializable
      */
     protected function shouldRemoveNullValues(): bool
     {
-        $rules = $this->fields->reduce(function ($result, Field $field) {
+        $rules = $this->resolveFields()->reduce(function ($result, Field $field) {
             foreach ($field->rules as $rule) {
                 $result[] = $rule;
             }
@@ -138,15 +168,60 @@ abstract class Resource implements \JsonSerializable
         return in_array('filled', $rules);
     }
 
+    public function labels()
+    {
+        return [
+            'buttons' => [
+                'create' => __('cms::resources.buttons.create', ['resource' => class_basename($this->resourceModel)]),
+                'edit' => __('cms::resources.buttons.edit', ['resource' => class_basename($this->resourceModel)]),
+                'save' => __('cms::resources.buttons.save', ['resource' => class_basename($this->resourceModel)]),
+                'cancel' => __('cms::resources.buttons.cancel'),
+            ],
+            'titles' => [
+                'index' => __('cms::resources.titles.index', ['resources' => Str::plural(class_basename($this->resourceModel))]),
+                'detail' => __('cms::resources.titles.detail', ['resource' => class_basename($this->resourceModel)]),
+                'create' => __('cms::resources.titles.create', ['resource' => class_basename($this->resourceModel)]),
+                'update' => __('cms::resources.titles.update', ['resource' => class_basename($this->resourceModel)]),
+            ],
+            'index' => [
+                'search' => __('cms::resources.index.search'),
+            ],
+        ];
+    }
+
+    protected function hasDetailView(): bool
+    {
+        return true;
+    }
+
+    protected function defaultCard()
+    {
+        return new Card('default', [], 'full');
+    }
+
+    protected function cards()
+    {
+        $rawFields = $this->fields();
+        $cards = $rawFields->whereInstanceOf(Card::class);
+        if ($rawFields->whereInstanceOf(Field::class)->isNotEmpty()) {
+            $cards->prepend($this->defaultCard());
+        }
+
+        return $cards;
+    }
+
     public function toArray()
     {
         $data = [
-            'fields' => $this->fields,
+            'labels' => $this->labels(),
+            'cards' => $this->cards(),
+            'fields' => $this->resolveFields(),
             'model' => $this->resourceModel,
             'resourceId' => $this->when($this->resourceModel->id, $this->resourceModel->id),
             'displayShowButtonOnIndex' => $this->displayShowButtonOnIndex,
             'displayEditButtonOnIndex' => $this->displayEditButtonOnIndex,
             'removeNullValues' => $this->shouldRemoveNullValues(),
+            'hasDetailView' => $this->hasDetailView(),
         ];
 
         return $this->filter($data);

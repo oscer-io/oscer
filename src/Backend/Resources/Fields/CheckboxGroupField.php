@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Backend\Resources\Fields;
+namespace Oscer\Cms\Backend\Resources\Fields;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;

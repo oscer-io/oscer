@@ -1,18 +1,18 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Api\Http\Controllers;
+namespace Oscer\Cms\Api\Http\Controllers;
 
-use Bambamboole\LaravelCms\Api\Http\Requests\IssueTokenRequest;
-use Bambamboole\LaravelCms\Core\Users\Models\User;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
+use Oscer\Cms\Api\Http\Requests\IssueTokenRequest;
+use Oscer\Cms\Core\Models\User;
 
 class IssueTokenController
 {
     public function __invoke(IssueTokenRequest $request)
     {
-        /** @var \Bambamboole\LaravelCms\Core\Users\Models\User $user */
+        /** @var \Oscer\Cms\Core\Models\User $user */
         $user = User::query()->where('email', $request->input('email'))->first();
 
         if (! $user || ! Hash::check($request->input('password'), $user->getAuthPassword())) {

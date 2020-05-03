@@ -1,8 +1,8 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Tests\Feature\Auth;
+namespace Oscer\Cms\Tests\Feature\Auth;
 
-use Bambamboole\LaravelCms\Tests\TestCase;
+use Oscer\Cms\Tests\TestCase;
 
 class LogoutTest extends TestCase
 {

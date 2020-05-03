@@ -1,20 +1,25 @@
-import axios from 'axios'
-import router from './router'
+import axios from 'axios';
+import router from './router';
+import store from './store';
 
+const api = axios.create();
 
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-axios.defaults.headers.common['X-CMS-BACKEND'] = true;
-axios.defaults.headers.common['X-CSRF-TOKEN'] = document.head.querySelector(
+api.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+api.defaults.headers.common['X-CMS-BACKEND'] = true;
+api.defaults.headers.common['X-CSRF-TOKEN'] = document.head.querySelector(
     'meta[name="csrf-token"]'
 ).content;
-axios.interceptors.response.use(
+api.interceptors.response.use(
     response => response,
     error => {
         const {status} = error.response;
 
         // Show the user a 500 error
         if (status >= 500) {
-            Cms.flash('error', error.response.data.message)
+            store.dispatch('flash', {
+                type: 'error',
+                text: error.response.data.message
+            });
         }
 
         // Handle Session Timeouts
@@ -26,11 +31,9 @@ axios.interceptors.response.use(
         if (status === 404) {
             router.push({name: 'not-found'})
         }
-
         return Promise.reject(error)
     }
 );
 
-const api = axios.create();
 
 export default api

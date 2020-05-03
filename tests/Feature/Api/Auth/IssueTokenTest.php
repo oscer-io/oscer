@@ -1,9 +1,9 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Tests\Feature\Api\Auth;
+namespace Oscer\Cms\Tests\Feature\Api\Auth;
 
-use Bambamboole\LaravelCms\Core\Users\Models\User;
-use Bambamboole\LaravelCms\Tests\ApiTestCase;
+use Oscer\Cms\Core\Models\User;
+use Oscer\Cms\Tests\ApiTestCase;
 
 class IssueTokenTest extends ApiTestCase
 {

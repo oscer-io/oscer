@@ -1,5 +1,5 @@
 import Index from "./views/Index";
-import Show from "./views/Show";
+import Edit from "./views/Edit";
 
 export default [
     {
@@ -8,9 +8,9 @@ export default [
         component: Index
     },
     {
-        path: '/admin/roles/:id',
-        name: 'roles.show',
-        component: Show,
+        path: '/admin/roles/:id/edit',
+        name: 'roles.edit',
+        component: Edit,
         props: true
     },
 ];

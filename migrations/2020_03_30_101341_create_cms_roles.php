@@ -1,7 +1,7 @@
 <?php
 
-use Bambamboole\LaravelCms\Core\Users\Models\Role;
 use Illuminate\Database\Migrations\Migration;
+use Oscer\Cms\Core\Models\Role;
 
 class CreateCmsRoles extends Migration
 {

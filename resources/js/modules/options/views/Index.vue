@@ -10,6 +10,7 @@
             >
                 <ResourceForm
                     v-for="option in options"
+                    :key="option.model.key"
                     resource="option"
                     :resource-id="option.model.id"
                     :preloaded-resource="option"
@@ -21,20 +22,10 @@
 </template>
 
 <script>
-    import Tab from "../../../components/Tab";
-    import Tabs from "../../../components/Tabs";
-    import Option from "./../components/Option";
-    import api from "../../../lib/api";
-    import _ from 'lodash';
-    import ResourceForm from "../../../components/ResourceForm";
+    import {groupBy} from 'lodash';
+    import api from "@/lib/api";
 
     export default {
-        components: {
-            ResourceForm,
-            Option,
-            Tab,
-            Tabs,
-        },
         data() {
             return {
                 isLoading: true,
@@ -43,22 +34,25 @@
         },
         computed: {
             tabsWithOptions() {
-                return _.groupBy(this.rawOptions, option => option.model.key.split('.')[0]);
+                return groupBy(this.rawOptions, option => option.model.key.split('.')[0]);
             }
         },
         async mounted() {
             const response = await api(Cms.route('cms.backend.resources.index', 'option'));
             this.rawOptions = response.data.data;
-            console.log(this.tabsWithOptions);
             this.isLoading = false;
         },
         methods: {
             handleSuccess() {
-                Cms.flash('success', 'Nice one!');
+                this.$store.dispatch('flash', {
+                    type: 'success',
+                    text: 'Nice one!'
+                });
             }
         }
     }
 </script>
+
 
 <style>
 

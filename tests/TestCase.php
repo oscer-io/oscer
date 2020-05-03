@@ -1,12 +1,13 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Tests;
+namespace Oscer\Cms\Tests;
 
-use Bambamboole\LaravelCms\Core\Users\Models\User;
-use Bambamboole\LaravelCms\LaravelCmsServiceProvider;
+use Illuminate\Translation\TranslationServiceProvider;
 use Laravel\Sanctum\Sanctum;
 use Laravel\Sanctum\SanctumServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use Oscer\Cms\Core\Models\User;
+use Oscer\Cms\OscerServiceProvider;
 use Spatie\Permission\PermissionServiceProvider;
 
 class TestCase extends BaseTestCase
@@ -24,7 +25,8 @@ class TestCase extends BaseTestCase
         return [
             SanctumServiceProvider::class,
             PermissionServiceProvider::class,
-            LaravelCmsServiceProvider::class,
+            OscerServiceProvider::class,
+            TranslationServiceProvider::class,
         ];
     }
 

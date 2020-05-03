@@ -1,11 +1,11 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Tests\Feature\Auth;
+namespace Oscer\Cms\Tests\Feature\Auth;
 
-use Bambamboole\LaravelCms\Core\Users\Models\User;
-use Bambamboole\LaravelCms\Tests\TestCase;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
+use Oscer\Cms\Core\Models\User;
+use Oscer\Cms\Tests\TestCase;
 
 class ResetPasswordTest extends TestCase
 {

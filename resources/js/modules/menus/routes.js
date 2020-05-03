@@ -1,5 +1,5 @@
+import Edit from "./views/Edit";
 import Index from "./views/Index";
-import Show from "./views/Show";
 import Create from "./views/Create";
 
 export default [
@@ -14,9 +14,9 @@ export default [
         component: Create
     },
     {
-        path: '/admin/menus/:id',
-        name: 'menus.show',
-        component: Show,
+        path: '/admin/menus/:id/edit',
+        name: 'menus.edit',
+        component: Edit,
         props: true
     },
 ]

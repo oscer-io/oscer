@@ -1,14 +1,14 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Tests\Unit\Backend\Resources;
+namespace Oscer\Cms\Tests\Unit\Backend\Resources;
 
-use Bambamboole\LaravelCms\Backend\Resources\Fields\TextField;
-use Bambamboole\LaravelCms\Backend\Resources\Resource;
-use Bambamboole\LaravelCms\Tests\Fixtures\TestModel;
-use Bambamboole\LaravelCms\Tests\Fixtures\TestResource;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use PHPUnit\Framework\TestCase;
+use Oscer\Cms\Backend\Resources\Fields\TextField;
+use Oscer\Cms\Backend\Resources\Resource;
+use Oscer\Cms\Tests\Fixtures\TestModel;
+use Oscer\Cms\Tests\TestCase;
+use ReflectionClass;
 
 class ResourceTest extends TestCase
 {
@@ -17,23 +17,11 @@ class ResourceTest extends TestCase
      */
     protected function getProtectedProperty($object, string $property)
     {
-        $reflectionClass = new \ReflectionClass($object);
+        $reflectionClass = new ReflectionClass($object);
         $property = $reflectionClass->getProperty($property);
         $property->setAccessible(true);
 
         return $property->getValue($object);
-    }
-
-    /** @test */
-    public function it_can_resolve_its_fields()
-    {
-        $model = new TestModel();
-        $model->test = 'value initially set for test';
-
-        $resource = new TestResource($model);
-        $fields = $this->getProtectedProperty($resource, 'fields');
-
-        $this->assertEquals('value initially set for test', $fields[0]->value);
     }
 
     /** @test */

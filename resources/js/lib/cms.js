@@ -1,6 +1,7 @@
 import Vue from 'vue';
-import VueJSModal from "vue-js-modal";
-import router from "./router";
+import VueJSModal from 'vue-js-modal';
+import router from './router';
+import store from './store'
 import i18n from './i18n';
 import route from 'ziggy';
 import Layout from '../components/Layout';
@@ -14,7 +15,7 @@ export default class Cms {
     }
 
     /**
-     * Register a callback to be called before Laravel CMS starts
+     * Register a callback to be called before Oscer starts
      */
     booting(callback) {
         this.bootingCallbacks.push(callback)
@@ -29,7 +30,7 @@ export default class Cms {
     }
 
     /**
-     * Start Laravel CMS by calling each of the booting callbacks and create the underlying Vue instance.
+     * Start Oscer by calling each of the booting callbacks and create the underlying Vue instance.
      */
     start() {
         this.boot();
@@ -40,6 +41,7 @@ export default class Cms {
             el: '#cms',
             components: {Layout},
             router,
+            store,
             i18n,
             data() {
                 return {
@@ -74,10 +76,10 @@ export default class Cms {
     }
 
     /**
-     * flash a message via the event bus
+     * Emit an event via the event bus
      */
-    flash(type, text) {
-        this.bus.$emit('flash', {'type': type, 'text': text});
+    $emit(...args) {
+        this.bus.$emit(...args)
     }
 
     /**

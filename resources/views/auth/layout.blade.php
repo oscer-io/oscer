@@ -6,7 +6,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel cms') }}</title>
+    <title>{{ config('app.name', 'Oscer') }}</title>
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">

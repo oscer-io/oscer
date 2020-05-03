@@ -3,18 +3,21 @@
         <div v-if="resourceItem">
             <div class="md:flex md:items-center md:justify-between">
                 <div class="flex-1 min-w-0">
-                    <h1 class="text-lg leading-6 font-medium text-gray-900" v-text="`Show ${resource}`">
+                    <h1
+                        class="text-lg leading-6 font-medium text-gray-900"
+                        v-text="this.resourceItem.labels.titles.detail"
+                    >
                     </h1>
                 </div>
                 <div class="mt-4 flex md:mt-0 md:ml-4">
-                    <span class="ml-3 shadow-sm rounded-md">
+                    <slot name="edit-button">
                         <RouterLink
                             class="btn"
                             :to="{name:`${resource}s.edit`, params: {id: resourceId}}"
+                            v-text="this.resourceItem.labels.buttons.edit"
                         >
-                           edit
                         </RouterLink>
-                    </span>
+                    </slot>
                 </div>
             </div>
             <div>

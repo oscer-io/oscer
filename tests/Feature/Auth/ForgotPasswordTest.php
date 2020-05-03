@@ -1,11 +1,11 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Tests\Feature\Auth;
+namespace Oscer\Cms\Tests\Feature\Auth;
 
-use Bambamboole\LaravelCms\Core\Mails\ResetPasswordMail;
-use Bambamboole\LaravelCms\Core\Users\Models\User;
-use Bambamboole\LaravelCms\Tests\TestCase;
 use Illuminate\Support\Facades\Mail;
+use Oscer\Cms\Core\Mails\ResetPasswordMail;
+use Oscer\Cms\Core\Models\User;
+use Oscer\Cms\Tests\TestCase;
 
 class ForgotPasswordTest extends TestCase
 {

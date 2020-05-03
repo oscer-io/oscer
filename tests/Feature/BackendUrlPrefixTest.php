@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Tests;
+namespace Oscer\Cms\Tests;
 
 class BackendUrlPrefixTest extends TestCase
 {

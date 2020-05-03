@@ -5,75 +5,11 @@
             <div class="hidden md:flex md:flex-shrink-0">
                 <div class="flex flex-col w-64">
                     <div class="flex items-center h-16 flex-shrink-0 px-4 bg-gray-900">
-                        <h1 class="text-xl text-white font-bold w-full text-center">Laravel CMS</h1>
+                        <h1 class="text-xl text-white font-bold w-full text-center">Oscer</h1>
                     </div>
                     <div class="h-0 flex-1 flex flex-col overflow-y-auto">
-                        <!-- Sidebar component, swap this element with another sidebar if you like -->
-                        <nav class="flex-1 px-2 py-4 bg-gray-800">
-                            <NavbarLink :to="{name: 'dashboard'}" :exact="true">
-                                <svg
-                                    class="mr-3 h-6 w-6 text-gray-300 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
-                                    stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10M9 21h6"/>
-                                </svg>
-                                Dashboard
-                            </NavbarLink>
-                            <NavbarLink v-if="can('pages.view')" :to="{name: 'pages.index'}">
-                                <svg
-                                    class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
-                                    stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
-                                </svg>
-                                Pages
-                            </NavbarLink>
-                            <NavbarLink v-if="can('posts.view')" :to="{name: 'posts.index'}">
-                                <svg
-                                    class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
-                                    stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
-                                </svg>
-                                Posts
-                            </NavbarLink>
-                            <NavbarLink v-if="can('menus.view')" :to="{name: 'menus.index'}">
-                                <svg
-                                    class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
-                                    stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
-                                </svg>
-                                Menus
-                            </NavbarLink>
-                            <NavbarLink v-if="can('options.view')" :to="{name: 'options.index'}">
-                                <svg
-                                    class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
-                                    stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                </svg>
-                                Options
-                            </NavbarLink>
-                            <NavbarLink v-if="can('users.view')" :to="{name: 'users.index'}">
-                                <svg
-                                    class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
-                                    stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                </svg>
-                                Users
-                            </NavbarLink>
-                            <NavbarLink v-if="can('roles.view')" :to="{name: 'roles.index'}">
-                                <svg
-                                    class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
-                                    stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                </svg>
-                                Roles
-                            </NavbarLink>
-                        </nav>
+
+                            <Sidebar/>
                     </div>
                 </div>
             </div>
@@ -141,7 +77,9 @@
     </div>
 </template>
 <script>
+    import Sidebar from "./Sidebar";
     export default {
+        components: {Sidebar},
         props: ['transitionName']
     }
 </script>

@@ -1,5 +1,14 @@
 <template>
     <loading :loading="isLoading">
+        <div class="md:flex md:items-center md:justify-between">
+            <div class="flex-1 min-w-0">
+                <h1 v-if="this.labels"
+                    class="text-lg leading-6 font-medium text-gray-900"
+                    v-text="this.resourceId ? this.labels.titles.update : this.labels.titles.create"
+                >
+                </h1>
+            </div>
+        </div>
         <form @submit.prevent="submitResourceForm">
             <div
                 class="mb-8 border-b border-gray-200 pb-5"
@@ -9,49 +18,51 @@
                     <span class="inline-flex rounded-md shadow-sm">
                         <button
                             type="button"
-                            class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
+                            class="btn-transparent"
                             @click="$emit('cancel')"
+                            v-text="this.labels ? this.labels.buttons.cancel : ''"
                         >
-                            {{this.cancelText}}
                         </button>
                     </span>
                     <span class="ml-3 inline-flex rounded-md shadow-sm">
                         <button
                             type="submit"
                             class="btn"
+                            v-text="this.labels ? this.labels.buttons.save : ''"
                         >
-                            {{this.submitText}}
                         </button>
                     </span>
                 </div>
             </div>
-            <component
-                v-for="(field, index) in fields"
-                v-if="field.active"
-                :key="field.name + index"
-                :ref="`${field.name}-field`"
-                :is="field.component"
-                :field="field"
-                :validation-errors="getValidationErrors(field)"
+            <div class="flex">
+
+            <FormCard
+                v-for="(card, index) in cardsWithFields()"
+                :key="index"
+                :name="card.name"
+                :width="card.width"
+                :fields="card.fields"
+                :validation-errors="validationErrors"
                 @componentChange="activateDependents"
             />
+            </div>
             <div v-if="inSubmitPositions('bottom')" class="mt-8 border-t border-gray-200 pt-5">
                 <div class="flex justify-end">
                     <span class="inline-flex rounded-md shadow-sm">
                         <button
                             type="button"
-                            class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
+                            class="btn-transparent"
                             @click="$emit('cancel')"
+                            v-text="this.labels ? this.labels.buttons.cancel : ''"
                         >
-                            {{this.cancelText}}
                         </button>
                     </span>
                     <span class="ml-3 inline-flex rounded-md shadow-sm">
                         <button
                             type="submit"
                             class="btn"
+                            v-text="this.labels ? this.labels.buttons.save : ''"
                         >
-                            {{this.submitText}}
                         </button>
                     </span>
                 </div>
@@ -109,6 +120,8 @@
             return {
                 isLoading: true,
                 fields: [],
+                labels: false,
+                cards: [],
                 removeNullValues: false,
                 validationErrors: {}
             }
@@ -120,21 +133,42 @@
         },
         mounted() {
             if (this.preloadedResource !== false) {
-                console.log('foo');
-                console.log(this.preloadedResource);
-                this.fields = this.preloadedResource.fields;
-                this.removeNullValues = this.preloadedResource.removeNullValues;
+                this.initializeForm(this.preloadedResource);
                 this.isLoading = false;
             } else {
                 this.fetchResourceForm();
             }
+
+            Cms.$on('reset-form-' + this.resource, payload => {
+                if (typeof payload !== 'undefined') {
+                    this.initializeForm(payload);
+                } else {
+                    this.fetchResourceForm();
+                }
+            });
         },
         methods: {
+            cardsWithFields(){
+                return _.map(this.cards, card => {
+                    return {
+                        ...card,
+                        fields: _.filter(this.fields, field => field.card === card.name)
+                    }
+                });
+            },
             inSubmitPositions(positions) {
                 if (!Array.isArray(positions)) {
+
                     positions = [positions];
                 }
                 return _.difference(positions, this.submitPositions).length === 0;
+            },
+
+            initializeForm(resource) {
+                this.fields = resource.fields;
+                this.labels = resource.labels;
+                this.cards = resource.cards;
+                this.removeNullValues = resource.removeNullValues;
             },
 
             async fetchResourceForm() {
@@ -145,8 +179,7 @@
                     : Cms.route('cms.backend.resources.show', [this.resource, this.resourceId]);
                 const response = await api(route);
 
-                this.fields = response.data.data.fields;
-                this.removeNullValues = response.data.data.removeNullValues;
+                this.initializeForm(response.data.data);
                 this.isLoading = false;
             },
 
@@ -163,13 +196,16 @@
                     });
 
                     // Emit success event with the data from the successful response
-                    this.$emit('success', response.data.data.model);
+                    this.$emit('success', response.data.data);
                     // Reset form by fetching the fields again. Only if resetOnSuccess prop is true
                     this.resetOnSuccess && this.fetchResourceForm();
                 } catch (error) {
                     if (error.response.status === 422) {
                         this.validationErrors = error.response.data.errors;
-                        Cms.flash('error', 'There are validation errors in the form.')
+                        this.$store.dispatch('flash', {
+                            type: 'error',
+                            text: 'There are validation errors in the form.'
+                        })
                     }
                 }
             },
@@ -197,7 +233,7 @@
             },
 
             getValidationErrors(field) {
-                return this.$data.validationErrors[field.name] || [];
+                return this.validationErrors[field.name] || [];
             },
 
             /**

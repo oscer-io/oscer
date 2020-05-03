@@ -7,7 +7,7 @@ I am a software developer based in Augsburg/Germany.
 
 ## History
 
-I started to build Laravel CMS for my own needs on the first March 2020. I wanted a simple platform to write my blog posts and a few pages. Maybe also with dynamic menus. 
+I started to build Oscer for my own needs on the first March 2020. I wanted a simple platform to write my blog posts and a few pages. Maybe also with dynamic menus. 
 In this situation almost everybody reach out to [Wordpress](https://wordpress.org/). It has a very good time to market and there is a plugin for (almost) everything. But it also has down sides. It lacks in developer friendliness and has no modern dependency management. It is made for the editor and enables him to do everything. And I don’t like it.  
 A solution like [TYPO3](https://typo3.org/) felt like overkill...   
   
@@ -46,14 +46,14 @@ We have put together a roadmap. It is divided in a few milestones which are more
 * Add avatar upload :heavy_check_mark:
 * Implement options :heavy_check_mark:
 * Add optional featured image to the post :heavy_check_mark:
-* Upgrade menu item to be able to select pages
-* Upgrade menu item to contain svg with preview
+* Upgrade menu item to be able to select pages :heavy_check_mark:
 * Update forgot password mechanism to set a chosen password :heavy_check_mark:
 * implement permissions :heavy_check_mark:
 * Add all strings as translations
 * Set up docs :heavy_check_mark:
 
 ### Third milestone: Now I am also beautiful (0.3)
+* Introduce a simple search
 * Iterate over the design
    * backend
    * DefaultTheme
@@ -64,6 +64,7 @@ We have put together a roadmap. It is divided in a few milestones which are more
    * maybe with [Yoast SEO](https://github.com/Yoast/javascript)
 * Think about revisions
 * Hardening the code with more tests
+* Introduce Vue and Dusk tests
 * Artisan command which creates a Theme 
 
 ### Fourth milestone: I know what I want (0.4)

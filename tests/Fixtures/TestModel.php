@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Tests\Fixtures;
+namespace Oscer\Cms\Tests\Fixtures;
 
 use Illuminate\Database\Eloquent\Model;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bambamboole\LaravelCms\Backend\Resources\Fields;
+namespace Oscer\Cms\Backend\Resources\Fields;
 
 use Closure;
 use Illuminate\Database\Eloquent\Model;
@@ -36,6 +36,8 @@ abstract class Field implements JsonSerializable
     protected Closure $fillResourceCallback;
 
     protected bool $showOnIndex = true;
+
+    public $card = false;
 
     public function __construct(
         string $name,
@@ -210,6 +212,7 @@ abstract class Field implements JsonSerializable
     {
         $data = [
             'component' => $this->component,
+            'card' => $this->card,
             'name' => $this->name,
             'label' => $this->label,
             'value' => $this->resolveValue(),
