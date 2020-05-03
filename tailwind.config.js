@@ -1,7 +1,11 @@
 // tailwind.config.js
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
+    purge: [
+        './resources/**/*.blade',
+        './resources/**/*.vue',
+    ],
     variants: {
         borderWidth: ['responsive', 'last', 'hover', 'focus'],
     },
@@ -15,4 +19,4 @@ module.exports = {
     plugins: [
         require('@tailwindcss/ui'),
     ]
-}
+};
