@@ -3,6 +3,9 @@ import Vue from 'vue';
 // Misc
 Vue.component('FieldWrapper', require('./FieldWrapper').default);
 
+// Card
+Vue.component('FormCard', require('./Form/Card').default);
+
 // Text Field
 Vue.component('FormTextField', require('./Form/TextField').default);
 Vue.component('DetailTextField', require('./Detail/TextField').default);

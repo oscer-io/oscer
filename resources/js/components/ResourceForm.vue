@@ -34,16 +34,18 @@
                     </span>
                 </div>
             </div>
-            <component
-                v-for="(field, index) in fields"
-                v-if="field.active"
-                :key="field.name + index"
-                :ref="`${field.name}-field`"
-                :is="`Form${field.component}`"
-                :field="field"
-                :validation-errors="getValidationErrors(field)"
+            <div class="flex">
+
+            <FormCard
+                v-for="(card, index) in cardsWithFields()"
+                :key="index"
+                :name="card.name"
+                :width="card.width"
+                :fields="card.fields"
+                :validation-errors="validationErrors"
                 @componentChange="activateDependents"
             />
+            </div>
             <div v-if="inSubmitPositions('bottom')" class="mt-8 border-t border-gray-200 pt-5">
                 <div class="flex justify-end">
                     <span class="inline-flex rounded-md shadow-sm">
@@ -119,6 +121,7 @@
                 isLoading: true,
                 fields: [],
                 labels: false,
+                cards: [],
                 removeNullValues: false,
                 validationErrors: {}
             }
@@ -145,6 +148,14 @@
             });
         },
         methods: {
+            cardsWithFields(){
+                return _.map(this.cards, card => {
+                    return {
+                        ...card,
+                        fields: _.filter(this.fields, field => field.card === card.name)
+                    }
+                });
+            },
             inSubmitPositions(positions) {
                 if (!Array.isArray(positions)) {
 
@@ -156,6 +167,7 @@
             initializeForm(resource) {
                 this.fields = resource.fields;
                 this.labels = resource.labels;
+                this.cards = resource.cards;
                 this.removeNullValues = resource.removeNullValues;
             },
 
@@ -221,7 +233,7 @@
             },
 
             getValidationErrors(field) {
-                return this.$data.validationErrors[field.name] || [];
+                return this.validationErrors[field.name] || [];
             },
 
             /**

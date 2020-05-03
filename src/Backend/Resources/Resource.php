@@ -31,7 +31,7 @@ abstract class Resource implements \JsonSerializable
     public function __construct(Model $resourceModel)
     {
         $this->resourceModel = $resourceModel;
-        $this->fields = $this->resolveFields();
+        $this->fields = new Collection();
     }
 
     /**
@@ -46,16 +46,45 @@ abstract class Resource implements \JsonSerializable
      */
     protected function resolveFields()
     {
-        return $this->fields()->map(function (Field $field) {
-            $field->value = $field->resolve($this->resourceModel);
+        // if this method was not executed
+        if ($this->fields->isEmpty()) {
+            // temporary variable to get a flat collection of fields
+            $fields = new Collection();
+            // Iterate over the collection returned by the fields method
+            $this->fields()->each(function ($field) use ($fields) {
+                // These instances can also be cards
+                if ($field instanceof Card) {
+                    // if it is a card we need all its fields...
+                    foreach ($field->fields as $fieldInCard) {
+                        // We need to resolve the values for the fields from the resource model.
+                        $fieldInCard->resolve($this->resourceModel);
+                        // add them to our temporary collection
+                        $fields->add($fieldInCard);
+                    }
+                } elseif ($field instanceof Field) {
+                    // the rest should be field instances...
+                    if (! $field->card) {
+                        // Assign the default card to all fields without card assignment
+                        $field->card = 'default';
+                    }
+                    $field->resolve($this->resourceModel);
+                    // add them to our temporary collection
+                    $fields->add($field);
+                }
+            });
 
-            return $field;
-        });
+            // We need to resolve the values for the fields from the resource model.
+            // The result will be assigned to the fields property of this resource.
+            $this->fields = $fields;
+        }
+
+        // Return the fields
+        return $this->fields;
     }
 
     protected function filteredFields(Request $request): Collection
     {
-        return $this->fields->filter(function (Field $field) use ($request) {
+        return $this->resolveFields()->filter(function (Field $field) use ($request) {
             return ! $field->shouldBeRemoved($request);
         });
     }
@@ -128,7 +157,7 @@ abstract class Resource implements \JsonSerializable
      */
     protected function shouldRemoveNullValues(): bool
     {
-        $rules = $this->fields->reduce(function ($result, Field $field) {
+        $rules = $this->resolveFields()->reduce(function ($result, Field $field) {
             foreach ($field->rules as $rule) {
                 $result[] = $rule;
             }
@@ -165,11 +194,28 @@ abstract class Resource implements \JsonSerializable
         return true;
     }
 
+    protected function defaultCard()
+    {
+        return new Card('default', [], 'full');
+    }
+
+    protected function cards()
+    {
+        $rawFields = $this->fields();
+        $cards = $rawFields->whereInstanceOf(Card::class);
+        if ($rawFields->whereInstanceOf(Field::class)->isNotEmpty()) {
+            $cards->prepend($this->defaultCard());
+        }
+
+        return $cards;
+    }
+
     public function toArray()
     {
         $data = [
             'labels' => $this->labels(),
-            'fields' => $this->fields,
+            'cards' => $this->cards(),
+            'fields' => $this->resolveFields(),
             'model' => $this->resourceModel,
             'resourceId' => $this->when($this->resourceModel->id, $this->resourceModel->id),
             'displayShowButtonOnIndex' => $this->displayShowButtonOnIndex,

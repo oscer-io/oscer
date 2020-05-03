@@ -37,6 +37,8 @@ abstract class Field implements JsonSerializable
 
     protected bool $showOnIndex = true;
 
+    public $card = false;
+
     public function __construct(
         string $name,
         ?string $label = null,
@@ -210,6 +212,7 @@ abstract class Field implements JsonSerializable
     {
         $data = [
             'component' => $this->component,
+            'card' => $this->card,
             'name' => $this->name,
             'label' => $this->label,
             'value' => $this->resolveValue(),
