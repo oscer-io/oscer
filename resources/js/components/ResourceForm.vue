@@ -46,16 +46,6 @@
                 @componentChange="activateDependents"
             />
             </div>
-<!--            <component-->
-<!--                v-for="(field, index) in fields"-->
-<!--                v-if="field.active"-->
-<!--                :key="field.name + index"-->
-<!--                :ref="`${field.name}-field`"-->
-<!--                :is="`Form${field.component}`"-->
-<!--                :field="field"-->
-<!--                :validation-errors="getValidationErrors(field)"-->
-<!--                @componentChange="activateDependents"-->
-<!--            />-->
             <div v-if="inSubmitPositions('bottom')" class="mt-8 border-t border-gray-200 pt-5">
                 <div class="flex justify-end">
                     <span class="inline-flex rounded-md shadow-sm">
@@ -159,15 +149,12 @@
         },
         methods: {
             cardsWithFields(){
-                let cards = _.map(this.cards, card => {
+                return _.map(this.cards, card => {
                     return {
                         ...card,
                         fields: _.filter(this.fields, field => field.card === card.name)
                     }
                 });
-
-                console.log(cards);
-                return cards;
             },
             inSubmitPositions(positions) {
                 if (!Array.isArray(positions)) {
