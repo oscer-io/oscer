@@ -1,6 +1,6 @@
-import Vue from 'vue';
-import axios from 'axios'
-import router from './router'
+import axios from 'axios';
+import router from './router';
+import store from './store';
 
 const api = axios.create();
 
@@ -16,7 +16,7 @@ api.interceptors.response.use(
 
         // Show the user a 500 error
         if (status >= 500) {
-            Vue.store.dispatch('flash', {
+            store.dispatch('flash', {
                 type: 'error',
                 text: error.response.data.message
             });
