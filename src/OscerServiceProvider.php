@@ -105,7 +105,7 @@ class OscerServiceProvider extends ServiceProvider
     {
         $this->config->set('ziggy.whitelist', ['cms.*']);
         $this->config->set('ziggy.skip-route-function', true);
-        $this->config->set('blade-icons.sets.cms.path', 'vendor/oscer-io/oscer/resources/icons');
+        $this->config->set('blade-icons.sets.cms', ['path' => 'vendor/oscer-io/oscer/resources/icons', 'prefix' => 'cms']);
     }
 
     protected function configureSanctum()

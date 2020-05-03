@@ -28,7 +28,7 @@ class SidebarItem implements \JsonSerializable
     public function resolveIcon()
     {
         return svg(
-            "cms:{$this->icon}",
+            "cms-{$this->icon}",
             'mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150')
             ->toHtml();
     }
