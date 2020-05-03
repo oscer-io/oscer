@@ -1,5 +1,5 @@
 <template>
-    <span v-text="`${field.value.substring(0,20)}...`"></span>
+    <span v-if="field.value" v-text="`${field.value.substring(0,20)}...`"></span>
 </template>
 <script>
     export default{
