@@ -1,6 +1,6 @@
 <?php
 
-namespace Oscer\Cms\Backend\Elements;
+namespace Oscer\Cms\Backend\Resources;
 
 use Illuminate\Database\Eloquent\Model;
 use Oscer\Cms\Backend\Resources\Fields\Field;
