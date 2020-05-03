@@ -2,13 +2,14 @@ import Vue from 'vue';
 import axios from 'axios'
 import router from './router'
 
+const api = axios.create();
 
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-axios.defaults.headers.common['X-CMS-BACKEND'] = true;
-axios.defaults.headers.common['X-CSRF-TOKEN'] = document.head.querySelector(
+api.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+api.defaults.headers.common['X-CMS-BACKEND'] = true;
+api.defaults.headers.common['X-CSRF-TOKEN'] = document.head.querySelector(
     'meta[name="csrf-token"]'
 ).content;
-axios.interceptors.response.use(
+api.interceptors.response.use(
     response => response,
     error => {
         const {status} = error.response;
@@ -30,11 +31,9 @@ axios.interceptors.response.use(
         if (status === 404) {
             router.push({name: 'not-found'})
         }
-
         return Promise.reject(error)
     }
 );
 
-const api = axios.create();
 
 export default api
