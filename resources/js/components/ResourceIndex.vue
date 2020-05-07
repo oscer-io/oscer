@@ -9,6 +9,13 @@
                     >
                     </h1>
                 </div>
+                <div class="mt-2">
+                    <input
+                        class="form-input block w-full sm:text-sm sm:leading-5"
+                        placeholder="Search..."
+                        v-model="search"
+                    >
+                </div>
                 <div class="ml-4 mt-2 flex-shrink-0">
                     <span class="inline-flex rounded-md shadow-sm">
                         <router-link
@@ -47,7 +54,8 @@
                     </td>
                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 td-fit">
                         <div class="inline-flex items-center">
-                            <router-link v-if="showDetailButton" :to="{name:`${resource}s.show`, params: {id: item.resourceId}}"
+                            <router-link v-if="showDetailButton"
+                                         :to="{name:`${resource}s.show`, params: {id: item.resourceId}}"
                                          class="inline-flex">
                                 <svg class="w-8 h-8 text-gray-500" viewBox="0 0 64 64" stroke="currentColor">
                                     <path fill="none" stroke-miterlimit="10" stroke-width="3"
@@ -87,6 +95,7 @@
 
 <script>
     import api from "../lib/api";
+    import {debounce} from "lodash";
 
     export default {
         props: {
@@ -98,6 +107,7 @@
         data() {
             return {
                 isLoading: true,
+                search: '',
                 page: 1,
                 items: [],
                 labels: false,
@@ -111,26 +121,35 @@
                         .map(field => field.name)
                     : []
             },
-            showDetailButton(){
-              return !!this.items[0].hasDetailView;
+            showDetailButton() {
+                return !!this.items[0].hasDetailView;
             },
         },
         watch: {
             page() {
                 this.fetchResourceList();
+            },
+            search() {
+                this.throttle(this.fetchResourceList);
             }
         },
         mounted() {
             this.fetchResourceList();
         },
         methods: {
+            throttle: debounce(callback => callback(), 500),
+
             async fetchResourceList() {
-                const response = await api(Cms.route('cms.backend.resources.index', {
+                let params = {
                     resource: this.resource,
                     page: this.page
-                }));
+                };
+                if (this.search !== '') {
+                    params['search'] = this.search
+                }
+                const response = await api(Cms.route('cms.backend.resources.index', params));
                 this.items = response.data.data;
-                this.labels = this.items[0].labels;
+                if(this.items.length > 0) this.labels = this.items[0].labels;
                 this.meta = response.data.meta;
                 this.isLoading = false;
             },

@@ -18,6 +18,8 @@ abstract class Resource implements \JsonSerializable
 
     public static string $model;
 
+    public static array $searchColumns = ['id'];
+
     protected Model $resourceModel;
 
     protected Collection $fields;
@@ -63,7 +65,7 @@ abstract class Resource implements \JsonSerializable
                     }
                 } elseif ($field instanceof Field) {
                     // the rest should be field instances...
-                    if (! $field->card) {
+                    if (!$field->card) {
                         // Assign the default card to all fields without card assignment
                         $field->card = 'default';
                     }
@@ -85,7 +87,7 @@ abstract class Resource implements \JsonSerializable
     protected function filteredFields(Request $request): Collection
     {
         return $this->resolveFields()->filter(function (Field $field) use ($request) {
-            return ! $field->shouldBeRemoved($request);
+            return !$field->shouldBeRemoved($request);
         });
     }
 

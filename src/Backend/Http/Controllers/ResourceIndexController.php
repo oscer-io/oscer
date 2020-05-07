@@ -2,21 +2,25 @@
 
 namespace Oscer\Cms\Backend\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Oscer\Cms\Backend\Http\Requests\ResourceRequest;
 
 class ResourceIndexController
 {
+    protected string $resourceClass;
+
     public function handle(ResourceRequest $request)
     {
-        $resourceModel = $request->newResourceModel();
-        $collection = $resourceModel->newQuery()->paginate(10);
-        $resourceClass = $request->getResource();
+        $this->resourceClass = $request->getResource();
+
+        $query = $this->prepareQuery($request);
+        $collection = $query->paginate(10);
 
         return response()->json([
             'data' => collect($collection->items())
-                ->map(function (Model $model) use ($resourceClass) {
-                    return new $resourceClass($model);
+                ->map(function (Model $model) {
+                    return new $this->resourceClass($model);
                 })->toArray(),
             'meta' => [
                 'total' => $collection->total(),
@@ -32,5 +36,21 @@ class ResourceIndexController
                 'prev_page_url' => $collection->previousPageUrl(),
             ],
         ]);
+    }
+
+    protected function prepareQuery(ResourceRequest $request)
+    {
+        $resourceModel = $request->getResourceModel();
+
+        /** @var Builder $query */
+        $query = $resourceModel::query();
+
+        if ($search = $request->query('search')) {
+            foreach ($this->resourceClass::$searchColumns as $column) {
+                $query->orWhere($column, 'like',"%{$search}%");
+            }
+        }
+
+        return $query;
     }
 }

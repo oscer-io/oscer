@@ -15,6 +15,8 @@ class PostResource extends Resource
 {
     public static string $model = Post::class;
 
+    public static array $searchColumns = ['name', 'slug', 'body'];
+
     protected array $additionalValidationRules = ['tags.*' => ['string']];
 
     public function fields(): Collection
