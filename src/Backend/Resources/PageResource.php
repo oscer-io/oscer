@@ -12,6 +12,8 @@ class PageResource extends Resource
 {
     public static string $model = Page::class;
 
+    public static array $searchColumns = ['name', 'slug', 'body'];
+
     public function fields(): Collection
     {
         return collect([

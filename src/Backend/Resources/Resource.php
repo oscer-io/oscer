@@ -18,6 +18,8 @@ abstract class Resource implements \JsonSerializable
 
     public static string $model;
 
+    public static array $searchColumns = ['id'];
+
     protected Model $resourceModel;
 
     protected Collection $fields;
