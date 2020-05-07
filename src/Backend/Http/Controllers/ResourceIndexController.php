@@ -47,7 +47,7 @@ class ResourceIndexController
 
         if ($search = $request->query('search')) {
             foreach ($this->resourceClass::$searchColumns as $column) {
-                $query->orWhere($column, 'like',"%{$search}%");
+                $query->orWhere($column, 'like', "%{$search}%");
             }
         }
 
