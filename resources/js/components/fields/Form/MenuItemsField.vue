@@ -129,7 +129,7 @@
             },
             async deleteItem(item) {
                 // delete item
-                await api(Cms.route('cms.backend.resources.delete', ['menu-item', item.id]));
+                await api.request(api.route('cms.backend.resources.delete', ['menu-item', item.id]));
                 this.$store.dispatch('flash', {
                     type: 'success',
                     text: 'Item deleted!'

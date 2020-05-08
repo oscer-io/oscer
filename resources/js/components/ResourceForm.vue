@@ -175,9 +175,9 @@
                 this.isLoading = true;
                 // fetch the form definition from the backend.
                 const route = this.resourceId === null
-                    ? Cms.route('cms.backend.resources.create', this.resource)
-                    : Cms.route('cms.backend.resources.show', [this.resource, this.resourceId]);
-                const response = await api(route);
+                    ? api.route('cms.backend.resources.create', this.resource)
+                    : api.route('cms.backend.resources.show', [this.resource, this.resourceId]);
+                const response = await api.request(route);
 
                 this.initializeForm(response.data.data);
                 this.isLoading = false;
@@ -188,8 +188,8 @@
                 try {
                     const data = this.getFormData(); // get current form values
 
-                    const response = await api({
-                        ...Cms.route(
+                    const response = await api.request({
+                        ...api.route(
                             'cms.backend.resources.store',
                             [this.resource, this.resourceId].filter(el => el !== null)),
                         data: data
