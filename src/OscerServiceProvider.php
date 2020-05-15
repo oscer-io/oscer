@@ -15,8 +15,8 @@ use Oscer\Cms\Core\Models\User;
 
 class OscerServiceProvider extends ServiceProvider
 {
-    public function boot(Repository $config) {
-
+    public function boot(Repository $config)
+    {
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'cms');
         $this->loadMigrationsFrom(__DIR__.'/../migrations');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'cms');
