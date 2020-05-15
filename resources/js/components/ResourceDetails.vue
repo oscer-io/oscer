@@ -63,7 +63,7 @@
         },
         methods: {
             async fetchResource() {
-                const response = await api(Cms.route('cms.backend.resources.show', [this.resource, this.resourceId]));
+                const response = await api.request(api.route('cms.backend.resources.show', [this.resource, this.resourceId]));
                 this.resourceItem = response.data.data;
                 this.isLoading = false;
             }

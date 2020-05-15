@@ -125,7 +125,7 @@
         },
         methods: {
             async fetchResourceList() {
-                const response = await api(Cms.route('cms.backend.resources.index', {
+                const response = await api.request(api.route('cms.backend.resources.index', {
                     resource: this.resource,
                     page: this.page
                 }));

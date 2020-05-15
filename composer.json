@@ -55,7 +55,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Oscer\\Cms\\OscerServiceProvider"
+                "Oscer\\Cms\\OscerServiceProvider",
+                "Oscer\\Cms\\Backend\\BackendServiceProvider",
+                "Oscer\\Cms\\Frontend\\FrontendServiceProvider",
+                "Oscer\\Cms\\Api\\ApiServiceProvider"
             ]
         }
     }

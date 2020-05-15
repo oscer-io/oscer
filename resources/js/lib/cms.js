@@ -3,7 +3,6 @@ import VueJSModal from 'vue-js-modal';
 import router from './router';
 import store from './store'
 import i18n from './i18n';
-import route from 'ziggy';
 import Layout from '../components/Layout';
 
 export default class Cms {
@@ -11,6 +10,7 @@ export default class Cms {
     constructor(config) {
         this.bus = new Vue();
         this.bootingCallbacks = [];
+        store.dispatch('setConfig', config)
         this.config = config;
     }
 
@@ -35,6 +35,7 @@ export default class Cms {
     start() {
         this.boot();
 
+        // @TODO move this to a plugins module which can be loaded in app.js
         Vue.use(VueJSModal, {dynamic: true});
 
         this.app = new Vue({
@@ -80,20 +81,6 @@ export default class Cms {
      */
     $emit(...args) {
         this.bus.$emit(...args)
-    }
-
-    /**
-     * Generates an object which contains the method and the url needed for a request.
-     * We use https://github.com/tightenco/ziggy for the generation. We only have
-     * to alter the output that we have a simple object with url and method.
-     */
-    route(name, params, absolute) {
-        const routeObject = route(name, params, absolute, this.config.routes);
-
-        return {
-            method: routeObject.urlBuilder.route.methods[0],
-            url: routeObject.toString()
-        }
     }
 }
 

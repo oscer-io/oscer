@@ -1,4 +1,5 @@
 import axios from 'axios';
+import route from 'ziggy';
 import router from './router';
 import store from './store';
 
@@ -35,5 +36,19 @@ api.interceptors.response.use(
     }
 );
 
+export default {
+    request: api,
+    /**
+     * Generates an object which contains the method and the url needed for a request.
+     * We use https://github.com/tightenco/ziggy for the generation. We only have
+     * to alter the output that we have a simple object with url and method.
+     */
+    route(name, params, absolute) {
+        const routeObject = route(name, params, absolute, store.state.config.routes);
 
-export default api
+        return {
+            method: routeObject.urlBuilder.route.methods[0],
+            url: routeObject.toString()
+        }
+    }
+}
