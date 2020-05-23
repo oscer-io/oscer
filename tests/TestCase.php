@@ -6,7 +6,10 @@ use Illuminate\Translation\TranslationServiceProvider;
 use Laravel\Sanctum\Sanctum;
 use Laravel\Sanctum\SanctumServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use Oscer\Cms\Api\ApiServiceProvider;
+use Oscer\Cms\Backend\BackendServiceProvider;
 use Oscer\Cms\Core\Models\User;
+use Oscer\Cms\Frontend\FrontendServiceProvider;
 use Oscer\Cms\OscerServiceProvider;
 use Spatie\Permission\PermissionServiceProvider;
 
@@ -26,6 +29,9 @@ class TestCase extends BaseTestCase
             SanctumServiceProvider::class,
             PermissionServiceProvider::class,
             OscerServiceProvider::class,
+            FrontendServiceProvider::class,
+            BackendServiceProvider::class,
+            ApiServiceProvider::class,
             TranslationServiceProvider::class,
         ];
     }

@@ -14,6 +14,6 @@ class ResourceShowController
             ->newQuery()
             ->findOrFail($request->identifier());
 
-        return response()->json(['data' => new $resourceClass($resourceModel)]);
+        return response()->json(['data' => (new $resourceClass($resourceModel))->prepareForDetail()]);
     }
 }

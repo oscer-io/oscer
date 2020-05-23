@@ -63,7 +63,7 @@ abstract class Field implements JsonSerializable
     /**
      * Returns a new field which is chainable.
      */
-    public static function make(...$arguments)
+    public static function make(...$arguments): Field
     {
         return new static(...$arguments);
     }
@@ -73,13 +73,13 @@ abstract class Field implements JsonSerializable
      * the resource on the field as well as the info if it is a
      * create or update form.
      */
-    public function resolve(Model $model)
+    public function resolve(Model $model): self
     {
         $this->model = $model;
 
         $this->value = $this->resolveValue();
 
-        return $this->value;
+        return $this;
     }
 
     /**

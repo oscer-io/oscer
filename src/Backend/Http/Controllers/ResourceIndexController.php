@@ -14,10 +14,10 @@ class ResourceIndexController
         $resourceClass = $request->getResource();
 
         return response()->json([
-            'data' => collect($collection->items())
-                ->map(function (Model $model) use ($resourceClass) {
-                    return new $resourceClass($model);
-                })->toArray(),
+            'data' =>  collect($collection->items())
+                    ->map(function (Model $model) use ($resourceClass) {
+                        return (new $resourceClass($model))->prepareForIndex();
+                    })->toArray(),
             'meta' => [
                 'total' => $collection->total(),
                 'from' => $collection->firstItem(),

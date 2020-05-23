@@ -3,6 +3,8 @@
 namespace Oscer\Cms\Tests\Fixtures;
 
 use Illuminate\Support\Collection;
+use Oscer\Cms\Backend\Resources\Card;
+use Oscer\Cms\Backend\Resources\Fields\TextField;
 use Oscer\Cms\Backend\Resources\Resource;
 
 class TestResource extends Resource
@@ -11,6 +13,11 @@ class TestResource extends Resource
 
     public function fields(): Collection
     {
-        return collect([TestField::make('test')]);
+        return collect([
+            new Card('test',[
+                TextField::make('field-in-card'),
+            ]),
+            TestField::make('test')
+        ]);
     }
 }

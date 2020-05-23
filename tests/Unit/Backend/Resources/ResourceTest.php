@@ -4,9 +4,11 @@ namespace Oscer\Cms\Tests\Unit\Backend\Resources;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Oscer\Cms\Backend\Resources\Fields\Field;
 use Oscer\Cms\Backend\Resources\Fields\TextField;
 use Oscer\Cms\Backend\Resources\Resource;
 use Oscer\Cms\Tests\Fixtures\TestModel;
+use Oscer\Cms\Tests\Fixtures\TestResource;
 use Oscer\Cms\Tests\TestCase;
 use ReflectionClass;
 
@@ -40,6 +42,19 @@ class ResourceTest extends TestCase
         $resource = new TestFalseResource($model);
 
         $this->assertFalse(Arr::get($resource->toArray(), 'removeNullValues'));
+    }
+
+    /** @test */
+    public function it_can_filter_out_all_fields()
+    {
+        $model = new TestModel();
+        $resource = new TestResource($model);
+
+        $result = $resource->prepareForIndex();
+
+        foreach ($result['fields'] as $field){
+            $this->assertInstanceOf(Field::class, $field);
+        }
     }
 }
 
