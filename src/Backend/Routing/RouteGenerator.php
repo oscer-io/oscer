@@ -6,7 +6,7 @@ use Tightenco\Ziggy\BladeRouteGenerator;
 
 class RouteGenerator extends BladeRouteGenerator
 {
-    public function generate($group = false)
+    public function generate($group = false, $nonce = false)
     {
         $url = url('/');
         $parsedUrl = parse_url($url);
