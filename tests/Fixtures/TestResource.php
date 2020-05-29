@@ -14,10 +14,10 @@ class TestResource extends Resource
     public function fields(): Collection
     {
         return collect([
-            new Card('test',[
+            new Card('test', [
                 TextField::make('field-in-card'),
             ]),
-            TestField::make('test')
+            TestField::make('test'),
         ]);
     }
 }
