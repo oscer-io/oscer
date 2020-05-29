@@ -35,7 +35,13 @@ abstract class Field implements JsonSerializable
 
     protected Closure $fillResourceCallback;
 
-    protected bool $showOnIndex = true;
+    public bool $showOnIndex = true;
+
+    public bool $showOnDetail = true;
+
+    public bool $showOnCreate = true;
+
+    public bool $showOnUpdate = true;
 
     public $card = false;
 
@@ -135,6 +141,27 @@ abstract class Field implements JsonSerializable
     public function hideOnIndex()
     {
         $this->showOnIndex = false;
+
+        return $this;
+    }
+
+    public function hideOnDetail()
+    {
+        $this->showOnDetail = false;
+
+        return $this;
+    }
+
+    public function hideOnCreate()
+    {
+        $this->showOnCreate = false;
+
+        return $this;
+    }
+
+    public function hideOnUpdate()
+    {
+        $this->showOnUpdate = false;
 
         return $this;
     }

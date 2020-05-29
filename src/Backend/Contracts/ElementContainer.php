@@ -2,9 +2,11 @@
 
 namespace Oscer\Cms\Backend\Contracts;
 
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 interface ElementContainer
 {
-    public function getElements(): Collection;
+    public function getElements(): array;
+
+    public function resolveElements(Model $model): self;
 }

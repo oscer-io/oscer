@@ -15,6 +15,6 @@ mix.options({processCssUrls: false})
     .setPublicPath('dist')
     .js('resources/js/app.js', 'dist')
     .sass('resources/sass/app.scss', 'dist', {}, [tailwindcss('./tailwind.config.js')])
-    .browserSync('web.oscer.test')
+    .browserSync('localhost:8000')
     .version();
 

@@ -2,12 +2,22 @@
 
 namespace Oscer\Cms\Backend\Http\Requests;
 
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class ResourceRequest extends Request
+class ResourceRequest extends FormRequest
 {
+    public function authorize()
+    {
+        return true;
+    }
+
+    public function rules()
+    {
+        return [];
+    }
     /**
      * Retrieves the resource class name based on the route parameter.
      */

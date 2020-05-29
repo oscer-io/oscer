@@ -36,7 +36,7 @@
                 </thead>
                 <tbody class="bg-white">
                 <tr v-for="(item, itemIndex) in items">
-                    <td v-for="(field, fieldIndex) in filteredFields(item)"
+                    <td v-for="(field, fieldIndex) in item.fields"
                         :key="`${field.name}-${itemIndex}`"
                         class="p-3 whitespace-no-wrap border-b border-gray-200 text-sm"
                     >
@@ -107,8 +107,7 @@
         computed: {
             tableHeaderColumns() {
                 return this.items.length > 0
-                    ? this.filteredFields(this.items[0])
-                        .map(field => field.name)
+                    ? this.items[0].fields.map(field => field.name)
                     : []
             },
             showDetailButton(){
@@ -133,9 +132,6 @@
                 this.labels = this.items[0].labels;
                 this.meta = response.data.meta;
                 this.isLoading = false;
-            },
-            filteredFields(resource) {
-                return resource.fields.filter(field => !!field.showOnIndex)
             },
             nextPage() {
                 this.page = Math.max(this.meta.last_page, this.page + 1)

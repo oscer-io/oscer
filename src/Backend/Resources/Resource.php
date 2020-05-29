@@ -10,16 +10,12 @@ use Illuminate\Support\Facades\Validator as ValidatorFactory;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
-use Oscer\Cms\Backend\Contracts\Element;
 use Oscer\Cms\Backend\Contracts\ElementContainer;
-use Oscer\Cms\Backend\Http\Requests\ResourceDetailRequest;
-use Oscer\Cms\Backend\Http\Requests\ResourceFormRequest;
-use Oscer\Cms\Backend\Http\Requests\ResourceIndexRequest;
 use Oscer\Cms\Backend\Resources\Fields\Field;
 
 abstract class Resource implements \JsonSerializable
 {
-    use ConditionallyLoadsAttributes;
+    use ConditionallyLoadsAttributes, ResolvesFields;
 
     public static string $model;
 
@@ -28,10 +24,6 @@ abstract class Resource implements \JsonSerializable
     protected Collection $fields;
 
     protected array $additionalValidationRules = [];
-
-    protected bool $displayShowButtonOnIndex = true;
-
-    protected bool $displayEditButtonOnIndex = true;
 
     public function __construct(Model $resourceModel)
     {
@@ -45,19 +37,9 @@ abstract class Resource implements \JsonSerializable
      */
     abstract public function fields(): Collection;
 
-    /**
-     * This method resolves all the fields values from the single fields
-     * depending on the current resource.
-     */
-    protected function resolveFields()
-    {
-        return $this->getFields($this->fields())
-            ->map(fn(Field $field) => $field->resolve($this->resourceModel));
-    }
-
     protected function filteredFields(Request $request): Collection
     {
-        return $this->resolveFields()->filter(function (Field $field) use ($request) {
+        return $this->resolveFields($this->fields()->all(),$this->resourceModel)->filter(function (Field $field) use ($request) {
             return !$field->shouldBeRemoved($request);
         });
     }
@@ -183,10 +165,10 @@ abstract class Resource implements \JsonSerializable
         return $cards;
     }
 
-    protected function getFields(Collection $fields)
+    protected function extractFields(array $fields)
     {
-        return $fields->map(fn ($element) => $element instanceof ElementContainer
-            ? $this->getFields($element->getElements())
+        return collect($fields)->map(fn($element) => $element instanceof ElementContainer
+            ? $this->extractFields($element->getElements())
             : $element
         )->flatten();
     }
@@ -195,44 +177,41 @@ abstract class Resource implements \JsonSerializable
     {
         return [
             'labels' => $this->labels(),
-            'fields' => $this->resolveFields(),
+            'fields' => $this->extractFields(
+                $this->resolveFields($this->fields()->all(), $this->resourceModel, 'index')
+            ),
+            'model' => $this->resourceModel,
+            'hasDetailView' => $this->hasDetailView(),
         ];
     }
 
     public function prepareForDetail()
     {
-        $data = [
+        return [
             'labels' => $this->labels(),
-            'cards' => $this->cards(),
-            'fields' => $this->resolveFields(),
+            'fields' => $this->resolveFields($this->fields()->all(), $this->resourceModel, 'detail'),
             'model' => $this->resourceModel,
-            'resourceId' => $this->when($this->resourceModel->id, $this->resourceModel->id),
-            'displayShowButtonOnIndex' => $this->displayShowButtonOnIndex,
-            'displayEditButtonOnIndex' => $this->displayEditButtonOnIndex,
-            'removeNullValues' => $this->shouldRemoveNullValues(),
-            'hasDetailView' => $this->hasDetailView(),
         ];
-
-        return $this->filter($data);
     }
 
     public function prepareForForm()
     {
-        return [];
+        return [
+            'labels' => $this->labels(),
+            'fields' => $this->resolveFields(
+                $this->fields()->all(),
+                $this->resourceModel,
+                $this->resourceModel->id ? 'update' : 'create'
+            ),
+            'model' => $this->resourceModel,
+        ];
     }
 
     public function toArray()
     {
         $data = [
-            'labels' => $this->labels(),
-            'cards' => $this->cards(),
-            'fields' => $this->resolveFields(),
-            'model' => $this->resourceModel,
             'resourceId' => $this->when($this->resourceModel->id, $this->resourceModel->id),
-            'displayShowButtonOnIndex' => $this->displayShowButtonOnIndex,
-            'displayEditButtonOnIndex' => $this->displayEditButtonOnIndex,
             'removeNullValues' => $this->shouldRemoveNullValues(),
-            'hasDetailView' => $this->hasDetailView(),
         ];
 
         return $this->filter($data);

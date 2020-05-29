@@ -9,6 +9,8 @@ use Oscer\Cms\Backend\Resources\Fields\Field;
 
 class Card implements \JsonSerializable, ElementContainer
 {
+    use ResolvesFields;
+
     protected string $name;
 
     public array $fields;
@@ -47,8 +49,15 @@ class Card implements \JsonSerializable, ElementContainer
         ];
     }
 
-    public function getElements(): Collection
+    public function getElements(): array
     {
-        return collect($this->fields);
+        return $this->fields;
+    }
+
+    public function resolveElements(Model $model): ElementContainer
+    {
+        $this->fields = $this->resolveFields($this->fields, $model);
+
+        return $this;
     }
 }
