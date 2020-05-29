@@ -39,8 +39,8 @@ abstract class Resource implements \JsonSerializable
 
     protected function filteredFields(Request $request): Collection
     {
-        return $this->resolveFields($this->fields()->all(),$this->resourceModel)->filter(function (Field $field) use ($request) {
-            return !$field->shouldBeRemoved($request);
+        return $this->resolveFields($this->fields()->all(), $this->resourceModel)->filter(function (Field $field) use ($request) {
+            return ! $field->shouldBeRemoved($request);
         });
     }
 
@@ -167,7 +167,7 @@ abstract class Resource implements \JsonSerializable
 
     protected function extractFields(array $fields)
     {
-        return collect($fields)->map(fn($element) => $element instanceof ElementContainer
+        return collect($fields)->map(fn ($element) => $element instanceof ElementContainer
             ? $this->extractFields($element->getElements())
             : $element
         )->flatten();
