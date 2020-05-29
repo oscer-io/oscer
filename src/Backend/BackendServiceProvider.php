@@ -19,7 +19,7 @@ class BackendServiceProvider extends ServiceProvider
         $config->set('ziggy.whitelist', ['cms.*']);
         $config->set('ziggy.skip-route-function', true);
 
-        $iconFactory->add('cms', ['path' => __DIR__ . '/../../resources/icons', 'prefix' => 'cms']);
+        $iconFactory->add('cms', ['path' => __DIR__.'/../../resources/icons', 'prefix' => 'cms']);
         $backendRouter->registerAuthRoutes();
         $backendRouter->registerBackendRoutes();
 
