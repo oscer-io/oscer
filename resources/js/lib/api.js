@@ -1,5 +1,5 @@
 import axios from 'axios';
-import route from 'ziggy';
+import route from 'ziggy-js';
 import router from './router';
 import store from './store';
 
