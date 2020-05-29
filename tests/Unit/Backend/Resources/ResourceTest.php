@@ -52,7 +52,7 @@ class ResourceTest extends TestCase
 
         $result = $resource->prepareForIndex();
 
-        foreach ($result['fields'] as $field){
+        foreach ($result['fields'] as $field) {
             $this->assertInstanceOf(Field::class, $field);
         }
     }

@@ -22,18 +22,19 @@ trait ResolvesFields
 
     protected function isVisible(Field $field, string $view): bool
     {
-        if($view === 'create' && $field->showOnCreate === false){
+        if ($view === 'create' && $field->showOnCreate === false) {
             return false;
         }
-        if($view === 'update' && $field->showOnUpdate === false){
+        if ($view === 'update' && $field->showOnUpdate === false) {
             return false;
         }
-        if($view === 'detail' && $field->showOnDetail === false){
+        if ($view === 'detail' && $field->showOnDetail === false) {
             return false;
         }
-        if($view === 'index' && $field->showOnIndex === false){
+        if ($view === 'index' && $field->showOnIndex === false) {
             return false;
         }
+
         return true;
     }
 }

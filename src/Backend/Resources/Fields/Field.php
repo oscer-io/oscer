@@ -69,7 +69,7 @@ abstract class Field implements JsonSerializable
     /**
      * Returns a new field which is chainable.
      */
-    public static function make(...$arguments): Field
+    public static function make(...$arguments): self
     {
         return new static(...$arguments);
     }
