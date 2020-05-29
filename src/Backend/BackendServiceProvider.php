@@ -2,6 +2,7 @@
 
 namespace Oscer\Cms\Backend;
 
+use BladeUI\Icons\Factory as IconFactory;
 use Illuminate\Config\Repository;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Factory;
@@ -13,12 +14,12 @@ use Oscer\Cms\Backend\View\ScriptHandler;
 
 class BackendServiceProvider extends ServiceProvider
 {
-    public function boot(BackendRouter $backendRouter, Factory $view, Repository $config, Sidebar $sidebar)
+    public function boot(BackendRouter $backendRouter, Factory $view, Repository $config, Sidebar $sidebar, IconFactory $iconFactory)
     {
         $config->set('ziggy.whitelist', ['cms.*']);
         $config->set('ziggy.skip-route-function', true);
-        $config->set('blade-icons.sets.cms', ['path' => 'vendor/oscer-io/oscer/resources/icons', 'prefix' => 'cms']);
 
+        $iconFactory->add('cms', ['path' => __DIR__ . '/../../resources/icons', 'prefix' => 'cms']);
         $backendRouter->registerAuthRoutes();
         $backendRouter->registerBackendRoutes();
 
