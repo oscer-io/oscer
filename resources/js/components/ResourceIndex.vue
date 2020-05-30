@@ -47,7 +47,7 @@
                     </td>
                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 td-fit">
                         <div class="inline-flex items-center">
-                            <router-link v-if="showDetailButton" :to="{name:`${resource}s.show`, params: {id: item.resourceId}}"
+                            <router-link v-if="showDetailButton" :to="{name:`${resource}s.show`, params: {id: item.model.id}}"
                                          class="inline-flex">
                                 <svg class="w-8 h-8 text-gray-500" viewBox="0 0 64 64" stroke="currentColor">
                                     <path fill="none" stroke-miterlimit="10" stroke-width="3"
@@ -57,7 +57,7 @@
                                     <circle cx="32" cy="32" r="3.21" fill="currentColor"/>
                                 </svg>
                             </router-link>
-                            <router-link :to="{name:`${resource}s.edit`, params: {id: item.resourceId}}"
+                            <router-link :to="{name:`${resource}s.edit`, params: {id: item.model.id}}"
                                          class="inline-flex">
                                 <svg class="w-8 h-8 text-gray-500" viewBox="0 0 64 64" stroke="currentColor">
                                     <path
