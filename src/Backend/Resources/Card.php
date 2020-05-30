@@ -43,7 +43,9 @@ class Card implements \JsonSerializable, ElementContainer
     public function jsonSerialize()
     {
         return [
+            'component' => 'Card',
             'name' => $this->name,
+            'fields' => $this->fields,
             'width' => "w-{$this->width}",
         ];
     }

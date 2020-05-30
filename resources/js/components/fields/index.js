@@ -5,6 +5,7 @@ Vue.component('FieldWrapper', require('./FieldWrapper').default);
 
 // Card
 Vue.component('FormCard', require('./Form/Card').default);
+Vue.component('DetailCard', require('./Detail/Card').default);
 
 // Text Field
 Vue.component('FormTextField', require('./Form/TextField').default);
