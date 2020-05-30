@@ -17,7 +17,7 @@ trait ResolvesFields
             if ($element instanceof Field && $this->isVisible($element, $view)) {
                 return $element->resolve($model);
             }
-        })->all();
+        })->whereNotNull()->all();
     }
 
     protected function isVisible(Field $field, string $view): bool
