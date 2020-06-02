@@ -51,7 +51,7 @@ abstract class Resource implements \JsonSerializable
     protected function getValidationRules(Request $request)
     {
         return array_merge(
-            $this->filteredFields($request)
+            $this->extractFields($this->fields()->all())
                 ->reduce(function ($rules, Field $field) {
                     $rules[$field->name] = $this->resourceModel->id === null
                         ? $field->getCreationRules()
@@ -147,22 +147,6 @@ abstract class Resource implements \JsonSerializable
     protected function hasDetailView(): bool
     {
         return true;
-    }
-
-    protected function defaultCard()
-    {
-        return new Card('default', [], 'full');
-    }
-
-    protected function cards()
-    {
-        $rawFields = $this->fields();
-        $cards = $rawFields->whereInstanceOf(Card::class);
-        if ($rawFields->whereInstanceOf(Field::class)->isNotEmpty()) {
-            $cards->prepend($this->defaultCard());
-        }
-
-        return $cards;
     }
 
     protected function extractFields(array $fields)
