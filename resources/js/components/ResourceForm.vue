@@ -35,16 +35,15 @@
                 </div>
             </div>
             <div class="flex">
-
-            <FormCard
-                v-for="(card, index) in cardsWithFields()"
-                :key="index"
-                :name="card.name"
-                :width="card.width"
-                :fields="card.fields"
-                :validation-errors="validationErrors"
-                @componentChange="activateDependents"
-            />
+                <component
+                    v-for="(field, index) in fields"
+                    :key="field.name + index"
+                    :ref="`${field.name}-field`"
+                    :is="`Form${field.component}`"
+                    :field="field"
+                    :validation-errors="validationErrors[field.name] || []"
+                    @componentChange="activateDependents"
+                />
             </div>
             <div v-if="inSubmitPositions('bottom')" class="mt-8 border-t border-gray-200 pt-5">
                 <div class="flex justify-end">

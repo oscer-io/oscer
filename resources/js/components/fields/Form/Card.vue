@@ -1,45 +1,41 @@
 <template>
-    <div class="px-2" :class="width">
+    <div class="px-2" :class="field.width">
 
-    <div class="p-6 bg-white rounded mb-8">
-        <p v-text="name" class="text-gray-800 font-bold mb-3"></p>
-        <component
-            v-for="(field, index) in fields"
-            v-if="field.active"
-            :key="field.name + index"
-            :ref="`${field.name}-field`"
-            :is="`Form${field.component}`"
-            :field="field"
-            :validation-errors="validationErrors[field.name] || []"
-            @componentChange="componentChange"
-        />
-    </div>
+        <div class="p-6 bg-white rounded mb-8">
+            <p v-text="field.name" class="text-gray-800 font-bold mb-3"></p>
+            <component
+                v-for="(subField, index) in field.fields"
+                :key="subField.name + index"
+                :ref="`${subField.name}-field`"
+                :is="`Form${subField.component}`"
+                :field="subField"
+                :validation-errors="validationErrors[subField.name] || []"
+                @componentChange="componentChange"
+            />
+        </div>
     </div>
 </template>
 
 <script>
     export default {
         props: {
-            name: {
-                type: String,
-                required: true
-            },
-            width: {
-                type: String,
-                required: true
-            },
-            fields: {
-                type: Array,
+            field: {
+                type: Object,
                 required: true
             },
             validationErrors: {
-                type: Object,
                 required: true
             }
         },
-        methods:{
-            componentChange(field, value){
+        methods: {
+            componentChange(field, value) {
                 this.$emit('componentChange', field, value);
+            },
+            fill(data) {
+                this.field.fields.each(field => {
+                    data[field.name] = field.fill(data)
+                })
+                return data
             }
         }
 

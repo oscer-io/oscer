@@ -35,7 +35,13 @@ abstract class Field implements JsonSerializable
 
     protected Closure $fillResourceCallback;
 
-    protected bool $showOnIndex = true;
+    public bool $showOnIndex = true;
+
+    public bool $showOnDetail = true;
+
+    public bool $showOnCreate = true;
+
+    public bool $showOnUpdate = true;
 
     public $card = false;
 
@@ -63,7 +69,7 @@ abstract class Field implements JsonSerializable
     /**
      * Returns a new field which is chainable.
      */
-    public static function make(...$arguments)
+    public static function make(...$arguments): self
     {
         return new static(...$arguments);
     }
@@ -73,13 +79,13 @@ abstract class Field implements JsonSerializable
      * the resource on the field as well as the info if it is a
      * create or update form.
      */
-    public function resolve(Model $model)
+    public function resolve(Model $model): self
     {
         $this->model = $model;
 
         $this->value = $this->resolveValue();
 
-        return $this->value;
+        return $this;
     }
 
     /**
@@ -135,6 +141,27 @@ abstract class Field implements JsonSerializable
     public function hideOnIndex()
     {
         $this->showOnIndex = false;
+
+        return $this;
+    }
+
+    public function hideOnDetail()
+    {
+        $this->showOnDetail = false;
+
+        return $this;
+    }
+
+    public function hideOnCreate()
+    {
+        $this->showOnCreate = false;
+
+        return $this;
+    }
+
+    public function hideOnUpdate()
+    {
+        $this->showOnUpdate = false;
 
         return $this;
     }

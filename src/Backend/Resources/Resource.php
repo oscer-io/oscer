@@ -10,11 +10,12 @@ use Illuminate\Support\Facades\Validator as ValidatorFactory;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
+use Oscer\Cms\Backend\Contracts\ElementContainer;
 use Oscer\Cms\Backend\Resources\Fields\Field;
 
 abstract class Resource implements \JsonSerializable
 {
-    use ConditionallyLoadsAttributes;
+    use ConditionallyLoadsAttributes, ResolvesFields;
 
     public static string $model;
 
@@ -23,10 +24,6 @@ abstract class Resource implements \JsonSerializable
     protected Collection $fields;
 
     protected array $additionalValidationRules = [];
-
-    protected bool $displayShowButtonOnIndex = true;
-
-    protected bool $displayEditButtonOnIndex = true;
 
     public function __construct(Model $resourceModel)
     {
@@ -40,51 +37,9 @@ abstract class Resource implements \JsonSerializable
      */
     abstract public function fields(): Collection;
 
-    /**
-     * This method resolves all the fields values from the single fields
-     * depending on the current resource.
-     */
-    protected function resolveFields()
-    {
-        // if this method was not executed
-        if ($this->fields->isEmpty()) {
-            // temporary variable to get a flat collection of fields
-            $fields = new Collection();
-            // Iterate over the collection returned by the fields method
-            $this->fields()->each(function ($field) use ($fields) {
-                // These instances can also be cards
-                if ($field instanceof Card) {
-                    // if it is a card we need all its fields...
-                    foreach ($field->fields as $fieldInCard) {
-                        // We need to resolve the values for the fields from the resource model.
-                        $fieldInCard->resolve($this->resourceModel);
-                        // add them to our temporary collection
-                        $fields->add($fieldInCard);
-                    }
-                } elseif ($field instanceof Field) {
-                    // the rest should be field instances...
-                    if (! $field->card) {
-                        // Assign the default card to all fields without card assignment
-                        $field->card = 'default';
-                    }
-                    $field->resolve($this->resourceModel);
-                    // add them to our temporary collection
-                    $fields->add($field);
-                }
-            });
-
-            // We need to resolve the values for the fields from the resource model.
-            // The result will be assigned to the fields property of this resource.
-            $this->fields = $fields;
-        }
-
-        // Return the fields
-        return $this->fields;
-    }
-
     protected function filteredFields(Request $request): Collection
     {
-        return $this->resolveFields()->filter(function (Field $field) use ($request) {
+        return $this->resolveFields($this->fields()->all(), $this->resourceModel)->filter(function (Field $field) use ($request) {
             return ! $field->shouldBeRemoved($request);
         });
     }
@@ -96,8 +51,8 @@ abstract class Resource implements \JsonSerializable
     protected function getValidationRules(Request $request)
     {
         return array_merge(
-            $this->filteredFields($request)
-                ->reduce(function ($rules, Field $field) use ($request) {
+            $this->extractFields($this->fields()->all())
+                ->reduce(function ($rules, Field $field) {
                     $rules[$field->name] = $this->resourceModel->id === null
                         ? $field->getCreationRules()
                         : $field->getUpdateRules();
@@ -194,34 +149,53 @@ abstract class Resource implements \JsonSerializable
         return true;
     }
 
-    protected function defaultCard()
+    protected function extractFields(array $fields)
     {
-        return new Card('default', [], 'full');
+        return collect($fields)->map(fn ($element) => $element instanceof ElementContainer
+            ? $this->extractFields($element->getElements())
+            : $element
+        )->flatten();
     }
 
-    protected function cards()
+    public function prepareForIndex()
     {
-        $rawFields = $this->fields();
-        $cards = $rawFields->whereInstanceOf(Card::class);
-        if ($rawFields->whereInstanceOf(Field::class)->isNotEmpty()) {
-            $cards->prepend($this->defaultCard());
-        }
+        return [
+            'labels' => $this->labels(),
+            'fields' => $this->extractFields(
+                $this->resolveFields($this->fields()->all(), $this->resourceModel, 'index')
+            ),
+            'model' => $this->resourceModel,
+            'hasDetailView' => $this->hasDetailView(),
+        ];
+    }
 
-        return $cards;
+    public function prepareForDetail()
+    {
+        return [
+            'labels' => $this->labels(),
+            'fields' => $this->resolveFields($this->fields()->all(), $this->resourceModel, 'detail'),
+            'model' => $this->resourceModel,
+        ];
+    }
+
+    public function prepareForForm()
+    {
+        return [
+            'labels' => $this->labels(),
+            'fields' => $this->resolveFields(
+                $this->fields()->all(),
+                $this->resourceModel,
+                $this->resourceModel->id ? 'update' : 'create'
+            ),
+            'model' => $this->resourceModel,
+        ];
     }
 
     public function toArray()
     {
         $data = [
-            'labels' => $this->labels(),
-            'cards' => $this->cards(),
-            'fields' => $this->resolveFields(),
-            'model' => $this->resourceModel,
             'resourceId' => $this->when($this->resourceModel->id, $this->resourceModel->id),
-            'displayShowButtonOnIndex' => $this->displayShowButtonOnIndex,
-            'displayEditButtonOnIndex' => $this->displayEditButtonOnIndex,
             'removeNullValues' => $this->shouldRemoveNullValues(),
-            'hasDetailView' => $this->hasDetailView(),
         ];
 
         return $this->filter($data);

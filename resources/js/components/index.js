@@ -10,6 +10,7 @@ Vue.component('Tab', require('./Tab').default);
 Vue.component('Tabs', require('./Tabs').default);
 
 Vue.component('ResourceForm', require('./ResourceForm').default);
+Vue.component('StoreResourceForm', require('./StoreResourceForm').default);
 Vue.component('ResourceDetails', require('./ResourceDetails').default);
 Vue.component('ResourceIndex', require('./ResourceIndex').default);
 

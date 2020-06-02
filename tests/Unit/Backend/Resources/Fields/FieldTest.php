@@ -111,7 +111,7 @@ class FieldTest extends TestCase
     {
         $field = TestField::make('name')->rulesForUpdate(['required', 'string']);
 
-        $this->assertEquals([], $field->getCreationRules());
+        $this->assertEmpty($field->getCreationRules());
         $this->assertEquals(['required', 'string'], $field->getUpdateRules());
     }
 
@@ -120,7 +120,7 @@ class FieldTest extends TestCase
     {
         $field = TestField::make('name')->rulesForCreate(['required', 'string']);
 
-        $this->assertEquals([], $field->getUpdateRules());
+        $this->assertEmpty($field->getUpdateRules());
         $this->assertEquals(['required', 'string'], $field->getCreationRules());
     }
 
@@ -134,7 +134,7 @@ class FieldTest extends TestCase
         $requestMock = \Mockery::mock(Request::class)
             ->shouldReceive('input')
             ->with('name')
-            ->andReturn(null)
+            ->andReturnNull()
             ->getMock();
 
         $this->assertTrue($field->shouldBeRemoved($requestMock));

@@ -7,8 +7,8 @@
                 </h1>
             </div>
         </div>
-        <ResourceForm
-            resource="post"
+        <StoreResourceForm
+            resourceName="post"
             @cancel="$router.push({name: 'posts.index'})"
             @success="handleSuccess"
         />

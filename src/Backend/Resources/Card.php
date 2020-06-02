@@ -3,10 +3,13 @@
 namespace Oscer\Cms\Backend\Resources;
 
 use Illuminate\Database\Eloquent\Model;
+use Oscer\Cms\Backend\Contracts\ElementContainer;
 use Oscer\Cms\Backend\Resources\Fields\Field;
 
-class Card implements \JsonSerializable
+class Card implements \JsonSerializable, ElementContainer
 {
+    use ResolvesFields;
+
     protected string $name;
 
     public array $fields;
@@ -40,8 +43,22 @@ class Card implements \JsonSerializable
     public function jsonSerialize()
     {
         return [
+            'component' => 'Card',
             'name' => $this->name,
+            'fields' => $this->fields,
             'width' => "w-{$this->width}",
         ];
+    }
+
+    public function getElements(): array
+    {
+        return $this->fields;
+    }
+
+    public function resolveElements(Model $model): ElementContainer
+    {
+        $this->fields = $this->resolveFields($this->fields, $model);
+
+        return $this;
     }
 }

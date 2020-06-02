@@ -11,6 +11,6 @@ class ResourceCreateController
         $resourceModel = $request->newResourceModel();
         $resourceClass = $request->getResource();
 
-        return response()->json(['data' => new $resourceClass($resourceModel)]);
+        return response()->json(['data' => (new $resourceClass($resourceModel))->prepareForForm()]);
     }
 }

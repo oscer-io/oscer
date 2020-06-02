@@ -1,15 +1,19 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import resourceModule from './resource'
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+    modules: {
+        resources: resourceModule
+    },
     state: {
-        config:{},
+        config: {},
         flashMessages: []
     },
     mutations: {
-        SET_CONFIG(state,config){
+        SET_CONFIG(state, config) {
             state.config = config
         },
         ADD_FLASH_MESSAGE(state, message) {
@@ -20,7 +24,7 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        setConfig({commit}, config){
+        setConfig({commit}, config) {
             commit('SET_CONFIG', config)
         },
         flash({commit}, message) {

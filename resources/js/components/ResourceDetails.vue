@@ -65,6 +65,7 @@
             async fetchResource() {
                 const response = await api.request(api.route('cms.backend.resources.show', [this.resource, this.resourceId]));
                 this.resourceItem = response.data.data;
+                console.log(this.resourceItem)
                 this.isLoading = false;
             }
         }
