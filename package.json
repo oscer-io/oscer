@@ -31,7 +31,7 @@
         "codemirror": "^5.54.0",
         "cropperjs": "^1.5.7",
         "highlight.js": "^9.18.1",
-        "lodash": "^4.17.15",
+        "lodash": "^4.17.19",
         "marked": "^0.8.2",
         "normalize-scss": "^7.0.1",
         "object-to-formdata": "^3.0.9",
