@@ -28,7 +28,7 @@
     },
     "dependencies": {
         "@tailwindcss/ui": "^0.1.4",
-        "codemirror": "^5.54.0",
+        "codemirror": "^5.58.2",
         "cropperjs": "^1.5.7",
         "highlight.js": "^9.18.1",
         "lodash": "^4.17.15",
