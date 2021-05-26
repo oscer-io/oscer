@@ -97,7 +97,7 @@ abstract class Resource implements \JsonSerializable
     {
         return array_merge(
             $this->filteredFields($request)
-                ->reduce(function ($rules, Field $field) use ($request) {
+                ->reduce(function ($rules, Field $field) {
                     $rules[$field->name] = $this->resourceModel->id === null
                         ? $field->getCreationRules()
                         : $field->getUpdateRules();
