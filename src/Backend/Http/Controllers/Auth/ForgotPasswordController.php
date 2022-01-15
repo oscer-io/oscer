@@ -39,6 +39,7 @@ class ForgotPasswordController
 
     /**
      * Show the new password to the user.
+     *
      * @throws \Exception
      */
     public function showNewPassword(string $token)
