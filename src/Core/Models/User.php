@@ -105,7 +105,7 @@ class User extends BaseModel implements Authenticatable, Authorizable
     /**
      * Set the token value for the "remember me" session.
      *
-     * @param string $value
+     * @param  string  $value
      * @return void
      */
     public function setRememberToken($value)
@@ -128,7 +128,7 @@ class User extends BaseModel implements Authenticatable, Authorizable
     /**
      * Get the author's avatar.
      *
-     * @param string $value
+     * @param  string  $value
      * @return string
      */
     public function getAvatarAttribute($value)
