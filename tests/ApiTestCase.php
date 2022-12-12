@@ -13,7 +13,7 @@ class ApiTestCase extends TestCase
     protected $defaultHeaders = ['Accept' => 'application/json'];
 
     /**
-     * @param array|string $schema
+     * @param  array|string  $schema
      * @param string . $json
      * @return void
      *
